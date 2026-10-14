@@ -1,4 +1,5 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useReducedMotion } from 'motion/react'
+import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 /*
  * Demo timeline engine.
@@ -23,26 +24,6 @@ export const typingEstimate = (text, from = '') => TYPE_MS * Math.max(text.lengt
 
 export const stepEstimate = (s) =>
   (s.duration ?? 0) + (s.cursor?.action ? CLICK_ESTIMATE : 0) + (s.waitsFor !== undefined ? s.estimate ?? CONTENT_ESTIMATE : 0)
-
-/*
- * Starts a `ms` timer from the frame that first shows the current commit (its rAF), so each step is
- * on screen for its full duration. Passive effects can run before that frame; starting the clock
- * there would shave up to a frame off every step. Returns a canceller.
- */
-function afterPaint(fn, ms) {
-  let t = 0
-  let raf = 0
-  // rAF does not run in background tabs; fall back to a plain timer there.
-  if (document.hidden) t = setTimeout(fn, ms)
-  else
-    raf = requestAnimationFrame(() => {
-      t = setTimeout(fn, ms)
-    })
-  return () => {
-    cancelAnimationFrame(raf)
-    clearTimeout(t)
-  }
-}
 
 const DemoContext = createContext(null)
 const PointerContext = createContext({ hovered: null, pressed: null })
@@ -112,9 +93,27 @@ export function DemoProvider({ script, active, children }) {
     return null
   }, [])
 
-  // Step clock. A step that starts its timer as soon as it is entered waits for its first frame to
-  // paint; a step that was waiting on a click / content starts its timer right when that resolves.
+  // Step clock. A step that starts its timer as soon as it is entered starts it once the frame
+  // showing that step has run (passive effects can fire before it, which would shave up to a frame
+  // off every step); a step that was waiting on a click / content starts right when that resolves.
+  const reduced = !!useReducedMotion()
   const entered = useRef(-1)
+  const shown = useRef({ step: -1, done: false, then: null })
+  useLayoutEffect(() => {
+    const f = { step, done: false, then: null }
+    shown.current = f
+    let raf = 0
+    let frames = reduced ? 2 : 1
+    const tick = () => {
+      if (--frames > 0) raf = requestAnimationFrame(tick)
+      else {
+        f.done = true
+        f.then?.()
+      }
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [step, run, reduced])
   useEffect(() => {
     if (!playing || resetting) return
     const fresh = entered.current !== step
@@ -126,9 +125,14 @@ export function DemoProvider({ script, active, children }) {
       if (step >= last) setResetting(true)
       else setPos((p) => ({ ...p, step: p.step + 1 }))
     }
-    if (fresh) return afterPaint(advance, cur.duration ?? 0)
-    const t = setTimeout(advance, cur.duration ?? 0)
-    return () => clearTimeout(t)
+    let t = 0
+    const f = shown.current
+    if (fresh && !f.done && !document.hidden) f.then = () => (t = setTimeout(advance, cur.duration ?? 0))
+    else t = setTimeout(advance, cur.duration ?? 0)
+    return () => {
+      f.then = null
+      clearTimeout(t)
+    }
   }, [playing, resetting, step, clicked, finished, script, S, last])
 
   // End of run: fade (250ms), rewind to step 0 and pause.

@@ -16,7 +16,7 @@ function Chip({ label, target }) {
       initial={{ opacity: 0, scale: 0.94 }}
       animate={{ opacity: 1, scale: 1, transition: CHIP_IN }}
       exit={{ opacity: 0, scale: 0.94, transition: CHIP_OUT }}
-      className="demo-chip shrink-0 overflow-hidden text-nowrap rounded-full bg-black/[0.03] px-2.5 py-[3.5px] text-[11px]/[17px] font-book text-gray-600 transition-[background-color,transform] duration-[120ms] data-[hovered]:bg-black/[0.06] data-[pressed]:scale-[0.96] md:shrink md:truncate md:text-[12px]/[17px]"
+      className="demo-chip shrink-0 overflow-hidden text-nowrap rounded-full bg-black/[0.03] px-2.5 py-[3.5px] text-[11px]/[17px] font-book text-gray-600 transition-[background-color,scale] duration-[120ms] data-[hovered]:bg-black/[0.06] data-[pressed]:[scale:0.96] md:shrink md:truncate md:text-[12px]/[17px]"
     >
       <TextMorph>{label}</TextMorph>
     </motion.div>
