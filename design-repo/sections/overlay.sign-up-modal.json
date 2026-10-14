@@ -1,0 +1,89 @@
+{
+  "id": "overlay.sign-up-modal",
+  "kind": "section",
+  "category": "OVERLAY",
+  "purpose": "Intercepted-route modal: a /sign-up link on the homepage pins and hides the page column over the still-visible backdrop and hosts the sign-up form; closing restores / and its scroll.",
+  "implementedBy": [
+    "src/components/signup/SignUpModal.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:82",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Dialog viewport with the form popup; opens instantly."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "instant-open"
+        },
+        "trigger": {
+          "enum": [
+            "route-intercept"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        },
+        "durationMs": {
+          "enum": [
+            0
+          ]
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback",
+        "durationMs"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "instant-open",
+      "trigger": "route-intercept",
+      "reducedMotionFallback": "not-applicable",
+      "durationMs": 0
+    },
+    "measuredFrom": [
+      "CLONE_SPEC_PAGES.md:363"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {},
+    "motion": {
+      "pattern": "instant-open",
+      "trigger": "route-intercept",
+      "reducedMotionFallback": "not-applicable",
+      "durationMs": 0
+    }
+  },
+  "notes": [
+    "Not a separate route: an overlay state of template.home (see ia.json)."
+  ],
+  "measuredFrom": [
+    "src/components/signup/SignUpModal.jsx:81",
+    "CLONE_SPEC_PAGES.md:349"
+  ]
+}

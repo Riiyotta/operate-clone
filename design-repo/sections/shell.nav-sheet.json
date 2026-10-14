@@ -1,0 +1,169 @@
+{
+  "id": "shell.nav-sheet",
+  "kind": "section",
+  "category": "SHELL",
+  "purpose": "Header strip on a hole-punched sheet: wordmark text, centered logo mark and a desktop-only link to /sign-up. Not sticky, no menu.",
+  "implementedBy": [
+    "src/components/NavSheet.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:34",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Hole-punched strip, 34px (58px at lg)."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "wordmarkText": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 2,
+        "x-observedMaxWords": 1
+      },
+      "ctaLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 3
+      },
+      "ctaHref": {
+        "const": "/sign-up"
+      },
+      "logoMark": {
+        "type": "object",
+        "properties": {
+          "assetRole": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/assetRole"
+              },
+              {
+                "enum": [
+                  "brand-logomark"
+                ]
+              }
+            ]
+          },
+          "assetRef": {
+            "const": "logo--mark"
+          }
+        },
+        "required": [
+          "assetRole",
+          "assetRef"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "wordmarkText",
+      "ctaLabel",
+      "ctaHref",
+      "logoMark"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "static"
+        },
+        "trigger": {
+          "enum": [
+            "none"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    },
+    "measuredFrom": [],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [
+    "Hole-punched sheet chrome (component hole-punched-sheet, variant bar)."
+  ],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "wordmarkText": "Operate",
+      "ctaLabel": "Try it out",
+      "ctaHref": "/sign-up",
+      "logoMark": {
+        "assetRole": "brand-logomark",
+        "assetRef": "logo--mark"
+      }
+    },
+    "motion": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    }
+  },
+  "notes": [
+    "The CTA decorations (˗ˏˋ / ˎˊ-) are aria-hidden fixed internal content.",
+    "The CTA has no hover style."
+  ],
+  "measuredFrom": [
+    "src/components/NavSheet.jsx:4",
+    "CLONE_SPEC.md:151"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "lg"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Strip shows only OPERATE and the logo mark (right-aligned); CTA hidden; no hamburger.",
+        "properties": {
+          "heightPx": 34,
+          "ctaVisible": false
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:166"
+        ]
+      },
+      {
+        "at": "lg",
+        "layout": "58px sheet, 24px strip, logo centered absolutely, CTA visible.",
+        "properties": {
+          "heightPx": 58,
+          "ctaVisible": true
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:163"
+        ]
+      }
+    ]
+  }
+}

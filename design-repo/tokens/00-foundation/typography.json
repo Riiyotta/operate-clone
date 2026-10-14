@@ -1,0 +1,452 @@
+{
+  "fontFamily": {
+    "denim": {
+      "$type": "fontFamily",
+      "$value": "\"denim\",\"denim Fallback\"",
+      "$description": "Body default and headings. Weights 400, 400 italic, 500-700 file.",
+      "measuredFrom": [
+        "src/index.css:14"
+      ],
+      "license": "commercial-licensed (Denim) - not redistributable; reference only"
+    },
+    "cinetype": {
+      "$type": "fontFamily",
+      "$value": "\"cinetype\",\"cinetype Fallback\"",
+      "$description": "GT Cinetype: nav strip, step detail lists, footer copyright, ticket labels, legal back link/code.",
+      "measuredFrom": [
+        "src/index.css:15"
+      ],
+      "license": "commercial-licensed (GT Cinetype) - not redistributable; reference only"
+    },
+    "muoto": {
+      "$type": "fontFamily",
+      "$value": "\"muoto\",\"muoto Fallback\"",
+      "$description": "205TF Muoto Variable: product-demo UI only.",
+      "measuredFrom": [
+        "src/index.css:16"
+      ],
+      "license": "commercial-licensed (205TF Muoto) - not redistributable; reference only"
+    },
+    "geist-mono": {
+      "$type": "fontFamily",
+      "$value": "\"geistMono\",\"geistMono Fallback\"",
+      "$description": "Geist Mono Variable: loaded when the demo reaches the Slack chapter.",
+      "measuredFrom": [
+        "src/index.css:17"
+      ],
+      "license": "SIL OFL 1.1 (Geist Mono) - open license"
+    },
+    "courier": {
+      "$type": "fontFamily",
+      "$value": "\"Courier New\", monospace",
+      "$description": "Manifesto ticket values.",
+      "measuredFrom": [
+        "tailwind.config.cjs:60"
+      ],
+      "license": "system font"
+    },
+    "system-404": {
+      "$type": "fontFamily",
+      "$value": "system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"",
+      "$description": "Stock Next.js 404 font stack (framework default, outside the design system).",
+      "measuredFrom": [
+        "src/pages/NotFound.jsx:10"
+      ],
+      "license": "system font"
+    }
+  },
+  "fontWeight": {
+    "light": {
+      "$type": "fontWeight",
+      "$value": 300,
+      "$description": "Courier ticket version number.",
+      "measuredFrom": [
+        "src/components/Manifesto.jsx:37"
+      ]
+    },
+    "regular": {
+      "$type": "fontWeight",
+      "$value": 400,
+      "$description": "Body weight (denim 400, cinetype 400).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:54"
+      ]
+    },
+    "book": {
+      "$type": "fontWeight",
+      "$value": 450,
+      "$description": "Muoto 'book' weight, demo UI.",
+      "measuredFrom": [
+        "tailwind.config.cjs:63"
+      ]
+    },
+    "medium": {
+      "$type": "fontWeight",
+      "$value": 500,
+      "$description": "Stock 404 h1.",
+      "measuredFrom": [
+        "src/pages/NotFound.jsx:28"
+      ]
+    },
+    "semibold": {
+      "$type": "fontWeight",
+      "$value": 600,
+      "$description": "Headings/strong; resolves through the 500-700 SemiBold file.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:56"
+      ]
+    }
+  },
+  "fontSize": {
+    "hero-h1": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "48px",
+        "lineHeight": "56px",
+        "mobileSize": "36px",
+        "mobileLineHeight": "42px"
+      },
+      "$description": "Hero h1 (md+ / base).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:183"
+      ]
+    },
+    "lead": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "20px",
+        "lineHeight": "27px",
+        "mobileSize": "16px",
+        "mobileLineHeight": "22px"
+      },
+      "$description": "Hero lead paragraph, manifesto intro.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:190"
+      ]
+    },
+    "section-h2": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "32px",
+        "lineHeight": "36px",
+        "mobileSize": "24px",
+        "mobileLineHeight": "1"
+      },
+      "$description": "Ops-steps h2 (mobile line-height is unitless 1).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:253"
+      ]
+    },
+    "step-title": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "18px",
+        "lineHeight": "22px",
+        "mobileSize": "14.5px",
+        "mobileLineHeight": "1"
+      },
+      "$description": "Ops step number and h3.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:262"
+      ]
+    },
+    "step-body": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "20px",
+        "lineHeight": "27px",
+        "mobileSize": "16px",
+        "mobileLineHeight": "22px"
+      },
+      "$description": "Ops step paragraph.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:265"
+      ]
+    },
+    "nav-label": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "14px",
+        "lineHeight": "24px",
+        "mobileSize": "11.2px",
+        "mobileLineHeight": "19.2px"
+      },
+      "$description": "Nav strip (uppercase, tracking .05em).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:159"
+      ]
+    },
+    "detail-pill": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "12px",
+        "lineHeight": "14px",
+        "mobileSize": "9.6px",
+        "mobileLineHeight": "11px"
+      },
+      "$description": "Ops step label pill.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:266"
+      ]
+    },
+    "detail-list": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "14px",
+        "lineHeight": "calc(14/11)",
+        "mobileSize": "11px",
+        "mobileLineHeight": "calc(14/11)"
+      },
+      "$description": "Ops step detail list (cinetype).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:266"
+      ]
+    },
+    "button-pill": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "18px",
+        "lineHeight": "20px",
+        "mobileSize": "16px",
+        "mobileLineHeight": "19px"
+      },
+      "$description": "Hero/footer pill buttons.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:195"
+      ]
+    },
+    "footer-link": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "16px",
+        "lineHeight": "22px",
+        "mobileSize": "12.8px",
+        "mobileLineHeight": "17px"
+      },
+      "$description": "Footer link list.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:347"
+      ]
+    },
+    "footer-copy": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "14px",
+        "lineHeight": "17px",
+        "mobileSize": "11.2px",
+        "mobileLineHeight": "13px"
+      },
+      "$description": "Footer copyright (cinetype).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:351"
+      ]
+    },
+    "manifesto-h2": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "32px",
+        "lineHeight": "36px",
+        "mobileSize": "24px",
+        "mobileLineHeight": "30px"
+      },
+      "$description": "Manifesto heading (xl / base).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:305"
+      ]
+    },
+    "manifesto-body": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "18px",
+        "lineHeight": "24px",
+        "mobileSize": "15px",
+        "mobileLineHeight": "20px"
+      },
+      "$description": "Manifesto body (xl / base).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:282"
+      ]
+    },
+    "legal-h1": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "44px",
+        "lineHeight": "52px",
+        "mobileSize": "32px",
+        "mobileLineHeight": "38px"
+      },
+      "$description": "Legal document h1.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:87"
+      ]
+    },
+    "legal-h2": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "28px",
+        "lineHeight": "34px",
+        "mobileSize": "24px",
+        "mobileLineHeight": "30px"
+      },
+      "$description": "Legal h2.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:89"
+      ]
+    },
+    "legal-h3": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "20px",
+        "lineHeight": "28px",
+        "mobileSize": "18px",
+        "mobileLineHeight": "24px"
+      },
+      "$description": "Legal h3.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:90"
+      ]
+    },
+    "legal-body": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "16px",
+        "lineHeight": "26px",
+        "mobileSize": "15px",
+        "mobileLineHeight": "24px"
+      },
+      "$description": "Legal paragraphs and lists.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:91"
+      ]
+    },
+    "legal-backlink": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "13px",
+        "lineHeight": "18.57px"
+      },
+      "$description": "Legal back link (cinetype, uppercase).",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:86"
+      ]
+    },
+    "form-base": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "16px",
+        "lineHeight": "1.1875em",
+        "mobileSize": "17px",
+        "mobileLineHeight": "1.1875em"
+      },
+      "$description": "Sign-up form base size (all inner spacing is em-based).",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:201"
+      ]
+    },
+    "form-title": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "18px",
+        "lineHeight": "21px",
+        "mobileSize": "19.125px",
+        "mobileLineHeight": "22.31px"
+      },
+      "$description": "Sign-up h1 / buttons (1.125em, calc(21/18)).",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:233"
+      ]
+    },
+    "demo-body": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "14px",
+        "lineHeight": "23px"
+      },
+      "$description": "Demo assistant chat text.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:214"
+      ]
+    },
+    "demo-nav": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "14px",
+        "lineHeight": "20px"
+      },
+      "$description": "Demo sidebar rows.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:213"
+      ]
+    },
+    "demo-label": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "12px",
+        "lineHeight": "17px"
+      },
+      "$description": "Demo labels/meta.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:213"
+      ]
+    },
+    "demo-header": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "13px",
+        "lineHeight": "19px"
+      },
+      "$description": "Demo chat header.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:214"
+      ]
+    },
+    "ticket-brand": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "18px",
+        "lineHeight": "20px",
+        "mobileSize": "14.5px",
+        "mobileLineHeight": "22px"
+      },
+      "$description": "Ticket card OPERATE (cinetype).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:296"
+      ]
+    },
+    "ticket-mono": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "12px",
+        "lineHeight": "14px",
+        "mobileSize": "9.6px",
+        "mobileLineHeight": "11px"
+      },
+      "$description": "Ticket card Courier values.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:296"
+      ]
+    },
+    "404-h1": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "24px",
+        "lineHeight": "49px"
+      },
+      "$description": "Stock 404 h1.",
+      "measuredFrom": [
+        "src/pages/NotFound.jsx:27"
+      ]
+    },
+    "404-h2": {
+      "$type": "fontSize",
+      "$value": {
+        "size": "14px",
+        "lineHeight": "49px"
+      },
+      "$description": "Stock 404 message.",
+      "measuredFrom": [
+        "src/pages/NotFound.jsx:36"
+      ]
+    }
+  }
+}

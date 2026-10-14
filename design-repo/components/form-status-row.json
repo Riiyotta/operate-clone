@@ -1,0 +1,27 @@
+{
+  "id": "form-status-row",
+  "kind": "component",
+  "purpose": "Sign-up footer row: polite status text plus Submit / Submitting... / Close / Try again button.",
+  "implementedBy": "src/components/signup/SignUpForm.jsx",
+  "tokens": [
+    "semantic.text.status"
+  ],
+  "props": {
+    "status": [
+      "idle",
+      "sending",
+      "received",
+      "error"
+    ]
+  },
+  "states": [
+    "idle",
+    "sending (overlay, inert)",
+    "received",
+    "error"
+  ],
+  "measuredFrom": [
+    "src/components/signup/SignUpForm.jsx:334",
+    "CLONE_SPEC_PAGES.md:314"
+  ]
+}

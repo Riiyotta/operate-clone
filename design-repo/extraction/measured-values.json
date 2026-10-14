@@ -1,0 +1,1606 @@
+{
+  "$description": "Evidence ledger. Every citation in this repo is path:line[-line] relative to the SOURCE PROJECT (the folder that contains design-repo/). spotChecks list citations whose quoted text was verified at build time; extraction/verify_all.py re-checks that each cited line still contains the quoted text. When no sibling source tree exists (or --source-root is not given) verify_all.py WARNS and skips these checks instead of failing.",
+  "sourceProject": {
+    "name": "Operate clone (local React 18 + Vite + Tailwind v3 replica of operate.so, a real live company site)",
+    "stack": {
+      "react": "18",
+      "vite": "5",
+      "tailwindcss": "3",
+      "motion": "11",
+      "hls.js": "1"
+    },
+    "devPort": 5300,
+    "evidenceFiles": [
+      "CLONE_SPEC.md",
+      "CLONE_SPEC_PAGES.md",
+      "ia.json",
+      "IA.md",
+      "tailwind.config.cjs",
+      "src/index.css",
+      "src/App.jsx",
+      "src/router.jsx",
+      "src/components/**",
+      "src/pages/**",
+      "src/lib/**",
+      "reference/assets.json",
+      "reference/assets-pages.json",
+      "public/assets/**"
+    ],
+    "excludedEvidence": [
+      "reference/code/** (de-minified proprietary original JS): deliberately NOT copied or cited; behaviour is cited from the specs and the clone's own source."
+    ],
+    "measurementMethod": "CLONE_SPEC.md:5; CLONE_SPEC_PAGES.md:7"
+  },
+  "structurallyUnusual": [
+    "Real company: Operate's brand, copy, media, avatar art, third-party integration logos and commercial fonts are licensed/proprietary; see assets/asset-roles.json.",
+    "/privacy and /terms body text is original PLACEHOLDER copy with the original's structure (not Operate's legal text).",
+    "Sign-up submits to a local stub only (src/lib/signupStub.js); no real endpoint; booking-link redirect variant not implemented.",
+    "404 is the stock Next.js page (framework-default chrome), outside the site's design system.",
+    "The sign-up modal is an overlay state of template.home, not its own route (ia.json $comment).",
+    "src/components/demo/** was still being edited by another agent during this build; demo-derived values are spot-checked by quote in verify_all.py (MASTER-GUIDE 3.11)."
+  ],
+  "specClaimsChecked": [
+    {
+      "claim": "ia.json: 5 routes, 4 templates, 17 sections with implementedBy",
+      "result": "confirmed against src/router.jsx and the components; ids reused verbatim"
+    }
+  ],
+  "spotChecks": [
+    {
+      "citation": "tailwind.config.cjs:21",
+      "quote": "'deep-green': '#005C00'"
+    },
+    {
+      "citation": "tailwind.config.cjs:22",
+      "quote": "'dark-green': '#117025'"
+    },
+    {
+      "citation": "tailwind.config.cjs:23",
+      "quote": "'light-green': '#85C093'"
+    },
+    {
+      "citation": "tailwind.config.cjs:29",
+      "quote": "manifesto: '#94BA9D'"
+    },
+    {
+      "citation": "tailwind.config.cjs:30",
+      "quote": "'video-card': '#77AA83'"
+    },
+    {
+      "citation": "tailwind.config.cjs:26",
+      "quote": "feedback: '#C8E3CE'"
+    },
+    {
+      "citation": "tailwind.config.cjs:53",
+      "quote": "brand: '#006F19'"
+    },
+    {
+      "citation": "tailwind.config.cjs:24",
+      "quote": "paper: '#EBEBEB'"
+    },
+    {
+      "citation": "tailwind.config.cjs:25",
+      "quote": "gray: '#E0E0E0'"
+    },
+    {
+      "citation": "tailwind.config.cjs:31",
+      "quote": "'nav-sheet': '#DCDCDC'"
+    },
+    {
+      "citation": "tailwind.config.cjs:32",
+      "quote": "strip: '#FAFAFA'"
+    },
+    {
+      "citation": "tailwind.config.cjs:33",
+      "quote": "'pill-gray': '#D9D9D9'"
+    },
+    {
+      "citation": "tailwind.config.cjs:34",
+      "quote": "'hole-hatch': '#9D989B'"
+    },
+    {
+      "citation": "tailwind.config.cjs:35",
+      "quote": "bubble: '#F6F6F6'"
+    },
+    {
+      "citation": "tailwind.config.cjs:36",
+      "quote": "stone: { 800: '#29211E' }"
+    },
+    {
+      "citation": "src/index.css:55",
+      "quote": "html{background-color:#FCFCFC}"
+    },
+    {
+      "citation": "tailwind.config.cjs:39",
+      "quote": "50: '#FFFFFF'"
+    },
+    {
+      "citation": "tailwind.config.cjs:28",
+      "quote": "copper: '#B85725'"
+    },
+    {
+      "citation": "tailwind.config.cjs:40",
+      "quote": "75: '#FCFCFC'"
+    },
+    {
+      "citation": "tailwind.config.cjs:41",
+      "quote": "100: '#F7F7F7'"
+    },
+    {
+      "citation": "tailwind.config.cjs:42",
+      "quote": "200: '#EDEFEF'"
+    },
+    {
+      "citation": "tailwind.config.cjs:43",
+      "quote": "300: '#E0E5E5'"
+    },
+    {
+      "citation": "tailwind.config.cjs:44",
+      "quote": "400: '#CAD3D2'"
+    },
+    {
+      "citation": "tailwind.config.cjs:45",
+      "quote": "500: '#9BA8A7'"
+    },
+    {
+      "citation": "tailwind.config.cjs:46",
+      "quote": "600: '#71807E'"
+    },
+    {
+      "citation": "tailwind.config.cjs:47",
+      "quote": "700: '#5F6D6B'"
+    },
+    {
+      "citation": "tailwind.config.cjs:48",
+      "quote": "800: '#294D47'"
+    },
+    {
+      "citation": "tailwind.config.cjs:49",
+      "quote": "900: '#09352E'"
+    },
+    {
+      "citation": "tailwind.config.cjs:51",
+      "quote": "'demo-accent': '#008125'"
+    },
+    {
+      "citation": "tailwind.config.cjs:52",
+      "quote": "'demo-accent-from': '#269600'"
+    },
+    {
+      "citation": "src/index.css:221",
+      "quote": "body:has(.next-error-h1){color:#000;background:#fff}"
+    },
+    {
+      "citation": "src/index.css:222",
+      "quote": "body:has(.next-error-h1){color:#fff;background:#000}"
+    },
+    {
+      "citation": "CLONE_SPEC.md:90",
+      "quote": "| lightbox backdrop |"
+    },
+    {
+      "citation": "src/components/signup/useSignUpCloseConfirm.jsx:46",
+      "quote": "before:bg-black/50"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:98",
+      "quote": "rgba(41,33,30,.15)"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:97",
+      "quote": "rgba(41,33,30,.08)"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:94",
+      "quote": "rgba(41,33,30,.6)"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:256",
+      "quote": "rgba(224,224,224,.2)"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:270",
+      "quote": "rgba(255,255,255,.6)"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:319",
+      "quote": "bg-[rgb(41_33_30/0.3)]"
+    },
+    {
+      "citation": "src/index.css:229",
+      "quote": "rgb(0 112 16 / .6)"
+    },
+    {
+      "citation": "src/index.css:14",
+      "quote": "--font-denim:"
+    },
+    {
+      "citation": "src/index.css:15",
+      "quote": "--font-cinetype:"
+    },
+    {
+      "citation": "src/index.css:16",
+      "quote": "--font-muoto:"
+    },
+    {
+      "citation": "src/index.css:17",
+      "quote": "--font-geist-mono:"
+    },
+    {
+      "citation": "tailwind.config.cjs:60",
+      "quote": "courier: ['\"Courier New\"'"
+    },
+    {
+      "citation": "src/pages/NotFound.jsx:10",
+      "quote": "fontFamily: 'system-ui"
+    },
+    {
+      "citation": "src/components/Manifesto.jsx:37",
+      "quote": "font-light"
+    },
+    {
+      "citation": "CLONE_SPEC.md:54",
+      "quote": "| `denim` | Denim_Regular"
+    },
+    {
+      "citation": "tailwind.config.cjs:63",
+      "quote": "book: '450'"
+    },
+    {
+      "citation": "src/pages/NotFound.jsx:28",
+      "quote": "fontWeight: 500"
+    },
+    {
+      "citation": "CLONE_SPEC.md:56",
+      "quote": "all `font-semibold` (600) headings"
+    },
+    {
+      "citation": "CLONE_SPEC.md:183",
+      "quote": "text-[36px]/[42px] md:text-[48px]/[56px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:190",
+      "quote": "text-[16px]/[22px] md:text-xl/[27px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:253",
+      "quote": "text-[24px]/[1] md:text-[32px]/[36px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:262",
+      "quote": "text-[14.5px]/[1] md:text-[18px]/[22px] font-semibold"
+    },
+    {
+      "citation": "CLONE_SPEC.md:265",
+      "quote": "`text-[16px]/[22px] md:text-[20px]/[27px] text-stone-800`"
+    },
+    {
+      "citation": "CLONE_SPEC.md:159",
+      "quote": "text-[11.2px]/[19.2px] lg:text-[14px]/[24px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:266",
+      "quote": "text-[9.6px]/[11px] md:text-[12px]/[14px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:266",
+      "quote": "text-[11px]/[calc(14/11)] md:text-[14px]/[calc(14/11)]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:195",
+      "quote": "text-[16px]/[19px]; md: px-3.75"
+    },
+    {
+      "citation": "CLONE_SPEC.md:347",
+      "quote": "text-[12.8px]/[17px] md:text-[16px]/[22px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:351",
+      "quote": "text-[11.2px]/[13px] xl:text-[14px]/[17px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:305",
+      "quote": "text-[24px]/[30px] xl:text-[32px]/[36px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:282",
+      "quote": "text-[15px]/[20px] xl:text-[18px]/[24px]"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:87",
+      "quote": "`font-denim text-[32px]/[38px] font-semibold md:text-[44px]/[52px]`"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:89",
+      "quote": "`mt-12 md:mt-16 font-denim text-[24px]/[30px]"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:90",
+      "quote": "`mt-8 md:mt-10 font-denim text-[18px]/[24px]"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:91",
+      "quote": "`mt-4 text-[15px]/[24px] md:text-[16px]/[26px]`"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:86",
+      "quote": "`font-cinetype text-[13px] text-stone-800 uppercase"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:201",
+      "quote": "text-[1.0625rem] md:text-[1rem]"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:233",
+      "quote": "text-[1.125em] leading-[calc(21/18)] text-balance"
+    },
+    {
+      "citation": "CLONE_SPEC.md:214",
+      "quote": "Assistant text is 14/23"
+    },
+    {
+      "citation": "CLONE_SPEC.md:213",
+      "quote": "14/20 weight 400, ls"
+    },
+    {
+      "citation": "CLONE_SPEC.md:213",
+      "quote": "Section labels are 12/17"
+    },
+    {
+      "citation": "CLONE_SPEC.md:214",
+      "quote": "header \"Quota\" (13/19"
+    },
+    {
+      "citation": "CLONE_SPEC.md:296",
+      "quote": "text-[14.5px]/[22px] md:text-[18px]/[20px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:296",
+      "quote": "text-[9.6px]/[11px] md:text-[12px]/[14px] font-light"
+    },
+    {
+      "citation": "src/pages/NotFound.jsx:27",
+      "quote": "fontSize: 24"
+    },
+    {
+      "citation": "src/pages/NotFound.jsx:36",
+      "quote": "fontSize: 14"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:201",
+      "quote": "rounded-[1px] border-1 border-waitlist-gray"
+    },
+    {
+      "citation": "CLONE_SPEC.md:339",
+      "quote": "`rounded-[3px]`"
+    },
+    {
+      "citation": "CLONE_SPEC.md:295",
+      "quote": "md:rounded (4px)"
+    },
+    {
+      "citation": "src/index.css:229",
+      "quote": "border-radius:6px"
+    },
+    {
+      "citation": "CLONE_SPEC.md:337",
+      "quote": "rounded-[6.5px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:256",
+      "quote": "rounded-lg (8px)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:350",
+      "quote": "rounded-[9.5px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:195",
+      "quote": "rounded-[10px] border-1"
+    },
+    {
+      "citation": "CLONE_SPEC.md:195",
+      "quote": "rounded-xl (12px)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:208",
+      "quote": "rounded-2xl (16px)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:214",
+      "quote": "rounded 24px, bg #FCFCFC"
+    },
+    {
+      "citation": "CLONE_SPEC.md:193",
+      "quote": "rounded-full"
+    },
+    {
+      "citation": "CLONE_SPEC.md:7",
+      "quote": "1 unit = 0.25rem = 4px"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:201",
+      "quote": "[--spacing:0.25em]"
+    },
+    {
+      "citation": "src/index.css:28",
+      "quote": "--home-rule:.8px"
+    },
+    {
+      "citation": "src/index.css:39",
+      "quote": "--home-rule:1.25px"
+    },
+    {
+      "citation": "src/index.css:26",
+      "quote": "--home-intro-distance:12vh"
+    },
+    {
+      "citation": "tailwind.config.cjs:11",
+      "quote": "sm: '640px'"
+    },
+    {
+      "citation": "tailwind.config.cjs:12",
+      "quote": "md: '768px'"
+    },
+    {
+      "citation": "tailwind.config.cjs:13",
+      "quote": "lg: '1024px'"
+    },
+    {
+      "citation": "tailwind.config.cjs:14",
+      "quote": "xl: '1280px'"
+    },
+    {
+      "citation": "tailwind.config.cjs:15",
+      "quote": "'home-you-wide': '1440px'"
+    },
+    {
+      "citation": "tailwind.config.cjs:16",
+      "quote": "'2xl': '1536px'"
+    },
+    {
+      "citation": "CLONE_SPEC.md:193",
+      "quote": "Bubble shadow:"
+    },
+    {
+      "citation": "CLONE_SPEC.md:209",
+      "quote": "Shadow (md+):"
+    },
+    {
+      "citation": "CLONE_SPEC.md:215",
+      "quote": "Inner card: `rounded-xl"
+    },
+    {
+      "citation": "src/index.css:229",
+      "quote": "box-shadow:0 0 0 4px rgb(0 112 16 / .6)"
+    },
+    {
+      "citation": "src/components/signup/useSignUpCloseConfirm.jsx:23",
+      "quote": "focus-visible:shadow-[0_0_0_2px_#EBEBEB,0_0_0_4px_#117025]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:163",
+      "quote": "Size `h-2.5 w-5` (10x20)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:163",
+      "quote": "`lg:h-3.25 lg:w-6.25` (13x25)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:351",
+      "quote": "`h-3.25 (13px) md:h-4 (16px) w-auto`"
+    },
+    {
+      "citation": "CLONE_SPEC.md:49",
+      "quote": "size-1.25 (5px) md:size-2 (8px)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:221",
+      "quote": "a 12x12 SVG"
+    },
+    {
+      "citation": "CLONE_SPEC.md:233",
+      "quote": "16x22, drop-shadow"
+    },
+    {
+      "citation": "CLONE_SPEC.md:216",
+      "quote": "size-5 rounded-full border border-black/24"
+    },
+    {
+      "citation": "CLONE_SPEC.md:197",
+      "quote": "150ms cubic-bezier(0,0,.2,1)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:214",
+      "quote": "120ms cubic-bezier(.4,0,.2,1)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:276",
+      "quote": "200ms cubic-bezier(.23,1,.32,1)"
+    },
+    {
+      "citation": "src/index.css:35",
+      "quote": "--lightbox-duration:300ms"
+    },
+    {
+      "citation": "src/index.css:181",
+      "quote": "calc(var(--lightbox-duration) * 0.48)"
+    },
+    {
+      "citation": "src/index.css:163",
+      "quote": "144ms"
+    },
+    {
+      "citation": "src/components/VideoLightbox.jsx:301",
+      "quote": "duration-[250ms]"
+    },
+    {
+      "citation": "src/components/demo/morph.js:18",
+      "quote": "export const MORPH_MS = 400"
+    },
+    {
+      "citation": "src/components/demo/Panels.jsx:412",
+      "quote": "duration: 0.625"
+    },
+    {
+      "citation": "src/components/demo/ChapterControl.jsx:8",
+      "quote": "duration: 0.65"
+    },
+    {
+      "citation": "src/components/demo/Desktop.jsx:242",
+      "quote": "const GROW = { duration: 0.48"
+    },
+    {
+      "citation": "src/components/demo/engine.jsx:12",
+      "quote": "the run fades out (250ms)"
+    },
+    {
+      "citation": "src/components/demo/engine.jsx:20",
+      "quote": "export const TYPE_MS = 32"
+    },
+    {
+      "citation": "src/components/demo/engine.jsx:21",
+      "quote": "export const REVEAL_MS = 25"
+    },
+    {
+      "citation": "src/components/demo/Cursor.jsx:103",
+      "quote": "0.3 + dist / 850"
+    },
+    {
+      "citation": "src/components/demo/ChapterControl.jsx:29",
+      "quote": "TIP_EXIT_MS = 150"
+    },
+    {
+      "citation": "src/components/signup/SendingAnimation.jsx:13",
+      "quote": "VISIBLE_MS = 1500"
+    },
+    {
+      "citation": "src/components/signup/SendingAnimation.jsx:11",
+      "quote": "const EXIT = { duration: 0.75"
+    },
+    {
+      "citation": "src/components/signup/SendingAnimation.jsx:12",
+      "quote": "ENTER_OPACITY = { duration: 0.4"
+    },
+    {
+      "citation": "CLONE_SPEC.md:378",
+      "quote": "7.875s cycle"
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:67",
+      "quote": "currentTime = 0.25"
+    },
+    {
+      "citation": "tailwind.config.cjs:74",
+      "quote": "out: 'cubic-bezier(0, 0, .2, 1)'"
+    },
+    {
+      "citation": "tailwind.config.cjs:75",
+      "quote": "'in-out': 'cubic-bezier(.4, 0, .2, 1)'"
+    },
+    {
+      "citation": "tailwind.config.cjs:76",
+      "quote": "'out-quint': 'cubic-bezier(.23, 1, .32, 1)'"
+    },
+    {
+      "citation": "tailwind.config.cjs:77",
+      "quote": "'out-cubic': 'cubic-bezier(.33, 1, .68, 1)'"
+    },
+    {
+      "citation": "tailwind.config.cjs:78",
+      "quote": "'out-quad': 'cubic-bezier(.25, .46, .45, .94)'"
+    },
+    {
+      "citation": "tailwind.config.cjs:79",
+      "quote": "'in-out-cubic': 'cubic-bezier(.65, 0, .35, 1)'"
+    },
+    {
+      "citation": "tailwind.config.cjs:80",
+      "quote": "'in-out-quart': 'cubic-bezier(.77, 0, .175, 1)'"
+    },
+    {
+      "citation": "src/components/demo/morph.js:19",
+      "quote": "MORPH_EASE = 'cubic-bezier(0.19, 1, 0.22, 1)'"
+    },
+    {
+      "citation": "src/components/demo/Desktop.jsx:242",
+      "quote": "const GROW = { duration: 0.48, ease: [0.22, 1, 0.36, 1] }"
+    },
+    {
+      "citation": "src/components/demo/Cursor.jsx:5",
+      "quote": "MOVE_EASE = [0.42, 0, 0.12, 1]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:75",
+      "quote": "| deep green (page bg)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:80",
+      "quote": "| paper | `#EBEBEB`"
+    },
+    {
+      "citation": "CLONE_SPEC.md:81",
+      "quote": "| nav sheet |"
+    },
+    {
+      "citation": "CLONE_SPEC.md:78",
+      "quote": "| manifesto green panel |"
+    },
+    {
+      "citation": "CLONE_SPEC.md:79",
+      "quote": "| video card |"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:204",
+      "quote": "Form: bg `#117025`"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:62",
+      "quote": "bg #E0E0E0, full width"
+    },
+    {
+      "citation": "CLONE_SPEC.md:295",
+      "quote": "bg-[#85C093] text-stone-800"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:284",
+      "quote": "bg **copper `#B85725`**"
+    },
+    {
+      "citation": "CLONE_SPEC.md:76",
+      "quote": "| dark green (ink)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:84",
+      "quote": "| stone-800 |"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:204",
+      "quote": "text `#E0E0E0`"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:276",
+      "quote": "Color `#C8E3CE`"
+    },
+    {
+      "citation": "CLONE_SPEC.md:87",
+      "quote": "| demo grays"
+    },
+    {
+      "citation": "CLONE_SPEC.md:88",
+      "quote": "| demo accent |"
+    },
+    {
+      "citation": "CLONE_SPEC.md:49",
+      "quote": "rule color"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:204",
+      "quote": "border 1px `#E0E0E0`"
+    },
+    {
+      "citation": "CLONE_SPEC.md:208",
+      "quote": "md:border-gray-400 (#CAD3D2)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:89",
+      "quote": "| brand green-600 |"
+    },
+    {
+      "citation": "CLONE_SPEC.md:89",
+      "quote": "`--selection-color: #E0E0E0`"
+    },
+    {
+      "citation": "src/index.css:227",
+      "quote": "color-mix(in srgb, var(--color-brand) 60%, transparent)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:195",
+      "quote": "bg #117025, text #E0E0E0"
+    },
+    {
+      "citation": "CLONE_SPEC.md:195",
+      "quote": "**Hover:** bg #FFFFFF, text #117025"
+    },
+    {
+      "citation": "CLONE_SPEC.md:196",
+      "quote": "bg #EBEBEB, text #117025"
+    },
+    {
+      "citation": "CLONE_SPEC.md:82",
+      "quote": "| strip |"
+    },
+    {
+      "citation": "CLONE_SPEC.md:85",
+      "quote": "bg-white/60"
+    },
+    {
+      "citation": "CLONE_SPEC.md:222",
+      "quote": "bg-[#D9D9D9]"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:336",
+      "quote": "bg #EBEBEB, 1px #117025 border"
+    },
+    {
+      "citation": "CLONE_SPEC.md:104",
+      "quote": "max-w-[1474px]"
+    },
+    {
+      "citation": "CLONE_SPEC.md:104",
+      "quote": "px-3 (12px) lg:px-9.5 (38px)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:107",
+      "quote": "gap-y-9 (36px) lg:gap-y-11 (44px)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:156",
+      "quote": "h-8.5 (34px) lg:h-14.5 (58px)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:208",
+      "quote": "max-w-292 (1168px)"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:187",
+      "quote": "max-w-198 (792px)"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:63",
+      "quote": "max-width 768px, centered"
+    },
+    {
+      "citation": "src/components/signup/useSignUpCloseConfirm.jsx:65",
+      "quote": "md:max-w-[25rem]"
+    },
+    {
+      "citation": "src/index.css:210",
+      "quote": "92.125rem"
+    },
+    {
+      "citation": "CLONE_SPEC.md:245",
+      "quote": "xl:grid-cols-[280px_1fr_280px]"
+    },
+    {
+      "citation": "src/components/Hero.jsx:9",
+      "quote": "const BUTTON ="
+    },
+    {
+      "citation": "CLONE_SPEC.md:195",
+      "quote": "**Hover:** bg #FFFFFF, text #117025, border #117025"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:277",
+      "quote": "**No hover style** (verified"
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:14",
+      "quote": "const DOTTED_UNDERLINE"
+    },
+    {
+      "citation": "CLONE_SPEC.md:348",
+      "quote": "Each link has a **dotted underline**"
+    },
+    {
+      "citation": "src/components/shell/Rules.jsx:4",
+      "quote": "export function RuleCap"
+    },
+    {
+      "citation": "CLONE_SPEC.md:49",
+      "quote": "`HomeRuleCap` is a small square"
+    },
+    {
+      "citation": "src/components/shell/Rules.jsx:12",
+      "quote": "export function RuleArc"
+    },
+    {
+      "citation": "CLONE_SPEC.md:189",
+      "quote": "Path `M0 0A112 112 0 0 1 112 112`"
+    },
+    {
+      "citation": "src/components/shell/Rules.jsx:66",
+      "quote": "export function LogoMark"
+    },
+    {
+      "citation": "CLONE_SPEC.md:163",
+      "quote": "the logo mark SVG (`svgs/00-operate-logo-mark-navbar.svg`"
+    },
+    {
+      "citation": "src/components/Hero.jsx:6",
+      "quote": "const BUBBLE_SHADOW"
+    },
+    {
+      "citation": "CLONE_SPEC.md:193",
+      "quote": "Each bubble is `span.relative.inline-block size-[0.9167em]"
+    },
+    {
+      "citation": "src/components/OpsSteps.jsx:87",
+      "quote": "duration-200 ease-out-quint"
+    },
+    {
+      "citation": "CLONE_SPEC.md:263",
+      "quote": "Status ring `ml-auto size-2.5"
+    },
+    {
+      "citation": "src/components/OpsSteps.jsx:99",
+      "quote": "rounded-[3px] border border-waitlist-dark-green px-0.5"
+    },
+    {
+      "citation": "CLONE_SPEC.md:266",
+      "quote": "a label pill (`px-0.5 md:px-0.75 rounded-[3px]"
+    },
+    {
+      "citation": "src/components/pages/LegalPage.jsx:165",
+      "quote": "← Back to Operate"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:86",
+      "quote": "**No underline, no hover style.**"
+    },
+    {
+      "citation": "src/components/NavSheet.jsx:17",
+      "quote": "<span className=\"lg:pl-0.5\">Operate</span>"
+    },
+    {
+      "citation": "CLONE_SPEC.md:166",
+      "quote": "**Mobile nav:** there is no hamburger and no menu."
+    },
+    {
+      "citation": "src/components/shell/PanelHoles.jsx:109",
+      "quote": "export default function PanelHoles"
+    },
+    {
+      "citation": "CLONE_SPEC.md:117",
+      "quote": "### \"Paper with punched holes\" system (HomePanelHoles)"
+    },
+    {
+      "citation": "src/components/Manifesto.jsx:31",
+      "quote": "function TicketCard"
+    },
+    {
+      "citation": "CLONE_SPEC.md:295",
+      "quote": "**Ticket card** (inside an overlay"
+    },
+    {
+      "citation": "src/components/OpsSteps.jsx:74",
+      "quote": "function StepList"
+    },
+    {
+      "citation": "CLONE_SPEC.md:259",
+      "quote": "Each `li` contains:"
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:73",
+      "quote": "function VideoCard"
+    },
+    {
+      "citation": "CLONE_SPEC.md:340",
+      "quote": "**Hover (mouse only):** the video plays."
+    },
+    {
+      "citation": "src/components/demo/ChapterControl.jsx:8",
+      "quote": "const PILL = { duration: 0.65"
+    },
+    {
+      "citation": "CLONE_SPEC.md:219",
+      "quote": "### Chapter control (below the frame)"
+    },
+    {
+      "citation": "src/components/signup/SignUpForm.jsx:93",
+      "quote": "function TextField"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:235",
+      "quote": "**Text field row** (Name, Work email, Social handle)"
+    },
+    {
+      "citation": "src/components/signup/SignUpForm.jsx:146",
+      "quote": "function RadioGroup"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:250",
+      "quote": "**Choice group** (4, 5, 7 are radios; 6 is checkboxes)"
+    },
+    {
+      "citation": "src/components/signup/SignUpForm.jsx:334",
+      "quote": "function StatusRow"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:314",
+      "quote": "States: `idle → sending → received | error"
+    },
+    {
+      "citation": "src/components/signup/useSignUpCloseConfirm.jsx:26",
+      "quote": "function ConfirmDialog"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:346",
+      "quote": "No open/close animation classes: it appears instantly."
+    },
+    {
+      "citation": "src/components/pages/LegalPage.jsx:13",
+      "quote": "const CLS = {"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:100",
+      "quote": "Spacing rhythm: every block element uses `mt-*` only"
+    },
+    {
+      "citation": "src/index.css:195",
+      "quote": "--size:.8px;--gap:19.2px"
+    },
+    {
+      "citation": "src/index.css:202",
+      "quote": "--size:1.5px;--gap:22px"
+    },
+    {
+      "citation": "ia.json:22",
+      "quote": "\"backdrop.animated-background\": {"
+    },
+    {
+      "citation": "CLONE_SPEC.md:145",
+      "quote": "Band strength = 1 − smoothstep(0, .35, p)"
+    },
+    {
+      "citation": "src/components/HomeBackground.jsx:97",
+      "quote": "prefers-reduced-motion: reduce"
+    },
+    {
+      "citation": "src/components/HomeBackground.jsx:234",
+      "quote": "export default function HomeBackground"
+    },
+    {
+      "citation": "CLONE_SPEC.md:131",
+      "quote": "## 2. Fixed animated background (HomeBackground)"
+    },
+    {
+      "citation": "src/lib/beadField.js:26",
+      "quote": "smoothstep(0, 0.35, progress)"
+    },
+    {
+      "citation": "src/App.jsx:36",
+      "quote": "hidden h-full w-3 border"
+    },
+    {
+      "citation": "CLONE_SPEC.md:105",
+      "quote": "binder rail L  (lg only)"
+    },
+    {
+      "citation": "ia.json:28",
+      "quote": "\"shell.binder-rails\": {"
+    },
+    {
+      "citation": "src/App.jsx:36",
+      "quote": "hidden h-full w-3 border border-stone-800"
+    },
+    {
+      "citation": "CLONE_SPEC.md:166",
+      "quote": "**Mobile nav:** there is no hamburger"
+    },
+    {
+      "citation": "CLONE_SPEC.md:163",
+      "quote": "At lg it is absolutely centered"
+    },
+    {
+      "citation": "ia.json:34",
+      "quote": "\"shell.nav-sheet\": {"
+    },
+    {
+      "citation": "src/components/NavSheet.jsx:4",
+      "quote": "Try it out"
+    },
+    {
+      "citation": "CLONE_SPEC.md:151",
+      "quote": "## 3. Nav sheet"
+    },
+    {
+      "citation": "CLONE_SPEC.md:175",
+      "quote": "- 390: y171 h3204; padding 48/17/32"
+    },
+    {
+      "citation": "CLONE_SPEC.md:172",
+      "quote": "lg:pt-24.25 (97px) lg:px-18.5 (74px)"
+    },
+    {
+      "citation": "ia.json:40",
+      "quote": "\"shell.main-sheet\": {"
+    },
+    {
+      "citation": "src/App.jsx:45",
+      "quote": "relative isolate border px-[17px] pb-8 pt-12"
+    },
+    {
+      "citation": "CLONE_SPEC.md:172",
+      "quote": "Main sheet: `relative isolate border-1"
+    },
+    {
+      "citation": "CLONE_SPEC.md:398",
+      "quote": "buttons are stacked with **Watch the video above Get started**"
+    },
+    {
+      "citation": "CLONE_SPEC.md:178",
+      "quote": "`div.grid gap-y-6 (24px) md:grid-cols-2`"
+    },
+    {
+      "citation": "CLONE_SPEC.md:182",
+      "quote": "Decorative quarter-arc SVG (xl only)"
+    },
+    {
+      "citation": "ia.json:46",
+      "quote": "\"hero.headline-integrations\": {"
+    },
+    {
+      "citation": "CLONE_SPEC.md:197",
+      "quote": "Transition on both:"
+    },
+    {
+      "citation": "src/components/Hero.jsx:10",
+      "quote": "transition-colors duration-150 ease-out"
+    },
+    {
+      "citation": "src/components/Hero.jsx:34",
+      "quote": "export default function Hero"
+    },
+    {
+      "citation": "CLONE_SPEC.md:170",
+      "quote": "## 4. Main sheet + hero"
+    },
+    {
+      "citation": "src/lib/integrationLogos.js:3",
+      "quote": "export const INTEGRATION_LOGOS"
+    },
+    {
+      "citation": "CLONE_SPEC.md:216",
+      "quote": "**Mobile (<md)**: a different \"touch\" layout"
+    },
+    {
+      "citation": "CLONE_SPEC.md:208",
+      "quote": "`md:h-177.75` = 711"
+    },
+    {
+      "citation": "CLONE_SPEC.md:212",
+      "quote": "xl:grid-cols-[246px_1fr_302px]"
+    },
+    {
+      "citation": "ia.json:52",
+      "quote": "\"product.demo\": {"
+    },
+    {
+      "citation": "src/components/HomeUi.jsx:32",
+      "quote": "reducedMotion=\"user\""
+    },
+    {
+      "citation": "src/components/HomeUi.jsx:28",
+      "quote": "margin: '-30% 0px -48px 0px'"
+    },
+    {
+      "citation": "src/components/HomeUi.jsx:28",
+      "quote": "const inView = useInView"
+    },
+    {
+      "citation": "CLONE_SPEC.md:201",
+      "quote": "## 5. Product demo section (HomeUi)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:400",
+      "quote": "- Ops section: one column."
+    },
+    {
+      "citation": "CLONE_SPEC.md:245",
+      "quote": "md:grid-cols-[280px_1fr]"
+    },
+    {
+      "citation": "ia.json:58",
+      "quote": "\"product.ops-steps\": {"
+    },
+    {
+      "citation": "CLONE_SPEC.md:276",
+      "quote": "active index becomes the last `li`"
+    },
+    {
+      "citation": "src/components/OpsSteps.jsx:47",
+      "quote": "const threshold = 0.5 * window.innerHeight"
+    },
+    {
+      "citation": "src/components/OpsSteps.jsx:44",
+      "quote": "function useActiveStep"
+    },
+    {
+      "citation": "CLONE_SPEC.md:243",
+      "quote": "## 6. \"Getting Operational with AI\" (ops steps)"
+    },
+    {
+      "citation": "CLONE_SPEC.md:401",
+      "quote": "- Manifesto: one column."
+    },
+    {
+      "citation": "CLONE_SPEC.md:304",
+      "quote": "md:columns-2 xl:columns-3"
+    },
+    {
+      "citation": "CLONE_SPEC.md:302",
+      "quote": "home-you-wide:grid home-you-wide:grid-cols-4"
+    },
+    {
+      "citation": "ia.json:64",
+      "quote": "\"story.manifesto\": {"
+    },
+    {
+      "citation": "src/components/Manifesto.jsx:132",
+      "quote": "media=\"(prefers-reduced-motion: reduce)\""
+    },
+    {
+      "citation": "src/components/Manifesto.jsx:60",
+      "quote": "export default function Manifesto"
+    },
+    {
+      "citation": "CLONE_SPEC.md:280",
+      "quote": "## 7. Manifesto"
+    },
+    {
+      "citation": "src/components/Manifesto.jsx:132",
+      "quote": "logo-trace-still.svg"
+    },
+    {
+      "citation": "CLONE_SPEC.md:402",
+      "quote": "- Footer: stacked."
+    },
+    {
+      "citation": "CLONE_SPEC.md:334",
+      "quote": "at md+ the **links cell is visually on the right**"
+    },
+    {
+      "citation": "CLONE_SPEC.md:343",
+      "quote": "At ≥90rem (1440): an extra 221x221 square"
+    },
+    {
+      "citation": "ia.json:70",
+      "quote": "\"shell.footer-sheet\": {"
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:60",
+      "quote": "motion-reduce:hidden"
+    },
+    {
+      "citation": "CLONE_SPEC.md:349",
+      "quote": "- **Hover/focus-visible:**"
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:124",
+      "quote": "export default function FooterSheet"
+    },
+    {
+      "citation": "CLONE_SPEC.md:329",
+      "quote": "## 8. Footer sheet"
+    },
+    {
+      "citation": "ia.json:76",
+      "quote": "\"overlay.video-lightbox\": {"
+    },
+    {
+      "citation": "src/index.css:166",
+      "quote": "animation-duration:var(--lightbox-duration)"
+    },
+    {
+      "citation": "src/index.css:189",
+      "quote": "@media (prefers-reduced-motion:reduce)"
+    },
+    {
+      "citation": "src/components/VideoLightbox.jsx:11",
+      "quote": "const STREAM ="
+    },
+    {
+      "citation": "CLONE_SPEC.md:356",
+      "quote": "## 9. Video lightbox"
+    },
+    {
+      "citation": "src/index.css:165",
+      "quote": "::view-transition-group(lightbox-morph)"
+    },
+    {
+      "citation": "ia.json:82",
+      "quote": "\"overlay.sign-up-modal\": {"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:363",
+      "quote": "Opening is **instant**: no fade or scale."
+    },
+    {
+      "citation": "src/components/signup/SignUpModal.jsx:81",
+      "quote": "export default function SignUpModal"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:349",
+      "quote": "### 3.9 /sign-up as an intercepted modal over the homepage"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:380",
+      "quote": "Base font 17px, so every em value scales"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:233",
+      "quote": "md:px-2 md:text-center"
+    },
+    {
+      "citation": "ia.json:88",
+      "quote": "\"form.sign-up-form\": {"
+    },
+    {
+      "citation": "src/components/signup/SendingAnimation.jsx:11",
+      "quote": "EXIT = { duration: 0.75"
+    },
+    {
+      "citation": "src/components/signup/SendingAnimation.jsx:8",
+      "quote": "Reduced motion: static, rings shown"
+    },
+    {
+      "citation": "src/components/signup/SignUpForm.jsx:420",
+      "quote": "export default function SignUpForm"
+    },
+    {
+      "citation": "src/lib/signupStub.js:10",
+      "quote": "export async function submitSignUp"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:168",
+      "quote": "## 3. `/sign-up`: the waitlist form"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:338",
+      "quote": "Mobile: a bottom sheet"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:339",
+      "quote": "md+: centered with"
+    },
+    {
+      "citation": "ia.json:94",
+      "quote": "\"overlay.leave-confirm\": {"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:326",
+      "quote": "### 3.8 Leaving the form: confirm dialog"
+    },
+    {
+      "citation": "ia.json:100",
+      "quote": "\"legal.back-link\": {"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:86",
+      "quote": "Back link `a[href=\"/\"]`"
+    },
+    {
+      "citation": "ia.json:106",
+      "quote": "\"legal.document-header\": {"
+    },
+    {
+      "citation": "src/components/pages/LegalPage.jsx:171",
+      "quote": "Effective date:"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:106",
+      "quote": "**/privacy**: h1 \"Privacy Policy\""
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:73",
+      "quote": "| container (`max-w-3xl`) |"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:80",
+      "quote": "The only breakpoint is `md` (768px)."
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:114",
+      "quote": "7. Cookies and similar technologies"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:133",
+      "quote": "8.2 Protection and Use of Confidential Information"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:127",
+      "quote": "2.2 Use Restrictions P:1866"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:112",
+      "quote": "5. How we share information"
+    },
+    {
+      "citation": "ia.json:112",
+      "quote": "\"legal.document-body\": {"
+    },
+    {
+      "citation": "src/components/pages/LegalPage.jsx:159",
+      "quote": "export default function LegalPage"
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:102",
+      "quote": "### 1.4 Content structure for placeholder copy"
+    },
+    {
+      "citation": "src/pages/Privacy.jsx:2",
+      "quote": "PLACEHOLDER COPY"
+    },
+    {
+      "citation": "ia.json:118",
+      "quote": "\"system.not-found\": {"
+    },
+    {
+      "citation": "src/pages/NotFound.jsx:36",
+      "quote": "This page could not be found."
+    },
+    {
+      "citation": "CLONE_SPEC_PAGES.md:147",
+      "quote": "## 2. 404 (any unknown path"
+    },
+    {
+      "citation": "src/components/Manifesto.jsx:133",
+      "quote": "src=\"/assets/logo-trace-loop.svg\""
+    },
+    {
+      "citation": "src/lib/integrationLogos.js:4",
+      "quote": "#9BA8A7"
+    },
+    {
+      "citation": "src/lib/integrationLogos.js:5",
+      "quote": "#1E1E1E"
+    },
+    {
+      "citation": "src/lib/integrationLogos.js:6",
+      "quote": "#8039E9"
+    },
+    {
+      "citation": "src/lib/integrationLogos.js:7",
+      "quote": "#E01E5A"
+    },
+    {
+      "citation": "src/lib/integrationLogos.js:8",
+      "quote": "hero-logo-grad-1"
+    },
+    {
+      "citation": "src/lib/integrationLogos.js:9",
+      "quote": "#FF4800"
+    },
+    {
+      "citation": "src/components/demo/scripts.js:132",
+      "quote": "kierra: '/assets/demo/kierra-torres.png'"
+    },
+    {
+      "citation": "src/components/demo/scripts.js:133",
+      "quote": "cooper: '/assets/demo/cooper-franci.png'"
+    },
+    {
+      "citation": "src/components/demo/scripts.js:134",
+      "quote": "emery: '/assets/demo/emery-botosh.png'"
+    },
+    {
+      "citation": "src/components/demo/scripts.js:135",
+      "quote": "alfredo: '/assets/demo/alfredo-bergson.png'"
+    },
+    {
+      "citation": "src/components/demo/scripts.js:136",
+      "quote": "owner: '/assets/demo/eminem.png'"
+    },
+    {
+      "citation": "src/components/demo/scripts.js:137",
+      "quote": "slackBg: '/assets/demo/slack-background.png'"
+    },
+    {
+      "citation": "src/components/HomeBackground.jsx:247",
+      "quote": "home-background-texture"
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:113",
+      "quote": "src=\"/assets/home-footer-video-still.jpg\""
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:105",
+      "quote": "home-footer-video-still-mobile.jpg"
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:61",
+      "quote": "src=\"/assets/footer-video-loop.mp4\""
+    },
+    {
+      "citation": "src/components/VideoLightbox.jsx:12",
+      "quote": "const POSTER ="
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:10",
+      "quote": "label: 'LinkedIn'"
+    },
+    {
+      "citation": "src/components/FooterSheet.jsx:11",
+      "quote": "label: 'X'"
+    },
+    {
+      "citation": "src/index.css:2",
+      "quote": "/assets/fonts/denim-regular.woff2"
+    },
+    {
+      "citation": "src/index.css:3",
+      "quote": "/assets/fonts/denim-italic.woff2"
+    },
+    {
+      "citation": "src/index.css:4",
+      "quote": "/assets/fonts/denim-semibold.woff2"
+    },
+    {
+      "citation": "src/index.css:6",
+      "quote": "/assets/fonts/gt-cinetype-regular.woff2"
+    },
+    {
+      "citation": "src/index.css:8",
+      "quote": "/assets/fonts/muoto-variable.woff2"
+    },
+    {
+      "citation": "src/index.css:10",
+      "quote": "/assets/fonts/geist-mono-variable.woff2"
+    },
+    {
+      "citation": "ia.json:127",
+      "quote": "\"id\": \"template.home\""
+    },
+    {
+      "citation": "index.html:6",
+      "quote": "<title>Operate"
+    },
+    {
+      "citation": "index.html:7",
+      "quote": "<meta name=\"description\""
+    },
+    {
+      "citation": "ia.json:134",
+      "quote": "\"backdrop.animated-background\""
+    },
+    {
+      "citation": "ia.json:135",
+      "quote": "\"shell.binder-rails\""
+    },
+    {
+      "citation": "ia.json:136",
+      "quote": "\"shell.nav-sheet\""
+    },
+    {
+      "citation": "ia.json:137",
+      "quote": "\"shell.main-sheet\""
+    },
+    {
+      "citation": "ia.json:138",
+      "quote": "\"hero.headline-integrations\""
+    },
+    {
+      "citation": "ia.json:139",
+      "quote": "\"product.demo\""
+    },
+    {
+      "citation": "ia.json:140",
+      "quote": "\"product.ops-steps\""
+    },
+    {
+      "citation": "ia.json:141",
+      "quote": "\"story.manifesto\""
+    },
+    {
+      "citation": "ia.json:142",
+      "quote": "\"shell.footer-sheet\""
+    },
+    {
+      "citation": "ia.json:143",
+      "quote": "\"overlay.video-lightbox\""
+    },
+    {
+      "citation": "ia.json:144",
+      "quote": "\"overlay.sign-up-modal\""
+    },
+    {
+      "citation": "ia.json:145",
+      "quote": "\"form.sign-up-form\""
+    },
+    {
+      "citation": "ia.json:146",
+      "quote": "\"overlay.leave-confirm\""
+    },
+    {
+      "citation": "src/App.jsx:29",
+      "quote": "export default function App"
+    },
+    {
+      "citation": "src/router.jsx:141",
+      "quote": "case '/':"
+    },
+    {
+      "citation": "ia.json:150",
+      "quote": "\"id\": \"template.sign-up\""
+    },
+    {
+      "citation": "src/router.jsx:42",
+      "quote": "title: 'Sign up — Operate'"
+    },
+    {
+      "citation": "ia.json:156",
+      "quote": "\"backdrop.animated-background\""
+    },
+    {
+      "citation": "ia.json:156",
+      "quote": "\"form.sign-up-form\""
+    },
+    {
+      "citation": "ia.json:156",
+      "quote": "\"overlay.leave-confirm\""
+    },
+    {
+      "citation": "src/pages/SignUp.jsx:15",
+      "quote": "export default function SignUp"
+    },
+    {
+      "citation": "src/router.jsx:147",
+      "quote": "case '/sign-up':"
+    },
+    {
+      "citation": "ia.json:159",
+      "quote": "\"id\": \"template.legal\""
+    },
+    {
+      "citation": "src/router.jsx:31",
+      "quote": "title: 'Privacy Policy — Operate'"
+    },
+    {
+      "citation": "ia.json:165",
+      "quote": "\"legal.back-link\""
+    },
+    {
+      "citation": "ia.json:165",
+      "quote": "\"legal.document-header\""
+    },
+    {
+      "citation": "ia.json:165",
+      "quote": "\"legal.document-body\""
+    },
+    {
+      "citation": "src/router.jsx:143",
+      "quote": "case '/privacy':"
+    },
+    {
+      "citation": "ia.json:168",
+      "quote": "\"id\": \"template.not-found\""
+    },
+    {
+      "citation": "src/router.jsx:46",
+      "quote": "notfound: { title:"
+    },
+    {
+      "citation": "ia.json:174",
+      "quote": "\"system.not-found\""
+    },
+    {
+      "citation": "src/pages/NotFound.jsx:6",
+      "quote": "export default function NotFound"
+    },
+    {
+      "citation": "src/router.jsx:176",
+      "quote": "return <NotFound />"
+    }
+  ]
+}

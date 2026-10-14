@@ -1,0 +1,391 @@
+{
+  "version": "1.0.0",
+  "$description": "Closed assetRole registry. Every PageSpec media field is {assetRole, assetRef}; raw URLs never appear in a PageSpec. assetRef values must be registered below and carry the matching role (checked by semantic_validate.py). compliancePinned roles are pinned to exact generationPolicy values in extraction/verify_all.py (PINNED_POLICIES). pageSpecFacing:false roles are documented for licensing only and are not in the schema's assetRole enum.",
+  "policyEnum": {
+    "may-generate-new": "Generic decorative texture/geometry with no brand or third-party content. A generator may draw a new, original, brand-neutral equivalent.",
+    "must-reuse-exact": "Operate's own proprietary brand asset. Only the exact registered file may be referenced, only on a property Operate owns. On any other property the renderer must substitute that property's own asset; never redraw, restyle, imitate or regenerate it.",
+    "must-not-fabricate": "Real third-party marks, real-company media or fictional-person artwork owned by Operate or others. Only registered ids may be referenced verbatim; never generate, approximate, re-attribute or invent new instances. For other properties substitute a placeholder.",
+    "must-not-reuse-live-endpoint": "A real, live endpoint or profile (video stream, social profile) or an endpoint contract that must not point at the original's live backend. PageSpecs reference it only by registered id, never as a raw URL; a renderer for any other property must replace it with that property's own endpoint."
+  },
+  "roles": {
+    "brand-logomark": {
+      "generationPolicy": "must-reuse-exact",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Operate logo mark (inline SVG, 32x16).",
+      "usedBy": [
+        "shell.nav-sheet",
+        "shell.footer-sheet"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "A neutral square/circle mark supplied by the owning property."
+    },
+    "brand-logo-trace": {
+      "generationPolicy": "must-reuse-exact",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Self-animating logo-trace SVG (loop) and its static still (reduced motion).",
+      "usedBy": [
+        "story.manifesto"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "A neutral static SVG or no graphic."
+    },
+    "integration-logo": {
+      "generationPolicy": "must-not-fabricate",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Third-party integration logos in the hero bubbles (Granola, Gong, Slack, Gmail, HubSpot) plus a generic plus glyph: third-party trademarks.",
+      "usedBy": [
+        "hero.headline-integrations"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "Generic gray circle glyphs; never another company's trademark unless licensed."
+    },
+    "demo-avatar-image": {
+      "generationPolicy": "must-not-fabricate",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Avatar PNGs of fictional people in the product demo (Operate's art).",
+      "usedBy": [
+        "product.demo"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "Initial-letter or silhouette avatars."
+    },
+    "demo-scene-image": {
+      "generationPolicy": "must-not-fabricate",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Slack-conversation background image used in the demo's Slack chapter.",
+      "usedBy": [
+        "product.demo"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "A flat neutral panel."
+    },
+    "background-texture": {
+      "generationPolicy": "may-generate-new",
+      "compliancePinned": false,
+      "pageSpecFacing": true,
+      "description": "Generic 2940x200 noise texture blended at 20% over the deep-green backdrop.",
+      "usedBy": [
+        "backdrop.animated-background"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "Any original subtle noise texture."
+    },
+    "footer-video-asset": {
+      "generationPolicy": "must-not-fabricate",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Footer video card stills (desktop/mobile) and the muted hover loop (Operate product footage).",
+      "usedBy": [
+        "shell.footer-sheet"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "A flat placeholder frame; omit the hover video."
+    },
+    "video-poster": {
+      "generationPolicy": "must-not-fabricate",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Lightbox poster frame of the product video (1920x1080).",
+      "usedBy": [
+        "overlay.video-lightbox"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "A flat 16:9 placeholder."
+    },
+    "lightbox-video-stream": {
+      "generationPolicy": "must-not-reuse-live-endpoint",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Live Mux HLS stream of Operate's product video. Never reuse its playback id.",
+      "usedBy": [
+        "overlay.video-lightbox"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "The owning property's own stream, or a placeholder."
+    },
+    "signup-submit-stub": {
+      "generationPolicy": "must-not-reuse-live-endpoint",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Sign-up submit contract. In this clone it is a local stub (src/lib/signupStub.js); the original's live server action must never be targeted.",
+      "usedBy": [
+        "form.sign-up-form"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "The owning property's own endpoint behind the same contract."
+    },
+    "external-social-link": {
+      "generationPolicy": "must-not-reuse-live-endpoint",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "Operate's real LinkedIn and X profile links in the footer.",
+      "usedBy": [
+        "shell.footer-sheet"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "The owning property's own profiles, or omit."
+    },
+    "font-file": {
+      "generationPolicy": "must-not-fabricate",
+      "compliancePinned": true,
+      "pageSpecFacing": false,
+      "description": "Self-hosted woff2 fonts. Denim, GT Cinetype and 205TF Muoto are commercially licensed; Geist Mono is SIL OFL 1.1. Not a PageSpec field; documented for compliance.",
+      "usedBy": [],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
+      "placeholderSubstitute": "Use the property's own licensed fonts; never ship Operate's commercial font files."
+    }
+  },
+  "registeredAssets": {
+    "logo--mark": {
+      "role": "brand-logomark",
+      "source": "src/components/shell/Rules.jsx (inline SVG)",
+      "kind": "svg-inline",
+      "measuredFrom": [
+        "src/components/shell/Rules.jsx:66"
+      ]
+    },
+    "logo-trace--loop": {
+      "role": "brand-logo-trace",
+      "source": "public/assets/logo-trace-loop.svg",
+      "kind": "svg-file",
+      "measuredFrom": [
+        "src/components/Manifesto.jsx:133"
+      ]
+    },
+    "logo-trace--still": {
+      "role": "brand-logo-trace",
+      "source": "public/assets/logo-trace-still.svg",
+      "kind": "svg-file",
+      "measuredFrom": [
+        "src/components/Manifesto.jsx:132"
+      ]
+    },
+    "integration--more": {
+      "role": "integration-logo",
+      "source": "src/lib/integrationLogos.js (inline SVG)",
+      "kind": "svg-inline",
+      "measuredFrom": [
+        "src/lib/integrationLogos.js:4"
+      ]
+    },
+    "integration--granola": {
+      "role": "integration-logo",
+      "source": "src/lib/integrationLogos.js (inline SVG)",
+      "kind": "svg-inline",
+      "measuredFrom": [
+        "src/lib/integrationLogos.js:5"
+      ]
+    },
+    "integration--gong": {
+      "role": "integration-logo",
+      "source": "src/lib/integrationLogos.js (inline SVG)",
+      "kind": "svg-inline",
+      "measuredFrom": [
+        "src/lib/integrationLogos.js:6"
+      ]
+    },
+    "integration--slack": {
+      "role": "integration-logo",
+      "source": "src/lib/integrationLogos.js (inline SVG)",
+      "kind": "svg-inline",
+      "measuredFrom": [
+        "src/lib/integrationLogos.js:7"
+      ]
+    },
+    "integration--gmail": {
+      "role": "integration-logo",
+      "source": "src/lib/integrationLogos.js (inline SVG)",
+      "kind": "svg-inline",
+      "measuredFrom": [
+        "src/lib/integrationLogos.js:8"
+      ]
+    },
+    "integration--hubspot": {
+      "role": "integration-logo",
+      "source": "src/lib/integrationLogos.js (inline SVG)",
+      "kind": "svg-inline",
+      "measuredFrom": [
+        "src/lib/integrationLogos.js:9"
+      ]
+    },
+    "avatar--demo-1": {
+      "role": "demo-avatar-image",
+      "source": "public/assets/demo/kierra-torres.png",
+      "kind": "png",
+      "measuredFrom": [
+        "src/components/demo/scripts.js:132"
+      ]
+    },
+    "avatar--demo-2": {
+      "role": "demo-avatar-image",
+      "source": "public/assets/demo/cooper-franci.png",
+      "kind": "png",
+      "measuredFrom": [
+        "src/components/demo/scripts.js:133"
+      ]
+    },
+    "avatar--demo-3": {
+      "role": "demo-avatar-image",
+      "source": "public/assets/demo/emery-botosh.png",
+      "kind": "png",
+      "measuredFrom": [
+        "src/components/demo/scripts.js:134"
+      ]
+    },
+    "avatar--demo-4": {
+      "role": "demo-avatar-image",
+      "source": "public/assets/demo/alfredo-bergson.png",
+      "kind": "png",
+      "measuredFrom": [
+        "src/components/demo/scripts.js:135"
+      ]
+    },
+    "avatar--demo-5": {
+      "role": "demo-avatar-image",
+      "source": "public/assets/demo/eminem.png",
+      "kind": "png",
+      "measuredFrom": [
+        "src/components/demo/scripts.js:136"
+      ]
+    },
+    "scene--demo-slack": {
+      "role": "demo-scene-image",
+      "source": "public/assets/demo/slack-background.png",
+      "kind": "png",
+      "measuredFrom": [
+        "src/components/demo/scripts.js:137"
+      ]
+    },
+    "texture--home-background": {
+      "role": "background-texture",
+      "source": "public/assets/home-background-texture.png",
+      "kind": "png",
+      "measuredFrom": [
+        "src/components/HomeBackground.jsx:247"
+      ]
+    },
+    "footer--still-desktop": {
+      "role": "footer-video-asset",
+      "source": "public/assets/home-footer-video-still.jpg",
+      "kind": "jpg",
+      "measuredFrom": [
+        "src/components/FooterSheet.jsx:113"
+      ]
+    },
+    "footer--still-mobile": {
+      "role": "footer-video-asset",
+      "source": "public/assets/home-footer-video-still-mobile.jpg",
+      "kind": "jpg",
+      "measuredFrom": [
+        "src/components/FooterSheet.jsx:105"
+      ]
+    },
+    "footer--loop": {
+      "role": "footer-video-asset",
+      "source": "public/assets/footer-video-loop.mp4",
+      "kind": "mp4",
+      "measuredFrom": [
+        "src/components/FooterSheet.jsx:61"
+      ]
+    },
+    "poster--lightbox": {
+      "role": "video-poster",
+      "source": "public/assets/video-poster.webp",
+      "kind": "webp",
+      "measuredFrom": [
+        "src/components/VideoLightbox.jsx:12"
+      ]
+    },
+    "stream--lightbox-demo": {
+      "role": "lightbox-video-stream",
+      "source": "(live HLS stream; id intentionally not recorded)",
+      "kind": "hls",
+      "measuredFrom": [
+        "src/components/VideoLightbox.jsx:11"
+      ]
+    },
+    "endpoint--signup-stub": {
+      "role": "signup-submit-stub",
+      "source": "src/lib/signupStub.js",
+      "kind": "local-stub",
+      "measuredFrom": [
+        "src/lib/signupStub.js:10"
+      ]
+    },
+    "social--linkedin": {
+      "role": "external-social-link",
+      "source": "(real company profile; URL intentionally not recorded)",
+      "kind": "external-link",
+      "measuredFrom": [
+        "src/components/FooterSheet.jsx:10"
+      ]
+    },
+    "social--x": {
+      "role": "external-social-link",
+      "source": "(real company profile; URL intentionally not recorded)",
+      "kind": "external-link",
+      "measuredFrom": [
+        "src/components/FooterSheet.jsx:11"
+      ]
+    },
+    "font--denim-regular": {
+      "role": "font-file",
+      "source": "public/assets/fonts/denim-regular.woff2",
+      "kind": "woff2",
+      "measuredFrom": [
+        "src/index.css:2"
+      ],
+      "license": "commercial"
+    },
+    "font--denim-italic": {
+      "role": "font-file",
+      "source": "public/assets/fonts/denim-italic.woff2",
+      "kind": "woff2",
+      "measuredFrom": [
+        "src/index.css:3"
+      ],
+      "license": "commercial"
+    },
+    "font--denim-semibold": {
+      "role": "font-file",
+      "source": "public/assets/fonts/denim-semibold.woff2",
+      "kind": "woff2",
+      "measuredFrom": [
+        "src/index.css:4"
+      ],
+      "license": "commercial"
+    },
+    "font--cinetype-regular": {
+      "role": "font-file",
+      "source": "public/assets/fonts/gt-cinetype-regular.woff2",
+      "kind": "woff2",
+      "measuredFrom": [
+        "src/index.css:6"
+      ],
+      "license": "commercial"
+    },
+    "font--muoto-variable": {
+      "role": "font-file",
+      "source": "public/assets/fonts/muoto-variable.woff2",
+      "kind": "woff2",
+      "measuredFrom": [
+        "src/index.css:8"
+      ],
+      "license": "commercial"
+    },
+    "font--geist-mono-variable": {
+      "role": "font-file",
+      "source": "public/assets/fonts/geist-mono-variable.woff2",
+      "kind": "woff2",
+      "measuredFrom": [
+        "src/index.css:10"
+      ],
+      "license": "SIL OFL 1.1"
+    }
+  }
+}

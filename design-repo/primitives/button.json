@@ -1,0 +1,39 @@
+{
+  "id": "button",
+  "kind": "primitive",
+  "purpose": "Pill call-to-action. Variants: primary (filled green, opens /sign-up), secondary (paper fill, opens the video lightbox as a button), submit-outline (sign-up form submit), dialog-outline/dialog-solid (leave dialog).",
+  "implementedBy": "src/components/Hero.jsx",
+  "tokens": [
+    "semantic.border.rule",
+    "component.button.primary.bg",
+    "component.button.primary.text",
+    "component.button.primary.hover-bg",
+    "component.button.secondary.bg",
+    "component.button.secondary.text",
+    "fontSize.button-pill",
+    "radius.xl",
+    "motion.duration.hover",
+    "motion.easing.out"
+  ],
+  "props": {
+    "variant": [
+      "primary",
+      "secondary",
+      "submit-outline",
+      "dialog-outline",
+      "dialog-solid"
+    ],
+    "label": "string"
+  },
+  "states": [
+    "default",
+    "hover (150ms color/bg/border)",
+    "focus-visible (global 4px ring)",
+    "disabled (opacity .5, submit only)"
+  ],
+  "measuredFrom": [
+    "src/components/Hero.jsx:9",
+    "CLONE_SPEC.md:195",
+    "CLONE_SPEC_PAGES.md:277"
+  ]
+}

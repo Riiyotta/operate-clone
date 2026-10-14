@@ -1,0 +1,2318 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "operate-pagespec-1.0.0",
+  "title": "Operate PageSpec",
+  "description": "Machine contract for a page composed from templates/sections. Closed everywhere (additionalProperties:false). Per-section content/motion branches are generated from sections/*.json (verify_all.py checks they are in sync). Structural rules (template cross-reference, order, graph, budgets, asset registry) live in schema/semantic_validate.py.",
+  "type": "object",
+  "required": [
+    "pageSpecVersion",
+    "template",
+    "route",
+    "head",
+    "nodes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "pageSpecVersion": {
+      "const": "1.0.0"
+    },
+    "template": {
+      "enum": [
+        "template.home",
+        "template.legal",
+        "template.not-found",
+        "template.sign-up"
+      ]
+    },
+    "route": {
+      "type": "string",
+      "minLength": 1
+    },
+    "head": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "x-maxWords": 10,
+          "x-observedMaxWords": 8
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "x-maxWords": 38,
+          "x-observedMaxWords": 29
+        },
+        "robots": {
+          "enum": [
+            "index, follow",
+            "noindex"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "enum": [
+              "backdrop.animated-background",
+              "form.sign-up-form",
+              "hero.headline-integrations",
+              "legal.back-link",
+              "legal.document-body",
+              "legal.document-header",
+              "overlay.leave-confirm",
+              "overlay.sign-up-modal",
+              "overlay.video-lightbox",
+              "product.demo",
+              "product.ops-steps",
+              "shell.binder-rails",
+              "shell.footer-sheet",
+              "shell.main-sheet",
+              "shell.nav-sheet",
+              "story.manifesto",
+              "system.not-found"
+            ]
+          },
+          "variant": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object"
+          },
+          "motion": {
+            "$ref": "#/definitions/motion"
+          }
+        },
+        "required": [
+          "section",
+          "variant",
+          "content",
+          "motion"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "backdrop.animated-background"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "texture": {
+                      "type": "object",
+                      "properties": {
+                        "assetRole": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/assetRole"
+                            },
+                            {
+                              "enum": [
+                                "background-texture"
+                              ]
+                            }
+                          ]
+                        },
+                        "assetRef": {
+                          "const": "texture--home-background"
+                        }
+                      },
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "texture"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "scroll-band-canvas-beads"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "scroll-progress"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "static-frames-on-scroll"
+                    },
+                    "scrollTopBandBelow": {
+                      "enum": [
+                        0.35
+                      ]
+                    },
+                    "scrollBottomBandAbove": {
+                      "enum": [
+                        0.65
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "scrollTopBandBelow",
+                    "scrollBottomBandAbove"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "form.sign-up-form"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "modal",
+                    "standalone"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 10,
+                      "x-observedMaxWords": 7
+                    },
+                    "backLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 2,
+                      "x-observedMaxWords": 1
+                    },
+                    "textFields": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "enum": [
+                              "name",
+                              "email",
+                              "socialHandle"
+                            ]
+                          },
+                          "label": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 4,
+                            "x-observedMaxWords": 2
+                          },
+                          "required": {
+                            "type": "boolean"
+                          },
+                          "placeholder": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 4,
+                            "x-observedMaxWords": 3
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "label",
+                          "required",
+                          "placeholder"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "choiceGroups": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "enum": [
+                              "role",
+                              "salesTeamSize",
+                              "aiUsage",
+                              "dealChallenge"
+                            ]
+                          },
+                          "label": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 14,
+                            "x-observedMaxWords": 11
+                          },
+                          "kind": {
+                            "enum": [
+                              "radio",
+                              "checkbox"
+                            ]
+                          },
+                          "options": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "x-maxWords": 8,
+                              "x-observedMaxWords": 6
+                            },
+                            "minItems": 5,
+                            "maxItems": 7
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "label",
+                          "kind",
+                          "options"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 4,
+                      "maxItems": 4
+                    },
+                    "otherPlaceholder": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "selectAllHint": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 6,
+                      "x-observedMaxWords": 4
+                    },
+                    "validationMessages": {
+                      "type": "object",
+                      "properties": {
+                        "required": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 2,
+                          "x-observedMaxWords": 1
+                        },
+                        "invalidEmail": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 4,
+                          "x-observedMaxWords": 3
+                        },
+                        "chooseAtLeastOne": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 6,
+                          "x-observedMaxWords": 4
+                        }
+                      },
+                      "required": [
+                        "required",
+                        "invalidEmail",
+                        "chooseAtLeastOne"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "submitLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 2,
+                      "x-observedMaxWords": 1
+                    },
+                    "sendingLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 2,
+                      "x-observedMaxWords": 1
+                    },
+                    "receivedMessage": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 8,
+                      "x-observedMaxWords": 6
+                    },
+                    "receivedCloseLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 2,
+                      "x-observedMaxWords": 1
+                    },
+                    "errorMessage": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "retryLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 2
+                    },
+                    "submitEndpoint": {
+                      "type": "object",
+                      "properties": {
+                        "assetRole": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/assetRole"
+                            },
+                            {
+                              "enum": [
+                                "signup-submit-stub"
+                              ]
+                            }
+                          ]
+                        },
+                        "assetRef": {
+                          "const": "endpoint--signup-stub"
+                        }
+                      },
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "backLabel",
+                    "textFields",
+                    "choiceGroups",
+                    "otherPlaceholder",
+                    "selectAllHint",
+                    "validationMessages",
+                    "submitLabel",
+                    "sendingLabel",
+                    "receivedMessage",
+                    "receivedCloseLabel",
+                    "errorMessage",
+                    "retryLabel",
+                    "submitEndpoint"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "sending-ring-loop"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "submit"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "static-rings-shown"
+                    },
+                    "visibleMs": {
+                      "enum": [
+                        1500
+                      ]
+                    },
+                    "exitMs": {
+                      "enum": [
+                        750
+                      ]
+                    },
+                    "pauseMs": {
+                      "enum": [
+                        400
+                      ]
+                    },
+                    "enterOpacityMs": {
+                      "enum": [
+                        400
+                      ]
+                    },
+                    "easing": {
+                      "enum": [
+                        "cubic-bezier(.23,1,.32,1)"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "visibleMs",
+                    "exitMs",
+                    "pauseMs",
+                    "enterOpacityMs",
+                    "easing"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "hero.headline-integrations"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "headline": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 8,
+                      "x-observedMaxWords": 6
+                    },
+                    "introBefore": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 8,
+                      "x-observedMaxWords": 6
+                    },
+                    "introAfter": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 34,
+                      "x-observedMaxWords": 27
+                    },
+                    "integrationLogos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "assetRole": {
+                            "allOf": [
+                              {
+                                "$ref": "#/definitions/assetRole"
+                              },
+                              {
+                                "enum": [
+                                  "integration-logo"
+                                ]
+                              }
+                            ]
+                          },
+                          "assetRef": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+--[a-z0-9-]+$"
+                          }
+                        },
+                        "required": [
+                          "assetRole",
+                          "assetRef"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1,
+                      "maxItems": 6
+                    },
+                    "integrationSrText": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 10,
+                      "x-observedMaxWords": 7
+                    },
+                    "primaryCta": {
+                      "type": "object",
+                      "properties": {
+                        "label": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 4,
+                          "x-observedMaxWords": 2
+                        },
+                        "href": {
+                          "const": "/sign-up"
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "href"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "secondaryCta": {
+                      "type": "object",
+                      "properties": {
+                        "label": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 4,
+                          "x-observedMaxWords": 3
+                        },
+                        "opens": {
+                          "const": "overlay.video-lightbox"
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "opens"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "headline",
+                    "introBefore",
+                    "introAfter",
+                    "integrationLogos",
+                    "integrationSrText",
+                    "primaryCta",
+                    "secondaryCta"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "hover-color-transition"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "hover"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "instant-state-change"
+                    },
+                    "durationMs": {
+                      "enum": [
+                        150
+                      ]
+                    },
+                    "easing": {
+                      "enum": [
+                        "cubic-bezier(0,0,.2,1)"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "durationMs",
+                    "easing"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "legal.back-link"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 6,
+                      "x-observedMaxWords": 4
+                    },
+                    "href": {
+                      "const": "/"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "href"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "static"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "legal.document-body"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "blocks": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 106,
+                      "x-observedMaxItems": 106,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "h2",
+                              "h3",
+                              "p",
+                              "ul",
+                              "ol",
+                              "hr"
+                            ]
+                          },
+                          "text": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxChars": 1866,
+                            "x-observedMaxChars": 1866
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "x-maxChars": 1248,
+                              "x-observedMaxChars": 1248
+                            },
+                            "minItems": 1,
+                            "maxItems": 12
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "blocks"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "static"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "legal.document-header"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "effectiveDateLabel": {
+                      "const": "Effective date:"
+                    },
+                    "effectiveDate": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "effectiveDateLabel",
+                    "effectiveDate"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "static"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "overlay.leave-confirm"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 8,
+                      "x-observedMaxWords": 6
+                    },
+                    "keepLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 2
+                    },
+                    "leaveLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 2,
+                      "x-observedMaxWords": 1
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "description",
+                    "keepLabel",
+                    "leaveLabel"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "none-instant"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "overlay.sign-up-modal"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "instant-open"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "route-intercept"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    },
+                    "durationMs": {
+                      "enum": [
+                        0
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "durationMs"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "overlay.video-lightbox"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "dialogLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "stream": {
+                      "type": "object",
+                      "properties": {
+                        "assetRole": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/assetRole"
+                            },
+                            {
+                              "enum": [
+                                "lightbox-video-stream"
+                              ]
+                            }
+                          ]
+                        },
+                        "assetRef": {
+                          "const": "stream--lightbox-demo"
+                        }
+                      },
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "poster": {
+                      "type": "object",
+                      "properties": {
+                        "assetRole": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/assetRole"
+                            },
+                            {
+                              "enum": [
+                                "video-poster"
+                              ]
+                            }
+                          ]
+                        },
+                        "assetRef": {
+                          "const": "poster--lightbox"
+                        }
+                      },
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "dialogLabel",
+                    "stream",
+                    "poster"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "view-transition-morph"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "click"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "no-animation"
+                    },
+                    "durationMs": {
+                      "enum": [
+                        300
+                      ]
+                    },
+                    "easing": {
+                      "enum": [
+                        "cubic-bezier(.77,0,.175,1)"
+                      ]
+                    },
+                    "newSnapshotFadeMs": {
+                      "enum": [
+                        144
+                      ]
+                    },
+                    "outlineRevealMs": {
+                      "enum": [
+                        250
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "durationMs",
+                    "easing",
+                    "newSnapshotFadeMs",
+                    "outlineRevealMs"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "product.demo"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "chapterLabels": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "const": "Quota"
+                        },
+                        {
+                          "const": "Meeting"
+                        },
+                        {
+                          "const": "Draft"
+                        },
+                        {
+                          "const": "Slack"
+                        },
+                        {
+                          "const": "Next step"
+                        }
+                      ],
+                      "minItems": 5,
+                      "maxItems": 5,
+                      "additionalItems": false
+                    },
+                    "workspaceName": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 2,
+                      "x-observedMaxWords": 1
+                    },
+                    "composerPlaceholder": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "people": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "assetRole": {
+                            "allOf": [
+                              {
+                                "$ref": "#/definitions/assetRole"
+                              },
+                              {
+                                "enum": [
+                                  "demo-avatar-image"
+                                ]
+                              }
+                            ]
+                          },
+                          "assetRef": {
+                            "type": "string",
+                            "pattern": "^[a-z0-9]+--[a-z0-9-]+$"
+                          }
+                        },
+                        "required": [
+                          "assetRole",
+                          "assetRef"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1,
+                      "maxItems": 5
+                    },
+                    "conversationBackground": {
+                      "type": "object",
+                      "properties": {
+                        "assetRole": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/assetRole"
+                            },
+                            {
+                              "enum": [
+                                "demo-scene-image"
+                              ]
+                            }
+                          ]
+                        },
+                        "assetRef": {
+                          "const": "scene--demo-slack"
+                        }
+                      },
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "chapterLabels",
+                    "workspaceName",
+                    "composerPlaceholder",
+                    "people",
+                    "conversationBackground"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "scripted-timeline-in-view"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "in-view-once"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "motion-config-reduced-user"
+                    },
+                    "inViewMargin": {
+                      "enum": [
+                        "-30% 0px -48px 0px"
+                      ]
+                    },
+                    "typeMsPerChar": {
+                      "enum": [
+                        32
+                      ]
+                    },
+                    "revealMsPerWord": {
+                      "enum": [
+                        25
+                      ]
+                    },
+                    "durationMs": {
+                      "enum": [
+                        400
+                      ]
+                    },
+                    "easing": {
+                      "enum": [
+                        "cubic-bezier(.19,1,.22,1)"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "inViewMargin",
+                    "typeMsPerChar",
+                    "revealMsPerWord",
+                    "durationMs",
+                    "easing"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "product.ops-steps"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "heading": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 6,
+                      "x-observedMaxWords": 4
+                    },
+                    "intro": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 22,
+                      "x-observedMaxWords": 17
+                    },
+                    "ctaLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "ctaHref": {
+                      "const": "/sign-up"
+                    },
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 4,
+                            "x-observedMaxWords": 2
+                          },
+                          "headline": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 10,
+                            "x-observedMaxWords": 7
+                          },
+                          "description": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 40,
+                            "x-observedMaxWords": 32
+                          },
+                          "label": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 2,
+                            "x-observedMaxWords": 1
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "x-maxWords": 6,
+                              "x-observedMaxWords": 4
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                          }
+                        },
+                        "required": [
+                          "title",
+                          "headline",
+                          "description",
+                          "label",
+                          "items"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 4,
+                      "maxItems": 4
+                    }
+                  },
+                  "required": [
+                    "heading",
+                    "intro",
+                    "ctaLabel",
+                    "ctaHref",
+                    "steps"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "scroll-active-step"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "scroll"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "instant-state-change"
+                    },
+                    "durationMs": {
+                      "enum": [
+                        200
+                      ]
+                    },
+                    "easing": {
+                      "enum": [
+                        "cubic-bezier(.23,1,.32,1)"
+                      ]
+                    },
+                    "activeThresholdViewportFraction": {
+                      "enum": [
+                        0.5
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "durationMs",
+                    "easing",
+                    "activeThresholdViewportFraction"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "shell.binder-rails"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "static"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "shell.footer-sheet"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "internalLinks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 2,
+                            "x-observedMaxWords": 1
+                          },
+                          "route": {
+                            "enum": [
+                              "/privacy",
+                              "/terms"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "route"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "socialLinks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxWords": 2,
+                            "x-observedMaxWords": 1
+                          },
+                          "link": {
+                            "type": "object",
+                            "properties": {
+                              "assetRole": {
+                                "allOf": [
+                                  {
+                                    "$ref": "#/definitions/assetRole"
+                                  },
+                                  {
+                                    "enum": [
+                                      "external-social-link"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "assetRef": {
+                                "type": "string",
+                                "pattern": "^[a-z0-9]+--[a-z0-9-]+$"
+                              }
+                            },
+                            "required": [
+                              "assetRole",
+                              "assetRef"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "link"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "ctaLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 2
+                    },
+                    "ctaHref": {
+                      "const": "/sign-up"
+                    },
+                    "logoMark": {
+                      "type": "object",
+                      "properties": {
+                        "assetRole": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/assetRole"
+                            },
+                            {
+                              "enum": [
+                                "brand-logomark"
+                              ]
+                            }
+                          ]
+                        },
+                        "assetRef": {
+                          "const": "logo--mark"
+                        }
+                      },
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "copyright": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 10,
+                      "x-observedMaxWords": 8
+                    },
+                    "videoCard": {
+                      "type": "object",
+                      "properties": {
+                        "label": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 4,
+                          "x-observedMaxWords": 3
+                        },
+                        "stillDesktop": {
+                          "type": "object",
+                          "properties": {
+                            "assetRole": {
+                              "allOf": [
+                                {
+                                  "$ref": "#/definitions/assetRole"
+                                },
+                                {
+                                  "enum": [
+                                    "footer-video-asset"
+                                  ]
+                                }
+                              ]
+                            },
+                            "assetRef": {
+                              "const": "footer--still-desktop"
+                            }
+                          },
+                          "required": [
+                            "assetRole",
+                            "assetRef"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "stillMobile": {
+                          "type": "object",
+                          "properties": {
+                            "assetRole": {
+                              "allOf": [
+                                {
+                                  "$ref": "#/definitions/assetRole"
+                                },
+                                {
+                                  "enum": [
+                                    "footer-video-asset"
+                                  ]
+                                }
+                              ]
+                            },
+                            "assetRef": {
+                              "const": "footer--still-mobile"
+                            }
+                          },
+                          "required": [
+                            "assetRole",
+                            "assetRef"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "loop": {
+                          "type": "object",
+                          "properties": {
+                            "assetRole": {
+                              "allOf": [
+                                {
+                                  "$ref": "#/definitions/assetRole"
+                                },
+                                {
+                                  "enum": [
+                                    "footer-video-asset"
+                                  ]
+                                }
+                              ]
+                            },
+                            "assetRef": {
+                              "const": "footer--loop"
+                            }
+                          },
+                          "required": [
+                            "assetRole",
+                            "assetRef"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "stillDesktop",
+                        "stillMobile",
+                        "loop"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "internalLinks",
+                    "socialLinks",
+                    "ctaLabel",
+                    "ctaHref",
+                    "logoMark",
+                    "copyright",
+                    "videoCard"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "hover-play-video-and-link-highlight"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "hover"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "video-hidden-still-only"
+                    },
+                    "durationMs": {
+                      "enum": [
+                        150
+                      ]
+                    },
+                    "easing": {
+                      "enum": [
+                        "cubic-bezier(0,0,.2,1)"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "durationMs",
+                    "easing"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "shell.main-sheet"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "static"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "shell.nav-sheet"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "wordmarkText": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 2,
+                      "x-observedMaxWords": 1
+                    },
+                    "ctaLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "ctaHref": {
+                      "const": "/sign-up"
+                    },
+                    "logoMark": {
+                      "type": "object",
+                      "properties": {
+                        "assetRole": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/assetRole"
+                            },
+                            {
+                              "enum": [
+                                "brand-logomark"
+                              ]
+                            }
+                          ]
+                        },
+                        "assetRef": {
+                          "const": "logo--mark"
+                        }
+                      },
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "wordmarkText",
+                    "ctaLabel",
+                    "ctaHref",
+                    "logoMark"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "static"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "story.manifesto"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "headingLines": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "x-maxWords": 4,
+                        "x-observedMaxWords": 2
+                      },
+                      "minItems": 4,
+                      "maxItems": 4
+                    },
+                    "paragraphs": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "x-maxWords": 52,
+                        "x-observedMaxWords": 41
+                      },
+                      "minItems": 4,
+                      "maxItems": 4
+                    },
+                    "emphasisPhrase": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 8,
+                      "x-observedMaxWords": 5
+                    },
+                    "signature": {
+                      "type": "object",
+                      "properties": {
+                        "team": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 4,
+                          "x-observedMaxWords": 2
+                        },
+                        "date": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 2,
+                          "x-observedMaxWords": 1
+                        }
+                      },
+                      "required": [
+                        "team",
+                        "date"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "ticket": {
+                      "type": "object",
+                      "properties": {
+                        "brand": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 2,
+                          "x-observedMaxWords": 1
+                        },
+                        "version": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 2,
+                          "x-observedMaxWords": 1
+                        },
+                        "subjectLabel": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 2,
+                          "x-observedMaxWords": 1
+                        },
+                        "subject": {
+                          "type": "string",
+                          "minLength": 1,
+                          "x-maxWords": 8,
+                          "x-observedMaxWords": 5
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "term": {
+                                "type": "string",
+                                "minLength": 1,
+                                "x-maxWords": 2,
+                                "x-observedMaxWords": 1
+                              },
+                              "value": {
+                                "type": "string",
+                                "minLength": 1,
+                                "x-maxWords": 2,
+                                "x-observedMaxWords": 1
+                              }
+                            },
+                            "required": [
+                              "term",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "minItems": 3,
+                          "maxItems": 3
+                        }
+                      },
+                      "required": [
+                        "brand",
+                        "version",
+                        "subjectLabel",
+                        "subject",
+                        "fields"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "logoTrace": {
+                      "type": "object",
+                      "properties": {
+                        "assetRole": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/assetRole"
+                            },
+                            {
+                              "enum": [
+                                "brand-logo-trace"
+                              ]
+                            }
+                          ]
+                        },
+                        "assetRef": {
+                          "const": "logo-trace--loop"
+                        }
+                      },
+                      "required": [
+                        "assetRole",
+                        "assetRef"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "headingLines",
+                    "paragraphs",
+                    "emphasisPhrase",
+                    "signature",
+                    "ticket",
+                    "logoTrace"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "svg-internal-css-loop"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "load"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "static-still-svg"
+                    },
+                    "loopMs": {
+                      "enum": [
+                        7875
+                      ]
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback",
+                    "loopMs"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "system.not-found"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "const": "404"
+                    },
+                    "message": {
+                      "const": "This page could not be found."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "static"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "assetRole": {
+      "enum": [
+        "background-texture",
+        "brand-logo-trace",
+        "brand-logomark",
+        "demo-avatar-image",
+        "demo-scene-image",
+        "external-social-link",
+        "footer-video-asset",
+        "integration-logo",
+        "lightbox-video-stream",
+        "signup-submit-stub",
+        "video-poster"
+      ]
+    },
+    "motion": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "enum": [
+            "hover-color-transition",
+            "hover-play-video-and-link-highlight",
+            "instant-open",
+            "none-instant",
+            "scripted-timeline-in-view",
+            "scroll-active-step",
+            "scroll-band-canvas-beads",
+            "sending-ring-loop",
+            "static",
+            "svg-internal-css-loop",
+            "view-transition-morph"
+          ]
+        },
+        "trigger": {
+          "enum": [
+            "click",
+            "hover",
+            "in-view-once",
+            "load",
+            "none",
+            "route-intercept",
+            "scroll",
+            "scroll-progress",
+            "submit"
+          ]
+        },
+        "reducedMotionFallback": {
+          "enum": [
+            "instant-state-change",
+            "motion-config-reduced-user",
+            "no-animation",
+            "not-applicable",
+            "static-frames-on-scroll",
+            "static-rings-shown",
+            "static-still-svg",
+            "video-hidden-still-only"
+          ]
+        },
+        "activeThresholdViewportFraction": {
+          "type": "number"
+        },
+        "durationMs": {
+          "type": "number"
+        },
+        "enterOpacityMs": {
+          "type": "number"
+        },
+        "exitMs": {
+          "type": "number"
+        },
+        "loopMs": {
+          "type": "number"
+        },
+        "newSnapshotFadeMs": {
+          "type": "number"
+        },
+        "outlineRevealMs": {
+          "type": "number"
+        },
+        "pauseMs": {
+          "type": "number"
+        },
+        "revealMsPerWord": {
+          "type": "number"
+        },
+        "scrollBottomBandAbove": {
+          "type": "number"
+        },
+        "scrollTopBandBelow": {
+          "type": "number"
+        },
+        "typeMsPerChar": {
+          "type": "number"
+        },
+        "visibleMs": {
+          "type": "number"
+        },
+        "easing": {
+          "type": "string"
+        },
+        "inViewMargin": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "pattern",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

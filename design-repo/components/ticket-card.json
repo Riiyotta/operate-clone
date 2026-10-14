@@ -1,0 +1,27 @@
+{
+  "id": "ticket-card",
+  "kind": "component",
+  "purpose": "Library-ticket card in the manifesto corner: brand, version, subject and a three-cell Date/Vol./Ref. footer.",
+  "implementedBy": "src/components/Manifesto.jsx",
+  "tokens": [
+    "component.ticket-card.bg",
+    "color.neutral.stone-800",
+    "fontSize.ticket-brand",
+    "fontSize.ticket-mono",
+    "fontFamily.courier",
+    "fontFamily.cinetype"
+  ],
+  "props": {
+    "brand": "string",
+    "version": "string",
+    "subject": "string",
+    "fields": "3 x {term,value}"
+  },
+  "states": [
+    "static"
+  ],
+  "measuredFrom": [
+    "src/components/Manifesto.jsx:31",
+    "CLONE_SPEC.md:295"
+  ]
+}

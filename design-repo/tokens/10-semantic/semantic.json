@@ -1,0 +1,188 @@
+{
+  "surface": {
+    "page": {
+      "$type": "color",
+      "$value": "{color.green.deep}",
+      "$description": "Page background behind all sheets.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:75"
+      ]
+    },
+    "sheet": {
+      "$type": "color",
+      "$value": "{color.neutral.paper}",
+      "$description": "Hole-punched paper sheets.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:80"
+      ]
+    },
+    "nav-sheet": {
+      "$type": "color",
+      "$value": "{color.neutral.nav-sheet}",
+      "$description": "Nav sheet.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:81"
+      ]
+    },
+    "manifesto": {
+      "$type": "color",
+      "$value": "{color.green.manifesto}",
+      "$description": "Manifesto panel.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:78"
+      ]
+    },
+    "video-card": {
+      "$type": "color",
+      "$value": "{color.green.video-card}",
+      "$description": "Video card / lightbox media.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:79"
+      ]
+    },
+    "form": {
+      "$type": "color",
+      "$value": "{color.green.dark}",
+      "$description": "Sign-up form card.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:204"
+      ]
+    },
+    "legal": {
+      "$type": "color",
+      "$value": "{color.neutral.waitlist-gray}",
+      "$description": "Legal reading page.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:62"
+      ]
+    },
+    "ticket": {
+      "$type": "color",
+      "$value": "{color.green.light}",
+      "$description": "Ticket card.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:295"
+      ]
+    },
+    "invalid": {
+      "$type": "color",
+      "$value": "{color.accent.copper}",
+      "$description": "Invalid form row.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:284"
+      ]
+    }
+  },
+  "text": {
+    "on-sheet": {
+      "$type": "color",
+      "$value": "{color.green.dark}",
+      "$description": "Marketing text on paper.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:76"
+      ]
+    },
+    "body-ops": {
+      "$type": "color",
+      "$value": "{color.neutral.stone-800}",
+      "$description": "Ops body copy, legal ink, ticket.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:84"
+      ]
+    },
+    "on-form": {
+      "$type": "color",
+      "$value": "{color.neutral.waitlist-gray}",
+      "$description": "Text on the form card.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:204"
+      ]
+    },
+    "status": {
+      "$type": "color",
+      "$value": "{color.green.feedback}",
+      "$description": "Sign-up status row.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:276"
+      ]
+    },
+    "demo-primary": {
+      "$type": "color",
+      "$value": "{color.demo.gray.900}",
+      "$description": "Demo/body default text.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:87"
+      ]
+    },
+    "demo-accent": {
+      "$type": "color",
+      "$value": "{color.demo.accent}",
+      "$description": "Demo active item.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:88"
+      ]
+    }
+  },
+  "border": {
+    "sheet": {
+      "$type": "color",
+      "$value": "{color.neutral.stone-800}",
+      "$description": "Sheet and rail borders.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:84"
+      ]
+    },
+    "rule": {
+      "$type": "color",
+      "$value": "{color.green.dark}",
+      "$description": "Ruled-paper rules and caps.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:49"
+      ]
+    },
+    "form": {
+      "$type": "color",
+      "$value": "{color.neutral.waitlist-gray}",
+      "$description": "Form and field borders.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:204"
+      ]
+    },
+    "demo-frame": {
+      "$type": "color",
+      "$value": "{color.demo.gray.400}",
+      "$description": "Demo frame border (md+).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:208"
+      ]
+    }
+  },
+  "selection": {
+    "background": {
+      "$type": "color",
+      "$value": "{color.green.brand}",
+      "$description": "::selection.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:89"
+      ]
+    },
+    "text": {
+      "$type": "color",
+      "$value": "{color.neutral.waitlist-gray}",
+      "$description": "::selection text.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:89"
+      ]
+    }
+  },
+  "focus": {
+    "ring": {
+      "$type": "color",
+      "$value": "{color.alpha.focus-ring}",
+      "$description": "Focus ring.",
+      "measuredFrom": [
+        "src/index.css:227"
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "logo-mark",
+  "kind": "primitive",
+  "purpose": "Operate logo mark (32x16 inline SVG, ink fill). PROPRIETARY brand art: reuse exactly or substitute a neutral mark; never redraw.",
+  "implementedBy": "src/components/shell/Rules.jsx",
+  "tokens": [
+    "color.green.dark",
+    "iconSize.logo-mark-nav-mobile",
+    "iconSize.logo-mark-nav-lg",
+    "iconSize.logo-mark-footer"
+  ],
+  "props": {
+    "assetRole": "brand-logomark"
+  },
+  "states": [
+    "static"
+  ],
+  "measuredFrom": [
+    "src/components/shell/Rules.jsx:66",
+    "CLONE_SPEC.md:163"
+  ],
+  "assetRoles": [
+    "brand-logomark"
+  ]
+}

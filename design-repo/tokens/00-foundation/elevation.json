@@ -1,0 +1,42 @@
+{
+  "bubble": {
+    "$type": "shadow",
+    "$value": "0 0 0 1.83px #EBEBEB, 0 7.33px 14.67px -7.33px rgba(0,0,0,.12), 0 0 1.83px rgba(0,0,0,.08), 0 0 0 .55px rgba(0,0,0,.08), 0 .92px .92px -.46px rgba(0,0,0,.06), 0 1.83px 1.83px -.92px rgba(0,0,0,.08), inset 0 .92px 1.83px #fff",
+    "$description": "Hero integration bubble.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:193"
+    ]
+  },
+  "demo-frame": {
+    "$type": "shadow",
+    "$value": "0 4px 4px -4px rgba(0,0,0,.14), 0 1px 1px -.5px rgba(0,0,0,.08), 0 12px 24px -6px rgba(0,0,0,.08), 0 8px 16px -4px rgba(0,0,0,.10)",
+    "$description": "Demo frame (md+).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:209"
+    ]
+  },
+  "demo-panel": {
+    "$type": "shadow",
+    "$value": "0 4px 4px -4px rgba(0,0,0,.14), 0 1px 1px -.5px rgba(0,0,0,.08), 0 0 0 .5px rgba(0,0,0,.16), 0 12px 24px -6px rgba(0,0,0,.08), 0 8px 16px -4px rgba(0,0,0,.10)",
+    "$description": "Demo floating panel card.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:215"
+    ]
+  },
+  "focus-ring": {
+    "$type": "shadow",
+    "$value": "0 0 0 4px rgba(0,112,16,.6)",
+    "$description": "Global :focus-visible ring (4px, brand green at 60%).",
+    "measuredFrom": [
+      "src/index.css:229"
+    ]
+  },
+  "confirm-focus": {
+    "$type": "shadow",
+    "$value": "0 0 0 2px #EBEBEB, 0 0 0 4px #117025",
+    "$description": "Confirm dialog button focus.",
+    "measuredFrom": [
+      "src/components/signup/useSignUpCloseConfirm.jsx:23"
+    ]
+  }
+}

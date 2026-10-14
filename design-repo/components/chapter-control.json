@@ -1,0 +1,25 @@
+{
+  "id": "chapter-control",
+  "kind": "component",
+  "purpose": "Demo chapter group: play/pause glyph and five pills (width 12 to 32px when active, fill drains/fills), with tooltips.",
+  "implementedBy": "src/components/demo/ChapterControl.jsx",
+  "tokens": [
+    "component.chapter-pill.bg",
+    "color.neutral.stone-800",
+    "motion.duration.demo-pill",
+    "motion.easing.in-out-cubic",
+    "iconSize.chapter-glyph"
+  ],
+  "props": {
+    "labels": "5 x string"
+  },
+  "states": [
+    "inactive",
+    "active (fill linear over chapter length)",
+    "hover/focus (dot reveal 150ms)"
+  ],
+  "measuredFrom": [
+    "src/components/demo/ChapterControl.jsx:8",
+    "CLONE_SPEC.md:219"
+  ]
+}

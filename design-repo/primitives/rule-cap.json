@@ -1,0 +1,21 @@
+{
+  "id": "rule-cap",
+  "kind": "primitive",
+  "purpose": "Square marking the end of a ruled-paper rule (5px / 8px at md+).",
+  "implementedBy": "src/components/shell/Rules.jsx",
+  "tokens": [
+    "color.green.dark",
+    "iconSize.rule-cap-mobile",
+    "iconSize.rule-cap-md"
+  ],
+  "props": {
+    "position": "absolute offsets (layout-owned)"
+  },
+  "states": [
+    "static"
+  ],
+  "measuredFrom": [
+    "src/components/shell/Rules.jsx:4",
+    "CLONE_SPEC.md:49"
+  ]
+}

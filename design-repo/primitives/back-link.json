@@ -1,0 +1,24 @@
+{
+  "id": "back-link",
+  "kind": "primitive",
+  "purpose": "Uppercase cinetype back link (legal pages: '← Back to Operate'; sign-up: 'Back' button with arrow glyph).",
+  "implementedBy": "src/components/pages/LegalPage.jsx",
+  "tokens": [
+    "color.neutral.stone-800",
+    "fontSize.legal-backlink"
+  ],
+  "props": {
+    "variant": [
+      "legal-link",
+      "form-button"
+    ],
+    "label": "string"
+  },
+  "states": [
+    "default (no hover style, no underline)"
+  ],
+  "measuredFrom": [
+    "src/components/pages/LegalPage.jsx:165",
+    "CLONE_SPEC_PAGES.md:86"
+  ]
+}

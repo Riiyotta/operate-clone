@@ -1,0 +1,21 @@
+{
+  "id": "label-pill",
+  "kind": "primitive",
+  "purpose": "Small bordered uppercase label (ops-step detail label) followed by a CSS triangle.",
+  "implementedBy": "src/components/OpsSteps.jsx",
+  "tokens": [
+    "color.green.dark",
+    "fontSize.detail-pill",
+    "radius.image"
+  ],
+  "props": {
+    "label": "string"
+  },
+  "states": [
+    "static"
+  ],
+  "measuredFrom": [
+    "src/components/OpsSteps.jsx:99",
+    "CLONE_SPEC.md:266"
+  ]
+}

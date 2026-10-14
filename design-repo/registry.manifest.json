@@ -1,0 +1,68 @@
+{
+  "repositoryId": "operate-design-repo",
+  "repositoryVersion": "1.0.0",
+  "pageSpecVersion": "1.0.0",
+  "allowlistVersion": "1.0.0",
+  "versionFieldNote": "allowlistVersion is MACHINE-CHECKED: extraction/verify_all.py fails if it differs from tokens/llm/component-allowlist.json. repositoryVersion and pageSpecVersion are documentation-only, hand-maintained markers; nothing verifies them automatically (pageSpecVersion is additionally const-locked inside schema/pagespec.schema.json).",
+  "status": "design-review-pending",
+  "productionApproved": false,
+  "defaultTheme": "light",
+  "schemaValidatedThemes": [
+    "light"
+  ],
+  "counts": {
+    "tokens": {
+      "foundation": 149,
+      "semantic": 22,
+      "component": 11,
+      "layout": 13,
+      "total": 195
+    },
+    "primitives": 9,
+    "components": 11,
+    "sections": 17,
+    "templates": 4,
+    "routes": 5,
+    "assetRoles": 12,
+    "registeredAssets": 30,
+    "graphRules": 11
+  },
+  "sourceProject": {
+    "name": "Operate clone (local replica of operate.so, a real live company site)",
+    "stack": {
+      "react": "18.3.x",
+      "vite": "5",
+      "tailwindcss": "3.4.x",
+      "motion": "11",
+      "hls.js": "1"
+    },
+    "snapshotNote": "A design-repo is a snapshot; re-diff its claims against the source when the source changes."
+  },
+  "complianceNote": "Reference-only. The source is a real company's live site: Operate's logos, copy, media, avatar art and commercial fonts, plus third-party integration logos, must not be reproduced by generated output. See assets/asset-roles.json (assetRole enum + per-role generationPolicy/licensing/placeholderSubstitute). Do not publish this repository.",
+  "structurallyUnusual": [
+    "Real company with licensed assets/fonts (see complianceNote).",
+    "/privacy and /terms body text is original placeholder copy with the original's structure.",
+    "Sign-up submits to a local stub only (src/lib/signupStub.js); booking-link redirect not implemented.",
+    "404 is the stock Next.js page, outside the design system.",
+    "The sign-up modal is an overlay state of template.home, not a route."
+  ],
+  "entryPoints": {
+    "readme": "README.md",
+    "changelog": "CHANGELOG.md",
+    "tokensFoundation": "tokens/00-foundation/color.json",
+    "tokenCatalog": "tokens/llm/token-catalog.json",
+    "tokenPolicy": "tokens/llm/token-policy.json",
+    "allowlist": "tokens/llm/component-allowlist.json",
+    "theme": "tokens/themes/light.json",
+    "templates": "templates/templates.json",
+    "compatibilityGraph": "compatibility/graph.json",
+    "assetRoles": "assets/asset-roles.json",
+    "schema": "schema/pagespec.schema.json",
+    "example": "schema/example.pagespec.json",
+    "validator": "schema/semantic_validate.py",
+    "adversarialTests": "schema/tests/adversarial_test.py",
+    "verify": "extraction/verify_all.py",
+    "driftProof": "extraction/prove_drift.sh",
+    "measuredValues": "extraction/measured-values.json"
+  }
+}

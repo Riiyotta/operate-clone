@@ -1,0 +1,24 @@
+{
+  "id": "integration-bubble",
+  "kind": "primitive",
+  "purpose": "Overlapping round bubble holding a third-party integration logo (third-party trademarks) inline in the hero paragraph.",
+  "implementedBy": "src/components/Hero.jsx",
+  "tokens": [
+    "color.neutral.bubble",
+    "color.neutral.paper",
+    "elevation.bubble"
+  ],
+  "props": {
+    "assetRole": "integration-logo"
+  },
+  "states": [
+    "static"
+  ],
+  "measuredFrom": [
+    "src/components/Hero.jsx:6",
+    "CLONE_SPEC.md:193"
+  ],
+  "assetRoles": [
+    "integration-logo"
+  ]
+}

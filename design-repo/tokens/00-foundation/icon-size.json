@@ -1,0 +1,77 @@
+{
+  "logo-mark-nav-mobile": {
+    "$type": "dimension",
+    "$value": {
+      "width": "20px",
+      "height": "10px"
+    },
+    "$description": "Logo mark in nav strip below lg.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:163"
+    ]
+  },
+  "logo-mark-nav-lg": {
+    "$type": "dimension",
+    "$value": {
+      "width": "25px",
+      "height": "13px"
+    },
+    "$description": "Logo mark in nav strip at lg.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:163"
+    ]
+  },
+  "logo-mark-footer": {
+    "$type": "dimension",
+    "$value": {
+      "height": "16px"
+    },
+    "$description": "Footer logo mark height md+ (13px mobile).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:351"
+    ]
+  },
+  "rule-cap-mobile": {
+    "$type": "dimension",
+    "$value": "5px",
+    "$description": "Rule cap square below md.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:49"
+    ]
+  },
+  "rule-cap-md": {
+    "$type": "dimension",
+    "$value": "8px",
+    "$description": "Rule cap square at md+.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:49"
+    ]
+  },
+  "chapter-glyph": {
+    "$type": "dimension",
+    "$value": "12px",
+    "$description": "Chapter control play/pause glyph.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:221"
+    ]
+  },
+  "cursor-arrow": {
+    "$type": "dimension",
+    "$value": {
+      "width": "16px",
+      "height": "22px"
+    },
+    "$description": "Demo fake cursor (desktop).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:233"
+    ]
+  },
+  "cursor-ring": {
+    "$type": "dimension",
+    "$value": "20px",
+    "$description": "Demo touch-layout ring cursor.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:216"
+    ]
+  }
+}

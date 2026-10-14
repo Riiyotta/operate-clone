@@ -1,0 +1,113 @@
+{
+  "version": "1.0.0",
+  "$description": "Rhythm/position rules JSON Schema cannot express. Each rule has severity error|warn. schema/semantic_validate.py reads these rules (including params and exemptions) at run time, so the graph and the validator cannot silently diverge; verify_all.py checks every rule id is implemented. No NO_ADJACENT_SAME_CATEGORY rule: the real homepage legitimately places three SHELL sections adjacently.",
+  "rules": [
+    {
+      "id": "ONE_PER_PAGE",
+      "severity": "error",
+      "description": "A section whose contract has constraints.onePerPage appears at most once per page (keyed by section id).",
+      "params": {}
+    },
+    {
+      "id": "TEMPLATE_ORDER",
+      "severity": "error",
+      "description": "Nodes appear in the same relative order as the declared template's node list.",
+      "params": {}
+    },
+    {
+      "id": "MUST_BE_FIRST",
+      "severity": "error",
+      "description": "A section with constraints.mustBeFirst (the backdrop) is the first node.",
+      "params": {}
+    },
+    {
+      "id": "SECTION_ALLOWED_TEMPLATES",
+      "severity": "error",
+      "description": "A section only appears on templates listed in its constraints.allowedTemplates (legal.* only on template.legal; system.not-found only on template.not-found).",
+      "params": {}
+    },
+    {
+      "id": "MAIN_SHEET_CONTAINS_PAGE_SECTIONS",
+      "severity": "error",
+      "description": "hero/demo/ops-steps/manifesto sit after shell.main-sheet and before shell.footer-sheet.",
+      "params": {
+        "container": "shell.main-sheet",
+        "contained": [
+          "hero.headline-integrations",
+          "product.demo",
+          "product.ops-steps",
+          "story.manifesto"
+        ],
+        "before": "shell.footer-sheet"
+      }
+    },
+    {
+      "id": "OVERLAYS_AFTER_FOOTER",
+      "severity": "error",
+      "description": "On template.home the overlay-state sections come after shell.footer-sheet.",
+      "params": {
+        "template": "template.home",
+        "overlays": [
+          "overlay.video-lightbox",
+          "overlay.sign-up-modal",
+          "form.sign-up-form",
+          "overlay.leave-confirm"
+        ],
+        "after": "shell.footer-sheet"
+      }
+    },
+    {
+      "id": "FORM_NEEDS_MODAL_ON_HOME",
+      "severity": "error",
+      "description": "On template.home the sign-up form only exists inside overlay.sign-up-modal.",
+      "params": {
+        "template": "template.home",
+        "form": "form.sign-up-form",
+        "requires": "overlay.sign-up-modal"
+      }
+    },
+    {
+      "id": "LEAVE_CONFIRM_NEEDS_FORM",
+      "severity": "error",
+      "description": "overlay.leave-confirm requires form.sign-up-form on the same page.",
+      "params": {
+        "dialog": "overlay.leave-confirm",
+        "requires": "form.sign-up-form"
+      }
+    },
+    {
+      "id": "FORM_VARIANT_MATCHES_HOST",
+      "severity": "error",
+      "description": "form.sign-up-form uses variant 'modal' on template.home and 'standalone' on template.sign-up.",
+      "params": {
+        "section": "form.sign-up-form",
+        "variantByTemplate": {
+          "template.home": "modal",
+          "template.sign-up": "standalone"
+        }
+      }
+    },
+    {
+      "id": "ONE_HERO",
+      "severity": "error",
+      "description": "At most one hero.* section per page. Exception: the hero-less templates (sign-up, legal, not-found) have none.",
+      "params": {
+        "heroPrefix": "hero.",
+        "exemptTemplates": [
+          "template.sign-up",
+          "template.legal",
+          "template.not-found"
+        ]
+      }
+    },
+    {
+      "id": "FORM_PAIRED_WITH_LEAVE_CONFIRM",
+      "severity": "warn",
+      "description": "A page that hosts form.sign-up-form should also include overlay.leave-confirm (the original raises it for unsaved input).",
+      "params": {
+        "form": "form.sign-up-form",
+        "dialog": "overlay.leave-confirm"
+      }
+    }
+  ]
+}

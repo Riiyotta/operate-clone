@@ -1,0 +1,108 @@
+{
+  "button": {
+    "primary": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.green.dark}",
+        "$description": "Primary pill fill.",
+        "measuredFrom": [
+          "CLONE_SPEC.md:195"
+        ]
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.neutral.waitlist-gray}",
+        "$description": "Primary pill text/border.",
+        "measuredFrom": [
+          "CLONE_SPEC.md:195"
+        ]
+      },
+      "hover-bg": {
+        "$type": "color",
+        "$value": "{color.neutral.white}",
+        "$description": "Primary hover fill.",
+        "measuredFrom": [
+          "CLONE_SPEC.md:195"
+        ]
+      }
+    },
+    "secondary": {
+      "bg": {
+        "$type": "color",
+        "$value": "{color.neutral.paper}",
+        "$description": "Watch-the-video pill fill.",
+        "measuredFrom": [
+          "CLONE_SPEC.md:196"
+        ]
+      },
+      "text": {
+        "$type": "color",
+        "$value": "{color.green.dark}",
+        "$description": "Secondary pill text/border.",
+        "measuredFrom": [
+          "CLONE_SPEC.md:196"
+        ]
+      }
+    }
+  },
+  "nav-strip": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.neutral.strip}",
+      "$description": "Nav inner strip.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:82"
+      ]
+    }
+  },
+  "ticket-card": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.green.light}",
+      "$description": "Ticket.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:295"
+      ]
+    }
+  },
+  "ops-step": {
+    "header-bg": {
+      "$type": "color",
+      "$value": "{color.neutral.white}",
+      "$description": "Step header bar (at 60%).",
+      "measuredFrom": [
+        "CLONE_SPEC.md:85"
+      ]
+    }
+  },
+  "chapter-pill": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.neutral.pill-gray}",
+      "$description": "Chapter pill.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:222"
+      ]
+    }
+  },
+  "form-field": {
+    "invalid-bg": {
+      "$type": "color",
+      "$value": "{color.accent.copper}",
+      "$description": "Invalid row.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:284"
+      ]
+    }
+  },
+  "confirm-dialog": {
+    "bg": {
+      "$type": "color",
+      "$value": "{color.neutral.paper}",
+      "$description": "Leave dialog.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:336"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "form-choice-group",
+  "kind": "component",
+  "purpose": "Sign-up question group: radio (single) or checkbox (multi) with an 'other' reveal textarea; checked label turns semibold; 'Not using AI yet' is exclusive.",
+  "implementedBy": "src/components/signup/SignUpForm.jsx",
+  "tokens": [
+    "semantic.border.form",
+    "color.alpha.form-hint",
+    "spacing.form-unit"
+  ],
+  "props": {
+    "kind": [
+      "radio",
+      "checkbox"
+    ],
+    "options": "array<string>"
+  },
+  "states": [
+    "idle",
+    "checked",
+    "invalid (legend row copper)"
+  ],
+  "measuredFrom": [
+    "src/components/signup/SignUpForm.jsx:146",
+    "CLONE_SPEC_PAGES.md:250"
+  ]
+}

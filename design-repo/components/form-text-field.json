@@ -1,0 +1,30 @@
+{
+  "id": "form-text-field",
+  "kind": "component",
+  "purpose": "Sign-up text row: number, label, borderless input; invalid rows turn copper and append a right-aligned lowercase error.",
+  "implementedBy": "src/components/signup/SignUpForm.jsx",
+  "tokens": [
+    "semantic.surface.invalid",
+    "color.green.light",
+    "spacing.form-unit",
+    "color.alpha.form-focus-tint"
+  ],
+  "props": {
+    "name": [
+      "name",
+      "email",
+      "socialHandle"
+    ],
+    "required": "boolean",
+    "placeholder": "string"
+  },
+  "states": [
+    "idle",
+    "focus-within (tint)",
+    "invalid (copper)"
+  ],
+  "measuredFrom": [
+    "src/components/signup/SignUpForm.jsx:93",
+    "CLONE_SPEC_PAGES.md:235"
+  ]
+}

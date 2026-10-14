@@ -1,0 +1,106 @@
+{
+  "page-max-width": {
+    "$type": "dimension",
+    "$value": "1474px",
+    "$description": "Homepage page column max width.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:104"
+    ]
+  },
+  "page-gutter": {
+    "$type": "dimension",
+    "$value": "12px",
+    "$description": "Page padding below lg (38px at lg+).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:104"
+    ]
+  },
+  "page-gutter-lg": {
+    "$type": "dimension",
+    "$value": "38px",
+    "$description": "Page padding at lg+.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:104"
+    ]
+  },
+  "column-gap": {
+    "$type": "dimension",
+    "$value": "36px",
+    "$description": "Sheet column gap (44px at lg).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:107"
+    ]
+  },
+  "column-gap-lg": {
+    "$type": "dimension",
+    "$value": "44px",
+    "$description": "Sheet column gap at lg+.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:107"
+    ]
+  },
+  "nav-height": {
+    "$type": "dimension",
+    "$value": "34px",
+    "$description": "Nav sheet height below lg (58px at lg).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:156"
+    ]
+  },
+  "nav-height-lg": {
+    "$type": "dimension",
+    "$value": "58px",
+    "$description": "Nav sheet height at lg+.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:156"
+    ]
+  },
+  "demo-frame-max-width": {
+    "$type": "dimension",
+    "$value": "1168px",
+    "$description": "Demo frame max width.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:208"
+    ]
+  },
+  "form-max-width": {
+    "$type": "dimension",
+    "$value": "792px",
+    "$description": "Sign-up form max width.",
+    "measuredFrom": [
+      "CLONE_SPEC_PAGES.md:187"
+    ]
+  },
+  "legal-column": {
+    "$type": "dimension",
+    "$value": "768px",
+    "$description": "Legal document column.",
+    "measuredFrom": [
+      "CLONE_SPEC_PAGES.md:63"
+    ]
+  },
+  "confirm-dialog-max": {
+    "$type": "dimension",
+    "$value": "25rem",
+    "$description": "Leave dialog max width md+ (28rem bottom sheet on mobile).",
+    "measuredFrom": [
+      "src/components/signup/useSignUpCloseConfirm.jsx:65"
+    ]
+  },
+  "lightbox-max": {
+    "$type": "dimension",
+    "$value": "92.125rem",
+    "$description": "Lightbox media max width at lg.",
+    "measuredFrom": [
+      "src/index.css:210"
+    ]
+  },
+  "ops-columns": {
+    "$type": "dimension",
+    "$value": "280px 1fr 280px",
+    "$description": "Ops steps grid at xl (md: 280px 1fr).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:245"
+    ]
+  }
+}

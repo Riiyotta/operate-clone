@@ -1,0 +1,288 @@
+{
+  "id": "hero.headline-integrations",
+  "kind": "section",
+  "category": "HERO",
+  "purpose": "Open with the H1, a paragraph with six inline integration-logo bubbles and two CTAs: Get started (sign-up) and Watch the video (lightbox).",
+  "implementedBy": [
+    "src/components/Hero.jsx",
+    "src/lib/integrationLogos.js"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:46",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Two-cell ruled grid; h1 left, paragraph + buttons right."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 8,
+        "x-observedMaxWords": 6
+      },
+      "introBefore": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 8,
+        "x-observedMaxWords": 6
+      },
+      "introAfter": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 34,
+        "x-observedMaxWords": 27
+      },
+      "integrationLogos": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "assetRole": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/assetRole"
+                },
+                {
+                  "enum": [
+                    "integration-logo"
+                  ]
+                }
+              ]
+            },
+            "assetRef": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+--[a-z0-9-]+$"
+            }
+          },
+          "required": [
+            "assetRole",
+            "assetRef"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 1,
+        "maxItems": 6
+      },
+      "integrationSrText": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 10,
+        "x-observedMaxWords": 7
+      },
+      "primaryCta": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 4,
+            "x-observedMaxWords": 2
+          },
+          "href": {
+            "const": "/sign-up"
+          }
+        },
+        "required": [
+          "label",
+          "href"
+        ],
+        "additionalProperties": false
+      },
+      "secondaryCta": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 4,
+            "x-observedMaxWords": 3
+          },
+          "opens": {
+            "const": "overlay.video-lightbox"
+          }
+        },
+        "required": [
+          "label",
+          "opens"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "headline",
+      "introBefore",
+      "introAfter",
+      "integrationLogos",
+      "integrationSrText",
+      "primaryCta",
+      "secondaryCta"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "hover-color-transition"
+        },
+        "trigger": {
+          "enum": [
+            "hover"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "instant-state-change"
+        },
+        "durationMs": {
+          "enum": [
+            150
+          ]
+        },
+        "easing": {
+          "enum": [
+            "cubic-bezier(0,0,.2,1)"
+          ]
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback",
+        "durationMs",
+        "easing"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "hover-color-transition",
+      "trigger": "hover",
+      "reducedMotionFallback": "instant-state-change",
+      "durationMs": 150,
+      "easing": "cubic-bezier(0,0,.2,1)"
+    },
+    "measuredFrom": [
+      "CLONE_SPEC.md:197",
+      "src/components/Hero.jsx:10"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "headline": "Collaborative AI for frontier sales organizations",
+      "introBefore": "We connect to your sales data",
+      "introAfter": "to surface where every deal stands and what’s next. Your team and your agents act on it together, and you run like a team twice your size.",
+      "integrationLogos": [
+        {
+          "assetRole": "integration-logo",
+          "assetRef": "integration--more"
+        },
+        {
+          "assetRole": "integration-logo",
+          "assetRef": "integration--granola"
+        },
+        {
+          "assetRole": "integration-logo",
+          "assetRef": "integration--gong"
+        },
+        {
+          "assetRole": "integration-logo",
+          "assetRef": "integration--slack"
+        },
+        {
+          "assetRole": "integration-logo",
+          "assetRef": "integration--gmail"
+        },
+        {
+          "assetRole": "integration-logo",
+          "assetRef": "integration--hubspot"
+        }
+      ],
+      "integrationSrText": "Granola, Gong, Slack, Gmail, HubSpot and more",
+      "primaryCta": {
+        "label": "Get started",
+        "href": "/sign-up"
+      },
+      "secondaryCta": {
+        "label": "Watch the video",
+        "opens": "overlay.video-lightbox"
+      }
+    },
+    "motion": {
+      "pattern": "hover-color-transition",
+      "trigger": "hover",
+      "reducedMotionFallback": "instant-state-change",
+      "durationMs": 150,
+      "easing": "cubic-bezier(0,0,.2,1)"
+    }
+  },
+  "notes": [
+    "Integration logos are third-party trademarks: reference registered ids only.",
+    "Secondary CTA opens the lightbox instantly (no morph); pointerenter/pointerdown/focus preload the player."
+  ],
+  "measuredFrom": [
+    "src/components/Hero.jsx:34",
+    "CLONE_SPEC.md:170",
+    "src/lib/integrationLogos.js:3"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md",
+      "xl"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "One column; h1 36/42; buttons stacked with Watch the video above Get started.",
+        "properties": {
+          "columns": 1,
+          "h1Px": 36,
+          "buttonOrder": "watch-first"
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:398"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Two equal columns; h1 48/56; buttons in a row.",
+        "properties": {
+          "columns": 2,
+          "h1Px": 48
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:178"
+        ]
+      },
+      {
+        "at": "xl",
+        "layout": "Decorative quarter-arc appears.",
+        "properties": {
+          "arc": true
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:182"
+        ]
+      }
+    ]
+  }
+}

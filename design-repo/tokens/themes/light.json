@@ -1,0 +1,138 @@
+{
+  "theme": "light",
+  "$description": "Light theme (the only theme; the site has no dark mode except the stock 404's prefers-color-scheme rule). Resolves every semantic and component token to a foundation value. verify_all.py recomputes this and fails on drift.",
+  "resolved": {
+    "semantic.surface.page": {
+      "ref": "{color.green.deep}",
+      "value": "#005C00"
+    },
+    "semantic.surface.sheet": {
+      "ref": "{color.neutral.paper}",
+      "value": "#EBEBEB"
+    },
+    "semantic.surface.nav-sheet": {
+      "ref": "{color.neutral.nav-sheet}",
+      "value": "#DCDCDC"
+    },
+    "semantic.surface.manifesto": {
+      "ref": "{color.green.manifesto}",
+      "value": "#94BA9D"
+    },
+    "semantic.surface.video-card": {
+      "ref": "{color.green.video-card}",
+      "value": "#77AA83"
+    },
+    "semantic.surface.form": {
+      "ref": "{color.green.dark}",
+      "value": "#117025"
+    },
+    "semantic.surface.legal": {
+      "ref": "{color.neutral.waitlist-gray}",
+      "value": "#E0E0E0"
+    },
+    "semantic.surface.ticket": {
+      "ref": "{color.green.light}",
+      "value": "#85C093"
+    },
+    "semantic.surface.invalid": {
+      "ref": "{color.accent.copper}",
+      "value": "#B85725"
+    },
+    "semantic.text.on-sheet": {
+      "ref": "{color.green.dark}",
+      "value": "#117025"
+    },
+    "semantic.text.body-ops": {
+      "ref": "{color.neutral.stone-800}",
+      "value": "#29211E"
+    },
+    "semantic.text.on-form": {
+      "ref": "{color.neutral.waitlist-gray}",
+      "value": "#E0E0E0"
+    },
+    "semantic.text.status": {
+      "ref": "{color.green.feedback}",
+      "value": "#C8E3CE"
+    },
+    "semantic.text.demo-primary": {
+      "ref": "{color.demo.gray.900}",
+      "value": "#09352E"
+    },
+    "semantic.text.demo-accent": {
+      "ref": "{color.demo.accent}",
+      "value": "#008125"
+    },
+    "semantic.border.sheet": {
+      "ref": "{color.neutral.stone-800}",
+      "value": "#29211E"
+    },
+    "semantic.border.rule": {
+      "ref": "{color.green.dark}",
+      "value": "#117025"
+    },
+    "semantic.border.form": {
+      "ref": "{color.neutral.waitlist-gray}",
+      "value": "#E0E0E0"
+    },
+    "semantic.border.demo-frame": {
+      "ref": "{color.demo.gray.400}",
+      "value": "#CAD3D2"
+    },
+    "semantic.selection.background": {
+      "ref": "{color.green.brand}",
+      "value": "#006F19"
+    },
+    "semantic.selection.text": {
+      "ref": "{color.neutral.waitlist-gray}",
+      "value": "#E0E0E0"
+    },
+    "semantic.focus.ring": {
+      "ref": "{color.alpha.focus-ring}",
+      "value": "rgba(0,112,16,0.6)"
+    },
+    "component.button.primary.bg": {
+      "ref": "{color.green.dark}",
+      "value": "#117025"
+    },
+    "component.button.primary.text": {
+      "ref": "{color.neutral.waitlist-gray}",
+      "value": "#E0E0E0"
+    },
+    "component.button.primary.hover-bg": {
+      "ref": "{color.neutral.white}",
+      "value": "#FFFFFF"
+    },
+    "component.button.secondary.bg": {
+      "ref": "{color.neutral.paper}",
+      "value": "#EBEBEB"
+    },
+    "component.button.secondary.text": {
+      "ref": "{color.green.dark}",
+      "value": "#117025"
+    },
+    "component.nav-strip.bg": {
+      "ref": "{color.neutral.strip}",
+      "value": "#FAFAFA"
+    },
+    "component.ticket-card.bg": {
+      "ref": "{color.green.light}",
+      "value": "#85C093"
+    },
+    "component.ops-step.header-bg": {
+      "ref": "{color.neutral.white}",
+      "value": "#FFFFFF"
+    },
+    "component.chapter-pill.bg": {
+      "ref": "{color.neutral.pill-gray}",
+      "value": "#D9D9D9"
+    },
+    "component.form-field.invalid-bg": {
+      "ref": "{color.accent.copper}",
+      "value": "#B85725"
+    },
+    "component.confirm-dialog.bg": {
+      "ref": "{color.neutral.paper}",
+      "value": "#EBEBEB"
+    }
+  }
+}

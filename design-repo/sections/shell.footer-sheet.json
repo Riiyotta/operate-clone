@@ -1,0 +1,411 @@
+{
+  "id": "shell.footer-sheet",
+  "kind": "section",
+  "category": "SHELL",
+  "purpose": "Close the page with a folded-corner paper footer: hover-to-play video card that morphs into the lightbox, dotted-underline links, Get started and the copyright line.",
+  "implementedBy": [
+    "src/components/FooterSheet.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:70",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Footer grid: links cell (visually right at md+) and video cell."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "internalLinks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "x-maxWords": 2,
+              "x-observedMaxWords": 1
+            },
+            "route": {
+              "enum": [
+                "/privacy",
+                "/terms"
+              ]
+            }
+          },
+          "required": [
+            "label",
+            "route"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "socialLinks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "x-maxWords": 2,
+              "x-observedMaxWords": 1
+            },
+            "link": {
+              "type": "object",
+              "properties": {
+                "assetRole": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/assetRole"
+                    },
+                    {
+                      "enum": [
+                        "external-social-link"
+                      ]
+                    }
+                  ]
+                },
+                "assetRef": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+--[a-z0-9-]+$"
+                }
+              },
+              "required": [
+                "assetRole",
+                "assetRef"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "label",
+            "link"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "ctaLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 2
+      },
+      "ctaHref": {
+        "const": "/sign-up"
+      },
+      "logoMark": {
+        "type": "object",
+        "properties": {
+          "assetRole": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/assetRole"
+              },
+              {
+                "enum": [
+                  "brand-logomark"
+                ]
+              }
+            ]
+          },
+          "assetRef": {
+            "const": "logo--mark"
+          }
+        },
+        "required": [
+          "assetRole",
+          "assetRef"
+        ],
+        "additionalProperties": false
+      },
+      "copyright": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 10,
+        "x-observedMaxWords": 8
+      },
+      "videoCard": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 4,
+            "x-observedMaxWords": 3
+          },
+          "stillDesktop": {
+            "type": "object",
+            "properties": {
+              "assetRole": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/assetRole"
+                  },
+                  {
+                    "enum": [
+                      "footer-video-asset"
+                    ]
+                  }
+                ]
+              },
+              "assetRef": {
+                "const": "footer--still-desktop"
+              }
+            },
+            "required": [
+              "assetRole",
+              "assetRef"
+            ],
+            "additionalProperties": false
+          },
+          "stillMobile": {
+            "type": "object",
+            "properties": {
+              "assetRole": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/assetRole"
+                  },
+                  {
+                    "enum": [
+                      "footer-video-asset"
+                    ]
+                  }
+                ]
+              },
+              "assetRef": {
+                "const": "footer--still-mobile"
+              }
+            },
+            "required": [
+              "assetRole",
+              "assetRef"
+            ],
+            "additionalProperties": false
+          },
+          "loop": {
+            "type": "object",
+            "properties": {
+              "assetRole": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/assetRole"
+                  },
+                  {
+                    "enum": [
+                      "footer-video-asset"
+                    ]
+                  }
+                ]
+              },
+              "assetRef": {
+                "const": "footer--loop"
+              }
+            },
+            "required": [
+              "assetRole",
+              "assetRef"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "label",
+          "stillDesktop",
+          "stillMobile",
+          "loop"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "internalLinks",
+      "socialLinks",
+      "ctaLabel",
+      "ctaHref",
+      "logoMark",
+      "copyright",
+      "videoCard"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "hover-play-video-and-link-highlight"
+        },
+        "trigger": {
+          "enum": [
+            "hover"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "video-hidden-still-only"
+        },
+        "durationMs": {
+          "enum": [
+            150
+          ]
+        },
+        "easing": {
+          "enum": [
+            "cubic-bezier(0,0,.2,1)"
+          ]
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback",
+        "durationMs",
+        "easing"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "hover-play-video-and-link-highlight",
+      "trigger": "hover",
+      "reducedMotionFallback": "video-hidden-still-only",
+      "durationMs": 150,
+      "easing": "cubic-bezier(0,0,.2,1)"
+    },
+    "measuredFrom": [
+      "src/components/FooterSheet.jsx:60",
+      "CLONE_SPEC.md:349"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [
+    "Folded-corner SVG overlays and hatch pattern."
+  ],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "internalLinks": [
+        {
+          "label": "Privacy",
+          "route": "/privacy"
+        },
+        {
+          "label": "Terms",
+          "route": "/terms"
+        }
+      ],
+      "socialLinks": [
+        {
+          "label": "LinkedIn",
+          "link": {
+            "assetRole": "external-social-link",
+            "assetRef": "social--linkedin"
+          }
+        },
+        {
+          "label": "X",
+          "link": {
+            "assetRole": "external-social-link",
+            "assetRef": "social--x"
+          }
+        }
+      ],
+      "ctaLabel": "Get started",
+      "ctaHref": "/sign-up",
+      "logoMark": {
+        "assetRole": "brand-logomark",
+        "assetRef": "logo--mark"
+      },
+      "copyright": "© 2026 Operate Machine Co. All rights reserved.",
+      "videoCard": {
+        "label": "Watch the video",
+        "stillDesktop": {
+          "assetRole": "footer-video-asset",
+          "assetRef": "footer--still-desktop"
+        },
+        "stillMobile": {
+          "assetRole": "footer-video-asset",
+          "assetRef": "footer--still-mobile"
+        },
+        "loop": {
+          "assetRole": "footer-video-asset",
+          "assetRef": "footer--loop"
+        }
+      }
+    },
+    "motion": {
+      "pattern": "hover-play-video-and-link-highlight",
+      "trigger": "hover",
+      "reducedMotionFallback": "video-hidden-still-only",
+      "durationMs": 150,
+      "easing": "cubic-bezier(0,0,.2,1)"
+    }
+  },
+  "notes": [
+    "Social links are real company profiles: reference registered ids only; substitute your own."
+  ],
+  "measuredFrom": [
+    "src/components/FooterSheet.jsx:124",
+    "CLONE_SPEC.md:329"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md",
+      "lg",
+      "min-1440"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Stacked: links cell first, then video card (210px, still only, no hover video); folded corner bottom-left.",
+        "properties": {
+          "columns": 1,
+          "hoverVideo": false
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:402"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Two columns; links cell visually right; folded corner at the right; video card 276px with hover video.",
+        "properties": {
+          "columns": 2,
+          "hoverVideo": true
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:334"
+        ]
+      },
+      {
+        "at": "min-1440",
+        "layout": "Extra 221px arc square left of center.",
+        "properties": {
+          "arc": true
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:343"
+        ]
+      }
+    ]
+  }
+}

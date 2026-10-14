@@ -1,0 +1,27 @@
+{
+  "id": "nav-strip",
+  "kind": "component",
+  "purpose": "Inner nav strip on the hole-punched nav sheet: wordmark text, centered logo mark, desktop-only CTA link. Not sticky, no menu.",
+  "implementedBy": "src/components/NavSheet.jsx",
+  "tokens": [
+    "component.nav-strip.bg",
+    "fontSize.nav-label",
+    "color.green.dark",
+    "layout.nav-height",
+    "layout.nav-height-lg"
+  ],
+  "props": {
+    "wordmark": "string",
+    "cta": "string"
+  },
+  "states": [
+    "static (CTA has no hover style)"
+  ],
+  "measuredFrom": [
+    "src/components/NavSheet.jsx:17",
+    "CLONE_SPEC.md:166"
+  ],
+  "composes": [
+    "logo-mark"
+  ]
+}

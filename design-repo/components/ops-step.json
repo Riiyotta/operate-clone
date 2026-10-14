@@ -1,0 +1,32 @@
+{
+  "id": "ops-step",
+  "kind": "component",
+  "purpose": "One numbered step: header bar (number, title, status ring) then headline+description paragraph and a label pill with a joined item list.",
+  "implementedBy": "src/components/OpsSteps.jsx",
+  "tokens": [
+    "component.ops-step.header-bg",
+    "fontSize.step-title",
+    "fontSize.step-body",
+    "fontSize.detail-list",
+    "color.neutral.stone-800"
+  ],
+  "props": {
+    "title": "string",
+    "headline": "string",
+    "description": "string",
+    "label": "string",
+    "items": "3 x string"
+  },
+  "states": [
+    "inactive",
+    "active"
+  ],
+  "measuredFrom": [
+    "src/components/OpsSteps.jsx:74",
+    "CLONE_SPEC.md:259"
+  ],
+  "composes": [
+    "status-ring",
+    "label-pill"
+  ]
+}

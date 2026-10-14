@@ -1,0 +1,25 @@
+{
+  "id": "rule-arc",
+  "kind": "primitive",
+  "purpose": "Quarter-arc continuing into a vertical rule (radius 90 mobile / 112 desktop).",
+  "implementedBy": "src/components/shell/Rules.jsx",
+  "tokens": [
+    "color.green.dark",
+    "spacing.rule-thickness",
+    "spacing.rule-thickness-md"
+  ],
+  "props": {
+    "bend": [
+      "top",
+      "bottom"
+    ],
+    "radius": "number"
+  },
+  "states": [
+    "static"
+  ],
+  "measuredFrom": [
+    "src/components/shell/Rules.jsx:12",
+    "CLONE_SPEC.md:189"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "$description": "What is enforced vs convention. Category keys equal token-catalog.json keys (checked by verify_all.py).",
+  "referenceOrder": [
+    "foundation",
+    "theme",
+    "semantic",
+    "component",
+    "layout"
+  ],
+  "rawValueRestrictions": {
+    "color": "Never emit a raw hex/rgb value; reference a color token.",
+    "fontFamily": "Only the registered families; commercial fonts are reference-only (see assets/asset-roles.json font-file).",
+    "fontSize": "Only catalog sizes.",
+    "radius": "Only catalog radii.",
+    "duration": "Only catalog durations.",
+    "easing": "Only catalog easings."
+  },
+  "enforcement": {
+    "enforcedByMachine": [
+      "token reference integrity (verify_all.py)",
+      "motion values const-locked per section (schema)"
+    ],
+    "convention": [
+      "token usage inside rendered markup (no PageSpec field carries styling)"
+    ]
+  },
+  "overrides": "PageSpecs carry no per-instance style or token-override field: styling is owned by section/component contracts. There is therefore no PageSpec-level token validation to run; drift is caught at the catalog/policy layer by verify_all.py."
+}

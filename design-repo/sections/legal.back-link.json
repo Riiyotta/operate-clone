@@ -1,0 +1,95 @@
+{
+  "id": "legal.back-link",
+  "kind": "section",
+  "category": "LEGAL",
+  "purpose": "Offer a way back to the homepage above the document.",
+  "implementedBy": [
+    "src/components/pages/LegalPage.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:100",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Small uppercase cinetype link, no hover."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.legal"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 6,
+        "x-observedMaxWords": 4
+      },
+      "href": {
+        "const": "/"
+      }
+    },
+    "required": [
+      "label",
+      "href"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "static"
+        },
+        "trigger": {
+          "enum": [
+            "none"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    },
+    "measuredFrom": [],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "label": "← Back to Operate",
+      "href": "/"
+    },
+    "motion": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    }
+  },
+  "notes": [
+    "No underline and no hover style."
+  ],
+  "measuredFrom": [
+    "src/components/pages/LegalPage.jsx:165",
+    "CLONE_SPEC_PAGES.md:86"
+  ]
+}

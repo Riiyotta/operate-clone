@@ -1,0 +1,112 @@
+{
+  "id": "shell.binder-rails",
+  "kind": "section",
+  "category": "SHELL",
+  "purpose": "Two thin vertical paper rails at the page edges that frame the sheets at lg+.",
+  "implementedBy": [
+    "src/App.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:28",
+  "variants": [
+    {
+      "id": "default",
+      "description": "12px rails, stone-800 border, paper fill, lg+ only."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "static"
+        },
+        "trigger": {
+          "enum": [
+            "none"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    },
+    "measuredFrom": [],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {},
+    "motion": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    }
+  },
+  "notes": [
+    "Decorative; no content fields."
+  ],
+  "measuredFrom": [
+    "src/App.jsx:36",
+    "CLONE_SPEC.md:105"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "lg"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Hidden.",
+        "properties": {
+          "visible": false
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "src/App.jsx:36"
+        ]
+      },
+      {
+        "at": "lg",
+        "layout": "Shown at left/right 12px, 12px wide, full page height.",
+        "properties": {
+          "visible": true,
+          "widthPx": 12,
+          "insetPx": 12
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:105"
+        ]
+      }
+    ]
+  }
+}

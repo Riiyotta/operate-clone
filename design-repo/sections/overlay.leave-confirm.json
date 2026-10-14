@@ -1,0 +1,148 @@
+{
+  "id": "overlay.leave-confirm",
+  "kind": "section",
+  "category": "OVERLAY",
+  "purpose": "Confirm leaving the sign-up form with unsaved input ('Leave this form?'); raised by Back, Escape, outside click or browser back; centered dialog at md+, bottom sheet on mobile.",
+  "implementedBy": [
+    "src/components/signup/useSignUpCloseConfirm.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:94",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Alertdialog with Keep editing / Leave."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home",
+      "template.sign-up"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 3
+      },
+      "description": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 8,
+        "x-observedMaxWords": 6
+      },
+      "keepLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 2
+      },
+      "leaveLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 2,
+        "x-observedMaxWords": 1
+      }
+    },
+    "required": [
+      "title",
+      "description",
+      "keepLabel",
+      "leaveLabel"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "none-instant"
+        },
+        "trigger": {
+          "enum": [
+            "none"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "none-instant",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    },
+    "measuredFrom": [
+      "CLONE_SPEC_PAGES.md:346"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "title": "Leave this form?",
+      "description": "Anything you've entered won't be saved.",
+      "keepLabel": "Keep editing",
+      "leaveLabel": "Leave"
+    },
+    "motion": {
+      "pattern": "none-instant",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    }
+  },
+  "notes": [
+    "Appears and disappears instantly."
+  ],
+  "measuredFrom": [
+    "src/components/signup/useSignUpCloseConfirm.jsx:26",
+    "CLONE_SPEC_PAGES.md:326"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Bottom sheet: inset-x .75rem, max-width 28rem; equal-width buttons.",
+        "properties": {
+          "placement": "bottom-sheet"
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC_PAGES.md:338"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Centered, max-width 25rem; buttons right-aligned.",
+        "properties": {
+          "placement": "center"
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC_PAGES.md:339"
+        ]
+      }
+    ]
+  }
+}

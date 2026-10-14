@@ -1,0 +1,221 @@
+{
+  "id": "overlay.video-lightbox",
+  "kind": "section",
+  "category": "OVERLAY",
+  "purpose": "Full-screen dialog streaming the product video (Mux HLS through hls.js); opens instantly from the hero button, or via a View Transitions morph from the footer card.",
+  "implementedBy": [
+    "src/components/VideoLightbox.jsx",
+    "src/lib/videoLightbox.js"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:76",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Dialog with 16:9 media box, poster held until playback, close button."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "dialogLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 3
+      },
+      "stream": {
+        "type": "object",
+        "properties": {
+          "assetRole": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/assetRole"
+              },
+              {
+                "enum": [
+                  "lightbox-video-stream"
+                ]
+              }
+            ]
+          },
+          "assetRef": {
+            "const": "stream--lightbox-demo"
+          }
+        },
+        "required": [
+          "assetRole",
+          "assetRef"
+        ],
+        "additionalProperties": false
+      },
+      "poster": {
+        "type": "object",
+        "properties": {
+          "assetRole": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/assetRole"
+              },
+              {
+                "enum": [
+                  "video-poster"
+                ]
+              }
+            ]
+          },
+          "assetRef": {
+            "const": "poster--lightbox"
+          }
+        },
+        "required": [
+          "assetRole",
+          "assetRef"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "dialogLabel",
+      "stream",
+      "poster"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "view-transition-morph"
+        },
+        "trigger": {
+          "enum": [
+            "click"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "no-animation"
+        },
+        "durationMs": {
+          "enum": [
+            300
+          ]
+        },
+        "easing": {
+          "enum": [
+            "cubic-bezier(.77,0,.175,1)"
+          ]
+        },
+        "newSnapshotFadeMs": {
+          "enum": [
+            144
+          ]
+        },
+        "outlineRevealMs": {
+          "enum": [
+            250
+          ]
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback",
+        "durationMs",
+        "easing",
+        "newSnapshotFadeMs",
+        "outlineRevealMs"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "view-transition-morph",
+      "trigger": "click",
+      "reducedMotionFallback": "no-animation",
+      "durationMs": 300,
+      "easing": "cubic-bezier(.77,0,.175,1)",
+      "newSnapshotFadeMs": 144,
+      "outlineRevealMs": 250
+    },
+    "measuredFrom": [
+      "src/index.css:166",
+      "src/index.css:181",
+      "src/components/VideoLightbox.jsx:301",
+      "src/index.css:189"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "dialogLabel": "Watch the video",
+      "stream": {
+        "assetRole": "lightbox-video-stream",
+        "assetRef": "stream--lightbox-demo"
+      },
+      "poster": {
+        "assetRole": "video-poster",
+        "assetRef": "poster--lightbox"
+      }
+    },
+    "motion": {
+      "pattern": "view-transition-morph",
+      "trigger": "click",
+      "reducedMotionFallback": "no-animation",
+      "durationMs": 300,
+      "easing": "cubic-bezier(.77,0,.175,1)",
+      "newSnapshotFadeMs": 144,
+      "outlineRevealMs": 250
+    }
+  },
+  "notes": [
+    "The stream playback id is a live third-party endpoint: reference the registered id only.",
+    "Pauses the background canvas while open."
+  ],
+  "measuredFrom": [
+    "src/components/VideoLightbox.jsx:11",
+    "CLONE_SPEC.md:356",
+    "src/index.css:165"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "lg"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Backdrop black at 70%; media width min(100%, (100dvh-7rem)*16/9).",
+        "properties": {
+          "backdropAlpha": 0.7
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:90"
+        ]
+      },
+      {
+        "at": "lg",
+        "layout": "Backdrop 50%; media width capped at min(100%,92.125rem) - 100px.",
+        "properties": {
+          "backdropAlpha": 0.5
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "src/index.css:210"
+        ]
+      }
+    ]
+  }
+}

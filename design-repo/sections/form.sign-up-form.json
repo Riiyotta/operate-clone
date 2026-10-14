@@ -1,0 +1,478 @@
+{
+  "id": "form.sign-up-form",
+  "kind": "section",
+  "category": "FORM",
+  "purpose": "Collect waitlist answers in a green form card of seven questions with 'Other' reveals, copper validation rows and sending/error/thank-you states. Submits to a local stub only.",
+  "implementedBy": [
+    "src/components/signup/SignUpForm.jsx",
+    "src/components/signup/SendingAnimation.jsx",
+    "src/lib/signupStub.js"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:88",
+  "variants": [
+    {
+      "id": "modal",
+      "description": "Hosted in the homepage sign-up modal (Back is the dialog close)."
+    },
+    {
+      "id": "standalone",
+      "description": "Hosted on the /sign-up page (Back is a plain button)."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home",
+      "template.sign-up"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 10,
+        "x-observedMaxWords": 7
+      },
+      "backLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 2,
+        "x-observedMaxWords": 1
+      },
+      "textFields": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "enum": [
+                "name",
+                "email",
+                "socialHandle"
+              ]
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "x-maxWords": 4,
+              "x-observedMaxWords": 2
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "placeholder": {
+              "type": "string",
+              "minLength": 1,
+              "x-maxWords": 4,
+              "x-observedMaxWords": 3
+            }
+          },
+          "required": [
+            "name",
+            "label",
+            "required",
+            "placeholder"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 3,
+        "maxItems": 3
+      },
+      "choiceGroups": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "enum": [
+                "role",
+                "salesTeamSize",
+                "aiUsage",
+                "dealChallenge"
+              ]
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "x-maxWords": 14,
+              "x-observedMaxWords": 11
+            },
+            "kind": {
+              "enum": [
+                "radio",
+                "checkbox"
+              ]
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "x-maxWords": 8,
+                "x-observedMaxWords": 6
+              },
+              "minItems": 5,
+              "maxItems": 7
+            }
+          },
+          "required": [
+            "name",
+            "label",
+            "kind",
+            "options"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 4,
+        "maxItems": 4
+      },
+      "otherPlaceholder": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 3
+      },
+      "selectAllHint": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 6,
+        "x-observedMaxWords": 4
+      },
+      "validationMessages": {
+        "type": "object",
+        "properties": {
+          "required": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 2,
+            "x-observedMaxWords": 1
+          },
+          "invalidEmail": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 4,
+            "x-observedMaxWords": 3
+          },
+          "chooseAtLeastOne": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 6,
+            "x-observedMaxWords": 4
+          }
+        },
+        "required": [
+          "required",
+          "invalidEmail",
+          "chooseAtLeastOne"
+        ],
+        "additionalProperties": false
+      },
+      "submitLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 2,
+        "x-observedMaxWords": 1
+      },
+      "sendingLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 2,
+        "x-observedMaxWords": 1
+      },
+      "receivedMessage": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 8,
+        "x-observedMaxWords": 6
+      },
+      "receivedCloseLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 2,
+        "x-observedMaxWords": 1
+      },
+      "errorMessage": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 3
+      },
+      "retryLabel": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 2
+      },
+      "submitEndpoint": {
+        "type": "object",
+        "properties": {
+          "assetRole": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/assetRole"
+              },
+              {
+                "enum": [
+                  "signup-submit-stub"
+                ]
+              }
+            ]
+          },
+          "assetRef": {
+            "const": "endpoint--signup-stub"
+          }
+        },
+        "required": [
+          "assetRole",
+          "assetRef"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "title",
+      "backLabel",
+      "textFields",
+      "choiceGroups",
+      "otherPlaceholder",
+      "selectAllHint",
+      "validationMessages",
+      "submitLabel",
+      "sendingLabel",
+      "receivedMessage",
+      "receivedCloseLabel",
+      "errorMessage",
+      "retryLabel",
+      "submitEndpoint"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "sending-ring-loop"
+        },
+        "trigger": {
+          "enum": [
+            "submit"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "static-rings-shown"
+        },
+        "visibleMs": {
+          "enum": [
+            1500
+          ]
+        },
+        "exitMs": {
+          "enum": [
+            750
+          ]
+        },
+        "pauseMs": {
+          "enum": [
+            400
+          ]
+        },
+        "enterOpacityMs": {
+          "enum": [
+            400
+          ]
+        },
+        "easing": {
+          "enum": [
+            "cubic-bezier(.23,1,.32,1)"
+          ]
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback",
+        "visibleMs",
+        "exitMs",
+        "pauseMs",
+        "enterOpacityMs",
+        "easing"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "sending-ring-loop",
+      "trigger": "submit",
+      "reducedMotionFallback": "static-rings-shown",
+      "visibleMs": 1500,
+      "exitMs": 750,
+      "pauseMs": 400,
+      "enterOpacityMs": 400,
+      "easing": "cubic-bezier(.23,1,.32,1)"
+    },
+    "measuredFrom": [
+      "src/components/signup/SendingAnimation.jsx:13",
+      "src/components/signup/SendingAnimation.jsx:11",
+      "src/components/signup/SendingAnimation.jsx:12",
+      "src/components/signup/SendingAnimation.jsx:8"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [
+    "Field numbering (1.-7.), em-based spacing, Enter-key focus advance, 'Not using AI yet' exclusivity."
+  ],
+  "exemplar": {
+    "variant": "modal",
+    "content": {
+      "title": "First, tell us a bit about you",
+      "backLabel": "Back",
+      "textFields": [
+        {
+          "name": "name",
+          "label": "Name",
+          "required": true,
+          "placeholder": "Your name"
+        },
+        {
+          "name": "email",
+          "label": "Work email",
+          "required": true,
+          "placeholder": "Your work email"
+        },
+        {
+          "name": "socialHandle",
+          "label": "Social handle",
+          "required": false,
+          "placeholder": "LinkedIn or X"
+        }
+      ],
+      "choiceGroups": [
+        {
+          "name": "role",
+          "label": "Your role",
+          "kind": "radio",
+          "options": [
+            "Founder / CEO",
+            "Sales leader (VP, Head of Sales)",
+            "Account executive",
+            "SDR / BDR",
+            "RevOps / Sales ops",
+            "Other"
+          ]
+        },
+        {
+          "name": "salesTeamSize",
+          "label": "How many people sell at your company?",
+          "kind": "radio",
+          "options": [
+            "0-1",
+            "2–4",
+            "5–50",
+            "51–250",
+            "251+"
+          ]
+        },
+        {
+          "name": "aiUsage",
+          "label": "How is your sales team using AI today?",
+          "kind": "checkbox",
+          "options": [
+            "ChatGPT, Claude, or similar",
+            "AI features in our sales tools",
+            "Custom agents or workflows",
+            "Something else",
+            "Not using AI yet"
+          ]
+        },
+        {
+          "name": "dealChallenge",
+          "label": "What's the hardest part of keeping your deals moving right now?",
+          "kind": "radio",
+          "options": [
+            "Keeping up with follow-ups",
+            "Finding context across tools",
+            "Knowing which deals need attention",
+            "Stale CRM data",
+            "Visibility into my team’s deals",
+            "AI that doesn’t know our deals",
+            "Something else"
+          ]
+        }
+      ],
+      "otherPlaceholder": "Your answer (optional)",
+      "selectAllHint": "Select all that apply",
+      "validationMessages": {
+        "required": "required",
+        "invalidEmail": "check the email",
+        "chooseAtLeastOne": "choose at least one"
+      },
+      "submitLabel": "Submit",
+      "sendingLabel": "Submitting…",
+      "receivedMessage": "Thank you! We’ll be in touch.",
+      "receivedCloseLabel": "Close",
+      "errorMessage": "Something went wrong.",
+      "retryLabel": "Try again",
+      "submitEndpoint": {
+        "assetRole": "signup-submit-stub",
+        "assetRef": "endpoint--signup-stub"
+      }
+    },
+    "motion": {
+      "pattern": "sending-ring-loop",
+      "trigger": "submit",
+      "reducedMotionFallback": "static-rings-shown",
+      "visibleMs": 1500,
+      "exitMs": 750,
+      "pauseMs": 400,
+      "enterOpacityMs": 400,
+      "easing": "cubic-bezier(.23,1,.32,1)"
+    }
+  },
+  "notes": [
+    "Submit goes to src/lib/signupStub.js only (1.2s delay, local validation). No real endpoint exists; the booking-link redirect variant ('Redirecting…') is not implemented.",
+    "The original posts a Next.js Server Action; its action id/URL are deliberately not recorded here."
+  ],
+  "measuredFrom": [
+    "src/components/signup/SignUpForm.jsx:420",
+    "src/lib/signupStub.js:10",
+    "CLONE_SPEC_PAGES.md:168"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Base font 17px; h1 left-aligned; Q6 hint inline; errors wrap to a full-width line; bottom-sheet dialog.",
+        "properties": {
+          "baseFontPx": 17,
+          "titleAlign": "left"
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC_PAGES.md:380"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Base font 16px; h1 centered; Q6 hint right-aligned in the legend row.",
+        "properties": {
+          "baseFontPx": 16,
+          "titleAlign": "center"
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC_PAGES.md:233"
+        ]
+      }
+    ]
+  }
+}

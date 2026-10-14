@@ -1,0 +1,106 @@
+{
+  "version": "1.0.0",
+  "$description": "Closed list of what a generator may instantiate or set. Ids must equal the contract files on disk (verify_all.py checks both directions).",
+  "primitives": [
+    "back-link",
+    "button",
+    "dotted-link",
+    "integration-bubble",
+    "label-pill",
+    "logo-mark",
+    "rule-arc",
+    "rule-cap",
+    "status-ring"
+  ],
+  "components": [
+    "chapter-control",
+    "confirm-dialog",
+    "form-choice-group",
+    "form-status-row",
+    "form-text-field",
+    "hole-punched-sheet",
+    "legal-block",
+    "nav-strip",
+    "ops-step",
+    "ticket-card",
+    "video-card"
+  ],
+  "sections": [
+    "backdrop.animated-background",
+    "form.sign-up-form",
+    "hero.headline-integrations",
+    "legal.back-link",
+    "legal.document-body",
+    "legal.document-header",
+    "overlay.leave-confirm",
+    "overlay.sign-up-modal",
+    "overlay.video-lightbox",
+    "product.demo",
+    "product.ops-steps",
+    "shell.binder-rails",
+    "shell.footer-sheet",
+    "shell.main-sheet",
+    "shell.nav-sheet",
+    "story.manifesto",
+    "system.not-found"
+  ],
+  "templates": [
+    "template.home",
+    "template.legal",
+    "template.not-found",
+    "template.sign-up"
+  ],
+  "routes": [
+    "*",
+    "/",
+    "/privacy",
+    "/sign-up",
+    "/terms"
+  ],
+  "assetRoles": [
+    "background-texture",
+    "brand-logo-trace",
+    "brand-logomark",
+    "demo-avatar-image",
+    "demo-scene-image",
+    "external-social-link",
+    "footer-video-asset",
+    "integration-logo",
+    "lightbox-video-stream",
+    "signup-submit-stub",
+    "video-poster"
+  ],
+  "pagePropertiesSettable": [
+    "pageSpecVersion",
+    "template",
+    "route",
+    "head",
+    "nodes"
+  ],
+  "nodePropertiesSettable": [
+    "section",
+    "variant",
+    "content",
+    "motion"
+  ],
+  "motionPropertiesSettable": [
+    "activeThresholdViewportFraction",
+    "durationMs",
+    "easing",
+    "enterOpacityMs",
+    "exitMs",
+    "inViewMargin",
+    "loopMs",
+    "newSnapshotFadeMs",
+    "outlineRevealMs",
+    "pattern",
+    "pauseMs",
+    "reducedMotionFallback",
+    "revealMsPerWord",
+    "scrollBottomBandAbove",
+    "scrollTopBandBelow",
+    "trigger",
+    "typeMsPerChar",
+    "visibleMs"
+  ]
+}

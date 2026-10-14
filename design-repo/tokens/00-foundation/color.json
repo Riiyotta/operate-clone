@@ -1,0 +1,368 @@
+{
+  "green": {
+    "deep": {
+      "$type": "color",
+      "$value": "#005C00",
+      "$description": "Page background (waitlist deep green).",
+      "measuredFrom": [
+        "tailwind.config.cjs:21"
+      ]
+    },
+    "dark": {
+      "$type": "color",
+      "$value": "#117025",
+      "$description": "Ink: marketing text, rules, rule caps, primary button fill, sign-up form fill.",
+      "measuredFrom": [
+        "tailwind.config.cjs:22"
+      ]
+    },
+    "light": {
+      "$type": "color",
+      "$value": "#85C093",
+      "$description": "Canvas dots, ticket card, video-card frame, theme-color meta, input placeholder.",
+      "measuredFrom": [
+        "tailwind.config.cjs:23"
+      ]
+    },
+    "manifesto": {
+      "$type": "color",
+      "$value": "#94BA9D",
+      "$description": "Manifesto panel background.",
+      "measuredFrom": [
+        "tailwind.config.cjs:29"
+      ]
+    },
+    "video-card": {
+      "$type": "color",
+      "$value": "#77AA83",
+      "$description": "Footer video card and lightbox media background.",
+      "measuredFrom": [
+        "tailwind.config.cjs:30"
+      ]
+    },
+    "feedback": {
+      "$type": "color",
+      "$value": "#C8E3CE",
+      "$description": "Sign-up status text (color-mix of #85C093 and 55% white).",
+      "measuredFrom": [
+        "tailwind.config.cjs:26"
+      ]
+    },
+    "brand": {
+      "$type": "color",
+      "$value": "#006F19",
+      "$description": "::selection background (--selection-background: brand).",
+      "measuredFrom": [
+        "tailwind.config.cjs:53"
+      ]
+    }
+  },
+  "neutral": {
+    "paper": {
+      "$type": "color",
+      "$value": "#EBEBEB",
+      "$description": "Main/footer sheet, binder rails, Watch-the-video button, confirm dialog.",
+      "measuredFrom": [
+        "tailwind.config.cjs:24"
+      ]
+    },
+    "waitlist-gray": {
+      "$type": "color",
+      "$value": "#E0E0E0",
+      "$description": "Primary button text/border, body bg, sign-up text, legal page bg, scrolled theme-color.",
+      "measuredFrom": [
+        "tailwind.config.cjs:25"
+      ]
+    },
+    "nav-sheet": {
+      "$type": "color",
+      "$value": "#DCDCDC",
+      "$description": "Nav strip sheet background.",
+      "measuredFrom": [
+        "tailwind.config.cjs:31"
+      ]
+    },
+    "strip": {
+      "$type": "color",
+      "$value": "#FAFAFA",
+      "$description": "Nav inner strip (used at 60% mobile / 70% lg).",
+      "measuredFrom": [
+        "tailwind.config.cjs:32"
+      ]
+    },
+    "pill-gray": {
+      "$type": "color",
+      "$value": "#D9D9D9",
+      "$description": "Demo chapter pills and tooltip.",
+      "measuredFrom": [
+        "tailwind.config.cjs:33"
+      ]
+    },
+    "hole-hatch": {
+      "$type": "color",
+      "$value": "#9D989B",
+      "$description": "Footer folded-corner diamond hatch stroke.",
+      "measuredFrom": [
+        "tailwind.config.cjs:34"
+      ]
+    },
+    "bubble": {
+      "$type": "color",
+      "$value": "#F6F6F6",
+      "$description": "Hero integration bubbles 2..6 background.",
+      "measuredFrom": [
+        "tailwind.config.cjs:35"
+      ]
+    },
+    "stone-800": {
+      "$type": "color",
+      "$value": "#29211E",
+      "$description": "Sheet borders, ops step numbers/body, ticket text, legal ink.",
+      "measuredFrom": [
+        "tailwind.config.cjs:36"
+      ]
+    },
+    "html-bg": {
+      "$type": "color",
+      "$value": "#FCFCFC",
+      "$description": "Root html background (visible only in overscroll on legal pages).",
+      "measuredFrom": [
+        "src/index.css:55"
+      ]
+    },
+    "white": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "$description": "Button hover bg, ops step header at 60%, demo gray-50.",
+      "measuredFrom": [
+        "tailwind.config.cjs:39"
+      ]
+    }
+  },
+  "accent": {
+    "copper": {
+      "$type": "color",
+      "$value": "#B85725",
+      "$description": "Sign-up invalid rows.",
+      "measuredFrom": [
+        "tailwind.config.cjs:28"
+      ]
+    }
+  },
+  "demo": {
+    "gray": {
+      "75": {
+        "$type": "color",
+        "$value": "#FCFCFC",
+        "$description": "Demo UI (light theme) gray-75; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:40"
+        ]
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#F7F7F7",
+        "$description": "Demo UI (light theme) gray-100; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:41"
+        ]
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#EDEFEF",
+        "$description": "Demo UI (light theme) gray-200; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:42"
+        ]
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#E0E5E5",
+        "$description": "Demo UI (light theme) gray-300; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:43"
+        ]
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#CAD3D2",
+        "$description": "Demo UI (light theme) gray-400; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:44"
+        ]
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#9BA8A7",
+        "$description": "Demo UI (light theme) gray-500; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:45"
+        ]
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#71807E",
+        "$description": "Demo UI (light theme) gray-600; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:46"
+        ]
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#5F6D6B",
+        "$description": "Demo UI (light theme) gray-700; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:47"
+        ]
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#294D47",
+        "$description": "Demo UI (light theme) gray-800; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:48"
+        ]
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#09352E",
+        "$description": "Demo UI (light theme) gray-900; gray-900 is also the body text color.",
+        "measuredFrom": [
+          "tailwind.config.cjs:49"
+        ]
+      }
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "#008125",
+      "$description": "Demo active nav item text.",
+      "measuredFrom": [
+        "tailwind.config.cjs:51"
+      ]
+    },
+    "accent-from": {
+      "$type": "color",
+      "$value": "#269600",
+      "$description": "Demo send button / notification badge gradient start.",
+      "measuredFrom": [
+        "tailwind.config.cjs:52"
+      ]
+    }
+  },
+  "system": {
+    "404-light-text": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Stock 404 text (light scheme).",
+      "measuredFrom": [
+        "src/index.css:221"
+      ]
+    },
+    "404-light-bg": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "$description": "Stock 404 background (light scheme).",
+      "measuredFrom": [
+        "src/index.css:221"
+      ]
+    },
+    "404-dark-text": {
+      "$type": "color",
+      "$value": "#FFFFFF",
+      "$description": "Stock 404 text (dark scheme).",
+      "measuredFrom": [
+        "src/index.css:222"
+      ]
+    },
+    "404-dark-bg": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Stock 404 background (dark scheme).",
+      "measuredFrom": [
+        "src/index.css:222"
+      ]
+    }
+  },
+  "alpha": {
+    "lightbox-backdrop-mobile": {
+      "$type": "color",
+      "$value": "rgba(0,0,0,0.70)",
+      "$description": "Video lightbox backdrop below lg.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:90"
+      ]
+    },
+    "lightbox-backdrop-desktop": {
+      "$type": "color",
+      "$value": "rgba(0,0,0,0.50)",
+      "$description": "Video lightbox backdrop at lg+.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:90"
+      ]
+    },
+    "confirm-backdrop": {
+      "$type": "color",
+      "$value": "rgba(0,0,0,0.50)",
+      "$description": "Leave-form dialog backdrop overlay.",
+      "measuredFrom": [
+        "src/components/signup/useSignUpCloseConfirm.jsx:46"
+      ]
+    },
+    "legal-hr": {
+      "$type": "color",
+      "$value": "rgba(41,33,30,0.15)",
+      "$description": "Terms horizontal rule.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:98"
+      ]
+    },
+    "legal-code-bg": {
+      "$type": "color",
+      "$value": "rgba(41,33,30,0.08)",
+      "$description": "Privacy scope code chip background.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:97"
+      ]
+    },
+    "legal-marker": {
+      "$type": "color",
+      "$value": "rgba(41,33,30,0.6)",
+      "$description": "Legal list marker color.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:94"
+      ]
+    },
+    "form-focus-tint": {
+      "$type": "color",
+      "$value": "rgba(224,224,224,0.2)",
+      "$description": "Sign-up field/option focus tint.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:256"
+      ]
+    },
+    "form-hint": {
+      "$type": "color",
+      "$value": "rgba(255,255,255,0.6)",
+      "$description": "Q6 'Select all that apply' hint.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:270"
+      ]
+    },
+    "sending-overlay": {
+      "$type": "color",
+      "$value": "rgba(41,33,30,0.3)",
+      "$description": "Sign-up submitting overlay.",
+      "measuredFrom": [
+        "CLONE_SPEC_PAGES.md:319"
+      ]
+    },
+    "focus-ring": {
+      "$type": "color",
+      "$value": "rgba(0,112,16,0.6)",
+      "$description": "Global focus ring color (brand green at 60%).",
+      "measuredFrom": [
+        "src/index.css:229"
+      ]
+    }
+  }
+}

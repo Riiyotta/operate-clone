@@ -1,0 +1,336 @@
+{
+  "id": "story.manifesto",
+  "kind": "section",
+  "category": "STORY",
+  "purpose": "Deliver the brand narrative: 'Software doesn't close deals. You do.' on a green punched panel with CSS multi-column text, a ticket card and the self-animating logo-trace SVG.",
+  "implementedBy": [
+    "src/components/Manifesto.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:64",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Green panel, vertical rules, multi-column text, ticket card, signature + logo trace."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "headingLines": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "x-maxWords": 4,
+          "x-observedMaxWords": 2
+        },
+        "minItems": 4,
+        "maxItems": 4
+      },
+      "paragraphs": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "x-maxWords": 52,
+          "x-observedMaxWords": 41
+        },
+        "minItems": 4,
+        "maxItems": 4
+      },
+      "emphasisPhrase": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 8,
+        "x-observedMaxWords": 5
+      },
+      "signature": {
+        "type": "object",
+        "properties": {
+          "team": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 4,
+            "x-observedMaxWords": 2
+          },
+          "date": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 2,
+            "x-observedMaxWords": 1
+          }
+        },
+        "required": [
+          "team",
+          "date"
+        ],
+        "additionalProperties": false
+      },
+      "ticket": {
+        "type": "object",
+        "properties": {
+          "brand": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 2,
+            "x-observedMaxWords": 1
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 2,
+            "x-observedMaxWords": 1
+          },
+          "subjectLabel": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 2,
+            "x-observedMaxWords": 1
+          },
+          "subject": {
+            "type": "string",
+            "minLength": 1,
+            "x-maxWords": 8,
+            "x-observedMaxWords": 5
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "term": {
+                  "type": "string",
+                  "minLength": 1,
+                  "x-maxWords": 2,
+                  "x-observedMaxWords": 1
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1,
+                  "x-maxWords": 2,
+                  "x-observedMaxWords": 1
+                }
+              },
+              "required": [
+                "term",
+                "value"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "required": [
+          "brand",
+          "version",
+          "subjectLabel",
+          "subject",
+          "fields"
+        ],
+        "additionalProperties": false
+      },
+      "logoTrace": {
+        "type": "object",
+        "properties": {
+          "assetRole": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/assetRole"
+              },
+              {
+                "enum": [
+                  "brand-logo-trace"
+                ]
+              }
+            ]
+          },
+          "assetRef": {
+            "const": "logo-trace--loop"
+          }
+        },
+        "required": [
+          "assetRole",
+          "assetRef"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "headingLines",
+      "paragraphs",
+      "emphasisPhrase",
+      "signature",
+      "ticket",
+      "logoTrace"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "svg-internal-css-loop"
+        },
+        "trigger": {
+          "enum": [
+            "load"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "static-still-svg"
+        },
+        "loopMs": {
+          "enum": [
+            7875
+          ]
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback",
+        "loopMs"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "svg-internal-css-loop",
+      "trigger": "load",
+      "reducedMotionFallback": "static-still-svg",
+      "loopMs": 7875
+    },
+    "measuredFrom": [
+      "src/components/Manifesto.jsx:132",
+      "CLONE_SPEC.md:378"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "headingLines": [
+        "Software",
+        "doesn't",
+        "close deals.",
+        "You do."
+      ],
+      "paragraphs": [
+        "So it's strange that sales teams revolve around CRMs that were never built for you. They were built for storing things. And no matter how well organized or how fully automated, storage rooms were never the point.",
+        "We think you deserve a proper place to work. Call it a workshop, a studio, a lab, a kitchen. Wherever you do your best work. Same materials, same tools, but intentionally prepared and arranged. Everything exactly where your hand expects it.",
+        "A place like that remembers what you can't, surfaces what matters, keeps you on pace.",
+        "The relationships, the judgment calls, the close — that part has always been yours. We just built a better place to do it."
+      ],
+      "emphasisPhrase": "a proper place to work.",
+      "signature": {
+        "team": "Team Operate",
+        "date": "09.30.26"
+      },
+      "ticket": {
+        "brand": "OPERATE",
+        "version": "2.0",
+        "subjectLabel": "Subject",
+        "subject": "A PROPER PLACE TO WORK",
+        "fields": [
+          {
+            "term": "Date",
+            "value": "2026"
+          },
+          {
+            "term": "Vol.",
+            "value": "1"
+          },
+          {
+            "term": "Ref.",
+            "value": "B001"
+          }
+        ]
+      },
+      "logoTrace": {
+        "assetRole": "brand-logo-trace",
+        "assetRef": "logo-trace--loop"
+      }
+    },
+    "motion": {
+      "pattern": "svg-internal-css-loop",
+      "trigger": "load",
+      "reducedMotionFallback": "static-still-svg",
+      "loopMs": 7875
+    }
+  },
+  "notes": [
+    "The logo-trace SVG must be used via <img> as a file (self-animating CSS inside the SVG).",
+    "Ticket values use Courier New."
+  ],
+  "measuredFrom": [
+    "src/components/Manifesto.jsx:60",
+    "CLONE_SPEC.md:280",
+    "src/components/Manifesto.jsx:132"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md",
+      "xl",
+      "home-you-wide"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "One text column; 15/20 body; paper-colored hole dots above paragraphs 1-2; no panel hole mask.",
+        "properties": {
+          "columns": 1
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:401"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Two columns.",
+        "properties": {
+          "columns": 2
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:304"
+        ]
+      },
+      {
+        "at": "xl",
+        "layout": "Three columns, 18/24 body, 32/36 heading.",
+        "properties": {
+          "columns": 3
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:304"
+        ]
+      },
+      {
+        "at": "home-you-wide",
+        "layout": "Four-column grid (text spans 3) with logo trace beside the text.",
+        "properties": {
+          "gridColumns": 4
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:302"
+        ]
+      }
+    ]
+  }
+}

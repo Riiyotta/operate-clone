@@ -1,0 +1,504 @@
+{
+  "pageSpecVersion": "1.0.0",
+  "template": "template.home",
+  "route": "/",
+  "head": {
+    "title": "Operate – Collaborative AI for frontier sales organizations",
+    "description": "Operate connects your sales data to surface where every deal stands and what's next. Your team and agents act together, and you run like a team twice your size."
+  },
+  "nodes": [
+    {
+      "section": "backdrop.animated-background",
+      "variant": "default",
+      "content": {
+        "texture": {
+          "assetRole": "background-texture",
+          "assetRef": "texture--home-background"
+        }
+      },
+      "motion": {
+        "pattern": "scroll-band-canvas-beads",
+        "trigger": "scroll-progress",
+        "reducedMotionFallback": "static-frames-on-scroll",
+        "scrollTopBandBelow": 0.35,
+        "scrollBottomBandAbove": 0.65
+      }
+    },
+    {
+      "section": "shell.binder-rails",
+      "variant": "default",
+      "content": {},
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "shell.nav-sheet",
+      "variant": "default",
+      "content": {
+        "wordmarkText": "Operate",
+        "ctaLabel": "Try it out",
+        "ctaHref": "/sign-up",
+        "logoMark": {
+          "assetRole": "brand-logomark",
+          "assetRef": "logo--mark"
+        }
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "shell.main-sheet",
+      "variant": "default",
+      "content": {},
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "hero.headline-integrations",
+      "variant": "default",
+      "content": {
+        "headline": "Collaborative AI for frontier sales organizations",
+        "introBefore": "We connect to your sales data",
+        "introAfter": "to surface where every deal stands and what’s next. Your team and your agents act on it together, and you run like a team twice your size.",
+        "integrationLogos": [
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "integration--more"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "integration--granola"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "integration--gong"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "integration--slack"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "integration--gmail"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "integration--hubspot"
+          }
+        ],
+        "integrationSrText": "Granola, Gong, Slack, Gmail, HubSpot and more",
+        "primaryCta": {
+          "label": "Get started",
+          "href": "/sign-up"
+        },
+        "secondaryCta": {
+          "label": "Watch the video",
+          "opens": "overlay.video-lightbox"
+        }
+      },
+      "motion": {
+        "pattern": "hover-color-transition",
+        "trigger": "hover",
+        "reducedMotionFallback": "instant-state-change",
+        "durationMs": 150,
+        "easing": "cubic-bezier(0,0,.2,1)"
+      }
+    },
+    {
+      "section": "product.demo",
+      "variant": "default",
+      "content": {
+        "chapterLabels": [
+          "Quota",
+          "Meeting",
+          "Draft",
+          "Slack",
+          "Next step"
+        ],
+        "workspaceName": "Quietwork",
+        "composerPlaceholder": "Ask about Quota...",
+        "people": [
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "avatar--demo-1"
+          },
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "avatar--demo-2"
+          },
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "avatar--demo-3"
+          },
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "avatar--demo-4"
+          },
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "avatar--demo-5"
+          }
+        ],
+        "conversationBackground": {
+          "assetRole": "demo-scene-image",
+          "assetRef": "scene--demo-slack"
+        }
+      },
+      "motion": {
+        "pattern": "scripted-timeline-in-view",
+        "trigger": "in-view-once",
+        "reducedMotionFallback": "motion-config-reduced-user",
+        "inViewMargin": "-30% 0px -48px 0px",
+        "typeMsPerChar": 32,
+        "revealMsPerWord": 25,
+        "durationMs": 400,
+        "easing": "cubic-bezier(.19,1,.22,1)"
+      }
+    },
+    {
+      "section": "product.ops-steps",
+      "variant": "default",
+      "content": {
+        "heading": "Getting Operational with AI",
+        "intro": "Your team brings the relationships and the judgment. We bring everything they need to act on it.",
+        "ctaLabel": "Talk to us",
+        "ctaHref": "/sign-up",
+        "steps": [
+          {
+            "title": "The Map",
+            "headline": "See your pipeline clearly.",
+            "description": "We shadow your sales reps and managers to learn how your team sells. Together, we identify friction worth removing and ideas worth playbooking.",
+            "label": "clarity",
+            "items": [
+              "Where deals stall",
+              "What wins deals",
+              "Where to focus"
+            ]
+          },
+          {
+            "title": "The Plan",
+            "headline": "Give your team more ways to win.",
+            "description": "From CRM updates to follow-ups, we decide together what runs on its own, what goes to an agent, and what stays with your reps.",
+            "label": "capacity",
+            "items": [
+              "More selling time",
+              "Broader coverage",
+              "Consistent follow-through"
+            ]
+          },
+          {
+            "title": "The Build",
+            "headline": "Keep every deal moving.",
+            "description": "We connect your whole stack (CRM, calls, inbox, and more). Then we bring specialized agents into the deals your team is working, so the right context shows up right when it's needed.",
+            "label": "momentum",
+            "items": [
+              "Prepared for every call",
+              "Earlier risk signals",
+              "Faster deal progress"
+            ]
+          },
+          {
+            "title": "The Rollout",
+            "headline": "Watch the results compound.",
+            "description": "We stay involved as Operate learns your business, running it against real deals, fixing what's off, and tracking progress with you as coverage grows.",
+            "label": "impact",
+            "items": [
+              "More wins",
+              "Stronger adoption",
+              "Better retention"
+            ]
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "scroll-active-step",
+        "trigger": "scroll",
+        "reducedMotionFallback": "instant-state-change",
+        "durationMs": 200,
+        "easing": "cubic-bezier(.23,1,.32,1)",
+        "activeThresholdViewportFraction": 0.5
+      }
+    },
+    {
+      "section": "story.manifesto",
+      "variant": "default",
+      "content": {
+        "headingLines": [
+          "Software",
+          "doesn't",
+          "close deals.",
+          "You do."
+        ],
+        "paragraphs": [
+          "So it's strange that sales teams revolve around CRMs that were never built for you. They were built for storing things. And no matter how well organized or how fully automated, storage rooms were never the point.",
+          "We think you deserve a proper place to work. Call it a workshop, a studio, a lab, a kitchen. Wherever you do your best work. Same materials, same tools, but intentionally prepared and arranged. Everything exactly where your hand expects it.",
+          "A place like that remembers what you can't, surfaces what matters, keeps you on pace.",
+          "The relationships, the judgment calls, the close — that part has always been yours. We just built a better place to do it."
+        ],
+        "emphasisPhrase": "a proper place to work.",
+        "signature": {
+          "team": "Team Operate",
+          "date": "09.30.26"
+        },
+        "ticket": {
+          "brand": "OPERATE",
+          "version": "2.0",
+          "subjectLabel": "Subject",
+          "subject": "A PROPER PLACE TO WORK",
+          "fields": [
+            {
+              "term": "Date",
+              "value": "2026"
+            },
+            {
+              "term": "Vol.",
+              "value": "1"
+            },
+            {
+              "term": "Ref.",
+              "value": "B001"
+            }
+          ]
+        },
+        "logoTrace": {
+          "assetRole": "brand-logo-trace",
+          "assetRef": "logo-trace--loop"
+        }
+      },
+      "motion": {
+        "pattern": "svg-internal-css-loop",
+        "trigger": "load",
+        "reducedMotionFallback": "static-still-svg",
+        "loopMs": 7875
+      }
+    },
+    {
+      "section": "shell.footer-sheet",
+      "variant": "default",
+      "content": {
+        "internalLinks": [
+          {
+            "label": "Privacy",
+            "route": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "route": "/terms"
+          }
+        ],
+        "socialLinks": [
+          {
+            "label": "LinkedIn",
+            "link": {
+              "assetRole": "external-social-link",
+              "assetRef": "social--linkedin"
+            }
+          },
+          {
+            "label": "X",
+            "link": {
+              "assetRole": "external-social-link",
+              "assetRef": "social--x"
+            }
+          }
+        ],
+        "ctaLabel": "Get started",
+        "ctaHref": "/sign-up",
+        "logoMark": {
+          "assetRole": "brand-logomark",
+          "assetRef": "logo--mark"
+        },
+        "copyright": "© 2026 Operate Machine Co. All rights reserved.",
+        "videoCard": {
+          "label": "Watch the video",
+          "stillDesktop": {
+            "assetRole": "footer-video-asset",
+            "assetRef": "footer--still-desktop"
+          },
+          "stillMobile": {
+            "assetRole": "footer-video-asset",
+            "assetRef": "footer--still-mobile"
+          },
+          "loop": {
+            "assetRole": "footer-video-asset",
+            "assetRef": "footer--loop"
+          }
+        }
+      },
+      "motion": {
+        "pattern": "hover-play-video-and-link-highlight",
+        "trigger": "hover",
+        "reducedMotionFallback": "video-hidden-still-only",
+        "durationMs": 150,
+        "easing": "cubic-bezier(0,0,.2,1)"
+      }
+    },
+    {
+      "section": "overlay.video-lightbox",
+      "variant": "default",
+      "content": {
+        "dialogLabel": "Watch the video",
+        "stream": {
+          "assetRole": "lightbox-video-stream",
+          "assetRef": "stream--lightbox-demo"
+        },
+        "poster": {
+          "assetRole": "video-poster",
+          "assetRef": "poster--lightbox"
+        }
+      },
+      "motion": {
+        "pattern": "view-transition-morph",
+        "trigger": "click",
+        "reducedMotionFallback": "no-animation",
+        "durationMs": 300,
+        "easing": "cubic-bezier(.77,0,.175,1)",
+        "newSnapshotFadeMs": 144,
+        "outlineRevealMs": 250
+      }
+    },
+    {
+      "section": "overlay.sign-up-modal",
+      "variant": "default",
+      "content": {},
+      "motion": {
+        "pattern": "instant-open",
+        "trigger": "route-intercept",
+        "reducedMotionFallback": "not-applicable",
+        "durationMs": 0
+      }
+    },
+    {
+      "section": "form.sign-up-form",
+      "variant": "modal",
+      "content": {
+        "title": "First, tell us a bit about you",
+        "backLabel": "Back",
+        "textFields": [
+          {
+            "name": "name",
+            "label": "Name",
+            "required": true,
+            "placeholder": "Your name"
+          },
+          {
+            "name": "email",
+            "label": "Work email",
+            "required": true,
+            "placeholder": "Your work email"
+          },
+          {
+            "name": "socialHandle",
+            "label": "Social handle",
+            "required": false,
+            "placeholder": "LinkedIn or X"
+          }
+        ],
+        "choiceGroups": [
+          {
+            "name": "role",
+            "label": "Your role",
+            "kind": "radio",
+            "options": [
+              "Founder / CEO",
+              "Sales leader (VP, Head of Sales)",
+              "Account executive",
+              "SDR / BDR",
+              "RevOps / Sales ops",
+              "Other"
+            ]
+          },
+          {
+            "name": "salesTeamSize",
+            "label": "How many people sell at your company?",
+            "kind": "radio",
+            "options": [
+              "0-1",
+              "2–4",
+              "5–50",
+              "51–250",
+              "251+"
+            ]
+          },
+          {
+            "name": "aiUsage",
+            "label": "How is your sales team using AI today?",
+            "kind": "checkbox",
+            "options": [
+              "ChatGPT, Claude, or similar",
+              "AI features in our sales tools",
+              "Custom agents or workflows",
+              "Something else",
+              "Not using AI yet"
+            ]
+          },
+          {
+            "name": "dealChallenge",
+            "label": "What's the hardest part of keeping your deals moving right now?",
+            "kind": "radio",
+            "options": [
+              "Keeping up with follow-ups",
+              "Finding context across tools",
+              "Knowing which deals need attention",
+              "Stale CRM data",
+              "Visibility into my team’s deals",
+              "AI that doesn’t know our deals",
+              "Something else"
+            ]
+          }
+        ],
+        "otherPlaceholder": "Your answer (optional)",
+        "selectAllHint": "Select all that apply",
+        "validationMessages": {
+          "required": "required",
+          "invalidEmail": "check the email",
+          "chooseAtLeastOne": "choose at least one"
+        },
+        "submitLabel": "Submit",
+        "sendingLabel": "Submitting…",
+        "receivedMessage": "Thank you! We’ll be in touch.",
+        "receivedCloseLabel": "Close",
+        "errorMessage": "Something went wrong.",
+        "retryLabel": "Try again",
+        "submitEndpoint": {
+          "assetRole": "signup-submit-stub",
+          "assetRef": "endpoint--signup-stub"
+        }
+      },
+      "motion": {
+        "pattern": "sending-ring-loop",
+        "trigger": "submit",
+        "reducedMotionFallback": "static-rings-shown",
+        "visibleMs": 1500,
+        "exitMs": 750,
+        "pauseMs": 400,
+        "enterOpacityMs": 400,
+        "easing": "cubic-bezier(.23,1,.32,1)"
+      }
+    },
+    {
+      "section": "overlay.leave-confirm",
+      "variant": "default",
+      "content": {
+        "title": "Leave this form?",
+        "description": "Anything you've entered won't be saved.",
+        "keepLabel": "Keep editing",
+        "leaveLabel": "Leave"
+      },
+      "motion": {
+        "pattern": "none-instant",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    }
+  ]
+}

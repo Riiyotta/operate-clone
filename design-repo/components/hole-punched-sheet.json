@@ -1,0 +1,29 @@
+{
+  "id": "hole-punched-sheet",
+  "kind": "component",
+  "purpose": "Paper sheet with CSS-mask punched binder holes, ring outlines and tab strips (variants: bar for nav, panel for main sheet, footer with folded corner).",
+  "implementedBy": "src/components/shell/PanelHoles.jsx",
+  "tokens": [
+    "semantic.surface.sheet",
+    "semantic.surface.nav-sheet",
+    "color.neutral.stone-800",
+    "color.neutral.hole-hatch"
+  ],
+  "props": {
+    "variant": [
+      "bar",
+      "panel",
+      "footer"
+    ]
+  },
+  "states": [
+    "static (--hole-period recomputed by ResizeObserver)"
+  ],
+  "measuredFrom": [
+    "src/components/shell/PanelHoles.jsx:109",
+    "CLONE_SPEC.md:117"
+  ],
+  "composes": [
+    "rule-cap"
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "id": "backdrop.animated-background",
+  "kind": "section",
+  "category": "BACKDROP",
+  "purpose": "Paint the deep-green fixed backdrop (texture, dot pattern, two Canvas 2D bead/bar layers) that shows only through the gaps around the sheets; band visibility follows scroll progress.",
+  "implementedBy": [
+    "src/components/HomeBackground.jsx",
+    "src/lib/beadField.js"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:22",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Fixed full-viewport backdrop; identical on the homepage and the standalone sign-up page."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home",
+      "template.sign-up"
+    ],
+    "mustBeFirst": true
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "texture": {
+        "type": "object",
+        "properties": {
+          "assetRole": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/assetRole"
+              },
+              {
+                "enum": [
+                  "background-texture"
+                ]
+              }
+            ]
+          },
+          "assetRef": {
+            "const": "texture--home-background"
+          }
+        },
+        "required": [
+          "assetRole",
+          "assetRef"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "texture"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "scroll-band-canvas-beads"
+        },
+        "trigger": {
+          "enum": [
+            "scroll-progress"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "static-frames-on-scroll"
+        },
+        "scrollTopBandBelow": {
+          "enum": [
+            0.35
+          ]
+        },
+        "scrollBottomBandAbove": {
+          "enum": [
+            0.65
+          ]
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback",
+        "scrollTopBandBelow",
+        "scrollBottomBandAbove"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "scroll-band-canvas-beads",
+      "trigger": "scroll-progress",
+      "reducedMotionFallback": "static-frames-on-scroll",
+      "scrollTopBandBelow": 0.35,
+      "scrollBottomBandAbove": 0.65
+    },
+    "measuredFrom": [
+      "CLONE_SPEC.md:145",
+      "src/components/HomeBackground.jsx:97"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "texture": {
+        "assetRole": "background-texture",
+        "assetRef": "texture--home-background"
+      }
+    },
+    "motion": {
+      "pattern": "scroll-band-canvas-beads",
+      "trigger": "scroll-progress",
+      "reducedMotionFallback": "static-frames-on-scroll",
+      "scrollTopBandBelow": 0.35,
+      "scrollBottomBandAbove": 0.65
+    }
+  },
+  "notes": [
+    "Canvas bead positions are seeded random per load; only the algorithm (not pixels) is reproducible.",
+    "Rendering pauses while the video lightbox is open and while the page is hidden.",
+    "Scroll progress freezes while the sign-up modal is pinned over the homepage."
+  ],
+  "measuredFrom": [
+    "src/components/HomeBackground.jsx:234",
+    "CLONE_SPEC.md:131",
+    "src/lib/beadField.js:26"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Mobile dots 0.8px every 19.2px (SVG 20x2.8).",
+        "properties": {
+          "dotPx": 0.8,
+          "gapPx": 19.2
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "src/index.css:195"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Desktop dots 1.5px every 22px (SVG 23.5x4.5).",
+        "properties": {
+          "dotPx": 1.5,
+          "gapPx": 22
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "src/index.css:202"
+        ]
+      }
+    ]
+  }
+}

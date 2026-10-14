@@ -1,0 +1,114 @@
+{
+  "id": "shell.main-sheet",
+  "kind": "section",
+  "category": "SHELL",
+  "purpose": "Large hole-punched paper sheet (CSS mask with --hole-period computed by a ResizeObserver) that contains the hero, demo, ops steps and manifesto.",
+  "implementedBy": [
+    "src/App.jsx",
+    "src/components/shell/PanelHoles.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:40",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Panel-variant sheet with 1px stone-800 border (0.8px outline below md)."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {},
+    "required": [],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "static"
+        },
+        "trigger": {
+          "enum": [
+            "none"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    },
+    "measuredFrom": [],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {},
+    "motion": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    }
+  },
+  "notes": [
+    "Container for the four main-sheet sections; no content fields of its own."
+  ],
+  "measuredFrom": [
+    "src/App.jsx:45",
+    "CLONE_SPEC.md:172"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md",
+      "lg"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Padding 48/17/32; outline drawn with background lines.",
+        "properties": {
+          "paddingTopPx": 48,
+          "paddingXPx": 17
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:175"
+        ]
+      },
+      {
+        "at": "lg",
+        "layout": "Padding-top 97px, x 74px.",
+        "properties": {
+          "paddingTopPx": 97,
+          "paddingXPx": 74
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:172"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "status-ring",
+  "kind": "primitive",
+  "purpose": "Ring with a centered dot that scales in when its ops step is active.",
+  "implementedBy": "src/components/OpsSteps.jsx",
+  "tokens": [
+    "color.neutral.stone-800",
+    "motion.duration.ops-dot",
+    "motion.easing.out-quint"
+  ],
+  "props": {
+    "active": "boolean"
+  },
+  "states": [
+    "inactive (scale-0, opacity 0)",
+    "active (scale-100, 200ms ease-out-quint)"
+  ],
+  "measuredFrom": [
+    "src/components/OpsSteps.jsx:87",
+    "CLONE_SPEC.md:263"
+  ]
+}

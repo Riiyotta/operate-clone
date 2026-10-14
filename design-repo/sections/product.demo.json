@@ -1,0 +1,312 @@
+{
+  "id": "product.demo",
+  "kind": "section",
+  "category": "PRODUCT",
+  "purpose": "Demonstrate the product as a framed fake app: a scripted, non-looping timeline (Quota, Meeting, Draft, Slack, Next step chapters) with fake cursor, typed text, text morphs, a floating panel stack and a chapter control.",
+  "implementedBy": [
+    "src/components/shell/DemoFrame.jsx",
+    "src/components/HomeUi.jsx",
+    "src/components/demo/*"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:52",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Desktop grid app window (sidebar xl+) with floating panel; separate touch layout below 48rem."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.home"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "chapterLabels": {
+        "type": "array",
+        "items": [
+          {
+            "const": "Quota"
+          },
+          {
+            "const": "Meeting"
+          },
+          {
+            "const": "Draft"
+          },
+          {
+            "const": "Slack"
+          },
+          {
+            "const": "Next step"
+          }
+        ],
+        "minItems": 5,
+        "maxItems": 5,
+        "additionalItems": false
+      },
+      "workspaceName": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 2,
+        "x-observedMaxWords": 1
+      },
+      "composerPlaceholder": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxWords": 4,
+        "x-observedMaxWords": 3
+      },
+      "people": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "assetRole": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/assetRole"
+                },
+                {
+                  "enum": [
+                    "demo-avatar-image"
+                  ]
+                }
+              ]
+            },
+            "assetRef": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+--[a-z0-9-]+$"
+            }
+          },
+          "required": [
+            "assetRole",
+            "assetRef"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 1,
+        "maxItems": 5
+      },
+      "conversationBackground": {
+        "type": "object",
+        "properties": {
+          "assetRole": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/assetRole"
+              },
+              {
+                "enum": [
+                  "demo-scene-image"
+                ]
+              }
+            ]
+          },
+          "assetRef": {
+            "const": "scene--demo-slack"
+          }
+        },
+        "required": [
+          "assetRole",
+          "assetRef"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "chapterLabels",
+      "workspaceName",
+      "composerPlaceholder",
+      "people",
+      "conversationBackground"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "scripted-timeline-in-view"
+        },
+        "trigger": {
+          "enum": [
+            "in-view-once"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "motion-config-reduced-user"
+        },
+        "inViewMargin": {
+          "enum": [
+            "-30% 0px -48px 0px"
+          ]
+        },
+        "typeMsPerChar": {
+          "enum": [
+            32
+          ]
+        },
+        "revealMsPerWord": {
+          "enum": [
+            25
+          ]
+        },
+        "durationMs": {
+          "enum": [
+            400
+          ]
+        },
+        "easing": {
+          "enum": [
+            "cubic-bezier(.19,1,.22,1)"
+          ]
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback",
+        "inViewMargin",
+        "typeMsPerChar",
+        "revealMsPerWord",
+        "durationMs",
+        "easing"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "scripted-timeline-in-view",
+      "trigger": "in-view-once",
+      "reducedMotionFallback": "motion-config-reduced-user",
+      "inViewMargin": "-30% 0px -48px 0px",
+      "typeMsPerChar": 32,
+      "revealMsPerWord": 25,
+      "durationMs": 400,
+      "easing": "cubic-bezier(.19,1,.22,1)"
+    },
+    "measuredFrom": [
+      "src/components/HomeUi.jsx:32",
+      "src/components/demo/engine.jsx:21",
+      "src/components/demo/morph.js:19",
+      "src/components/HomeUi.jsx:28"
+    ],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [
+    "The whole scripted timeline, fake-app UI copy, panels and cursor are fixed internal content of the demo."
+  ],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "chapterLabels": [
+        "Quota",
+        "Meeting",
+        "Draft",
+        "Slack",
+        "Next step"
+      ],
+      "workspaceName": "Quietwork",
+      "composerPlaceholder": "Ask about Quota...",
+      "people": [
+        {
+          "assetRole": "demo-avatar-image",
+          "assetRef": "avatar--demo-1"
+        },
+        {
+          "assetRole": "demo-avatar-image",
+          "assetRef": "avatar--demo-2"
+        },
+        {
+          "assetRole": "demo-avatar-image",
+          "assetRef": "avatar--demo-3"
+        },
+        {
+          "assetRole": "demo-avatar-image",
+          "assetRef": "avatar--demo-4"
+        },
+        {
+          "assetRole": "demo-avatar-image",
+          "assetRef": "avatar--demo-5"
+        }
+      ],
+      "conversationBackground": {
+        "assetRole": "demo-scene-image",
+        "assetRef": "scene--demo-slack"
+      }
+    },
+    "motion": {
+      "pattern": "scripted-timeline-in-view",
+      "trigger": "in-view-once",
+      "reducedMotionFallback": "motion-config-reduced-user",
+      "inViewMargin": "-30% 0px -48px 0px",
+      "typeMsPerChar": 32,
+      "revealMsPerWord": 25,
+      "durationMs": 400,
+      "easing": "cubic-bezier(.19,1,.22,1)"
+    }
+  },
+  "notes": [
+    "The per-step copy of all timeline steps lives in the clone source (src/components/demo/scripts.js, Desktop.jsx, Touch.jsx) and is not a PageSpec field.",
+    "Runs once (about 26.3s) and does not auto-loop; ends on Quota with Play.",
+    "Avatars are Operate's art of fictional people: reference registered ids only."
+  ],
+  "measuredFrom": [
+    "src/components/HomeUi.jsx:28",
+    "src/components/demo/engine.jsx:20",
+    "src/components/demo/morph.js:18",
+    "CLONE_SPEC.md:201"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Touch layout: panel stacked on top (528px), chat + composer below; ring cursor; frame 713px tall.",
+        "properties": {
+          "layout": "touch",
+          "frameHeightPx": 713
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:216"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Desktop layout with floating panel; frame 711px.",
+        "properties": {
+          "layout": "desktop",
+          "frameHeightPx": 711
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:208"
+        ]
+      },
+      {
+        "at": "xl",
+        "layout": "Three-column app window (246 / flex / 302) with sidebar.",
+        "properties": {
+          "sidebar": true
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC.md:212"
+        ]
+      }
+    ]
+  }
+}

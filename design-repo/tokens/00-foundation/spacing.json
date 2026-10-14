@@ -1,0 +1,42 @@
+{
+  "unit": {
+    "$type": "dimension",
+    "$value": "4px",
+    "$description": "Tailwind v4 spacing unit (0.25rem) used by the original.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:7"
+    ]
+  },
+  "form-unit": {
+    "$type": "dimension",
+    "$value": "0.25em",
+    "$description": "Sign-up form redefines --spacing to 0.25em; inner spacing scales with font size.",
+    "measuredFrom": [
+      "CLONE_SPEC_PAGES.md:201"
+    ]
+  },
+  "rule-thickness": {
+    "$type": "dimension",
+    "$value": "0.8px",
+    "$description": "Rule thickness below md (1.25px at md+).",
+    "measuredFrom": [
+      "src/index.css:28"
+    ]
+  },
+  "rule-thickness-md": {
+    "$type": "dimension",
+    "$value": "1.25px",
+    "$description": "Rule thickness at md+.",
+    "measuredFrom": [
+      "src/index.css:39"
+    ]
+  },
+  "intro-distance": {
+    "$type": "dimension",
+    "$value": "12vh",
+    "$description": "--home-intro-distance drives top spacer and bottom padding.",
+    "measuredFrom": [
+      "src/index.css:26"
+    ]
+  }
+}

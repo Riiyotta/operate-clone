@@ -1,0 +1,24 @@
+{
+  "id": "confirm-dialog",
+  "kind": "component",
+  "purpose": "Alertdialog 'Leave this form?' with Keep editing / Leave; centered at md+, bottom sheet on mobile; appears instantly.",
+  "implementedBy": "src/components/signup/useSignUpCloseConfirm.jsx",
+  "tokens": [
+    "component.confirm-dialog.bg",
+    "color.alpha.confirm-backdrop",
+    "layout.confirm-dialog-max",
+    "elevation.confirm-focus"
+  ],
+  "props": {
+    "title": "string",
+    "description": "string"
+  },
+  "states": [
+    "open",
+    "closed (no animation)"
+  ],
+  "measuredFrom": [
+    "src/components/signup/useSignUpCloseConfirm.jsx:26",
+    "CLONE_SPEC_PAGES.md:346"
+  ]
+}

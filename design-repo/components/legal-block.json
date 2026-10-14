@@ -1,0 +1,31 @@
+{
+  "id": "legal-block",
+  "kind": "component",
+  "purpose": "One block of the legal reading column: h2, h3, paragraph, ul, ol or hr, with strong/link/code inline.",
+  "implementedBy": "src/components/pages/LegalPage.jsx",
+  "tokens": [
+    "semantic.text.body-ops",
+    "fontSize.legal-h2",
+    "fontSize.legal-h3",
+    "fontSize.legal-body",
+    "color.alpha.legal-hr",
+    "color.alpha.legal-code-bg"
+  ],
+  "props": {
+    "type": [
+      "h2",
+      "h3",
+      "p",
+      "ul",
+      "ol",
+      "hr"
+    ]
+  },
+  "states": [
+    "static (inline link hover: decoration color only, instant)"
+  ],
+  "measuredFrom": [
+    "src/components/pages/LegalPage.jsx:13",
+    "CLONE_SPEC_PAGES.md:100"
+  ]
+}

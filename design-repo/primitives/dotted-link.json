@@ -1,0 +1,27 @@
+{
+  "id": "dotted-link",
+  "kind": "primitive",
+  "purpose": "Footer text link with dotted underline that fills solid on hover/focus-visible.",
+  "implementedBy": "src/components/FooterSheet.jsx",
+  "tokens": [
+    "color.green.dark",
+    "color.neutral.waitlist-gray",
+    "fontSize.footer-link",
+    "motion.duration.hover"
+  ],
+  "props": {
+    "label": "string",
+    "target": [
+      "internal-route",
+      "external-profile"
+    ]
+  },
+  "states": [
+    "default",
+    "hover/focus-visible (fill + light text, 150ms)"
+  ],
+  "measuredFrom": [
+    "src/components/FooterSheet.jsx:14",
+    "CLONE_SPEC.md:348"
+  ]
+}

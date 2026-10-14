@@ -1,0 +1,247 @@
+{
+  "duration": {
+    "hover": {
+      "$type": "duration",
+      "$value": "150ms",
+      "$description": "Button/link hover color transitions.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:197"
+      ]
+    },
+    "demo-chip": {
+      "$type": "duration",
+      "$value": "120ms",
+      "$description": "Demo chips and send button hover.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:214"
+      ]
+    },
+    "ops-dot": {
+      "$type": "duration",
+      "$value": "200ms",
+      "$description": "Ops step active dot scale/opacity.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:276"
+      ]
+    },
+    "lightbox-morph": {
+      "$type": "duration",
+      "$value": "300ms",
+      "$description": "Lightbox view-transition group.",
+      "measuredFrom": [
+        "src/index.css:35"
+      ]
+    },
+    "lightbox-new-fade": {
+      "$type": "duration",
+      "$value": "144ms",
+      "$description": "Lightbox new-snapshot fade = 0.48 x 300ms.",
+      "measuredFrom": [
+        "src/index.css:181",
+        "src/index.css:163"
+      ]
+    },
+    "lightbox-outline": {
+      "$type": "duration",
+      "$value": "250ms",
+      "$description": "Lightbox media outline-color reveal.",
+      "measuredFrom": [
+        "src/components/VideoLightbox.jsx:301"
+      ]
+    },
+    "demo-text-morph": {
+      "$type": "duration",
+      "$value": "400ms",
+      "$description": "Demo per-segment text morph.",
+      "measuredFrom": [
+        "src/components/demo/morph.js:18"
+      ]
+    },
+    "demo-panel-stack": {
+      "$type": "duration",
+      "$value": "625ms",
+      "$description": "Demo floating panel stack transition.",
+      "measuredFrom": [
+        "src/components/demo/Panels.jsx:412"
+      ]
+    },
+    "demo-pill": {
+      "$type": "duration",
+      "$value": "650ms",
+      "$description": "Chapter pill width and fill drain.",
+      "measuredFrom": [
+        "src/components/demo/ChapterControl.jsx:8"
+      ]
+    },
+    "demo-composer-takeover": {
+      "$type": "duration",
+      "$value": "480ms",
+      "$description": "Composer takeover grow.",
+      "measuredFrom": [
+        "src/components/demo/Desktop.jsx:242"
+      ]
+    },
+    "demo-run-fade": {
+      "$type": "duration",
+      "$value": "250ms",
+      "$description": "Demo end-of-run opacity fade.",
+      "measuredFrom": [
+        "src/components/demo/engine.jsx:12"
+      ]
+    },
+    "demo-typewriter-per-char": {
+      "$type": "duration",
+      "$value": "32ms",
+      "$description": "Typewriter speed per character.",
+      "measuredFrom": [
+        "src/components/demo/engine.jsx:20"
+      ]
+    },
+    "demo-word-reveal-per-word": {
+      "$type": "duration",
+      "$value": "25ms",
+      "$description": "Word reveal speed per token.",
+      "measuredFrom": [
+        "src/components/demo/engine.jsx:21"
+      ]
+    },
+    "demo-cursor-move": {
+      "$type": "duration",
+      "$value": "clamp(0.3s + distance/850, 0.38s, 1.06s)",
+      "$description": "Cursor glide duration by distance.",
+      "measuredFrom": [
+        "src/components/demo/Cursor.jsx:103"
+      ]
+    },
+    "demo-tooltip-exit": {
+      "$type": "duration",
+      "$value": "150ms",
+      "$description": "Chapter tooltip exit.",
+      "measuredFrom": [
+        "src/components/demo/ChapterControl.jsx:29"
+      ]
+    },
+    "sending-visible": {
+      "$type": "duration",
+      "$value": "1500ms",
+      "$description": "Sending rings visible time.",
+      "measuredFrom": [
+        "src/components/signup/SendingAnimation.jsx:13"
+      ]
+    },
+    "sending-exit": {
+      "$type": "duration",
+      "$value": "750ms",
+      "$description": "Sending rings exit.",
+      "measuredFrom": [
+        "src/components/signup/SendingAnimation.jsx:11"
+      ]
+    },
+    "sending-enter-opacity": {
+      "$type": "duration",
+      "$value": "400ms",
+      "$description": "Sending rings re-enter opacity.",
+      "measuredFrom": [
+        "src/components/signup/SendingAnimation.jsx:12"
+      ]
+    },
+    "logo-trace-loop": {
+      "$type": "duration",
+      "$value": "7875ms",
+      "$description": "Manifesto logo-trace SVG internal CSS loop.",
+      "measuredFrom": [
+        "CLONE_SPEC.md:378"
+      ]
+    },
+    "footer-video-start": {
+      "$type": "duration",
+      "$value": "0.25s",
+      "$description": "Footer card video start offset (currentTime).",
+      "measuredFrom": [
+        "src/components/FooterSheet.jsx:67"
+      ]
+    }
+  },
+  "easing": {
+    "out": {
+      "$type": "easing",
+      "$value": "cubic-bezier(0,0,.2,1)",
+      "$description": "Hover/ease-out.",
+      "measuredFrom": [
+        "tailwind.config.cjs:74"
+      ]
+    },
+    "in-out": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.4,0,.2,1)",
+      "$description": "Chip/send.",
+      "measuredFrom": [
+        "tailwind.config.cjs:75"
+      ]
+    },
+    "out-quint": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.23,1,.32,1)",
+      "$description": "Ops dot, lightbox fades, sending rings.",
+      "measuredFrom": [
+        "tailwind.config.cjs:76"
+      ]
+    },
+    "out-cubic": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.33,1,.68,1)",
+      "$description": "Demo panel stack, tooltip.",
+      "measuredFrom": [
+        "tailwind.config.cjs:77"
+      ]
+    },
+    "out-quad": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.25,.46,.45,.94)",
+      "$description": "Demo message entrance, run fade.",
+      "measuredFrom": [
+        "tailwind.config.cjs:78"
+      ]
+    },
+    "in-out-cubic": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.65,0,.35,1)",
+      "$description": "Demo pill width/drain.",
+      "measuredFrom": [
+        "tailwind.config.cjs:79"
+      ]
+    },
+    "in-out-quart": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.77,0,.175,1)",
+      "$description": "Lightbox morph group.",
+      "measuredFrom": [
+        "tailwind.config.cjs:80"
+      ]
+    },
+    "demo-morph": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.19,1,.22,1)",
+      "$description": "Demo text/number morph.",
+      "measuredFrom": [
+        "src/components/demo/morph.js:19"
+      ]
+    },
+    "demo-grow": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.22,1,.36,1)",
+      "$description": "Composer takeover, chips.",
+      "measuredFrom": [
+        "src/components/demo/Desktop.jsx:242"
+      ]
+    },
+    "demo-cursor": {
+      "$type": "easing",
+      "$value": "cubic-bezier(.42,0,.12,1)",
+      "$description": "Fake cursor glide.",
+      "measuredFrom": [
+        "src/components/demo/Cursor.jsx:5"
+      ]
+    }
+  }
+}

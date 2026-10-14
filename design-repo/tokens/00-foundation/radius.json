@@ -1,0 +1,98 @@
+{
+  "form": {
+    "$type": "dimension",
+    "$value": "1px",
+    "$description": "Sign-up form and confirm dialog.",
+    "measuredFrom": [
+      "CLONE_SPEC_PAGES.md:201"
+    ]
+  },
+  "image": {
+    "$type": "dimension",
+    "$value": "3px",
+    "$description": "Footer still/video inside the frame.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:339"
+    ]
+  },
+  "ticket": {
+    "$type": "dimension",
+    "$value": "4px",
+    "$description": "Ticket card (md+).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:295"
+    ]
+  },
+  "focus-ring": {
+    "$type": "dimension",
+    "$value": "6px",
+    "$description": "Global focus ring radius.",
+    "measuredFrom": [
+      "src/index.css:229"
+    ]
+  },
+  "video-card": {
+    "$type": "dimension",
+    "$value": "6.5px",
+    "$description": "Footer video card.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:337"
+    ]
+  },
+  "lg": {
+    "$type": "dimension",
+    "$value": "8px",
+    "$description": "Talk-to-us link.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:256"
+    ]
+  },
+  "button-sm": {
+    "$type": "dimension",
+    "$value": "9.5px",
+    "$description": "Footer Get-started button (mobile).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:350"
+    ]
+  },
+  "button": {
+    "$type": "dimension",
+    "$value": "10px",
+    "$description": "Hero button (mobile); demo user bubble.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:195"
+    ]
+  },
+  "xl": {
+    "$type": "dimension",
+    "$value": "12px",
+    "$description": "Hero button (md+), demo frame (md).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:195"
+    ]
+  },
+  "2xl": {
+    "$type": "dimension",
+    "$value": "16px",
+    "$description": "Demo frame (mobile).",
+    "measuredFrom": [
+      "CLONE_SPEC.md:208"
+    ]
+  },
+  "composer": {
+    "$type": "dimension",
+    "$value": "24px",
+    "$description": "Demo composer.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:214"
+    ]
+  },
+  "full": {
+    "$type": "dimension",
+    "$value": "9999px",
+    "$description": "Pills, bubbles, status rings.",
+    "measuredFrom": [
+      "CLONE_SPEC.md:193"
+    ]
+  }
+}

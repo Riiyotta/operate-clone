@@ -1,0 +1,199 @@
+{
+  "id": "legal.document-body",
+  "kind": "section",
+  "category": "LEGAL",
+  "purpose": "Render the numbered legal reading column (h2/h3, paragraphs, lists, rules) in a 768px column. Body prose is ORIGINAL PLACEHOLDER copy with the original's structure, not Operate's real legal text.",
+  "implementedBy": [
+    "src/components/pages/LegalPage.jsx",
+    "src/pages/Privacy.jsx",
+    "src/pages/Terms.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:112",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Flat reading column on #E0E0E0."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.legal"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "blocks": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 106,
+        "x-observedMaxItems": 106,
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": [
+                "h2",
+                "h3",
+                "p",
+                "ul",
+                "ol",
+                "hr"
+              ]
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "x-maxChars": 1866,
+              "x-observedMaxChars": 1866
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "x-maxChars": 1248,
+                "x-observedMaxChars": 1248
+              },
+              "minItems": 1,
+              "maxItems": 12
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "blocks"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "static"
+        },
+        "trigger": {
+          "enum": [
+            "none"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    },
+    "measuredFrom": [],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "blocks": [
+        {
+          "type": "h2",
+          "text": "1. Placeholder section"
+        },
+        {
+          "type": "p",
+          "text": "This section is placeholder text and will be replaced with the final wording before publication."
+        },
+        {
+          "type": "h3",
+          "text": "Placeholder subsection"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "This item is a placeholder.",
+            "Specific examples will be listed here."
+          ]
+        },
+        {
+          "type": "hr"
+        }
+      ]
+    },
+    "motion": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    }
+  },
+  "notes": [
+    "Placeholder text only; never reproduce Operate's real legal text. Terms: 106 blocks (11 h2 + 37 h3 + 47 p + 1 ol + 10 hr), the largest document; maxItems is that observed count.",
+    "Block type determines required fields: h2/h3/p need text, ul/ol need items, hr takes neither (enforced in schema/semantic_validate.py).",
+    "Per-type character limits are in blockCharLimits."
+  ],
+  "measuredFrom": [
+    "src/components/pages/LegalPage.jsx:159",
+    "CLONE_SPEC_PAGES.md:102",
+    "src/pages/Privacy.jsx:2"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Container padding 48/24; h2 24/30 mt 48; body 15/24.",
+        "properties": {
+          "paddingYPx": 48,
+          "bodyPx": 15
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC_PAGES.md:73"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Padding 80/32; h2 28/34 mt 64; body 16/26.",
+        "properties": {
+          "paddingYPx": 80,
+          "bodyPx": 16
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC_PAGES.md:80"
+        ]
+      }
+    ]
+  },
+  "blockCharLimits": {
+    "h2": 35,
+    "h3": 50,
+    "p": 1866,
+    "li": 1248,
+    "_evidence": [
+      "CLONE_SPEC_PAGES.md:114",
+      "CLONE_SPEC_PAGES.md:133",
+      "CLONE_SPEC_PAGES.md:127",
+      "CLONE_SPEC_PAGES.md:112"
+    ]
+  }
+}

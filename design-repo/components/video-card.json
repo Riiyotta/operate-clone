@@ -1,0 +1,30 @@
+{
+  "id": "video-card",
+  "kind": "component",
+  "purpose": "Footer 'Watch the video' card: label row, framed still image, muted hover-play loop (md+ mouse only, hidden under reduced motion); click opens the lightbox with a morph.",
+  "implementedBy": "src/components/FooterSheet.jsx",
+  "tokens": [
+    "semantic.surface.video-card",
+    "color.green.light",
+    "fontFamily.cinetype",
+    "radius.video-card"
+  ],
+  "props": {
+    "label": "string",
+    "stillDesktop": "asset(footer-video-asset)",
+    "stillMobile": "asset(footer-video-asset)",
+    "loop": "asset(footer-video-asset)"
+  },
+  "states": [
+    "default",
+    "hover (video plays)",
+    "reduced-motion (video hidden)"
+  ],
+  "measuredFrom": [
+    "src/components/FooterSheet.jsx:73",
+    "CLONE_SPEC.md:340"
+  ],
+  "assetRoles": [
+    "footer-video-asset"
+  ]
+}

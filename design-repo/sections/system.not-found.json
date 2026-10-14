@@ -1,0 +1,95 @@
+{
+  "id": "system.not-found",
+  "kind": "section",
+  "category": "SYSTEM",
+  "purpose": "Stock Next.js 404 (framework-default chrome, outside the site's design system): '404' and 'This page could not be found.' on a white (or black in dark scheme) page.",
+  "implementedBy": [
+    "src/pages/NotFound.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:118",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Centered inline-styled framework default."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.not-found"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "const": "404"
+      },
+      "message": {
+        "const": "This page could not be found."
+      }
+    },
+    "required": [
+      "code",
+      "message"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "static"
+        },
+        "trigger": {
+          "enum": [
+            "none"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    },
+    "measuredFrom": [],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [
+    "Entire markup is framework-default and fixed."
+  ],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "code": "404",
+      "message": "This page could not be found."
+    },
+    "motion": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    }
+  },
+  "notes": [
+    "Not part of the Operate design system: no tokens from tokens/00-foundation apply except the system-404 colors/font.",
+    "robots: noindex; title '404: This page could not be found.'"
+  ],
+  "measuredFrom": [
+    "src/pages/NotFound.jsx:36",
+    "CLONE_SPEC_PAGES.md:147"
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "version": "1.0.0",
+  "$description": "One template per distinct PAGE SHAPE (4). Node order = IA/DOM order. required/repeatable are machine-enforced by schema/semantic_validate.py. routes maps every real route to exactly one template ('*' = catch-all 404).",
+  "templates": {
+    "template.home": {
+      "description": "The homepage (route /): binder-paper chrome with 9 required sections in fixed order, then four optional overlay-state sections (video lightbox, sign-up modal with its form and leave-confirm). The sign-up modal is an overlay state of this template, not its own route.",
+      "iaTemplate": "ia.json:127",
+      "routes": [
+        "/"
+      ],
+      "chrome": "binder-paper",
+      "head": {
+        "title": "Operate – Collaborative AI for frontier sales organizations",
+        "description": "Operate connects your sales data to surface where every deal stands and what's next. Your team and agents act together, and you run like a team twice your size."
+      },
+      "headMeasuredFrom": [
+        "index.html:6",
+        "index.html:7"
+      ],
+      "nodes": [
+        {
+          "slot": "backdrop",
+          "section": "backdrop.animated-background",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:134"
+          ]
+        },
+        {
+          "slot": "binder-rails",
+          "section": "shell.binder-rails",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:135"
+          ]
+        },
+        {
+          "slot": "nav-sheet",
+          "section": "shell.nav-sheet",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:136"
+          ]
+        },
+        {
+          "slot": "main-sheet",
+          "section": "shell.main-sheet",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:137"
+          ]
+        },
+        {
+          "slot": "hero",
+          "section": "hero.headline-integrations",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:138"
+          ]
+        },
+        {
+          "slot": "demo",
+          "section": "product.demo",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:139"
+          ]
+        },
+        {
+          "slot": "ops-steps",
+          "section": "product.ops-steps",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:140"
+          ]
+        },
+        {
+          "slot": "manifesto",
+          "section": "story.manifesto",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:141"
+          ]
+        },
+        {
+          "slot": "footer",
+          "section": "shell.footer-sheet",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:142"
+          ]
+        },
+        {
+          "slot": "video-lightbox",
+          "section": "overlay.video-lightbox",
+          "variants": [
+            "default"
+          ],
+          "required": false,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:143"
+          ]
+        },
+        {
+          "slot": "sign-up-modal",
+          "section": "overlay.sign-up-modal",
+          "variants": [
+            "default"
+          ],
+          "required": false,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:144"
+          ]
+        },
+        {
+          "slot": "sign-up-form",
+          "section": "form.sign-up-form",
+          "variants": [
+            "modal"
+          ],
+          "required": false,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:145"
+          ]
+        },
+        {
+          "slot": "leave-confirm",
+          "section": "overlay.leave-confirm",
+          "variants": [
+            "default"
+          ],
+          "required": false,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:146"
+          ]
+        }
+      ],
+      "measuredFrom": [
+        "src/App.jsx:29",
+        "src/router.jsx:141"
+      ]
+    },
+    "template.sign-up": {
+      "description": "Standalone /sign-up page: the shared backdrop plus the sign-up form; leave-confirm appears on demand.",
+      "iaTemplate": "ia.json:150",
+      "routes": [
+        "/sign-up"
+      ],
+      "chrome": "background-only",
+      "head": {
+        "title": "Sign up — Operate",
+        "description": "Join the Operate waitlist. Tell us a bit about you and your sales team.",
+        "robots": "index, follow"
+      },
+      "headMeasuredFrom": [
+        "src/router.jsx:42"
+      ],
+      "nodes": [
+        {
+          "slot": "backdrop",
+          "section": "backdrop.animated-background",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:156"
+          ]
+        },
+        {
+          "slot": "sign-up-form",
+          "section": "form.sign-up-form",
+          "variants": [
+            "standalone"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:156"
+          ]
+        },
+        {
+          "slot": "leave-confirm",
+          "section": "overlay.leave-confirm",
+          "variants": [
+            "default"
+          ],
+          "required": false,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:156"
+          ]
+        }
+      ],
+      "measuredFrom": [
+        "src/pages/SignUp.jsx:15",
+        "src/router.jsx:147"
+      ]
+    },
+    "template.legal": {
+      "description": "Legal document (/privacy, /terms): flat reading page; none of the homepage furniture.",
+      "iaTemplate": "ia.json:159",
+      "routes": [
+        "/privacy",
+        "/terms"
+      ],
+      "chrome": "none",
+      "head": {
+        "title": "Privacy Policy — Operate",
+        "description": "How Operate collects, uses, and shares information, including data from connected Google services under the Google API Services User Data Policy.",
+        "robots": "index, follow"
+      },
+      "headMeasuredFrom": [
+        "src/router.jsx:31"
+      ],
+      "nodes": [
+        {
+          "slot": "back-link",
+          "section": "legal.back-link",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:165"
+          ]
+        },
+        {
+          "slot": "document-header",
+          "section": "legal.document-header",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:165"
+          ]
+        },
+        {
+          "slot": "document-body",
+          "section": "legal.document-body",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:165"
+          ]
+        }
+      ],
+      "measuredFrom": [
+        "src/components/pages/LegalPage.jsx:159",
+        "src/router.jsx:143"
+      ]
+    },
+    "template.not-found": {
+      "description": "Stock Next.js 404 (framework-default chrome, outside the design system). Matches every unmatched path; route token '*'.",
+      "iaTemplate": "ia.json:168",
+      "routes": [
+        "*"
+      ],
+      "chrome": "framework-default",
+      "head": {
+        "title": "404: This page could not be found.",
+        "description": "Operate connects your sales data to surface where every deal stands and what's next. Your team and agents act together, and you run like a team twice your size.",
+        "robots": "noindex"
+      },
+      "headMeasuredFrom": [
+        "src/router.jsx:46"
+      ],
+      "nodes": [
+        {
+          "slot": "not-found",
+          "section": "system.not-found",
+          "variants": [
+            "default"
+          ],
+          "required": true,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:174"
+          ]
+        }
+      ],
+      "measuredFrom": [
+        "src/pages/NotFound.jsx:6",
+        "src/router.jsx:176"
+      ]
+    }
+  },
+  "routes": {
+    "/": "template.home",
+    "/sign-up": "template.sign-up",
+    "/privacy": "template.legal",
+    "/terms": "template.legal",
+    "*": "template.not-found"
+  }
+}
