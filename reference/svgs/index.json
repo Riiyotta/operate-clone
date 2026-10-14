@@ -1,0 +1,1012 @@
+[
+ {
+  "name": "00-operate-logo-mark-navbar",
+  "count": 1,
+  "boxes": [
+   [
+    708,
+    131,
+    25,
+    13
+   ]
+  ],
+  "cls": "h-2.5 w-5 lg:absolute lg:left-1/2 lg:h-3.25 lg:w-6.25 lg:-translate-x-1/2",
+  "parentCls": "absolute inset-x-[31px] top-1/2 -translate-y-1/2 flex h-4.75 items-center justif",
+  "near": "Operate\u02d7\u02cf\u02cb Try it out \u02ce\u02ca-",
+  "len": 679
+ },
+ {
+  "name": "01-collaborative-ai-for-frontie",
+  "count": 1,
+  "boxes": [
+   [
+    449,
+    316,
+    252,
+    252
+   ]
+  ],
+  "cls": "pointer-events-none absolute overflow-visible top-2 right-[calc(18px+var(--home-rule)/2)] hidden aspect-square h-[calc(100%-8px-var(--home-rule)/2)] xl:block",
+  "parentCls": "relative px-4.5 py-2.75 home-rule-x md:px-7 md:pt-1 md:pb-7.5 md:home-rule-l lg:",
+  "near": "Collaborative AI for frontier sales orga",
+  "len": 414
+ },
+ {
+  "name": "02-we-connect-to-your-sales-dat",
+  "count": 1,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "pointer-events-none absolute overflow-visible top-0 right-[calc(var(--home-rule)/2)] h-[calc(100%-var(--home-rule)/2)] md:hidden",
+  "parentCls": "relative px-4.5 pt-1.5 flex flex-col items-start gap-y-5.5 home-rule-l md:home-r",
+  "near": "We connect to your sales data (Granola, ",
+  "len": 442
+ },
+ {
+  "name": "03-pointer-events-none-absolute",
+  "count": 1,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "overflow-visible",
+  "parentCls": "pointer-events-none absolute overflow-visible top-0 right-[calc(var(--home-rule)",
+  "near": "",
+  "len": 121
+ },
+ {
+  "name": "04-we-connect-to-your-sales-dat",
+  "count": 1,
+  "boxes": [
+   [
+    1214,
+    309,
+    112,
+    260
+   ]
+  ],
+  "cls": "pointer-events-none absolute overflow-visible top-[calc(var(--home-rule)/2)] right-[calc(var(--home-rule)/2)] hidden h-[calc(100%-var(--home-rule)/2)] lg:block",
+  "parentCls": "relative px-4.5 pt-1.5 flex flex-col items-start gap-y-5.5 home-rule-l md:home-r",
+  "near": "We connect to your sales data (Granola, ",
+  "len": 406
+ },
+ {
+  "name": "05-hero-integration-logo-1",
+  "count": 1,
+  "boxes": [
+   [
+    1028,
+    347,
+    18,
+    18
+   ]
+  ],
+  "cls": "size-full",
+  "parentCls": "relative inline-block size-[0.9167em] rounded-full align-middle not-first:-ml-[0",
+  "near": "",
+  "len": 245
+ },
+ {
+  "name": "06-hero-integration-logo-2",
+  "count": 1,
+  "boxes": [
+   [
+    1042,
+    347,
+    18,
+    18
+   ]
+  ],
+  "cls": "size-full",
+  "parentCls": "relative inline-block size-[0.9167em] rounded-full align-middle not-first:-ml-[0",
+  "near": "",
+  "len": 6427
+ },
+ {
+  "name": "07-hero-integration-logo-3",
+  "count": 1,
+  "boxes": [
+   [
+    1057,
+    347,
+    18,
+    18
+   ]
+  ],
+  "cls": "size-full",
+  "parentCls": "relative inline-block size-[0.9167em] rounded-full align-middle not-first:-ml-[0",
+  "near": "",
+  "len": 2227
+ },
+ {
+  "name": "08-hero-integration-logo-4",
+  "count": 1,
+  "boxes": [
+   [
+    1072,
+    347,
+    18,
+    18
+   ]
+  ],
+  "cls": "size-full",
+  "parentCls": "relative inline-block size-[0.9167em] rounded-full align-middle not-first:-ml-[0",
+  "near": "",
+  "len": 1933
+ },
+ {
+  "name": "09-hero-integration-logo-5",
+  "count": 1,
+  "boxes": [
+   [
+    1086,
+    347,
+    18,
+    18
+   ]
+  ],
+  "cls": "size-full",
+  "parentCls": "relative inline-block size-[0.9167em] rounded-full align-middle not-first:-ml-[0",
+  "near": "",
+  "len": 2098
+ },
+ {
+  "name": "10-hero-integration-logo-6",
+  "count": 1,
+  "boxes": [
+   [
+    1101,
+    347,
+    18,
+    18
+   ]
+  ],
+  "cls": "size-full",
+  "parentCls": "relative inline-block size-[0.9167em] rounded-full align-middle not-first:-ml-[0",
+  "near": "",
+  "len": 1443
+ },
+ {
+  "name": "11-quietwork4hometasks10skillsp",
+  "count": 1,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "pointer-events-none absolute -top-px -left-px overflow-visible md:hidden h-[calc(100%+2px)] w-[calc(100%+2px)]",
+  "parentCls": "relative mx-auto max-w-292 size-full rounded-2xl border-1 border-transparent bg-",
+  "near": "Quietwork4HomeTasks10SkillsPrivateMonthl",
+  "len": 1515
+ },
+ {
+  "name": "12-stroke-gray-400",
+  "count": 2,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "overflow-visible",
+  "parentCls": "stroke-gray-400",
+  "near": "",
+  "len": 135
+ },
+ {
+  "name": "13-stroke-gray-400",
+  "count": 2,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "overflow-visible",
+  "parentCls": "stroke-gray-400",
+  "near": "",
+  "len": 319
+ },
+ {
+  "name": "14-overflow-visible",
+  "count": 2,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "overflow-visible",
+  "parentCls": "overflow-visible",
+  "near": "",
+  "len": 138
+ },
+ {
+  "name": "15-stroke-gray-400",
+  "count": 1,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "overflow-visible",
+  "parentCls": "stroke-gray-400",
+  "near": "",
+  "len": 162
+ },
+ {
+  "name": "16-quietwork",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    663,
+    14,
+    17
+   ]
+  ],
+  "cls": "",
+  "parentCls": "py-1.5 pl-2 flex items-center gap-x-2",
+  "near": "Quietwork",
+  "len": 673
+ },
+ {
+  "name": "17-quietwork",
+  "count": 1,
+  "boxes": [
+   [
+    280,
+    663,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-0.5",
+  "near": "Quietwork",
+  "len": 197
+ },
+ {
+  "name": "18-p-2",
+  "count": 1,
+  "boxes": [
+   [
+    352,
+    663,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "p-2",
+  "near": "",
+  "len": 259
+ },
+ {
+  "name": "19-4",
+  "count": 1,
+  "boxes": [
+   [
+    388,
+    663,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "relative p-2",
+  "near": "4",
+  "len": 531
+ },
+ {
+  "name": "20-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    719,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 348
+ },
+ {
+  "name": "21-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    753,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 363
+ },
+ {
+  "name": "22-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    787,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 214
+ },
+ {
+  "name": "23-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    869,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 758
+ },
+ {
+  "name": "24-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    903,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 380
+ },
+ {
+  "name": "25-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    985,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 301
+ },
+ {
+  "name": "26-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    1019,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 859
+ },
+ {
+  "name": "27-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    1053,
+    16,
+    16
+   ]
+  ],
+  "cls": "rounded-[5px] shadow-[0_1.6px_1.6px_-0.8px_rgba(0,0,0,0.02),0_0.8px_0.8px_-0.4px_rgba(0,0,0,0.04),0_0.4px_0.4px_-0.2px_rgba(0,0,0,0.06)]",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 769
+ },
+ {
+  "name": "28-size-4",
+  "count": 1,
+  "boxes": [
+   [
+    188,
+    1109,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "size-4",
+  "near": "",
+  "len": 607
+ },
+ {
+  "name": "29-quota",
+  "count": 1,
+  "boxes": [
+   [
+    459,
+    663,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "py-[6.5px] flex items-center gap-x-2",
+  "near": "Quota",
+  "len": 425
+ },
+ {
+  "name": "30-checked-3-sources",
+  "count": 1,
+  "boxes": [
+   [
+    459,
+    822,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-1",
+  "near": "Checked 3 sources",
+  "len": 198
+ },
+ {
+  "name": "31-checked-hubspot5-open-deals",
+  "count": 1,
+  "boxes": [
+   [
+    480,
+    847,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-1",
+  "near": "Checked HubSpot5 open deals, $65k in pla",
+  "len": 834
+ },
+ {
+  "name": "32-read-gmailholloway-contract",
+  "count": 1,
+  "boxes": [
+   [
+    480,
+    872,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-1",
+  "near": "Read GmailHolloway contract thread, Fiel",
+  "len": 1382
+ },
+ {
+  "name": "33-read-slack-holloway",
+  "count": 1,
+  "boxes": [
+   [
+    480,
+    897,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-1",
+  "near": "Read Slack#holloway",
+  "len": 1020
+ },
+ {
+  "name": "34-ahead-of-pace",
+  "count": 1,
+  "boxes": [
+   [
+    475,
+    1055,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-2",
+  "near": "Ahead of pace",
+  "len": 444
+ },
+ {
+  "name": "35-biggest-risk-9-days-quiet",
+  "count": 1,
+  "boxes": [
+   [
+    475,
+    1112,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-2",
+  "near": "Biggest risk, 9 days quiet",
+  "len": 524
+ },
+ {
+  "name": "36-next-decision",
+  "count": 1,
+  "boxes": [
+   [
+    475,
+    1169,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-2",
+  "near": "Next decision",
+  "len": 388
+ },
+ {
+  "name": "37-p-2",
+  "count": 1,
+  "boxes": [
+   [
+    475,
+    1317,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "p-2",
+  "near": "",
+  "len": 197
+ },
+ {
+  "name": "38-p-2-rounded-full-bg-linear-1",
+  "count": 1,
+  "boxes": [
+   [
+    881,
+    1317,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "p-2 rounded-full bg-linear-180 from-[#269600] to-[#008125] shadow-[0_1px_2px_0_r",
+  "near": "",
+  "len": 274
+ },
+ {
+  "name": "39-rounded-md-bg-white-shadow-0",
+  "count": 1,
+  "boxes": [
+   [
+    968,
+    743,
+    24,
+    24
+   ]
+  ],
+  "cls": "",
+  "parentCls": "rounded-md bg-white shadow-[0_-1px_0_-0.5px_rgba(0,0,0,0.08)_inset,0_0_0_0.5px_r",
+  "near": "",
+  "len": 744
+ },
+ {
+  "name": "40-objective",
+  "count": 1,
+  "boxes": [
+   [
+    985,
+    800,
+    16,
+    16
+   ]
+  ],
+  "cls": "",
+  "parentCls": "flex items-center gap-x-1.5 md:gap-x-2",
+  "near": "Objective",
+  "len": 343
+ },
+ {
+  "name": "41-size-9-flex-items-center-jus",
+  "count": 1,
+  "boxes": [
+   [
+    976,
+    1075,
+    24,
+    24
+   ]
+  ],
+  "cls": "size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0,0.04),0_0.6px_0.6px_-0.3px_rgba(0,0,0,0.06),0_0_0_0.3px_rgb",
+  "parentCls": "size-9 flex items-center justify-center rounded-lg bg-black/4 shadow-[0_0_0_0.5p",
+  "near": "",
+  "len": 808
+ },
+ {
+  "name": "42-size-9-flex-items-center-jus",
+  "count": 1,
+  "boxes": [
+   [
+    976,
+    1131,
+    24,
+    24
+   ]
+  ],
+  "cls": "size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0,0.04),0_0.6px_0.6px_-0.3px_rgba(0,0,0,0.06),0_0_0_0.3px_rgb",
+  "parentCls": "size-9 flex items-center justify-center rounded-lg bg-black/4 shadow-[0_0_0_0.5p",
+  "near": "",
+  "len": 778
+ },
+ {
+  "name": "43-size-9-flex-items-center-jus",
+  "count": 1,
+  "boxes": [
+   [
+    976,
+    1187,
+    24,
+    24
+   ]
+  ],
+  "cls": "size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0,0.04),0_0.6px_0.6px_-0.3px_rgba(0,0,0,0.06),0_0_0_0.3px_rgb",
+  "parentCls": "size-9 flex items-center justify-center rounded-lg bg-black/4 shadow-[0_0_0_0.5p",
+  "near": "",
+  "len": 1239
+ },
+ {
+  "name": "44-size-9-flex-items-center-jus",
+  "count": 1,
+  "boxes": [
+   [
+    976,
+    1317,
+    24,
+    24
+   ]
+  ],
+  "cls": "size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0,0.04),0_0.6px_0.6px_-0.3px_rgba(0,0,0,0.06),0_0_0_0.3px_rgb",
+  "parentCls": "size-9 flex items-center justify-center rounded-lg bg-black/4 shadow-[0_0_0_0.5p",
+  "near": "",
+  "len": 1366
+ },
+ {
+  "name": "45-size-9-flex-items-center-jus",
+  "count": 1,
+  "boxes": [
+   [
+    976,
+    1373,
+    24,
+    24
+   ]
+  ],
+  "cls": "size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0,0.04),0_0.6px_0.6px_-0.3px_rgba(0,0,0,0.06),0_0_0_0.3px_rgb",
+  "parentCls": "size-9 flex items-center justify-center rounded-lg bg-black/4 shadow-[0_0_0_0.5p",
+  "near": "",
+  "len": 735
+ },
+ {
+  "name": "46-demo-fake-cursor",
+  "count": 1,
+  "boxes": [
+   [
+    147,
+    622,
+    16,
+    22
+   ]
+  ],
+  "cls": "-translate-x-px -translate-y-px drop-shadow-[0_1px_2px_rgba(0,0,0,0.24)]",
+  "parentCls": "pointer-events-none absolute top-0 left-0",
+  "near": "",
+  "len": 324
+ },
+ {
+  "name": "47-demo-chapter-pause-icon",
+  "count": 1,
+  "boxes": [
+   [
+    658,
+    1406,
+    12,
+    12
+   ]
+  ],
+  "cls": "",
+  "parentCls": "group relative block rounded-full outline-offset-2 outline-stone-800 focus-visib",
+  "near": "",
+  "len": 224
+ },
+ {
+  "name": "48-pointer-events-none-absolute",
+  "count": 9,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    1326,
+    2350,
+    1,
+    671
+   ],
+   [
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    416,
+    2350,
+    1,
+    671
+   ],
+   [
+    719,
+    2350,
+    1,
+    671
+   ],
+   [
+    1023,
+    2350,
+    1,
+    336
+   ],
+   [
+    719,
+    3146,
+    1,
+    221
+   ]
+  ],
+  "cls": "absolute inset-0 size-full overflow-visible",
+  "parentCls": "pointer-events-none absolute absolute top-0 bottom-0 left-0 w-(--home-rule) lg:h",
+  "near": "",
+  "len": 249
+ },
+ {
+  "name": "49-softwaredoesn-tclose-deals-y",
+  "count": 1,
+  "boxes": [
+   [
+    114,
+    2350,
+    112,
+    670
+   ]
+  ],
+  "cls": "pointer-events-none absolute overflow-visible -scale-x-100 top-0 left-[calc(var(--home-rule)/2)] hidden h-[calc(100%-var(--home-rule)/2)] lg:block",
+  "parentCls": "@container relative pt-18 pb-21 text-[#117025] text-[15px]/[20px] md:pt-35 md:pb",
+  "near": "Softwaredoesn'tclose deals.You do.So it'",
+  "len": 469
+ },
+ {
+  "name": "50-pointer-events-none-absolute",
+  "count": 1,
+  "boxes": [
+   [
+    114,
+    2909,
+    112,
+    112
+   ]
+  ],
+  "cls": "overflow-visible",
+  "parentCls": "pointer-events-none absolute overflow-visible -scale-x-100 top-0 left-[calc(var(",
+  "near": "",
+  "len": 125
+ },
+ {
+  "name": "51-contents",
+  "count": 1,
+  "boxes": [
+   [
+    1277,
+    3098,
+    125,
+    317
+   ]
+  ],
+  "cls": "pointer-events-none absolute top-0 right-0 hidden h-full overflow-visible md:block -z-10",
+  "parentCls": "contents",
+  "near": "",
+  "len": 585
+ },
+ {
+  "name": "52-contents",
+  "count": 1,
+  "boxes": [
+   [
+    1277,
+    3098,
+    125,
+    317
+   ]
+  ],
+  "cls": "pointer-events-none absolute top-0 right-0 hidden h-full overflow-visible md:block z-10",
+  "parentCls": "contents",
+  "near": "",
+  "len": 1238
+ },
+ {
+  "name": "53-contents",
+  "count": 1,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "pointer-events-none absolute bottom-0 left-0 w-full overflow-visible md:hidden -z-10",
+  "parentCls": "contents",
+  "near": "",
+  "len": 340
+ },
+ {
+  "name": "54-contents",
+  "count": 1,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "pointer-events-none absolute bottom-0 left-0 w-full overflow-visible md:hidden z-10",
+  "parentCls": "contents",
+  "near": "",
+  "len": 809
+ },
+ {
+  "name": "55-contents",
+  "count": 1,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "pointer-events-none absolute z-10 size-3 md:hidden",
+  "parentCls": "contents",
+  "near": "",
+  "len": 278
+ },
+ {
+  "name": "56-operate-logo-mark-footer",
+  "count": 1,
+  "boxes": [
+   [
+    748,
+    3351,
+    32,
+    16
+   ]
+  ],
+  "cls": "h-3.25 w-auto md:h-4",
+  "parentCls": "mt-6 flex items-center gap-x-1.5",
+  "near": "\u00a9 2026 Operate Machine Co. All rights re",
+  "len": 626
+ },
+ {
+  "name": "57-watch-the-video",
+  "count": 1,
+  "boxes": [
+   [
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "cls": "pointer-events-none absolute overflow-visible top-[calc(var(--home-rule)/2)] right-[calc(var(--home-rule)/2)] h-[calc(100%-var(--home-rule)/2)] md:hidden",
+  "parentCls": "relative px-4.25 pt-2.5 pb-11 home-rule-l md:px-7 md:pt-2 md:pb-2.5",
+  "near": "Watch the video",
+  "len": 392
+ },
+ {
+  "name": "58-hidden-min-90rem-block-absol",
+  "count": 1,
+  "boxes": [
+   [
+    481,
+    3147,
+    221,
+    221
+   ]
+  ],
+  "cls": "pointer-events-none absolute overflow-visible top-[calc(var(--home-rule)/2)] right-[calc(var(--home-rule)/2)] bottom-0 left-0",
+  "parentCls": "hidden min-[90rem]:block absolute top-0 right-[calc(50%+18px)] bottom-0 aspect-s",
+  "near": "",
+  "len": 382
+ }
+]

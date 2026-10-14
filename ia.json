@@ -1,0 +1,177 @@
+{
+  "$comment": "IA of the local operate.so clone. Routes and sections are taken from src/router.jsx and the components each route mounts, cross-checked against CLONE_SPEC.md / CLONE_SPEC_PAGES.md (recon of the live site found exactly these routes; every other path is the stock 404). The /sign-up modal is a state of the homepage (intercepted route), not a separate route, so it is modelled as overlay sections on template.home rather than a fifth template.",
+  "meta": {
+    "source": "https://operate.so/ (local clone at /, /privacy, /terms, /sign-up, catch-all 404)",
+    "status": "measured-from-codebase",
+    "productionApproved": false,
+    "totalRoutes": 5,
+    "totalTemplates": 4
+  },
+  "categories": {
+    "BACKDROP": "Fixed, full-viewport decoration painted behind page content.",
+    "SHELL": "The binder-paper chrome of the homepage: rails, hole-punched sheets that frame the content.",
+    "HERO": "Page-opening headline block with primary calls to action.",
+    "PRODUCT": "Blocks that explain or demonstrate how the product works.",
+    "STORY": "Brand narrative / manifesto content.",
+    "OVERLAY": "Dialogs and modals layered over a route without changing its underlying page.",
+    "FORM": "Interactive data-entry blocks.",
+    "LEGAL": "Long-form legal document reading layout.",
+    "SYSTEM": "Framework-provided pages outside the site's own design."
+  },
+  "sections": {
+    "backdrop.animated-background": {
+      "category": "BACKDROP",
+      "description": "Deep-green (#005C00) fixed background: texture image, green dot pattern and two Canvas 2D bead/bar layers whose visibility follows scroll progress (top band below 0.35, hidden 0.35–0.65, bottom band above 0.65).",
+      "scope": "Behind the homepage and the standalone sign-up page (2 routes); its scroll progress freezes while the sign-up modal is pinned over the homepage.",
+      "implementedBy": "src/components/HomeBackground.jsx (+ src/lib/beadField.js)"
+    },
+    "shell.binder-rails": {
+      "category": "SHELL",
+      "description": "Two thin vertical paper rails (12px, stone-800 border) running the full page height at the left and right edges, shown at lg+ only.",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/App.jsx (inline)"
+    },
+    "shell.nav-sheet": {
+      "category": "SHELL",
+      "description": "Standalone hole-punched paper strip acting as the header: OPERATE wordmark, centred logo mark, and a desktop-only 'Try it out' link to /sign-up. Not sticky; scrolls with the page.",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/components/NavSheet.jsx"
+    },
+    "shell.main-sheet": {
+      "category": "SHELL",
+      "description": "The large hole-punched paper sheet (CSS mask + mask-composite subtract, ResizeObserver-computed --hole-period) that contains the hero, demo, ops steps and manifesto.",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/App.jsx + src/components/shell/PanelHoles.jsx"
+    },
+    "hero.headline-integrations": {
+      "category": "HERO",
+      "description": "H1 headline, a paragraph with six inline integration-logo bubbles, and two CTAs: 'Get started' (opens sign-up modal) and 'Watch the video' (opens the video lightbox with an instant open).",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/components/Hero.jsx (+ src/lib/integrationLogos.js)"
+    },
+    "product.demo": {
+      "category": "PRODUCT",
+      "description": "Framed fake-app product demo: a scripted, non-looping timeline (Quota, Meeting, Draft, Slack, Next step chapters) with fake cursor, typed text, per-character text morphs, a floating panel stack and a clickable chapter control; starts when scrolled into view; separate touch layout below 48rem.",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/components/shell/DemoFrame.jsx > src/components/HomeUi.jsx (+ src/components/demo/*)"
+    },
+    "product.ops-steps": {
+      "category": "PRODUCT",
+      "description": "'Getting Operational with AI': four numbered steps whose active dot follows the scroll (last step with top ≤ 50vh is active).",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/components/OpsSteps.jsx"
+    },
+    "story.manifesto": {
+      "category": "STORY",
+      "description": "'Software doesn't close deals. You do.' green punched panel with CSS multi-column text, a ticket card, a 'Talk to us' link and the self-animating logo-trace-loop SVG (static still under reduced motion).",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/components/Manifesto.jsx"
+    },
+    "shell.footer-sheet": {
+      "category": "SHELL",
+      "description": "Folded-corner paper footer: hover-to-play video card that morphs into the video lightbox, dotted-underline links (Privacy, Terms, LinkedIn, X), 'Get started' and the copyright line.",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/components/FooterSheet.jsx"
+    },
+    "overlay.video-lightbox": {
+      "category": "OVERLAY",
+      "description": "Full-screen video dialog streaming the Mux HLS video via hls.js; opens instantly from the hero button or via a View Transitions morph from the footer card; poster held until playback starts.",
+      "scope": "Homepage only (1 route).",
+      "implementedBy": "src/components/VideoLightbox.jsx (+ src/lib/videoLightbox.js)"
+    },
+    "overlay.sign-up-modal": {
+      "category": "OVERLAY",
+      "description": "Intercepted-route modal: clicking a /sign-up link on the homepage pushes /sign-up, pins and hides the page column over the still-visible background, and hosts the sign-up form; closing restores / and its scroll.",
+      "scope": "Homepage only (1 route), when opened from 'Get started' / 'Try it out' / 'Talk to us'.",
+      "implementedBy": "src/components/signup/SignUpModal.jsx"
+    },
+    "form.sign-up-form": {
+      "category": "FORM",
+      "description": "Green waitlist form card: seven questions (name, work email, social handle, role, team size, AI usage, hardest part) with 'Other' reveals, client validation with copper error rows, and sending ('Submitting…'), error and thank-you states. Submits to a local stub only — never to a network endpoint.",
+      "scope": "Inside the homepage sign-up modal and on the standalone sign-up page (2 routes).",
+      "implementedBy": "src/components/signup/SignUpForm.jsx (+ SendingAnimation.jsx, src/lib/signupStub.js)"
+    },
+    "overlay.leave-confirm": {
+      "category": "OVERLAY",
+      "description": "'Leave this form?' alert dialog (Keep editing / Leave) raised by Back, Escape, outside click or browser back while the sign-up form has unsaved input; bottom sheet on mobile.",
+      "scope": "Wherever the sign-up form is shown (2 routes).",
+      "implementedBy": "src/components/signup/useSignUpCloseConfirm.jsx"
+    },
+    "legal.back-link": {
+      "category": "LEGAL",
+      "description": "Small GT Cinetype uppercase '← Back to Operate' link above the document.",
+      "scope": "Both legal pages (2 routes).",
+      "implementedBy": "src/components/pages/LegalPage.jsx"
+    },
+    "legal.document-header": {
+      "category": "LEGAL",
+      "description": "Document H1 title plus the 'Effective date:' line.",
+      "scope": "Both legal pages (2 routes).",
+      "implementedBy": "src/components/pages/LegalPage.jsx"
+    },
+    "legal.document-body": {
+      "category": "LEGAL",
+      "description": "Numbered H2/H3 sections with paragraphs, lists, inline code and (terms only) horizontal rules in a 768px column on #E0E0E0. Body prose is placeholder copy with the original's structure — replace before launch.",
+      "scope": "Both legal pages (2 routes).",
+      "implementedBy": "src/components/pages/LegalPage.jsx (blocks in src/pages/Privacy.jsx, src/pages/Terms.jsx)"
+    },
+    "system.not-found": {
+      "category": "SYSTEM",
+      "description": "Stock Next.js 404: white page, system font, '404 | This page could not be found.' with a divider; dark-scheme variant.",
+      "scope": "Every unmatched path (1 catch-all route).",
+      "implementedBy": "src/pages/NotFound.jsx"
+    }
+  },
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Homepage",
+      "routeCount": 1,
+      "routes": ["/"],
+      "routePattern": null,
+      "chrome": "binder-paper",
+      "sections": [
+        "backdrop.animated-background",
+        "shell.binder-rails",
+        "shell.nav-sheet",
+        "shell.main-sheet",
+        "hero.headline-integrations",
+        "product.demo",
+        "product.ops-steps",
+        "story.manifesto",
+        "shell.footer-sheet",
+        "overlay.video-lightbox",
+        "overlay.sign-up-modal",
+        "form.sign-up-form",
+        "overlay.leave-confirm"
+      ]
+    },
+    {
+      "id": "template.sign-up",
+      "name": "Sign-up (standalone)",
+      "routeCount": 1,
+      "routes": ["/sign-up"],
+      "routePattern": null,
+      "chrome": "background-only",
+      "sections": ["backdrop.animated-background", "form.sign-up-form", "overlay.leave-confirm"]
+    },
+    {
+      "id": "template.legal",
+      "name": "Legal document",
+      "routeCount": 2,
+      "routes": ["/privacy", "/terms"],
+      "routePattern": null,
+      "chrome": "none",
+      "sections": ["legal.back-link", "legal.document-header", "legal.document-body"]
+    },
+    {
+      "id": "template.not-found",
+      "name": "404",
+      "routeCount": 1,
+      "routes": ["/* (any unmatched path)"],
+      "routePattern": null,
+      "chrome": "framework-default",
+      "sections": ["system.not-found"]
+    }
+  ]
+}

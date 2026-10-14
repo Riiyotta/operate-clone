@@ -1,0 +1,1578 @@
+{
+ "390": {
+  "submitHover": {
+   "box": [
+    261.28125,
+    1120,
+    90.21875,
+    38.09375
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(224, 224, 224)",
+   "border": "rgb(224, 224, 224) 1px",
+   "outline": "rgb(224, 224, 224) none 3px",
+   "outlineOffset": "0px",
+   "fw": "400",
+   "transition": "all",
+   "cursor": "pointer",
+   "attrs": "type=submit tabindex=0 class=px-[0.75em] py-[calc(6.5em/18)] rounded-[calc(12em/18)] bord"
+  },
+  "backHover": {
+   "box": [
+    25.75,
+    28.1875,
+    74.4375,
+    45.6875
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(224, 224, 224)",
+   "border": "lab(0 0 0 / 0.1) 0px",
+   "outline": "rgb(224, 224, 224) none 3px",
+   "outlineOffset": "0px",
+   "fw": "400",
+   "transition": "all",
+   "cursor": "pointer",
+   "attrs": "type=button class=flex w-fit items-center gap-1.5 -mx-2 -my-3 px-2 py-3"
+  },
+  "nameRowFocus": "oklab(0.906695 0.0000413954 0.0000181794 / 0.2)",
+  "caret": "rgb(224, 224, 224)",
+  "placeholder": "rgb(133, 192, 147)",
+  "focusedEl": {
+   "role": "radio",
+   "outline": "rgb(224, 224, 224) solid 1px",
+   "offset": "2px",
+   "groupBg": "oklab(0.906695 0.0000413954 0.0000181794 / 0.2)"
+  },
+  "invalid": {
+   "rows": [
+    {
+     "tag": "DIV",
+     "cls": "@container flex min-h-7 flex-wrap items-center py-[0.25em] b",
+     "bg": "lab(49.1327 37.8231 46.5064)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "mr-2 min-w-32 shrink-0",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "INPUT",
+     "cls": "min-w-0 flex-1 self-stretch truncate rounded-none bg-transpa",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "@container flex min-h-7 flex-wrap items-center py-[0.25em] b",
+     "bg": "lab(49.1327 37.8231 46.5064)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "mr-2 min-w-32 shrink-0",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "INPUT",
+     "cls": "min-w-0 flex-1 self-stretch truncate rounded-none bg-transpa",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "group/choice",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "border-b-1 border-waitlist-gray",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "group/choice",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "border-b-1 border-waitlist-gray",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "group/choice",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "border-b-1 border-waitlist-gray",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "P",
+     "cls": "ml-auto pr-2 text-white/60 group-data-invalid/choice:hidden ",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "group/choice",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "border-b-1 border-waitlist-gray",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    }
+   ],
+   "errs": [
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      30,
+      122.75,
+      330,
+      20.1875
+     ],
+     "pad": "0px 8.5px 0px 12.75px"
+    },
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      30,
+      172.625,
+      330,
+      20.1875
+     ],
+     "pad": "0px 8.5px 0px 12.75px"
+    },
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      30,
+      252.25,
+      330,
+      20.1875
+     ],
+     "pad": "0px 8.5px 0px 12.75px"
+    },
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      30,
+      511.375,
+      330,
+      20.1875
+     ],
+     "pad": "0px 8.5px 0px 12.75px"
+    },
+    {
+     "t": "choose at least one",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      30,
+      723.75,
+      330,
+      20.1875
+     ],
+     "pad": "0px 8.5px 0px 12.75px"
+    },
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      30,
+      956.3125,
+      330,
+      20.1875
+     ],
+     "pad": "0px 8.5px 0px 12.75px"
+    }
+   ],
+   "ph": "oklab(0.906695 0.0000413954 0.0000181794 / 0.7)",
+   "active": "<input id=\"base-ui-_R_bclubr5b_\" type=\"text\" required=\"\" placeholder=\"Your name\" autocomplete=\"name\" enterkeyhint=\"next\" class=\"min-w-0 flex-1 self-st",
+   "docH": 1301
+  },
+  "emailErr": [
+   "check the email",
+   "required",
+   "required",
+   "choose at least one",
+   "required"
+  ],
+  "otherTextarea": {
+   "name": "pr-2 pl-8.5",
+   "ph": "Your answer (optional)",
+   "aria": "Your role: Other (optional)",
+   "box": [
+    66.125,
+    390.5,
+    285.375,
+    20.1875
+   ],
+   "fs": "17px",
+   "lh": "20.1875px",
+   "phColor": "rgb(133, 192, 147)"
+  },
+  "checkedRadio": {
+   "ind": {
+    "cls": "size-1.75 rounded-full bg-waitlist-gray",
+    "bg": "rgb(224, 224, 224)",
+    "box": [
+     7.4375,
+     7.4375
+    ]
+   },
+   "labelFw": "600",
+   "attrs": "data-required,role,tabindex,aria-checked,aria-required,id,class,aria-labelledby,data-touched,data-focused,data-checked,data-composite-item-active,data-dirty,data-valid,data-filled"
+  },
+  "checkedBox": {
+   "html": "<span data-touched=\"\" data-checked=\"\" class=\"absolute -inset-px\" data-dirty=\"\" data-valid=\"\" data-filled=\"\" data-focused=\"\"><svg aria-hidden=\"true\" viewBox=\"0 0 12 12\" class=\"size-full\"><mask id=\"_r_3_\"><rect width=\"12\" height=\"12\" fill=\"white\"></rect><path d=\"M2.5 6.25 4.85 8.6 9.5 3.4\" fill=\"none\" stroke=\"black\" stroke-width=\"1.5\" stroke-linecap=\"square\"></path></mask><rect width=\"12\" height=\"12\" rx=\"2\" fill=\"currentColor\" mask=\"url(#_r_3_)\"></rect></svg></span>",
+   "color": "rgb(224, 224, 224)"
+  },
+  "textareas": [
+   "block field-sizing-content w-full min-w-0 resize-none rounded-none bg-transparent shadow-none outline-none placeholder:text-waitlist-light-green | Your role: Other (optional)",
+   "block field-sizing-content w-full min-w-0 resize-none rounded-none bg-transparent shadow-none outline-none placeholder:text-waitlist-light-green | AI usage: Something else (optional)"
+  ],
+  "afterNotUsing": "false,false,false,false,true",
+  "sending": {
+   "ov": {
+    "bg": "rgba(41, 33, 30, 0.3)",
+    "box": [
+     12,
+     -358,
+     366,
+     1190.34375
+    ],
+    "html": 3218,
+    "first": "<svg class=\"overflow-visible fixed top-1/2 left-1/2 h-auto w-[14.34em] -translate-1/2\" width=\"344\" height=\"205\" fill=\"none\" viewBox=\"0 0 344 205\"><g visibility=\"hidden\"><path id=\"_r_a_\" d=\"M 101.80290686685383 141.9825774041957 A 37.495 71.155 37.61 0 1 42.39709313314616 96.21742259580431 A 37.495 7",
+    "svg": [
+     73.1171875,
+     349.3671875,
+     243.765625,
+     145.265625
+    ]
+   },
+   "btn": "<button type=\"button\" data-disabled=\"\" tabindex=\"0\" disabled=\"\" class=\"px-[0.75em] py-[calc(6.5em/18)] rounded-[calc(12em/18)] border-[1.5px] border-waitlist-gray text-[1.125em] leading-[calc(21/18)] opacity-50\">Submitting…</button>",
+   "status": "<p role=\"status\" aria-live=\"polite\" class=\"min-w-0 flex-1 text-right text-waitlist-feedback sr-only\">Submitting…</p>"
+  },
+  "posts": [
+   {
+    "url": "https://operate.so/sign-up",
+    "headers": {
+     "accept": "text/x-component",
+     "content-type": "text/plain;charset=UTF-8",
+     "next-action": "4005ae79c0e159cf171abe5af6cfc768222eda86ff",
+     "next-router-state-tree": "%5B%22%22%2C%7B%22children%22%3A%5B%22sign-up%22%2C%7B%22children%22%3A%5B%22__PAGE__%22%2C%7B%7D%2Cnull%2Cnull%2C4608%5D%7D%2Cnull%2Cnull%2C4608%5D%2C%22modal%22%3A%5B%22(__SLOT__)%22%2C%7B%22children%22%3A%5B%5B%22catchAll%22%2C%22sign-up%22%2C%22c%22%2Cnull%5D%2C%7B%22children%22%3A%5B%22__PAGE__%22%2C%7B%7D%2Cnull%2Cnull%2C4608%5D%7D%2Cnull%2Cnull%2C4608%5D%7D%2Cnull%2Cnull%2C4608%5D%7D%2Cnull%2Cnull%2C4624%5D"
+    },
+    "body": "[{\"submissionId\":\"41c9dc26-7c0f-4809-a0d5-cb106a505eb6\",\"answers\":{\"name\":\"Test\",\"email\":\"test@example.com\",\"role\":\"other\",\"roleOther\":\"\",\"socialHandle\":\"\",\"salesTeamSize\":\"2–4\",\"dealChallenge\":\"Stale CRM data\",\"dealChallengeOther\":\"\",\"aiUsage\":[\"Custom agents or workflows\"]}}]",
+    "mode": "hang"
+   }
+  ],
+  "dialog": {
+   "all": [
+    {
+     "tag": "DIV",
+     "cls": "fixed z-(--z-dialog) flex flex-col gap-y-5 outline-none rounded-[1px] border-1 border-waitlist-dark-green bg-waitlist-paper [--selection-background:var(--color-waitlist-dark-green)] [--selection-color",
+     "t": "",
+     "box": [
+      12,
+      672.03125,
+      366,
+      159.96875
+     ],
+     "fs": "16px",
+     "lh": "19px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgb(235, 235, 235)",
+     "border": "1px rgb(17, 112, 37)",
+     "pad": "28px",
+     "radius": "1px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "H2",
+     "cls": "text-[1.125em] leading-[calc(21/18)] text-pretty",
+     "t": "Leave this form?",
+     "box": [
+      41,
+      701.03125,
+      308,
+      21
+     ],
+     "fs": "18px",
+     "lh": "21.0001px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px lab(0 0 0 / 0.1)",
+     "pad": "0px",
+     "radius": "0px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "P",
+     "cls": "-mt-3.5 text-pretty",
+     "t": "Anything you've entered won't be saved.",
+     "box": [
+      41,
+      728.03125,
+      308,
+      19
+     ],
+     "fs": "16px",
+     "lh": "19px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px lab(0 0 0 / 0.1)",
+     "pad": "0px",
+     "radius": "0px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "DIV",
+     "cls": "grid auto-cols-fr grid-flow-col gap-x-2 md:flex md:justify-end",
+     "t": "",
+     "box": [
+      41,
+      767.03125,
+      308,
+      35.96875
+     ],
+     "fs": "16px",
+     "lh": "19px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px lab(0 0 0 / 0.1)",
+     "pad": "0px",
+     "radius": "0px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "BUTTON",
+     "cls": "px-[0.75em] py-[calc(6.5em/18)] rounded-[calc(12em/18)] border-[1.5px] border-waitlist-dark-green text-[1.125em] leading-[calc(21/18)] focus-visible:shadow-[0_0_0_2px_var(--color-waitlist-paper),0_0_0",
+     "t": "Keep editing",
+     "box": [
+      41,
+      767.03125,
+      150,
+      35.96875
+     ],
+     "fs": "18px",
+     "lh": "21.0001px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(17, 112, 37)",
+     "pad": "6.5px 13.5px",
+     "radius": "12px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "BUTTON",
+     "cls": "px-[0.75em] py-[calc(6.5em/18)] rounded-[calc(12em/18)] border-[1.5px] border-waitlist-dark-green text-[1.125em] leading-[calc(21/18)] focus-visible:shadow-[0_0_0_2px_var(--color-waitlist-paper),0_0_0",
+     "t": "Leave",
+     "box": [
+      199,
+      767.03125,
+      150,
+      35.96875
+     ],
+     "fs": "18px",
+     "lh": "21.0001px",
+     "fw": "400",
+     "color": "rgb(235, 235, 235)",
+     "bg": "rgb(17, 112, 37)",
+     "border": "1px rgb(17, 112, 37)",
+     "pad": "6.5px 13.5px",
+     "radius": "12px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    }
+   ],
+   "backdrop": {
+    "cls": "",
+    "before": "rgba(0, 0, 0, 0)",
+    "transition": "all",
+    "opacity": "1"
+   }
+  }
+ },
+ "1440": {
+  "submitHover": {
+   "box": [
+    986.953125,
+    1169,
+    85.046875,
+    35.96875
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(224, 224, 224)",
+   "border": "rgb(224, 224, 224) 1px",
+   "outline": "rgb(224, 224, 224) none 3px",
+   "outlineOffset": "0px",
+   "fw": "400",
+   "transition": "all",
+   "cursor": "pointer",
+   "attrs": "type=submit tabindex=0 class=px-[0.75em] py-[calc(6.5em/18)] rounded-[calc(12em/18)] bord"
+  },
+  "backHover": {
+   "box": [
+    356,
+    198,
+    70.0625,
+    43
+   ],
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(224, 224, 224)",
+   "border": "lab(0 0 0 / 0.1) 0px",
+   "outline": "rgb(224, 224, 224) none 3px",
+   "outlineOffset": "0px",
+   "fw": "400",
+   "transition": "all",
+   "cursor": "pointer",
+   "attrs": "type=button class=flex w-fit items-center gap-1.5 -mx-2 -my-3 px-2 py-3"
+  },
+  "nameRowFocus": "oklab(0.906695 0.0000413954 0.0000181794 / 0.2)",
+  "caret": "rgb(224, 224, 224)",
+  "placeholder": "rgb(133, 192, 147)",
+  "focusedEl": {
+   "role": "radio",
+   "outline": "rgb(224, 224, 224) solid 1px",
+   "offset": "2px",
+   "groupBg": "oklab(0.906695 0.0000413954 0.0000181794 / 0.2)"
+  },
+  "invalid": {
+   "rows": [
+    {
+     "tag": "DIV",
+     "cls": "@container flex min-h-7 flex-wrap items-center py-[0.25em] b",
+     "bg": "lab(49.1327 37.8231 46.5064)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "mr-2 min-w-32 shrink-0",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "INPUT",
+     "cls": "min-w-0 flex-1 self-stretch truncate rounded-none bg-transpa",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "@container flex min-h-7 flex-wrap items-center py-[0.25em] b",
+     "bg": "lab(49.1327 37.8231 46.5064)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "mr-2 min-w-32 shrink-0",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "INPUT",
+     "cls": "min-w-0 flex-1 self-stretch truncate rounded-none bg-transpa",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "group/choice",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "border-b-1 border-waitlist-gray",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "group/choice",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "border-b-1 border-waitlist-gray",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "group/choice",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "border-b-1 border-waitlist-gray",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "P",
+     "cls": "ml-auto pr-2 text-white/60 group-data-invalid/choice:hidden ",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "relative mt-[0.21875em] flex size-3 shrink-0 items-center ju",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "group/choice",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "border-b-1 border-waitlist-gray",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "ml-auto shrink-0 pr-2 pl-3 text-right @max-[29em]:basis-full",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "DIV",
+     "cls": "flex flex-col gap-y-1.5",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "LABEL",
+     "cls": "flex items-start gap-x-3.5 pl-2 text-pretty has-data-checked",
+     "bg": "rgba(0, 0, 0, 0)"
+    },
+    {
+     "tag": "SPAN",
+     "cls": "flex size-3 shrink-0 items-center justify-center mt-[0.21875",
+     "bg": "rgba(0, 0, 0, 0)"
+    }
+   ],
+   "errs": [
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      1002.609375,
+      268,
+      77.390625,
+      19
+     ],
+     "pad": "0px 8px 0px 12px"
+    },
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      1002.609375,
+      296,
+      77.390625,
+      19
+     ],
+     "pad": "0px 8px 0px 12px"
+    },
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      1002.609375,
+      352,
+      77.390625,
+      19
+     ],
+     "pad": "0px 8px 0px 12px"
+    },
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      1002.609375,
+      558,
+      77.390625,
+      19
+     ],
+     "pad": "0px 8px 0px 12px"
+    },
+    {
+     "t": "choose at least one",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      925.875,
+      739,
+      154.125,
+      19
+     ],
+     "pad": "0px 8px 0px 12px"
+    },
+    {
+     "t": "required",
+     "color": "rgb(224, 224, 224)",
+     "box": [
+      1002.609375,
+      920,
+      77.390625,
+      19
+     ],
+     "pad": "0px 8px 0px 12px"
+    }
+   ],
+   "ph": "oklab(0.906695 0.0000413954 0.0000181794 / 0.7)",
+   "active": "<input id=\"base-ui-_R_bclubr5b_\" type=\"text\" required=\"\" placeholder=\"Your name\" autocomplete=\"name\" enterkeyhint=\"next\" class=\"min-w-0 flex-1 self-st",
+   "docH": 1410
+  },
+  "emailErr": [
+   "check the email",
+   "required",
+   "required",
+   "choose at least one",
+   "required"
+  ],
+  "otherTextarea": {
+   "name": "pr-2 pl-8.5",
+   "ph": "Your answer (optional)",
+   "aria": "Your role: Other (optional)",
+   "box": [
+    394,
+    539,
+    678,
+    19
+   ],
+   "fs": "16px",
+   "lh": "19px",
+   "phColor": "rgb(133, 192, 147)"
+  },
+  "checkedRadio": {
+   "ind": {
+    "cls": "size-1.75 rounded-full bg-waitlist-gray",
+    "bg": "rgb(224, 224, 224)",
+    "box": [
+     7,
+     7
+    ]
+   },
+   "labelFw": "600",
+   "attrs": "data-required,role,tabindex,aria-checked,aria-required,id,class,aria-labelledby,data-touched,data-focused,data-checked,data-composite-item-active,data-dirty,data-valid,data-filled"
+  },
+  "checkedBox": {
+   "html": "<span data-touched=\"\" data-checked=\"\" class=\"absolute -inset-px\" data-dirty=\"\" data-valid=\"\" data-filled=\"\" data-focused=\"\"><svg aria-hidden=\"true\" viewBox=\"0 0 12 12\" class=\"size-full\"><mask id=\"_r_3_\"><rect width=\"12\" height=\"12\" fill=\"white\"></rect><path d=\"M2.5 6.25 4.85 8.6 9.5 3.4\" fill=\"none\" stroke=\"black\" stroke-width=\"1.5\" stroke-linecap=\"square\"></path></mask><rect width=\"12\" height=\"12\" rx=\"2\" fill=\"currentColor\" mask=\"url(#_r_3_)\"></rect></svg></span>",
+   "color": "rgb(224, 224, 224)"
+  },
+  "textareas": [
+   "block field-sizing-content w-full min-w-0 resize-none rounded-none bg-transparent shadow-none outline-none placeholder:text-waitlist-light-green | Your role: Other (optional)",
+   "block field-sizing-content w-full min-w-0 resize-none rounded-none bg-transparent shadow-none outline-none placeholder:text-waitlist-light-green | AI usage: Something else (optional)"
+  ],
+  "afterNotUsing": "false,false,false,false,true",
+  "sending": {
+   "ov": {
+    "bg": "rgba(41, 33, 30, 0.3)",
+    "box": [
+     324,
+     -309,
+     792,
+     1080.96875
+    ],
+    "html": 3220,
+    "first": "<svg class=\"overflow-visible fixed top-1/2 left-1/2 h-auto w-[14.34em] -translate-1/2\" width=\"344\" height=\"205\" fill=\"none\" viewBox=\"0 0 344 205\"><g visibility=\"hidden\"><path id=\"_r_a_\" d=\"M 101.80290686685383 141.9825774041957 A 37.495 71.155 37.61 0 1 42.39709313314616 96.21742259580431 A 37.495 7",
+    "svg": [
+     605.28125,
+     381.640625,
+     229.4375,
+     136.71875
+    ]
+   },
+   "btn": "<button type=\"button\" data-disabled=\"\" tabindex=\"0\" disabled=\"\" class=\"px-[0.75em] py-[calc(6.5em/18)] rounded-[calc(12em/18)] border-[1.5px] border-waitlist-gray text-[1.125em] leading-[calc(21/18)] opacity-50\">Submitting…</button>",
+   "status": "<p role=\"status\" aria-live=\"polite\" class=\"min-w-0 flex-1 text-right text-waitlist-feedback sr-only\">Submitting…</p>"
+  },
+  "posts": [
+   {
+    "url": "https://operate.so/sign-up",
+    "headers": {
+     "accept": "text/x-component",
+     "content-type": "text/plain;charset=UTF-8",
+     "next-action": "4005ae79c0e159cf171abe5af6cfc768222eda86ff",
+     "next-router-state-tree": "%5B%22%22%2C%7B%22children%22%3A%5B%22sign-up%22%2C%7B%22children%22%3A%5B%22__PAGE__%22%2C%7B%7D%2Cnull%2Cnull%2C4608%5D%7D%2Cnull%2Cnull%2C4608%5D%2C%22modal%22%3A%5B%22(__SLOT__)%22%2C%7B%22children%22%3A%5B%5B%22catchAll%22%2C%22sign-up%22%2C%22c%22%2Cnull%5D%2C%7B%22children%22%3A%5B%22__PAGE__%22%2C%7B%7D%2Cnull%2Cnull%2C4608%5D%7D%2Cnull%2Cnull%2C4608%5D%7D%2Cnull%2Cnull%2C4608%5D%7D%2Cnull%2Cnull%2C4624%5D"
+    },
+    "body": "[{\"submissionId\":\"934d1fbb-ba33-4942-930a-8eae3bd365eb\",\"answers\":{\"name\":\"Test\",\"email\":\"test@example.com\",\"role\":\"other\",\"roleOther\":\"\",\"socialHandle\":\"\",\"salesTeamSize\":\"2–4\",\"dealChallenge\":\"Stale CRM data\",\"dealChallengeOther\":\"\",\"aiUsage\":[\"Custom agents or workflows\"]}}]",
+    "mode": "hang"
+   }
+  ],
+  "dialog": {
+   "all": [
+    {
+     "tag": "DIV",
+     "cls": "fixed z-(--z-dialog) flex flex-col gap-y-5 outline-none rounded-[1px] border-1 border-waitlist-dark-green bg-waitlist-paper [--selection-background:var(--color-waitlist-dark-green)] [--selection-color",
+     "t": "",
+     "box": [
+      520,
+      370.015625,
+      400,
+      159.96875
+     ],
+     "fs": "16px",
+     "lh": "19px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgb(235, 235, 235)",
+     "border": "1px rgb(17, 112, 37)",
+     "pad": "28px",
+     "radius": "1px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "H2",
+     "cls": "text-[1.125em] leading-[calc(21/18)] text-pretty",
+     "t": "Leave this form?",
+     "box": [
+      549,
+      399.015625,
+      342,
+      21
+     ],
+     "fs": "18px",
+     "lh": "21.0001px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px lab(0 0 0 / 0.1)",
+     "pad": "0px",
+     "radius": "0px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "P",
+     "cls": "-mt-3.5 text-pretty",
+     "t": "Anything you've entered won't be saved.",
+     "box": [
+      549,
+      426.015625,
+      342,
+      19
+     ],
+     "fs": "16px",
+     "lh": "19px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px lab(0 0 0 / 0.1)",
+     "pad": "0px",
+     "radius": "0px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "DIV",
+     "cls": "grid auto-cols-fr grid-flow-col gap-x-2 md:flex md:justify-end",
+     "t": "",
+     "box": [
+      549,
+      465.015625,
+      342,
+      35.96875
+     ],
+     "fs": "16px",
+     "lh": "19px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px lab(0 0 0 / 0.1)",
+     "pad": "0px",
+     "radius": "0px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "BUTTON",
+     "cls": "px-[0.75em] py-[calc(6.5em/18)] rounded-[calc(12em/18)] border-[1.5px] border-waitlist-dark-green text-[1.125em] leading-[calc(21/18)] focus-visible:shadow-[0_0_0_2px_var(--color-waitlist-paper),0_0_0",
+     "t": "Keep editing",
+     "box": [
+      683.21875,
+      465.015625,
+      125.859375,
+      35.96875
+     ],
+     "fs": "18px",
+     "lh": "21.0001px",
+     "fw": "400",
+     "color": "rgb(17, 112, 37)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "1px rgb(17, 112, 37)",
+     "pad": "6.5px 13.5px",
+     "radius": "12px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    },
+    {
+     "tag": "BUTTON",
+     "cls": "px-[0.75em] py-[calc(6.5em/18)] rounded-[calc(12em/18)] border-[1.5px] border-waitlist-dark-green text-[1.125em] leading-[calc(21/18)] focus-visible:shadow-[0_0_0_2px_var(--color-waitlist-paper),0_0_0",
+     "t": "Leave",
+     "box": [
+      817.078125,
+      465.015625,
+      73.921875,
+      35.96875
+     ],
+     "fs": "18px",
+     "lh": "21.0001px",
+     "fw": "400",
+     "color": "rgb(235, 235, 235)",
+     "bg": "rgb(17, 112, 37)",
+     "border": "1px rgb(17, 112, 37)",
+     "pad": "6.5px 13.5px",
+     "radius": "12px",
+     "transition": "all",
+     "opacity": "1",
+     "transform": "none"
+    }
+   ],
+   "backdrop": {
+    "cls": "",
+    "before": "rgba(0, 0, 0, 0)",
+    "transition": "all",
+    "opacity": "1"
+   }
+  }
+ }
+}

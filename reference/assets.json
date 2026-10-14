@@ -1,0 +1,505 @@
+[
+ {
+  "url": "https://operate.so/_next/static/immutable/media/205TF_Muoto_Variable-s.p.350syuw1smhk5.woff2",
+  "local": "public/assets/fonts/muoto-variable.woff2",
+  "usedIn": "font-family \"muoto\", weight 100-900; hero product demo UI (all text inside demo)",
+  "downloaded": "reference/assets/fonts/205TF_Muoto_Variable-s.p.350syuw1smhk5.woff2"
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/Denim_Regular-s.p.3p2rpf-e0w2_y.woff2",
+  "local": "public/assets/fonts/denim-regular.woff2",
+  "usedIn": "font-family \"denim\" 400 normal; body/default font (body has font-denim)",
+  "downloaded": "reference/assets/fonts/Denim_Regular-s.p.3p2rpf-e0w2_y.woff2"
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/Denim_RegularItalic-s.p.2-okkbg3i7rqs.woff2",
+  "local": "public/assets/fonts/denim-italic.woff2",
+  "usedIn": "font-family \"denim\" 400 italic; preloaded, no visible italic text measured on homepage",
+  "downloaded": "reference/assets/fonts/Denim_RegularItalic-s.p.2-okkbg3i7rqs.woff2"
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/Denim_SemiBold-s.p.0haakjq11jk4x.woff2",
+  "local": "public/assets/fonts/denim-semibold.woff2",
+  "usedIn": "font-family \"denim\" weight 500-700; h1/h2/h3/strong/labels",
+  "downloaded": "reference/assets/fonts/Denim_SemiBold-s.p.0haakjq11jk4x.woff2"
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/GT_Cinetype_Regular-s.p.3542o7l2yeifo.woff2",
+  "local": "public/assets/fonts/gt-cinetype-regular.woff2",
+  "usedIn": "font-family \"cinetype\" 400; nav strip, step detail lists, footer copyright, footer video label, manifesto ticket label",
+  "downloaded": "reference/assets/fonts/GT_Cinetype_Regular-s.p.3542o7l2yeifo.woff2"
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/GeistMono_Variable-s.0i6gvwz98tw0u.woff2",
+  "local": "public/assets/fonts/geist-mono-variable.woff2",
+  "usedIn": "font-family \"geistMono\" 100-900; lazily loaded only when demo reaches Slack chapter (not preloaded)",
+  "downloaded": "reference/assets/fonts/GeistMono_Variable-s.0i6gvwz98tw0u.woff2"
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-background-texture.1xaxybze7_k5w.png",
+  "local": "public/assets/home-background-texture.png",
+  "usedIn": "Fixed page background texture layer: div bg-repeat, background-size 1470px 100px, opacity .2, mix-blend-mode overlay over #005C00. Native 2940x200 PNG",
+  "downloaded": "reference/assets/images/home-background-texture.1xaxybze7_k5w.png",
+  "w": 2940,
+  "h": 200
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-footer-video-still.2ry83ugok-_d0.jpg",
+  "local": "public/assets/home-footer-video-still.jpg",
+  "usedIn": "Footer \"Watch the video\" card thumbnail (>=48rem). 540x326 source, displayed 224x135 at desktop",
+  "downloaded": "reference/assets/images/home-footer-video-still.2ry83ugok-_d0.jpg",
+  "w": 540,
+  "h": 326
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-footer-video-still-mobile.1-2kl0-18s7jy.jpg",
+  "local": "public/assets/home-footer-video-still-mobile.jpg",
+  "usedIn": "Footer video card thumbnail <48rem (picture source media=\"(width < 48rem)\"), displayed 174x105 at 390",
+  "downloaded": "reference/assets/images/home-footer-video-still-mobile.1-2kl0-18s7jy.jpg",
+  "w": 540,
+  "h": 326
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-ui-kierra-torres.2hhqlbfn-k9ov.png",
+  "local": "public/assets/demo/kierra-torres.png",
+  "usedIn": "Hero demo: Kierra Torres avatar (inline chip in chat, person panel header, People list)",
+  "downloaded": "reference/assets/images/home-ui-kierra-torres.2hhqlbfn-k9ov.png",
+  "w": 64,
+  "h": 64
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-ui-panel-deal-alfredo-bergson.1993zw531q50s.png",
+  "local": "public/assets/demo/alfredo-bergson.png",
+  "usedIn": "Hero demo: deal panel People list avatar",
+  "downloaded": "reference/assets/images/home-ui-panel-deal-alfredo-bergson.1993zw531q50s.png",
+  "w": 64,
+  "h": 64
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-ui-panel-deal-cooper-franci.3ta7nme9m3qnr.png",
+  "local": "public/assets/demo/cooper-franci.png",
+  "usedIn": "Hero demo: deal panel People list avatar",
+  "downloaded": "reference/assets/images/home-ui-panel-deal-cooper-franci.3ta7nme9m3qnr.png",
+  "w": 64,
+  "h": 64
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-ui-panel-deal-emery-botosh.23krp6y1kam6i.png",
+  "local": "public/assets/demo/emery-botosh.png",
+  "usedIn": "Hero demo: deal panel People list avatar",
+  "downloaded": "reference/assets/images/home-ui-panel-deal-emery-botosh.23krp6y1kam6i.png",
+  "w": 64,
+  "h": 64
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-ui-panel-deal-eminem.1_l_xhprgvaaz.png",
+  "local": "public/assets/demo/eminem.png",
+  "usedIn": "Hero demo: deal panel header owner avatar (top-right of Holloway panel)",
+  "downloaded": "reference/assets/images/home-ui-panel-deal-eminem.1_l_xhprgvaaz.png",
+  "w": 80,
+  "h": 80
+ },
+ {
+  "url": "https://operate.so/_next/static/immutable/media/home-ui-desktop-conversation-slack-background.3njqgf4dxgrci.png",
+  "local": "public/assets/demo/slack-background.png",
+  "usedIn": "Hero demo: Slack draft chapter background (desktop conversation)",
+  "downloaded": "reference/assets/images/home-ui-desktop-conversation-slack-background.3njqgf4dxgrci.png",
+  "w": 1824,
+  "h": 372
+ },
+ {
+  "url": "https://operate.so/home/logo-trace-loop.svg",
+  "local": "public/assets/logo-trace-loop.svg",
+  "usedIn": "Manifesto section (\"Software doesn't close deals\") animated Operate logo trace below \"Team Operate / 09.30.26\" signature. Self-contained CSS-animated SVG (7.875s infinite loop). viewBox -20 -22 428 228",
+  "downloaded": "reference/assets/images/logo-trace-loop.svg",
+  "w": 428,
+  "h": 228
+ },
+ {
+  "url": "https://operate.so/home/footer-video-loop.mp4",
+  "local": "public/assets/footer-video-loop.mp4",
+  "usedIn": "Footer video card: muted looping <video> over the still; plays only while mouse-hovering the card (pointerType mouse), hidden <48rem and prefers-reduced-motion; preload none; currentTime set to 0.25 on loadedmetadata",
+  "downloaded": "reference/assets/video/footer-video-loop.mp4"
+ },
+ {
+  "url": "https://image.mux.com/ZJ2kA019R02spnwybJHpUcXw02wND01GeCnbtplh3rHCXcg/thumbnail.webp?width=1920&time=0",
+  "local": "public/assets/video-poster.webp",
+  "usedIn": "Video lightbox poster (preloaded, fetchpriority low). 1920x1080",
+  "downloaded": "reference/assets/images/mux-thumbnail.webp",
+  "w": 1920,
+  "h": 1080
+ },
+ {
+  "url": "https://stream.mux.com/ZJ2kA019R02spnwybJHpUcXw02wND01GeCnbtplh3rHCXcg.m3u8",
+  "local": "(stream - not downloaded)",
+  "usedIn": "Video lightbox: <mux-player playback-id=\"ZJ2kA019R02spnwybJHpUcXw02wND01GeCnbtplh3rHCXcg\" accent-color=\"#117025\" min-resolution=\"720p\">. HLS stream; not downloaded (use @mux/mux-player-react or hls.js with this playback id)"
+ },
+ {
+  "url": "https://operate.so/favicon.ico",
+  "local": "public/favicon.ico",
+  "usedIn": "<link rel=\"icon\" href=\"/favicon.ico\"> (16x16 + 32x32 ICO)",
+  "downloaded": "reference/assets/images/favicon.ico"
+ },
+ {
+  "url": "https://operate.so/operate-og.png",
+  "local": "public/operate-og.png",
+  "usedIn": "og:image meta (1200x630)",
+  "downloaded": "reference/assets/images/operate-og.png",
+  "w": 1200,
+  "h": 630
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/00-operate-logo-mark-navbar.svg",
+  "usedIn": "Inline SVG near \"Operate\u02d7\u02cf\u02cb Try it out \u02ce\u02ca-\" class=\"h-2.5 w-5 lg:absolute lg:left-1/2 lg:h-3.25 lg:w-6.25 lg:-translate-x-1/2\" first box(x,y,w,h @1440)=[708, 131, 25, 13] count=1",
+  "downloaded": "reference/svgs/00-operate-logo-mark-navbar.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/01-collaborative-ai-for-frontie.svg",
+  "usedIn": "Inline SVG near \"Collaborative AI for frontier sales orga\" class=\"pointer-events-none absolute overflow-visible top-2 right-[calc(18px+var(--home-rule)/2)] hidden asp\" first box(x,y,w,h @1440)=[449, 316, 252, 252] count=1",
+  "downloaded": "reference/svgs/01-collaborative-ai-for-frontie.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/02-we-connect-to-your-sales-dat.svg",
+  "usedIn": "Inline SVG near \"We connect to your sales data (Granola, \" class=\"pointer-events-none absolute overflow-visible top-0 right-[calc(var(--home-rule)/2)] h-[calc(100%-va\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=1",
+  "downloaded": "reference/svgs/02-we-connect-to-your-sales-dat.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/03-pointer-events-none-absolute.svg",
+  "usedIn": "Inline SVG near \"\" class=\"overflow-visible\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=1",
+  "downloaded": "reference/svgs/03-pointer-events-none-absolute.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/04-we-connect-to-your-sales-dat.svg",
+  "usedIn": "Inline SVG near \"We connect to your sales data (Granola, \" class=\"pointer-events-none absolute overflow-visible top-[calc(var(--home-rule)/2)] right-[calc(var(--home-\" first box(x,y,w,h @1440)=[1214, 309, 112, 260] count=1",
+  "downloaded": "reference/svgs/04-we-connect-to-your-sales-dat.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/05-hero-integration-logo-1.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-full\" first box(x,y,w,h @1440)=[1028, 347, 18, 18] count=1",
+  "downloaded": "reference/svgs/05-hero-integration-logo-1.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/06-hero-integration-logo-2.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-full\" first box(x,y,w,h @1440)=[1042, 347, 18, 18] count=1",
+  "downloaded": "reference/svgs/06-hero-integration-logo-2.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/07-hero-integration-logo-3.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-full\" first box(x,y,w,h @1440)=[1057, 347, 18, 18] count=1",
+  "downloaded": "reference/svgs/07-hero-integration-logo-3.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/08-hero-integration-logo-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-full\" first box(x,y,w,h @1440)=[1072, 347, 18, 18] count=1",
+  "downloaded": "reference/svgs/08-hero-integration-logo-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/09-hero-integration-logo-5.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-full\" first box(x,y,w,h @1440)=[1086, 347, 18, 18] count=1",
+  "downloaded": "reference/svgs/09-hero-integration-logo-5.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/10-hero-integration-logo-6.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-full\" first box(x,y,w,h @1440)=[1101, 347, 18, 18] count=1",
+  "downloaded": "reference/svgs/10-hero-integration-logo-6.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/11-quietwork4hometasks10skillsp.svg",
+  "usedIn": "Inline SVG near \"Quietwork4HomeTasks10SkillsPrivateMonthl\" class=\"pointer-events-none absolute -top-px -left-px overflow-visible md:hidden h-[calc(100%+2px)] w-[calc(\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=1",
+  "downloaded": "reference/svgs/11-quietwork4hometasks10skillsp.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/12-stroke-gray-400.svg",
+  "usedIn": "Inline SVG near \"\" class=\"overflow-visible\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=2",
+  "downloaded": "reference/svgs/12-stroke-gray-400.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/13-stroke-gray-400.svg",
+  "usedIn": "Inline SVG near \"\" class=\"overflow-visible\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=2",
+  "downloaded": "reference/svgs/13-stroke-gray-400.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/14-overflow-visible.svg",
+  "usedIn": "Inline SVG near \"\" class=\"overflow-visible\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=2",
+  "downloaded": "reference/svgs/14-overflow-visible.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/15-stroke-gray-400.svg",
+  "usedIn": "Inline SVG near \"\" class=\"overflow-visible\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=1",
+  "downloaded": "reference/svgs/15-stroke-gray-400.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/16-quietwork.svg",
+  "usedIn": "Inline SVG near \"Quietwork\" class=\"\" first box(x,y,w,h @1440)=[188, 663, 14, 17] count=1",
+  "downloaded": "reference/svgs/16-quietwork.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/17-quietwork.svg",
+  "usedIn": "Inline SVG near \"Quietwork\" class=\"\" first box(x,y,w,h @1440)=[280, 663, 16, 16] count=1",
+  "downloaded": "reference/svgs/17-quietwork.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/18-p-2.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[352, 663, 16, 16] count=1",
+  "downloaded": "reference/svgs/18-p-2.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/19-4.svg",
+  "usedIn": "Inline SVG near \"4\" class=\"\" first box(x,y,w,h @1440)=[388, 663, 16, 16] count=1",
+  "downloaded": "reference/svgs/19-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/20-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[188, 719, 16, 16] count=1",
+  "downloaded": "reference/svgs/20-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/21-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[188, 753, 16, 16] count=1",
+  "downloaded": "reference/svgs/21-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/22-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[188, 787, 16, 16] count=1",
+  "downloaded": "reference/svgs/22-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/23-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[188, 869, 16, 16] count=1",
+  "downloaded": "reference/svgs/23-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/24-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[188, 903, 16, 16] count=1",
+  "downloaded": "reference/svgs/24-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/25-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[188, 985, 16, 16] count=1",
+  "downloaded": "reference/svgs/25-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/26-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[188, 1019, 16, 16] count=1",
+  "downloaded": "reference/svgs/26-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/27-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"rounded-[5px] shadow-[0_1.6px_1.6px_-0.8px_rgba(0,0,0,0.02),0_0.8px_0.8px_-0.4px_rgba(0,0,0,0.04),0_\" first box(x,y,w,h @1440)=[188, 1053, 16, 16] count=1",
+  "downloaded": "reference/svgs/27-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/28-size-4.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[188, 1109, 16, 16] count=1",
+  "downloaded": "reference/svgs/28-size-4.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/29-quota.svg",
+  "usedIn": "Inline SVG near \"Quota\" class=\"\" first box(x,y,w,h @1440)=[459, 663, 16, 16] count=1",
+  "downloaded": "reference/svgs/29-quota.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/30-checked-3-sources.svg",
+  "usedIn": "Inline SVG near \"Checked 3 sources\" class=\"\" first box(x,y,w,h @1440)=[459, 822, 16, 16] count=1",
+  "downloaded": "reference/svgs/30-checked-3-sources.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/31-checked-hubspot5-open-deals.svg",
+  "usedIn": "Inline SVG near \"Checked HubSpot5 open deals, $65k in pla\" class=\"\" first box(x,y,w,h @1440)=[480, 847, 16, 16] count=1",
+  "downloaded": "reference/svgs/31-checked-hubspot5-open-deals.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/32-read-gmailholloway-contract.svg",
+  "usedIn": "Inline SVG near \"Read GmailHolloway contract thread, Fiel\" class=\"\" first box(x,y,w,h @1440)=[480, 872, 16, 16] count=1",
+  "downloaded": "reference/svgs/32-read-gmailholloway-contract.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/33-read-slack-holloway.svg",
+  "usedIn": "Inline SVG near \"Read Slack#holloway\" class=\"\" first box(x,y,w,h @1440)=[480, 897, 16, 16] count=1",
+  "downloaded": "reference/svgs/33-read-slack-holloway.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/34-ahead-of-pace.svg",
+  "usedIn": "Inline SVG near \"Ahead of pace\" class=\"\" first box(x,y,w,h @1440)=[475, 1055, 16, 16] count=1",
+  "downloaded": "reference/svgs/34-ahead-of-pace.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/35-biggest-risk-9-days-quiet.svg",
+  "usedIn": "Inline SVG near \"Biggest risk, 9 days quiet\" class=\"\" first box(x,y,w,h @1440)=[475, 1112, 16, 16] count=1",
+  "downloaded": "reference/svgs/35-biggest-risk-9-days-quiet.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/36-next-decision.svg",
+  "usedIn": "Inline SVG near \"Next decision\" class=\"\" first box(x,y,w,h @1440)=[475, 1169, 16, 16] count=1",
+  "downloaded": "reference/svgs/36-next-decision.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/37-p-2.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[475, 1317, 16, 16] count=1",
+  "downloaded": "reference/svgs/37-p-2.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/38-p-2-rounded-full-bg-linear-1.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[881, 1317, 16, 16] count=1",
+  "downloaded": "reference/svgs/38-p-2-rounded-full-bg-linear-1.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/39-rounded-md-bg-white-shadow-0.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[968, 743, 24, 24] count=1",
+  "downloaded": "reference/svgs/39-rounded-md-bg-white-shadow-0.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/40-objective.svg",
+  "usedIn": "Inline SVG near \"Objective\" class=\"\" first box(x,y,w,h @1440)=[985, 800, 16, 16] count=1",
+  "downloaded": "reference/svgs/40-objective.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/41-size-9-flex-items-center-jus.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0\" first box(x,y,w,h @1440)=[976, 1075, 24, 24] count=1",
+  "downloaded": "reference/svgs/41-size-9-flex-items-center-jus.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/42-size-9-flex-items-center-jus.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0\" first box(x,y,w,h @1440)=[976, 1131, 24, 24] count=1",
+  "downloaded": "reference/svgs/42-size-9-flex-items-center-jus.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/43-size-9-flex-items-center-jus.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0\" first box(x,y,w,h @1440)=[976, 1187, 24, 24] count=1",
+  "downloaded": "reference/svgs/43-size-9-flex-items-center-jus.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/44-size-9-flex-items-center-jus.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0\" first box(x,y,w,h @1440)=[976, 1317, 24, 24] count=1",
+  "downloaded": "reference/svgs/44-size-9-flex-items-center-jus.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/45-size-9-flex-items-center-jus.svg",
+  "usedIn": "Inline SVG near \"\" class=\"size-5 rounded-[7.5px] shadow-[0_2.4px_2.4px_-1.2px_rgba(0,0,0,0.02),0_1.2px_1.2px_-0.6px_rgba(0,0,0\" first box(x,y,w,h @1440)=[976, 1373, 24, 24] count=1",
+  "downloaded": "reference/svgs/45-size-9-flex-items-center-jus.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/46-demo-fake-cursor.svg",
+  "usedIn": "Inline SVG near \"\" class=\"-translate-x-px -translate-y-px drop-shadow-[0_1px_2px_rgba(0,0,0,0.24)]\" first box(x,y,w,h @1440)=[147, 622, 16, 22] count=1",
+  "downloaded": "reference/svgs/46-demo-fake-cursor.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/47-demo-chapter-pause-icon.svg",
+  "usedIn": "Inline SVG near \"\" class=\"\" first box(x,y,w,h @1440)=[658, 1406, 12, 12] count=1",
+  "downloaded": "reference/svgs/47-demo-chapter-pause-icon.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/48-pointer-events-none-absolute.svg",
+  "usedIn": "Inline SVG near \"\" class=\"absolute inset-0 size-full overflow-visible\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=9",
+  "downloaded": "reference/svgs/48-pointer-events-none-absolute.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/49-softwaredoesn-tclose-deals-y.svg",
+  "usedIn": "Inline SVG near \"Softwaredoesn'tclose deals.You do.So it'\" class=\"pointer-events-none absolute overflow-visible -scale-x-100 top-0 left-[calc(var(--home-rule)/2)] hid\" first box(x,y,w,h @1440)=[114, 2350, 112, 670] count=1",
+  "downloaded": "reference/svgs/49-softwaredoesn-tclose-deals-y.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/50-pointer-events-none-absolute.svg",
+  "usedIn": "Inline SVG near \"\" class=\"overflow-visible\" first box(x,y,w,h @1440)=[114, 2909, 112, 112] count=1",
+  "downloaded": "reference/svgs/50-pointer-events-none-absolute.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/51-contents.svg",
+  "usedIn": "Inline SVG near \"\" class=\"pointer-events-none absolute top-0 right-0 hidden h-full overflow-visible md:block -z-10\" first box(x,y,w,h @1440)=[1277, 3098, 125, 317] count=1",
+  "downloaded": "reference/svgs/51-contents.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/52-contents.svg",
+  "usedIn": "Inline SVG near \"\" class=\"pointer-events-none absolute top-0 right-0 hidden h-full overflow-visible md:block z-10\" first box(x,y,w,h @1440)=[1277, 3098, 125, 317] count=1",
+  "downloaded": "reference/svgs/52-contents.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/53-contents.svg",
+  "usedIn": "Inline SVG near \"\" class=\"pointer-events-none absolute bottom-0 left-0 w-full overflow-visible md:hidden -z-10\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=1",
+  "downloaded": "reference/svgs/53-contents.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/54-contents.svg",
+  "usedIn": "Inline SVG near \"\" class=\"pointer-events-none absolute bottom-0 left-0 w-full overflow-visible md:hidden z-10\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=1",
+  "downloaded": "reference/svgs/54-contents.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/55-contents.svg",
+  "usedIn": "Inline SVG near \"\" class=\"pointer-events-none absolute z-10 size-3 md:hidden\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=1",
+  "downloaded": "reference/svgs/55-contents.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/56-operate-logo-mark-footer.svg",
+  "usedIn": "Inline SVG near \"\u00a9 2026 Operate Machine Co. All rights re\" class=\"h-3.25 w-auto md:h-4\" first box(x,y,w,h @1440)=[748, 3351, 32, 16] count=1",
+  "downloaded": "reference/svgs/56-operate-logo-mark-footer.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/57-watch-the-video.svg",
+  "usedIn": "Inline SVG near \"Watch the video\" class=\"pointer-events-none absolute overflow-visible top-[calc(var(--home-rule)/2)] right-[calc(var(--home-\" first box(x,y,w,h @1440)=[0, 0, 0, 0] count=1",
+  "downloaded": "reference/svgs/57-watch-the-video.svg"
+ },
+ {
+  "url": "inline-svg",
+  "local": "src (inline JSX) \u2014 markup in reference/svgs/58-hidden-min-90rem-block-absol.svg",
+  "usedIn": "Inline SVG near \"\" class=\"pointer-events-none absolute overflow-visible top-[calc(var(--home-rule)/2)] right-[calc(var(--home-\" first box(x,y,w,h @1440)=[481, 3147, 221, 221] count=1",
+  "downloaded": "reference/svgs/58-hidden-min-90rem-block-absol.svg"
+ }
+]

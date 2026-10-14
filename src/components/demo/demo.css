@@ -1,0 +1,157 @@
+/* Product demo (HomeUi) — demo-local styles (multi-layer shadows, gradients, masks that are
+   unwieldy as Tailwind v3 arbitrary values). Values from CLONE_SPEC.md §5 / original HomeUi source.
+   Literal hex here mirrors the tailwind.config tokens noted inline (theme() does not resolve in this
+   separately imported file under the dev server). */
+
+/* Floating panel card */
+.demo-panel-card {
+  box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.14), 0 1px 1px -0.5px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.16);
+}
+@media (min-width: 48rem) {
+  .demo-panel-card {
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.14), 0 1px 1px -0.5px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.16),
+      0 12px 24px -6px rgba(0, 0, 0, 0.08), 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  }
+}
+.demo-fade-white {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff);
+}
+
+/* White inner cards (progress card, todo list) */
+.demo-inner-card {
+  box-shadow: 0 1px 2px 0 #fff inset, 0 4px 4px -2px rgba(0, 0, 0, 0.02), 0 2px 2px -1px rgba(0, 0, 0, 0.04),
+    0 1px 1px -0.5px rgba(0, 0, 0, 0.04), 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+}
+
+/* 24px logo tiles in panel rows */
+.demo-logo-tile {
+  box-shadow: 0 2.4px 2.4px -1.2px rgba(0, 0, 0, 0.02), 0 1.2px 1.2px -0.6px rgba(0, 0, 0, 0.04),
+    0 0.6px 0.6px -0.3px rgba(0, 0, 0, 0.06), 0 0 0 0.3px rgba(0, 0, 0, 0.1) inset;
+}
+.demo-logo-tile-flat {
+  box-shadow: 0 2.4px 2.4px -1.2px rgba(0, 0, 0, 0.02), 0 1.2px 1.2px -0.6px rgba(0, 0, 0, 0.04),
+    0 0.6px 0.6px -0.3px rgba(0, 0, 0, 0.06);
+}
+.demo-logo-tile-person {
+  /* original carries both 2px and 2.4px shadow utilities; the 2px one wins in its stylesheet order */
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.02), 0 1px 1px -0.5px rgba(0, 0, 0, 0.04), 0 0.5px 0.5px -0.25px rgba(0, 0, 0, 0.06);
+}
+.demo-logo-tile-sm {
+  box-shadow: 0 1.6px 1.6px -0.8px rgba(0, 0, 0, 0.02), 0 0.8px 0.8px -0.4px rgba(0, 0, 0, 0.04),
+    0 0.4px 0.4px -0.2px rgba(0, 0, 0, 0.06);
+}
+
+/* Progress bar pieces */
+.demo-bar-track {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 1px -0.5px rgba(0, 0, 0, 0.08) inset, 0 0 0 0.5px rgba(0, 0, 0, 0.06) inset, 0 0 0 1px #fff;
+}
+.demo-bar-fill {
+  box-shadow: 0 -1px 1px -0.5px rgba(0, 0, 0, 0.12) inset, 0 0 0 0.5px rgba(0, 0, 0, 0.12) inset, 0 0 0 1px #fff;
+}
+.demo-bar-marker {
+  box-shadow: 0 0 1px 0 #fff inset, 0 0 0 0.5px rgba(0, 0, 0, 0.25);
+}
+
+/* Green gradient controls (send, badge, Slack "Send") */
+.demo-green {
+  background-image: linear-gradient(180deg, #269600 /* demo-accent-from */, #008125 /* demo-accent */);
+  box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.12) inset, 0 -1px 1px 0 rgba(0, 0, 0, 0.08) inset,
+    0 0 0 0.5px rgba(0, 0, 0, 0.16) inset, 0 2px 2px -1px rgba(0, 0, 0, 0.06), 0 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+    0 4px 8px -4px rgba(0, 129, 37, 0.32);
+}
+.demo-green-badge {
+  background-image: linear-gradient(180deg, #269600 /* demo-accent-from */, #008125 /* demo-accent */);
+  box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.12) inset, 0 -1px 1px 0 rgba(0, 0, 0, 0.08) inset,
+    0 0 0 0.5px rgba(0, 0, 0, 0.16) inset, 0 2px 2px -1px rgba(0, 0, 0, 0.06), 0 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+    0 4px 8px -4px rgba(0, 129, 37, 0.32), 0 0 0 1px #f7f7f7 /* gray-100 */;
+}
+
+/* Composer */
+.demo-composer {
+  box-shadow: 0 1px 2px 0 #fff inset, 0 2px 2px -1px rgba(0, 0, 0, 0.08), 0 1px 1px -0.5px rgba(0, 0, 0, 0.06),
+    0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 0 2px 0 rgba(0, 0, 0, 0.08), 0 8px 16px -8px rgba(0, 0, 0, 0.12),
+    0 8px 32px -8px rgba(0, 0, 0, 0.08);
+}
+
+/* Chips */
+.demo-chip {
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08) inset;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+/* User bubble */
+.demo-bubble {
+  background: linear-gradient(rgba(0, 129, 37, 0.05), rgba(0, 129, 37, 0.05)), #f7f7f7 /* gray-100 */;
+}
+
+/* Sticky chat header fade */
+.demo-header-fade {
+  background-image: linear-gradient(180deg, #f7f7f7 /* gray-100 */, rgba(247, 247, 247, 0));
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, transparent 100%);
+  -webkit-backdrop-filter: blur(1.5px);
+  backdrop-filter: blur(1.5px);
+}
+
+/* Wavy entity underline (DEAL-132 · Holloway, Kierra) */
+.demo-wavy {
+  color: #5f6d6b /* gray-700 */;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: -1px;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
+}
+
+/* Deal-panel owner avatar */
+.demo-owner-avatar {
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.08), 0 1px 1px -0.5px rgba(0, 0, 0, 0.06), 0 0 0 0.5px rgba(0, 0, 0, 0.08),
+    0 0 2px 0 rgba(0, 0, 0, 0.08), 0 8px 16px -8px rgba(0, 0, 0, 0.12), 0 0 0 1.5px #fcfcfc /* gray-75 */;
+}
+
+/* Quota panel header icon tile */
+.demo-quota-icon {
+  box-shadow: 0 -1px 0 -0.5px rgba(0, 0, 0, 0.08) inset, 0 0 0 0.5px rgba(0, 0, 0, 0.16) inset,
+    0 2px 2px -1px rgba(0, 0, 0, 0.04);
+}
+
+/* Person memory bullets */
+.demo-bullets > li {
+  position: relative;
+  padding-left: 24px;
+}
+.demo-bullets > li::before {
+  content: '';
+  position: absolute;
+  top: 7.5px;
+  left: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: #71807e /* gray-600 */;
+}
+@media (min-width: 48rem) {
+  .demo-bullets > li::before {
+    top: 8px;
+  }
+}
+
+/* Mobile composer: wrapped draft spans full width (set via data-wrapped by ResizeObserver) */
+.demo-touch-composer[data-wrapped] .demo-touch-plus,
+.demo-touch-composer[data-wrapped] .demo-touch-actions {
+  grid-row-start: 2;
+}
+.demo-touch-composer[data-wrapped] .demo-touch-input {
+  grid-column: 1 / span 3;
+  padding: 4px 8px 0;
+}
+
+/* Chapter-control tooltip */
+.demo-tip {
+  transition: left 250ms cubic-bezier(0.33, 1, 0.68, 1), opacity 150ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+.demo-tip[data-instant] {
+  transition: opacity 150ms cubic-bezier(0.33, 1, 0.68, 1);
+}

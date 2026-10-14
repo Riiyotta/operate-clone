@@ -1,0 +1,391 @@
+{
+  "head": [
+    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+    "<link rel=\"preload\" href=\"/_next/static/immutable/media/205TF_Muoto_Variable-s.p.350syuw1smhk5.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\">",
+    "<link rel=\"preload\" href=\"/_next/static/immutable/media/Denim_Regular-s.p.3p2rpf-e0w2_y.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\">",
+    "<link rel=\"preload\" href=\"/_next/static/immutable/media/Denim_RegularItalic-s.p.2-okkbg3i7rqs.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\">",
+    "<link rel=\"preload\" href=\"/_next/static/immutable/media/Denim_SemiBold-s.p.0haakjq11jk4x.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\">",
+    "<link rel=\"preload\" href=\"/_next/static/immutable/media/GT_Cinetype_Regular-s.p.3542o7l2yeifo.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\">",
+    "<link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/1zg31zkh_qyci.css\" data-precedence=\"next\">",
+    "<link rel=\"stylesheet\" href=\"/_next/static/immutable/chunks/43u9x5jpbccvi.css\" data-precedence=\"next\">",
+    "<link rel=\"preload\" as=\"script\" fetchpriority=\"low\" href=\"/_next/static/immutable/chunks/2cgxxqercuh--.js\">",
+    "<link rel=\"preload\" href=\"https://image.mux.com/ZJ2kA019R02spnwybJHpUcXw02wND01GeCnbtplh3rHCXcg/thumbnail.webp?width=1920&amp;time=0\" as=\"image\" fetchpriority=\"low\">",
+    "<meta name=\"theme-color\" content=\"#85C093\">",
+    "<meta property=\"og:title\" content=\"Operate – Collaborative AI for frontier sales organizations\">",
+    "<meta property=\"og:description\" content=\"Operate connects your sales data to surface where every deal stands and what's next. Your team and agents act together, and you run like a team twice your size.\">",
+    "<meta property=\"og:url\" content=\"https://operate.so\">",
+    "<meta property=\"og:image\" content=\"https://operate.so/operate-og.png\">",
+    "<meta property=\"og:image:width\" content=\"1200\">",
+    "<meta property=\"og:image:height\" content=\"630\">",
+    "<meta property=\"og:image:alt\" content=\"The Operate wordmark and logo on a sheet of paper hung from green binder rails, over a stack of loose papers.\">",
+    "<meta property=\"og:type\" content=\"website\">",
+    "<link rel=\"icon\" href=\"/favicon.ico\">"
+  ],
+  "imgs": [
+    {
+      "tag": "PICTURE",
+      "src": null,
+      "cls": "",
+      "nat": [
+        null,
+        null
+      ],
+      "box": [
+        748,
+        2838,
+        0,
+        0
+      ],
+      "parent": "relative w-fit md:col-start-2 xl:col-start-3"
+    },
+    {
+      "tag": "SOURCE",
+      "src": null,
+      "cls": "",
+      "w": 428,
+      "h": 228,
+      "nat": [
+        null,
+        null
+      ],
+      "box": [
+        748,
+        2838,
+        0,
+        0
+      ],
+      "parent": ""
+    },
+    {
+      "tag": "IMG",
+      "src": "https://operate.so/home/logo-trace-loop.svg?dpl=dpl_Gj1Y1kP7P68f7ouptCR91crcmw41",
+      "cls": "max-w-none absolute max-md:[--home-you-logo-width:clamp(7.5rem,38cqw,8.125rem)] h-auto w-[calc(var(--home-you-logo-width)*428/420)] left-[calc(50%+50cqw-10.125px-213.4*var(--home-you-logo-width)/420)] bottom-[calc(-7.27*var(--home-you-logo-width)/420)] md:top-full md:bottom-auto md:left-[calc(-4*16rem/420)] md:w-[calc(16rem*428/420)] md:bg-[#94BA9D] home-you-wide:top-auto home-you-wide:w-[calc(var(--home-you-logo-width)*428/420)] home-you-wide:left-[calc(25cqw-28px-var(--home-rule)/6-156.1*var(--home-you-logo-width)/420)] home-you-wide:bottom-[calc(-9px-7.27*var(--home-you-logo-width)/420)] home-you-wide:bg-transparent",
+      "w": 234,
+      "h": 125,
+      "nat": [
+        0,
+        0
+      ],
+      "alt": "",
+      "box": [
+        938,
+        2726,
+        234,
+        125
+      ],
+      "parent": ""
+    },
+    {
+      "tag": "PICTURE",
+      "src": null,
+      "cls": "",
+      "nat": [
+        null,
+        null
+      ],
+      "box": [
+        166,
+        3202,
+        224,
+        135
+      ],
+      "parent": "relative block"
+    },
+    {
+      "tag": "SOURCE",
+      "src": null,
+      "cls": "",
+      "w": 0,
+      "h": 0,
+      "nat": [
+        null,
+        null
+      ],
+      "box": [
+        166,
+        3202,
+        0,
+        0
+      ],
+      "parent": ""
+    },
+    {
+      "tag": "IMG",
+      "src": "https://operate.so/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fhome-footer-video-still.2ry83ugok-_d0.jpg&w=3840&q=75",
+      "cls": "rounded-[3px]",
+      "w": 224,
+      "h": 135,
+      "nat": [
+        0,
+        0
+      ],
+      "alt": "",
+      "box": [
+        166,
+        3202,
+        224,
+        135
+      ],
+      "parent": ""
+    },
+    {
+      "tag": "VIDEO",
+      "src": "https://operate.so/home/footer-video-loop.mp4",
+      "cls": "absolute inset-0 size-full rounded-[3px] object-cover motion-reduce:hidden max-md:hidden",
+      "w": 0,
+      "h": 0,
+      "nat": [
+        null,
+        null
+      ],
+      "poster": "",
+      "box": [
+        166,
+        3202,
+        224,
+        135
+      ],
+      "parent": "relative block"
+    }
+  ],
+  "bgs": [
+    {
+      "tag": "DIV",
+      "cls": "size-full bg-repeat opacity-20 mix-blend-overlay",
+      "bg": "image-set(url(\"https://operate.so/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fhome-background-texture.1xaxybze7_k5w.png&w=1920&q=75\") 1dppx, url(\"https://operate.so/_next/image?url=%2F_next%2Fstatic%2Fimmutable%2Fmedia%2Fhome-background-texture.1xaxybze7_k5w.png&w=3840&q=75\") 2dppx)",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative [--size:var(--mobileSize)] md:[--size:var(--desktopSize)] [--gap:var(--mobileGap)] md:[--ga",
+      "bg": "url(\"data:image/svg+xml;utf8,<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"23.5\\\" height=\\\"4.5\\\"><rect width=\\\"1.5\\\" height=\\\"1.5\\\" fill=\\\"rgb(133, 192, 147)\\\"/></svg>\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute -z-10 inset-0 bg-[#DCDCDC] lg:[mask-image:var(--hole-mask-image)] lg:[m",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%228.5%22%20fill%3D%22none%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%228.5%22%20fill%3D%22none%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20x",
+      "mask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%228%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%228%22%2F%3E%3C%2Fsvg%3E\")"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute hidden lg:block lg:[background-image:var(--hole-tab-image)] lg:[backgro",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute hidden lg:block lg:[background-image:var(--hole-tab-image)] lg:[backgro",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "absolute inset-x-[31px] top-1/2 -translate-y-1/2 flex h-4.75 items-center justify-between bg-[#FAFAF",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='1.25' fill='%23117025'/%3E%3C/svg%3E\"), url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect y='6.75' width='8' height='1.25' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute -z-10 inset-0 bg-waitlist-paper lg:[mask-image:var(--hole-mask-image)] ",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2250.998%22%20viewBox%3D%220%200%2018%2050.998%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2217%22%20height%3D%2220.333%22%20rx%3D%228.5%22%20fill%3D%22none%22%20stroke%3D%22%2329211E%22%2F%3E%3Crect%20x%3D%220.5%22%20y%3D%2230.165%22%20width%3D%2217%22%20height%3D%2220.333%22%20rx%3D%228.5%22%20fill%3D%22none%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20heigh",
+      "mask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2250.998%22%20viewBox%3D%220%200%2018%2050.998%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%2216%22%20height%3D%2219.333%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%2230.665%22%20width%3D%2216%22%20height%3D%2219.333%22%20rx%3D%228%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2250.998%22%20viewBox%3D%220%200%2018%2050.998"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute hidden lg:block lg:[background-image:var(--hole-tab-image)] lg:[backgro",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute hidden lg:block lg:[background-image:var(--hole-tab-image)] lg:[backgro",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative px-4.5 py-2.75 home-rule-x md:px-7 md:pt-1 md:pb-7.5 md:home-rule-l lg:pt-5 lg:pb-18.25",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative px-4.5 pt-1.5 flex flex-col items-start gap-y-5.5 home-rule-l md:home-rule-x md:px-8.5 md:p",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "SECTION",
+      "cls": "mt-12.75 lg:mt-13.25 relative font-muoto max-lg:pb-7 lg:home-rule-l lg:pr-11.5 lg:pl-8.5",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "absolute top-0.5 right-0.5 size-3.5 flex items-center justify-center rounded-full bg-linear-180 from",
+      "bg": "linear-gradient(in oklab, rgb(38, 150, 0) 0%, rgb(0, 129, 37) 100%)",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "absolute top-full left-0 h-6 w-full bg-linear-180 from-[#F7F7F7] to-[#F7F7F7]/0 mask-b-from-0 backdr",
+      "bg": "linear-gradient(rgb(247, 247, 247) 0%, lab(0 0 0 / 0) 100%)",
+      "mask": "linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(0, 0, 0) 0px, rgba(0, 0, 0, 0) 100%), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255))"
+    },
+    {
+      "tag": "DIV",
+      "cls": "max-w-[min(24rem,80%)] px-3 py-[7.5px] rounded-[10px] border-[0.5px] border-[#008125]/2 [background:",
+      "bg": "linear-gradient(rgba(0, 129, 37, 0.05) 0%, rgba(0, 129, 37, 0.05) 100%), none",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "p-2 rounded-full bg-linear-180 from-[#269600] to-[#008125] shadow-[0_1px_2px_0_rgba(255,255,255,0.12",
+      "bg": "linear-gradient(in oklab, rgb(38, 150, 0) 0%, rgb(0, 129, 37) 100%)",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "h-3 w-full rounded-full [background:linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,25",
+      "bg": "linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), none",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative size-full rounded-full [background:linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(25",
+      "bg": "linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), none",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "size-full rounded-full [background:linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255",
+      "bg": "linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), none",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "size-full rounded-full [background:linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255",
+      "bg": "linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), none",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "size-2 shrink-0 rounded-[3px] shadow-[0_-1px_1px_-0.5px_rgba(0,0,0,0.12)_inset,0_0_0_0.5px_rgba(0,0,",
+      "bg": "linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), none",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "size-2 shrink-0 rounded-[3px] shadow-[0_-1px_1px_-0.5px_rgba(0,0,0,0.12)_inset,0_0_0_0.5px_rgba(0,0,",
+      "bg": "linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), none",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "size-2 shrink-0 rounded-[3px] shadow-[0_-1px_1px_-0.5px_rgba(0,0,0,0.12)_inset,0_0_0_0.5px_rgba(0,0,",
+      "bg": "linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%), none",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "absolute bottom-0 left-0 h-4 w-full from-white-0 bg-linear-180 to-white",
+      "bg": "linear-gradient(rgba(0, 0, 0, 0) 0%, lab(100 0 0) 100%)",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative home-rule-x md:grid md:grid-cols-[280px_1fr] xl:grid-cols-[280px_1fr_280px] 2xl:grid-cols-[",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\"), url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect x='6.75' width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "px-4.5 pt-2.75 md:px-7 md:pt-5 md:home-rule-r",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect x='6.75' width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative hidden xl:block xl:px-7 xl:py-6 xl:home-rule-l",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "hidden size-full bg-repeat xl:block",
+      "bg": "url(\"data:image/svg+xml,<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"3.5\\\" height=\\\"24\\\"><rect width=\\\"1\\\" height=\\\"1\\\" fill=\\\"%23117025\\\"/></svg>\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "absolute top-6.25 -right-4.25 bottom-6.25 -left-4.25 bg-[#94BA9D] lg:[mask-image:var(--home-you-hole",
+      "bg": "none",
+      "mask": "radial-gradient(circle at calc(50% - 24px) 61px, rgba(0, 0, 0, 0) 7.5px, rgb(0, 0, 0) 8px), radial-gradient(circle at calc(50% + 24px) 61px, rgba(0, 0, 0, 0) 7.5px, rgb(0, 0, 0) 8px), radial-gradient(circle at calc(50% - 24px) calc(100% - 61px), rgba(0, 0, 0, 0) 7.5px, rgb(0, 0, 0) 8px), radial-gradient(circle at calc(50% + 24px) calc(100% - 61px), rgba(0, 0, 0, 0) 7.5px, rgb(0, 0, 0) 8px)"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute -z-10 inset-px md:[clip-path:var(--hole-fold-clip)] max-md:[clip-path:v",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%228.5%22%20fill%3D%22none%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%228.5%22%20fill%3D%22none%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\")",
+      "mask": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%228%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%3E%3Ccircle%20cx%3D%229%22%20cy%3D%229%22%20r%3D%228%22%2F%3E%3C%2Fsvg%3E\")"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute hidden md:block md:[background-image:var(--hole-tab-image)] md:[backgro",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "pointer-events-none absolute hidden md:block md:[background-image:var(--hole-tab-image)] md:[backgro",
+      "bg": "url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22%2F%3E%3C%2Fsvg%3E\"), url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2247%22%20height%3D%2212%22%20viewBox%3D%220%200%2047%2012%22%3E%3Crect%20x%3D%220.5%22%20y%3D%220.5%22%20width%3D%2246%22%20height%3D%2211%22%20fill%3D%22%23FAFAFA%22%20stroke%3D%22%2329211E%22",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative px-4.25 pt-1.25 home-rule-x flex flex-col justify-between md:px-7 md:pt-2.5 md:home-rule-r ",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect x='6.75' width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative px-4.25 pt-2.5 pb-11 home-rule-l md:px-7 md:pt-2 md:pb-2.5",
+      "bg": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+      "mask": "none"
+    }
+  ],
+  "vars": {
+    "--safe-area-inset-top": "env(safe-area-inset-top,0px)",
+    "--safe-area-inset-right": "env(safe-area-inset-right,0px)",
+    "--safe-area-inset-bottom": "env(safe-area-inset-bottom,0px)",
+    "--safe-area-inset-left": "env(safe-area-inset-left,0px)",
+    "--home-intro-distance": "12vh",
+    "--home-you-logo-width": "230px",
+    "--home-rule": ".8px",
+    "--home-rule-l": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='0.8' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+    "--home-rule-r": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect x='7.2' width='0.8' height='8' fill='%23117025'/%3E%3C/svg%3E\")",
+    "--home-rule-t": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='0.8' fill='%23117025'/%3E%3C/svg%3E\")",
+    "--home-rule-b": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect y='7.2' width='8' height='0.8' fill='%23117025'/%3E%3C/svg%3E\")",
+    "--lightbox-vt-duration": ".3s",
+    "--lightbox-vt-root-easing": "var(--ease-out-quint)",
+    "--lightbox-vt-easing": "var(--ease-out-quint)",
+    "--lightbox-vt-crossfade-close-easing": "var(--ease-out-quint)"
+  },
+  "canvases": [
+    {
+      "w": 1435,
+      "h": 450,
+      "style": "width: 1435px; height: 450px; top: 0px;",
+      "parent": "--mobileSize:0.8px;--mobileGap:19.2px;--desktopSize:1.5px;--desktopGap:22px;--mobilePattern:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"2.8\"><rect width=\"0.8\" height=\"0.8\" fill=\"rgb(133, 192, 147)\"/></svg>');--desktopPattern:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23.5\" height=\"4.5\"><rect width=\"1.5\" height=\"1.5\" fill=\"rgb(133, 192, 147)\"/></svg>')"
+    },
+    {
+      "w": 1435,
+      "h": 450,
+      "style": "width: 1435px; height: 450px; top: 0px;",
+      "parent": "--mobileSize:0.8px;--mobileGap:19.2px;--desktopSize:1.5px;--desktopGap:22px;--mobilePattern:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"2.8\"><rect width=\"0.8\" height=\"0.8\" fill=\"rgb(133, 192, 147)\"/></svg>');--desktopPattern:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"23.5\" height=\"4.5\"><rect width=\"1.5\" height=\"1.5\" fill=\"rgb(133, 192, 147)\"/></svg>')"
+    }
+  ],
+  "svgsCount": 70,
+  "bodyCls": "bg-waitlist-gray font-denim text-[1rem] [--selection-background:var(--color-brand)] [--selection-color:var(--color-waitlist-gray)] selection:bg-(--selection-background) selection:text-(--selection-color)",
+  "htmlCls": "denim_e31886c2-module__zUhEna__variable cinetype_9683f73b-module__eRGbfW__variable muoto_d72fbcc7-module__p7M43W__variable geistmono_82f62b1c-module__Z5ZHCq__variable"
+}

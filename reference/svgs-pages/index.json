@@ -1,0 +1,6 @@
+[
+ {"file":"signup-back-arrow.svg","use":"sign-up form 'Back' button glyph, 14x12 at 16px font (h-3 w-3.5 in 0.25em spacing = 0.75em x 0.875em), stroke currentColor #E0E0E0"},
+ {"file":"signup-checkbox-checked.svg","use":"Question 6 checkbox indicator (inside absolute -inset-px over the 12px box), fill currentColor #E0E0E0, checkmark knocked out via mask"},
+ {"file":"signup-logo-mark-gray.svg","use":"sign-up form header logo mark; same path as reference/svgs/00-operate-logo-mark-navbar.svg but path fill overridden to #E0E0E0 ([&_path]:fill-waitlist-gray); 0.8013em x 1.6026em (12.8x25.6 at 16px)"},
+ {"file":"signup-sending-overlay-snapshot.html","use":"Snapshot of the 'Submitting' overlay (HomeFunAnimation Boom state, 344x205 viewBox, line #E0E0E0 fill #117025). Animated by JS (motion) - port reference/code/home-fun-animation.pretty.js, do not use statically."}
+]

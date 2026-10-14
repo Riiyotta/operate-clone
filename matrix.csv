@@ -1,0 +1,19 @@
+section,category,templates,routes,Homepage,Sign-up (standalone),Legal document,404
+backdrop.animated-background,BACKDROP,2,2,x,x,,
+form.sign-up-form,FORM,2,2,x,x,,
+overlay.leave-confirm,OVERLAY,2,2,x,x,,
+legal.back-link,LEGAL,1,2,,,x,
+legal.document-header,LEGAL,1,2,,,x,
+legal.document-body,LEGAL,1,2,,,x,
+shell.binder-rails,SHELL,1,1,x,,,
+shell.nav-sheet,SHELL,1,1,x,,,
+shell.main-sheet,SHELL,1,1,x,,,
+hero.headline-integrations,HERO,1,1,x,,,
+product.demo,PRODUCT,1,1,x,,,
+product.ops-steps,PRODUCT,1,1,x,,,
+story.manifesto,STORY,1,1,x,,,
+shell.footer-sheet,SHELL,1,1,x,,,
+overlay.video-lightbox,OVERLAY,1,1,x,,,
+overlay.sign-up-modal,OVERLAY,1,1,x,,,
+system.not-found,SYSTEM,1,1,,,,x
+ROUTE COUNT,,,5,1,1,2,1

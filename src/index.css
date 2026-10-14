@@ -1,0 +1,238 @@
+/* Fonts — mirrored from the original's next/font output (same families, weights, fallback metrics) */
+@font-face{font-family:denim;src:url(/assets/fonts/denim-regular.woff2) format("woff2");font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:denim;src:url(/assets/fonts/denim-italic.woff2) format("woff2");font-display:swap;font-weight:400;font-style:italic}
+@font-face{font-family:denim;src:url(/assets/fonts/denim-semibold.woff2) format("woff2");font-display:swap;font-weight:500 700;font-style:normal}
+@font-face{font-family:"denim Fallback";src:local(Arial);ascent-override:97.38%;descent-override:21.75%;line-gap-override:0%;size-adjust:97.46%}
+@font-face{font-family:cinetype;src:url(/assets/fonts/gt-cinetype-regular.woff2) format("woff2");font-display:swap;font-weight:400;font-style:normal}
+@font-face{font-family:"cinetype Fallback";src:local(Arial);ascent-override:89.97%;descent-override:20.87%;line-gap-override:0%;size-adjust:107.82%}
+@font-face{font-family:muoto;src:url(/assets/fonts/muoto-variable.woff2) format("woff2");font-display:swap;font-weight:100 900;font-style:normal}
+@font-face{font-family:"muoto Fallback";src:local(Arial);ascent-override:91.19%;descent-override:22.8%;line-gap-override:0%;size-adjust:105.28%}
+@font-face{font-family:geistMono;src:url(/assets/fonts/geist-mono-variable.woff2) format("woff2");font-display:swap;font-weight:100 900;font-style:normal}
+@font-face{font-family:"geistMono Fallback";src:local(Arial);ascent-override:76.43%;descent-override:22.43%;line-gap-override:0%;size-adjust:131.49%}
+
+:root{
+  --font-denim:"denim","denim Fallback";
+  --font-cinetype:"cinetype","cinetype Fallback";
+  --font-muoto:"muoto","muoto Fallback";
+  --font-geist-mono:"geistMono","geistMono Fallback";
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────── Global tokens (CLONE_SPEC §0) ───────── */
+:root{
+  --home-intro-distance:12vh;
+  --home-you-logo-width:230px;
+  --home-rule:.8px;
+  --home-rule-l:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='0.8' height='8' fill='%23117025'/%3E%3C/svg%3E");
+  --home-rule-r:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect x='7.2' width='0.8' height='8' fill='%23117025'/%3E%3C/svg%3E");
+  --home-rule-t:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='0.8' fill='%23117025'/%3E%3C/svg%3E");
+  --home-rule-b:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect y='7.2' width='8' height='0.8' fill='%23117025'/%3E%3C/svg%3E");
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --ease-in-out-quart:cubic-bezier(.77,0,.175,1);
+  --lightbox-duration:300ms;
+}
+@media (min-width:48rem){
+  :root{
+    --home-rule:1.25px;
+    --home-rule-l:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E");
+    --home-rule-r:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect x='6.75' width='1.25' height='8' fill='%23117025'/%3E%3C/svg%3E");
+    --home-rule-t:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='1.25' fill='%23117025'/%3E%3C/svg%3E");
+    --home-rule-b:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect y='6.75' width='8' height='1.25' fill='%23117025'/%3E%3C/svg%3E");
+  }
+}
+
+@layer base{
+  /* Tailwind v4 preflight parity: buttons use the default cursor */
+  button,[role="button"]{cursor:default}
+  /* [body:has(&)]:bg-waitlist-deep-green marker */
+  html:has([data-home-deep-green]),body:has([data-home-deep-green]){background-color:#005C00}
+  /* body sets --selection-background: brand, --selection-color: waitlist-gray; sign-up form/rows override the vars */
+  ::selection{background-color:var(--selection-background,#006F19);color:var(--selection-color,#E0E0E0)}
+  /* original root html background lab(98.96 0 0); only visible in overscroll on the legal pages (CLONE_SPEC_PAGES global) */
+  html{background-color:#FCFCFC}
+  /* Original :where(html)/:where(body) base (app CSS): smoothing, rendering, inherited ink + leading.
+     body.text-[1rem] overrides the 14px --text-base, but line-height stays calc(20/14) → 22.857px. */
+  /* original app CSS: html{scroll-behavior:smooth} (unconditional) */
+  html{scroll-behavior:smooth}
+  html{font-family:var(--font-muoto);text-rendering:geometricprecision;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  :where(html,body){overscroll-behavior:none;width:100%;height:100%}
+  @supports (-webkit-touch-callout:none){:where(body){min-height:-webkit-fill-available}}
+  body{position:relative;min-height:100vh;color:#09352E;line-height:calc(20 / 14);text-rendering:geometricprecision;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+}
+
+@layer utilities{
+  .home-rule-l{background-image:var(--home-rule-l);background-position:0 0;background-repeat:repeat-y;background-size:8px 8px}
+  .home-rule-r{background-image:var(--home-rule-r);background-position:100% 0;background-repeat:repeat-y;background-size:8px 8px}
+  .home-rule-x{background-image:var(--home-rule-l),var(--home-rule-r);background-position:0 0,100% 0;background-repeat:repeat-y;background-size:8px 8px}
+  .home-rule-y{background-image:var(--home-rule-t),var(--home-rule-b);background-position:0 0,0 100%;background-repeat:repeat-x;background-size:8px 8px}
+  .home-strip-y{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='8' height='0.8' fill='%2329211E'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect y='7.2' width='8' height='0.8' fill='%2329211E'/%3E%3C/svg%3E");
+    background-position:0 0,0 100%;background-repeat:repeat-x;background-size:8px 8px}
+  .home-outline{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect x='0.2' width='0.8' height='8' fill='%2329211E'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect x='7' width='0.8' height='8' fill='%2329211E'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect y='0.2' width='8' height='0.8' fill='%2329211E'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect y='7' width='8' height='0.8' fill='%2329211E'/%3E%3C/svg%3E");
+    background-position:0 0,100% 0,0 0,0 100%;background-repeat:repeat-y,repeat-y,repeat-x,repeat-x;background-size:8px 8px;background-origin:border-box;border-color:#0000}
+  .mask-edge-fade{
+    --edge-fade:1.5rem;
+    --edge-fade-ramp:#0000 0%,#00000007 11.85%,#0000001b 22.5%,#00000037 32.2%,#0000005a 41.25%,#00000080 50%,#000000a5 58.75%,#000000c8 67.8%,#000000e4 77.5%,#000000f8 88.15%,#000 100%;
+    -webkit-mask-image:linear-gradient(to bottom,var(--edge-fade-ramp)),linear-gradient(to top,var(--edge-fade-ramp)),linear-gradient(black,black);
+    mask-image:linear-gradient(to bottom,var(--edge-fade-ramp)),linear-gradient(to top,var(--edge-fade-ramp)),linear-gradient(black,black);
+    -webkit-mask-size:100% var(--edge-fade),100% var(--edge-fade),100% calc(100% - 2 * var(--edge-fade));
+    mask-size:100% var(--edge-fade),100% var(--edge-fade),100% calc(100% - 2 * var(--edge-fade));
+    -webkit-mask-position:top,bottom,50%;mask-position:top,bottom,50%;
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+}
+
+/* iOS only (supports-[-webkit-touch-callout:none]:mask-edge-fade) */
+@supports (-webkit-touch-callout:none){
+  .ios-edge-fade{
+    --edge-fade:1.5rem;
+    --edge-fade-ramp:#0000 0%,#00000007 11.85%,#0000001b 22.5%,#00000037 32.2%,#0000005a 41.25%,#00000080 50%,#000000a5 58.75%,#000000c8 67.8%,#000000e4 77.5%,#000000f8 88.15%,#000 100%;
+    -webkit-mask-image:linear-gradient(to bottom,var(--edge-fade-ramp)),linear-gradient(to top,var(--edge-fade-ramp)),linear-gradient(black,black);
+    mask-image:linear-gradient(to bottom,var(--edge-fade-ramp)),linear-gradient(to top,var(--edge-fade-ramp)),linear-gradient(black,black);
+    -webkit-mask-size:100% var(--edge-fade),100% var(--edge-fade),100% calc(100% - 2 * var(--edge-fade));
+    mask-size:100% var(--edge-fade),100% var(--edge-fade),100% calc(100% - 2 * var(--edge-fade));
+    -webkit-mask-position:top,bottom,50%;mask-position:top,bottom,50%;
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+}
+
+/* ───────── Hole-punched paper sheets (CLONE_SPEC §1, HomePanelHoles) ─────────
+   Variables (--hole-*) are written inline by <PanelHoles>. The `lg` set is used by
+   nav + main sheet, the `md` set by the footer (holes switch at md there). */
+.holes-layer{
+  -webkit-mask-image:var(--hole-sm-mask-image);mask-image:var(--hole-sm-mask-image);
+  -webkit-mask-size:var(--hole-sm-mask-size);mask-size:var(--hole-sm-mask-size);
+  -webkit-mask-position:var(--hole-sm-mask-position);mask-position:var(--hole-sm-mask-position);
+  -webkit-mask-repeat:var(--hole-sm-mask-repeat);mask-repeat:var(--hole-sm-mask-repeat);
+  mask-composite:var(--hole-sm-mask-composite);
+  background-image:var(--hole-sm-ring-image);
+  background-size:var(--hole-sm-ring-size);
+  background-position:var(--hole-sm-ring-position);
+  background-repeat:var(--hole-sm-ring-repeat);
+}
+.holes-tabs-mobile{
+  background-image:var(--hole-sm-tab-image);background-size:var(--hole-sm-tab-size);
+  background-position:var(--hole-sm-tab-position);background-repeat:var(--hole-sm-tab-repeat);
+}
+.holes-tabs-desktop{display:none}
+.holes-fold-clip{clip-path:var(--hole-sm-fold-clip)}
+
+@media (min-width:64rem){
+  .holes-bp-lg .holes-layer{
+    -webkit-mask-image:var(--hole-mask-image);mask-image:var(--hole-mask-image);
+    -webkit-mask-size:var(--hole-mask-size);mask-size:var(--hole-mask-size);
+    -webkit-mask-position:var(--hole-mask-position);mask-position:var(--hole-mask-position);
+    -webkit-mask-repeat:var(--hole-mask-repeat);mask-repeat:var(--hole-mask-repeat);
+    mask-composite:var(--hole-mask-composite);
+    background-image:var(--hole-ring-image);background-size:var(--hole-ring-size);
+    background-position:var(--hole-ring-position);background-repeat:var(--hole-ring-repeat);
+  }
+  .holes-bp-lg .holes-tabs-desktop{
+    display:block;
+    background-image:var(--hole-tab-image);background-size:var(--hole-tab-size);
+    background-position:var(--hole-tab-position);background-repeat:var(--hole-tab-repeat);
+  }
+  .holes-bp-lg .holes-tabs-mobile{display:none}
+}
+@media (min-width:48rem){
+  .holes-bp-md .holes-layer{
+    -webkit-mask-image:var(--hole-mask-image);mask-image:var(--hole-mask-image);
+    -webkit-mask-size:var(--hole-mask-size);mask-size:var(--hole-mask-size);
+    -webkit-mask-position:var(--hole-mask-position);mask-position:var(--hole-mask-position);
+    -webkit-mask-repeat:var(--hole-mask-repeat);mask-repeat:var(--hole-mask-repeat);
+    mask-composite:var(--hole-mask-composite);
+    background-image:var(--hole-ring-image);background-size:var(--hole-ring-size);
+    background-position:var(--hole-ring-position);background-repeat:var(--hole-ring-repeat);
+  }
+  .holes-bp-md .holes-tabs-desktop{
+    display:block;
+    background-image:var(--hole-tab-image);background-size:var(--hole-tab-size);
+    background-position:var(--hole-tab-position);background-repeat:var(--hole-tab-repeat);
+  }
+  .holes-bp-md .holes-tabs-mobile{display:none}
+  .holes-fold-clip{clip-path:var(--hole-fold-clip)}
+}
+
+/* ───────── Video lightbox view transition (CLONE_SPEC §9) ───────── */
+/* Measured on operate.so (ramka lightbox, crossfade "both"), open and close alike:
+   - group: 300ms cubic-bezier(.77,0,.175,1) (the page rewrites ramka's 360ms spring to this),
+     transform/size only, clipped, above root;
+   - old snapshot: no animation (stays opaque underneath);
+   - new snapshot: fades in over 0.48 x 300 = 144ms, ease-out-quint, object-fit cover;
+   - root old/new crossfade: 300ms ease-out-quint. */
+::view-transition-group(lightbox-morph){
+  animation-duration:var(--lightbox-duration);
+  animation-timing-function:var(--ease-in-out-quart);
+  animation-fill-mode:both;
+  overflow:hidden;
+  z-index:2;
+}
+::view-transition-old(lightbox-morph),::view-transition-new(lightbox-morph){
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  mix-blend-mode:normal;
+}
+::view-transition-old(lightbox-morph){animation:none}
+::view-transition-new(lightbox-morph){
+  animation-name:-ua-view-transition-fade-in;
+  animation-duration:calc(var(--lightbox-duration) * 0.48);
+  animation-timing-function:var(--ease-out-quint);
+  animation-fill-mode:both;
+}
+::view-transition-old(root),::view-transition-new(root){
+  animation-duration:var(--lightbox-duration);
+  animation-timing-function:var(--ease-out-quint);
+}
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+}
+
+/* ───────── Background dot pattern (CLONE_SPEC §2) ───────── */
+.home-bg-pattern{
+  --size:.8px;--gap:19.2px;
+  --patternSize:calc(var(--size) + var(--gap));
+  width:calc(round(down, calc(100% - var(--size)), var(--patternSize)) + var(--size));
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="2.8"><rect width="0.8" height="0.8" fill="rgb(133, 192, 147)"/></svg>');
+}
+@media (min-width:48rem){
+  .home-bg-pattern{
+    --size:1.5px;--gap:22px;
+    background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="23.5" height="4.5"><rect width="1.5" height="1.5" fill="rgb(133, 192, 147)"/></svg>');
+  }
+}
+
+/* ───────── Lightbox media box (CLONE_SPEC §9): 16:9, fits viewport height minus 7rem ───────── */
+.lightbox-media-box{container-type:size;width:min(100%, calc((100dvh - 7rem) * 16 / 9))}
+@media (min-width:64rem){
+  .lightbox-media-box{width:min(calc(min(100%, 92.125rem) - 100px), calc((100dvh - 7rem) * 16 / 9))}
+}
+
+/* ───────── Sign-up modal over the homepage (CLONE_SPEC_PAGES §3.9) ─────────
+   data-sign-up-pinned:fixed inset-x-0 top-(--sign-up-page-top); sign-up-open:invisible */
+[data-sign-up-page][data-sign-up-pinned]{position:fixed;inset-inline:0;top:var(--sign-up-page-top)}
+:where(body:has([data-sign-up-dialog][data-open])) [data-sign-up-page]{visibility:hidden}
+
+/* ───────── 404 (CLONE_SPEC_PAGES §2) ─────────
+   The stock inline <style> (body{color:#000;background:#fff}) is unlayered in the original and beats the
+   layered v4 `bg-waitlist-gray` body class. Tailwind v3 utilities are unlayered, so restate it here. */
+body:has(.next-error-h1){color:#000;background:#fff}
+@media (prefers-color-scheme:dark){body:has(.next-error-h1){color:#fff;background:#000}}
+
+/* ───────── Sign-up form container queries (CLONE_SPEC_PAGES §3.4–3.5; v4 @container / @max-[29em] / @min-[29em]) ───────── */
+/* ───────── Original global base rules (site-wide, as on the original) ─────────
+   App CSS: :where(button,[href],input,…):focus-visible{border-radius:var(--focus-ring-radius 6px);
+   box-shadow:0 0 0 calc(2px + 2px) color-mix(in srgb, var(--color-brand) 60%, transparent);outline:none}
+   and :where(u,a,.link){text-underline-offset:.154em}. Zero specificity, so component classes still win. */
+:where(:is(button,[href],input,select,textarea,summary,[role=button],[tabindex]:not([tabindex="-1"])):focus-visible){border-radius:6px;box-shadow:0 0 0 4px rgb(0 112 16 / .6);box-shadow:0 0 0 4px color(srgb -0.107216 0.440951 0.0625328 / .6);outline:none}
+:where(u,a,.link){text-underline-offset:.154em}
+.su-cq{container-type:inline-size}
+@container (width < 29em){
+  .su-error{flex-basis:100%}
+  .su-hint-wide{display:none}
+}
+@container (width >= 29em){
+  .su-hint-narrow{display:none}
+}

@@ -1,0 +1,12 @@
+{
+  "note": "No new binary assets on /privacy, /terms, /sign-up or the 404. All fonts and the background texture are the same files already listed in reference/assets.json.",
+  "assets": [
+    {"url":"https://operate.so/_next/static/immutable/media/Denim_Regular-s.p.3p2rpf-e0w2_y.woff2","local":"see reference/assets.json","usedIn":["privacy","terms","sign-up"],"new":false},
+    {"url":"https://operate.so/_next/static/immutable/media/Denim_SemiBold-s.p.0haakjq11jk4x.woff2","local":"see reference/assets.json","usedIn":["privacy","terms","sign-up (checked option labels)"],"new":false},
+    {"url":"https://operate.so/_next/static/immutable/media/GT_Cinetype_Regular-s.p.3542o7l2yeifo.woff2","local":"see reference/assets.json","usedIn":["privacy","terms (back link, inline code)"],"new":false},
+    {"url":"https://operate.so/_next/static/immutable/media/home-background-texture.1xaxybze7_k5w.png","local":"see reference/assets.json","usedIn":["sign-up (HomeBackground)"],"new":false},
+    {"url":"inline","local":"public/assets/pages/signup-back-arrow.svg","source":"reference/svgs-pages/signup-back-arrow.svg","usedIn":["sign-up"],"new":true,"preferInline":true},
+    {"url":"inline","local":"public/assets/pages/signup-checkbox-checked.svg","source":"reference/svgs-pages/signup-checkbox-checked.svg","usedIn":["sign-up"],"new":true,"preferInline":true},
+    {"url":"inline","local":"public/assets/pages/signup-logo-mark-gray.svg","source":"reference/svgs-pages/signup-logo-mark-gray.svg","usedIn":["sign-up"],"new":true,"preferInline":true}
+  ]
+}
