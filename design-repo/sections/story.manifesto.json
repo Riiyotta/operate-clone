@@ -154,7 +154,10 @@
             ]
           },
           "assetRef": {
-            "const": "logo-trace--loop"
+            "enum": [
+              "logo-trace--loop",
+              "placeholder--logo-trace"
+            ]
           }
         },
         "required": [

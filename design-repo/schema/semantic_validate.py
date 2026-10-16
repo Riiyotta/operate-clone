@@ -9,11 +9,13 @@ Layer 2 (semantic): everything JSON Schema cannot express -
   * rhythm/position rules from compatibility/graph.json (read at run time, severity respected);
   * per-instance word/character budgets (x-maxWords / x-maxChars) from each section contract;
   * assetRole/assetRef registry checks against assets/asset-roles.json;
-  * required reducedMotionFallback on every node; legal block shape.
+  * required reducedMotionFallback on every node; legal block shape;
+  * mode 'generation' isolation (graph rule GENERATION_MODE_CLONE_ISOLATION): only generation-safe assets,
+    no Operate branding / third-party marks / real people / source copy / real URLs (assets/generation-policy.json).
 
 Usage: python3 schema/semantic_validate.py [pagespec.json ...]   (default: schema/example.pagespec.json)
 """
-import json, os, sys, glob
+import json, os, re, sys, glob, unicodedata
 
 # repo root = parent of schema/ (never hardcoded)
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +32,90 @@ def load_context(repo=REPO):
         d = json.load(open(p, encoding="utf-8"))
         sections[d["id"]] = d
     return {"templates": _load(repo, "templates/templates.json"), "graph": _load(repo, "compatibility/graph.json"),
-            "assets": _load(repo, "assets/asset-roles.json"), "schema": _load(repo, "schema/pagespec.schema.json"), "sections": sections}
+            "assets": _load(repo, "assets/asset-roles.json"), "schema": _load(repo, "schema/pagespec.schema.json"), "sections": sections,
+            "policy": _load(repo, "assets/generation-policy.json"), "cloneCorpus": _clone_corpus(repo, sections, _load(repo, "assets/generation-policy.json"))}
+
+
+# ---------------------------------------------------------------- generation-mode helpers
+_ZW = dict.fromkeys(map(ord, "​‌‍⁠﻿­"), None)
+
+
+def _norm(s):
+    """NFKC, zero-width/soft-hyphen removed, case folded, punctuation->space, whitespace collapsed."""
+    s = unicodedata.normalize("NFKC", s).translate(_ZW).casefold()
+    return " ".join(re.sub(r"[^\w]+", " ", s).split())
+
+
+def _clean(s):  # keeps case and punctuation (for case-sensitive and URL matching)
+    return unicodedata.normalize("NFKC", s).translate(_ZW)
+
+
+def _text_leaves(o, path=""):
+    """(path, str) for every string in the instance except assetRole/assetRef values (checked separately)."""
+    if isinstance(o, str):
+        yield path, o
+    elif isinstance(o, dict):
+        for k, v in o.items():
+            if k in ("assetRole", "assetRef"):
+                continue
+            yield from _text_leaves(v, "%s/%s" % (path, k))
+    elif isinstance(o, list):
+        for i, v in enumerate(o):
+            yield from _text_leaves(v, "%s/%d" % (path, i))
+
+
+def _clone_corpus(repo, sections, policy):
+    """normalised source strings of >= minWords words, derived from the real clone copy (never hand-listed)."""
+    n = policy["copyReuse"]["minWords"]
+    allowed = {_norm(x) for x in policy["copyReuse"]["allowedCopy"]}
+    srcs = [s["exemplar"]["content"] for s in sections.values()]
+    ex = os.path.join(repo, "schema", "example.pagespec.json")
+    if os.path.exists(ex):
+        spec = json.load(open(ex, encoding="utf-8"))
+        srcs += [spec.get("head", {}), [x.get("content", {}) for x in spec.get("nodes", [])]]
+    srcs += [t.get("head", {}) for t in _load(repo, "templates/templates.json")["templates"].values()]
+    out = set()
+    for src in srcs:
+        for _, s in _text_leaves(src):
+            ns = _norm(s)
+            if len(ns.split()) >= n and ns not in allowed:
+                out.add(ns)
+    return out
+
+
+_URL_RES = [re.compile(r"(?:[a-z][a-z0-9+.-]*:)?//([^\s/?#\"'<>]+)", re.I),            # scheme:// and //host
+            re.compile(r"\bmailto:([^\s\"'<>]+)", re.I),
+            re.compile(r"[\w.+-]+@([\w-]+(?:\.[\w-]+)+)"),                            # e-mail
+            re.compile(r"\b(www\.[\w.-]+)", re.I),
+            re.compile(r"\b((?:[a-z0-9-]+\.)+(?:com|net|org|io|so|ai|co|app|dev|xyz|me|us|uk|de|fr|gg|tv|ly|sh|cloud|link)\b)", re.I)]
+
+
+def _host_ok(host, pol):
+    h = host.split("@")[-1].split(":")[0].strip(".").lower()
+    u = pol["urls"]
+    return any(h == x or h.endswith("." + x) for x in u["allowedHosts"]) or any(h.endswith(x) for x in u["allowedHostSuffixes"])
+
+
+def _bad_hosts(s, pol):
+    out = []
+    for rx in _URL_RES:
+        for m in rx.finditer(s):
+            if not _host_ok(m.group(1), pol):
+                out.append(m.group(1))
+    return sorted(set(out))
+
+
+def _term_hits(raw, pol):
+    hits, bt = [], pol["blockedTerms"]
+    clean, folded = _clean(raw), _norm(raw)
+    for grp in bt.values():
+        for term in grp.get("caseSensitive", []):
+            if re.search(r"(?<!\w)%s(?!\w)" % re.escape(term), clean):
+                hits.append(term)
+        for term in grp.get("caseInsensitive", []):
+            if re.search(r"(?<!\w)%s(?!\w)" % re.escape(_norm(term)), folded):
+                hits.append(term)
+    return hits
 
 
 # ---------------------------------------------------------------- layer 1
@@ -217,6 +302,33 @@ def r_pair(ctx, spec, nodes, p):
     if _idx(nodes, p["form"]) is not None and _idx(nodes, p["dialog"]) is None:
         return ["%s present without %s" % (p["form"], p["dialog"])]
     return []
+
+
+@rule("GENERATION_MODE_CLONE_ISOLATION")
+def r_generation(ctx, spec, nodes, p):
+    if spec.get("mode") != p["mode"]:
+        return []
+    pol, reg, out = ctx["policy"], ctx["assets"]["registeredAssets"], []
+    allowed = pol["allowedAssetGenerationUse"][p["mode"]]
+    for i, n in enumerate(nodes):
+        base = "/nodes/%d(%s)" % (i, n.get("section"))
+        for ap, a in find_assets(n.get("content", {}), base + "/content"):
+            r = reg.get(a["assetRef"])
+            if r is not None and r.get("generationUse") not in allowed:
+                out.append("%s: asset %r is %s and may not be used in mode '%s' (use a generation-safe placeholder, see assets/asset-roles.json placeholderFor)" % (ap, a["assetRef"], r.get("generationUse"), p["mode"]))
+    leaves = list(_text_leaves(spec.get("head", {}), "/head")) + [lf for i, n in enumerate(nodes) for lf in _text_leaves(n.get("content", {}), "/nodes/%d(%s)/content" % (i, n.get("section")))]
+    for path, s in leaves:
+        for term in _term_hits(s, pol):
+            out.append("%s: blocked term %r (Operate branding, third-party mark or real person) in mode '%s'" % (path, term, p["mode"]))
+        for host in _bad_hosts(_clean(s), pol):
+            out.append("%s: real or non-placeholder URL/host %r (use a relative path or a reserved .invalid/.test/example.* host)" % (path, host))
+        ns = _norm(s)
+        if len(ns.split()) >= pol["copyReuse"]["minWords"]:
+            for c in ctx["cloneCorpus"]:
+                if c in ns or ns in c:
+                    out.append("%s: reuses source-specific Operate copy (%r...) in mode '%s'" % (path, c[:48], p["mode"]))
+                    break
+    return out
 
 
 # ---------------------------------------------------------------- layer 2

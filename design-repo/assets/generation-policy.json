@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "$description": "Machine-read policy behind PageSpec mode 'generation' (rule GENERATION_MODE_CLONE_ISOLATION in compatibility/graph.json, implemented in schema/semantic_validate.py). In mode 'generation' a PageSpec must be original: no clone-only or blocked assets (assets/asset-roles.json generationUse), no Operate branding, no third-party marks, no real/demo people, no source-specific copy, and no real or live URLs. Matching is on text normalised with NFKC, zero-width characters removed, case folded and whitespace collapsed.",
+  "modes": {
+    "clone": "Reference reconstruction of the Operate site. May use clone-only assets and the source copy. Never publish.",
+    "generation": "Original page for any other property. Only generation-safe assets, fictional/original copy, relative paths or reserved-domain URLs."
+  },
+  "allowedAssetGenerationUse": {
+    "clone": ["clone-only", "generation-safe", "blocked-for-generation"],
+    "generation": ["generation-safe"]
+  },
+  "blockedTerms": {
+    "operateBrand": {
+      "$description": "Operate's name and domains. Name terms are case-sensitive on word boundaries so the English verb 'operate' stays usable; domains are matched case-insensitively.",
+      "caseSensitive": ["Operate", "OPERATE", "Operate Machine"],
+      "caseInsensitive": ["operate.so", "operate machine co", "quietwork"]
+    },
+    "thirdPartyMarks": {
+      "$description": "Third-party trademarks that appear in the source (integration logos, copy, social labels).",
+      "caseInsensitive": ["granola", "gong", "slack", "gmail", "hubspot", "linkedin", "mux"]
+    },
+    "realPeople": {
+      "$description": "People named by the source's demo avatar art (derived from the asset file names; checked by verify_all.py).",
+      "caseInsensitive": ["kierra torres", "cooper franci", "emery botosh", "alfredo bergson", "eminem"]
+    }
+  },
+  "urls": {
+    "$description": "Any absolute URL, protocol-relative URL, www. host, bare domain or e-mail address in generated text must use one of these reserved hosts. Relative paths such as /sign-up are fine.",
+    "allowedHosts": ["example.com", "example.org", "example.net"],
+    "$allowedHostsNote": "Subdomains of an allowed host (www.example.com) are allowed; example.com.evil.io is not.",
+    "allowedHostSuffixes": [".invalid", ".test", ".example"]
+  },
+  "copyReuse": {
+    "$description": "Any generated string that contains (or is contained in) a source string of at least minWords words is source-specific copy and is rejected. The corpus is derived at run time from the section exemplars, the clone example PageSpec and the template heads, so it cannot drift from the source copy. allowedCopy lists framework-stock text that is generic, not Operate's.",
+    "minWords": 5,
+    "corpusSources": ["sections/*.json#exemplar.content", "schema/example.pagespec.json", "templates/templates.json#head"],
+    "allowedCopy": ["This page could not be found.", "404: This page could not be found."]
+  }
+}

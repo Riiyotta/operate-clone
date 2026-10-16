@@ -30,19 +30,34 @@
         "type": "array",
         "items": [
           {
-            "const": "Quota"
+            "enum": [
+              "Quota",
+              "Target"
+            ]
           },
           {
-            "const": "Meeting"
+            "enum": [
+              "Meeting",
+              "Call"
+            ]
           },
           {
-            "const": "Draft"
+            "enum": [
+              "Draft",
+              "Edit"
+            ]
           },
           {
-            "const": "Slack"
+            "enum": [
+              "Slack",
+              "Chat"
+            ]
           },
           {
-            "const": "Next step"
+            "enum": [
+              "Next step",
+              "Follow-up"
+            ]
           }
         ],
         "minItems": 5,
@@ -108,7 +123,10 @@
             ]
           },
           "assetRef": {
-            "const": "scene--demo-slack"
+            "enum": [
+              "scene--demo-slack",
+              "placeholder--scene"
+            ]
           }
         },
         "required": [

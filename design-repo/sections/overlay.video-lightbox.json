@@ -47,7 +47,10 @@
             ]
           },
           "assetRef": {
-            "const": "stream--lightbox-demo"
+            "enum": [
+              "stream--lightbox-demo",
+              "placeholder--stream"
+            ]
           }
         },
         "required": [
@@ -72,7 +75,10 @@
             ]
           },
           "assetRef": {
-            "const": "poster--lightbox"
+            "enum": [
+              "poster--lightbox",
+              "placeholder--poster"
+            ]
           }
         },
         "required": [

@@ -43,6 +43,22 @@ run_case "absolute local path introduced" "$J
 open(os.path.join(R,'README.md'),'a').write('\n/Us'+'ers/someone/design-repo\n')"
 run_case "entryPoint escaping the package" "$J
 m=rd('registry.manifest.json');m['entryPoints']['evidence']='../ia.json';wr('registry.manifest.json',m)"
+run_case "clone-only asset reclassified as generation-safe" "$J
+a=rd('assets/asset-roles.json');a['registeredAssets']['logo--mark']['generationUse']='generation-safe';wr('assets/asset-roles.json',a)"
+run_case "blocked integration logo loses its generation-safe placeholder" "$J
+a=rd('assets/asset-roles.json');del a['registeredAssets']['placeholder--integration-b'];wr('assets/asset-roles.json',a)"
+run_case "placeholder URL points at a real host" "$J
+a=rd('assets/asset-roles.json');a['registeredAssets']['placeholder--stream']['placeholderUrl']='https://stream.mux.com/x.m3u8';wr('assets/asset-roles.json',a)"
+run_case "generation policy stops blocking a demo avatar person" "$J
+a=rd('assets/generation-policy.json');a['blockedTerms']['realPeople']['caseInsensitive'].remove('eminem');wr('assets/generation-policy.json',a)"
+run_case "generated example leaks an Operate asset" "$J
+p='schema/example.generated.pagespec.json';d=rd(p);d['nodes'][2]['content']['logoMark']['assetRef']='logo--mark';wr(p,d)"
+run_case "generated example leaks a live URL in copy" "$J
+p='schema/example.generated.pagespec.json';d=rd(p);d['head']['description']+=' See https://operate.so.';wr(p,d)"
+run_case "generation rule dropped from the graph (validator keeps implementing it)" "$J
+g=rd('compatibility/graph.json');g['rules']=[r for r in g['rules'] if r['id']!='GENERATION_MODE_CLONE_ISOLATION'];wr('compatibility/graph.json',g)"
+run_case "generation allowed to use clone-only assets" "$J
+a=rd('assets/generation-policy.json');a['allowedAssetGenerationUse']['generation'].append('clone-only');wr('assets/generation-policy.json',a)"
 if [ "$HAVE_SRC" = 1 ]; then
   run_case "out-of-range citation" "$J
 p='sections/hero.headline-integrations.json';d=rd(p);d['measuredFrom'].append('src/components/Hero.jsx:9999');wr(p,d)"

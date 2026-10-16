@@ -55,7 +55,10 @@
             ]
           },
           "assetRef": {
-            "const": "logo--mark"
+            "enum": [
+              "logo--mark",
+              "placeholder--brand-mark"
+            ]
           }
         },
         "required": [

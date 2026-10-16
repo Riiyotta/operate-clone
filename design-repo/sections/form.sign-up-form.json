@@ -223,7 +223,10 @@
             ]
           },
           "assetRef": {
-            "const": "endpoint--signup-stub"
+            "enum": [
+              "endpoint--signup-stub",
+              "placeholder--endpoint"
+            ]
           }
         },
         "required": [

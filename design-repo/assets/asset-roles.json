@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "$description": "Closed assetRole registry. Every PageSpec media field is {assetRole, assetRef}; raw URLs never appear in a PageSpec. assetRef values must be registered below and carry the matching role (checked by semantic_validate.py). compliancePinned roles are pinned to exact generationPolicy values in extraction/verify_all.py (PINNED_POLICIES). pageSpecFacing:false roles are documented for licensing only and are not in the schema's assetRole enum.",
+  "version": "1.1.0",
+  "$description": "Closed assetRole registry. Every PageSpec media field is {assetRole, assetRef}; raw URLs never appear in a PageSpec. assetRef values must be registered below and carry the matching role (checked by semantic_validate.py). compliancePinned roles are pinned to exact generationPolicy values in extraction/verify_all.py (PINNED_POLICIES). pageSpecFacing:false roles are documented for licensing only and are not in the schema's assetRole enum. Every registered asset carries generationUse (clone-only | generation-safe | blocked-for-generation, see generationUseEnum). PageSpec `mode` 'generation' accepts only generation-safe refs (rule GENERATION_MODE_CLONE_ISOLATION); every non-generation-safe asset that is pageSpecFacing has a generation-safe placeholderFor counterpart (checked by verify_all.py). Placeholder URLs use reserved domains (.invalid) only.",
   "policyEnum": {
     "may-generate-new": "Generic decorative texture/geometry with no brand or third-party content. A generator may draw a new, original, brand-neutral equivalent.",
     "must-reuse-exact": "Operate's own proprietary brand asset. Only the exact registered file may be referenced, only on a property Operate owns. On any other property the renderer must substitute that property's own asset; never redraw, restyle, imitate or regenerate it.",
@@ -147,7 +147,8 @@
       "kind": "svg-inline",
       "measuredFrom": [
         "src/components/shell/Rules.jsx:66"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "logo-trace--loop": {
       "role": "brand-logo-trace",
@@ -155,7 +156,8 @@
       "kind": "svg-file",
       "measuredFrom": [
         "src/components/Manifesto.jsx:133"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "logo-trace--still": {
       "role": "brand-logo-trace",
@@ -163,7 +165,8 @@
       "kind": "svg-file",
       "measuredFrom": [
         "src/components/Manifesto.jsx:132"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "integration--more": {
       "role": "integration-logo",
@@ -171,7 +174,8 @@
       "kind": "svg-inline",
       "measuredFrom": [
         "src/lib/integrationLogos.js:4"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "integration--granola": {
       "role": "integration-logo",
@@ -179,7 +183,8 @@
       "kind": "svg-inline",
       "measuredFrom": [
         "src/lib/integrationLogos.js:5"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "integration--gong": {
       "role": "integration-logo",
@@ -187,7 +192,8 @@
       "kind": "svg-inline",
       "measuredFrom": [
         "src/lib/integrationLogos.js:6"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "integration--slack": {
       "role": "integration-logo",
@@ -195,7 +201,8 @@
       "kind": "svg-inline",
       "measuredFrom": [
         "src/lib/integrationLogos.js:7"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "integration--gmail": {
       "role": "integration-logo",
@@ -203,7 +210,8 @@
       "kind": "svg-inline",
       "measuredFrom": [
         "src/lib/integrationLogos.js:8"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "integration--hubspot": {
       "role": "integration-logo",
@@ -211,7 +219,8 @@
       "kind": "svg-inline",
       "measuredFrom": [
         "src/lib/integrationLogos.js:9"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "avatar--demo-1": {
       "role": "demo-avatar-image",
@@ -219,7 +228,8 @@
       "kind": "png",
       "measuredFrom": [
         "src/components/demo/scripts.js:132"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "avatar--demo-2": {
       "role": "demo-avatar-image",
@@ -227,7 +237,8 @@
       "kind": "png",
       "measuredFrom": [
         "src/components/demo/scripts.js:133"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "avatar--demo-3": {
       "role": "demo-avatar-image",
@@ -235,7 +246,8 @@
       "kind": "png",
       "measuredFrom": [
         "src/components/demo/scripts.js:134"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "avatar--demo-4": {
       "role": "demo-avatar-image",
@@ -243,7 +255,8 @@
       "kind": "png",
       "measuredFrom": [
         "src/components/demo/scripts.js:135"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "avatar--demo-5": {
       "role": "demo-avatar-image",
@@ -251,7 +264,8 @@
       "kind": "png",
       "measuredFrom": [
         "src/components/demo/scripts.js:136"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "scene--demo-slack": {
       "role": "demo-scene-image",
@@ -259,7 +273,8 @@
       "kind": "png",
       "measuredFrom": [
         "src/components/demo/scripts.js:137"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "texture--home-background": {
       "role": "background-texture",
@@ -267,7 +282,8 @@
       "kind": "png",
       "measuredFrom": [
         "src/components/HomeBackground.jsx:247"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "footer--still-desktop": {
       "role": "footer-video-asset",
@@ -275,7 +291,8 @@
       "kind": "jpg",
       "measuredFrom": [
         "src/components/FooterSheet.jsx:113"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "footer--still-mobile": {
       "role": "footer-video-asset",
@@ -283,7 +300,8 @@
       "kind": "jpg",
       "measuredFrom": [
         "src/components/FooterSheet.jsx:105"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "footer--loop": {
       "role": "footer-video-asset",
@@ -291,7 +309,8 @@
       "kind": "mp4",
       "measuredFrom": [
         "src/components/FooterSheet.jsx:61"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "poster--lightbox": {
       "role": "video-poster",
@@ -299,7 +318,8 @@
       "kind": "webp",
       "measuredFrom": [
         "src/components/VideoLightbox.jsx:12"
-      ]
+      ],
+      "generationUse": "clone-only"
     },
     "stream--lightbox-demo": {
       "role": "lightbox-video-stream",
@@ -307,7 +327,8 @@
       "kind": "hls",
       "measuredFrom": [
         "src/components/VideoLightbox.jsx:11"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "endpoint--signup-stub": {
       "role": "signup-submit-stub",
@@ -315,7 +336,8 @@
       "kind": "local-stub",
       "measuredFrom": [
         "src/lib/signupStub.js:10"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "social--linkedin": {
       "role": "external-social-link",
@@ -323,7 +345,8 @@
       "kind": "external-link",
       "measuredFrom": [
         "src/components/FooterSheet.jsx:10"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "social--x": {
       "role": "external-social-link",
@@ -331,7 +354,8 @@
       "kind": "external-link",
       "measuredFrom": [
         "src/components/FooterSheet.jsx:11"
-      ]
+      ],
+      "generationUse": "blocked-for-generation"
     },
     "font--denim-regular": {
       "role": "font-file",
@@ -340,7 +364,8 @@
       "measuredFrom": [
         "src/index.css:2"
       ],
-      "license": "commercial"
+      "license": "commercial",
+      "generationUse": "blocked-for-generation"
     },
     "font--denim-italic": {
       "role": "font-file",
@@ -349,7 +374,8 @@
       "measuredFrom": [
         "src/index.css:3"
       ],
-      "license": "commercial"
+      "license": "commercial",
+      "generationUse": "blocked-for-generation"
     },
     "font--denim-semibold": {
       "role": "font-file",
@@ -358,7 +384,8 @@
       "measuredFrom": [
         "src/index.css:4"
       ],
-      "license": "commercial"
+      "license": "commercial",
+      "generationUse": "blocked-for-generation"
     },
     "font--cinetype-regular": {
       "role": "font-file",
@@ -367,7 +394,8 @@
       "measuredFrom": [
         "src/index.css:6"
       ],
-      "license": "commercial"
+      "license": "commercial",
+      "generationUse": "blocked-for-generation"
     },
     "font--muoto-variable": {
       "role": "font-file",
@@ -376,7 +404,8 @@
       "measuredFrom": [
         "src/index.css:8"
       ],
-      "license": "commercial"
+      "license": "commercial",
+      "generationUse": "blocked-for-generation"
     },
     "font--geist-mono-variable": {
       "role": "font-file",
@@ -385,7 +414,209 @@
       "measuredFrom": [
         "src/index.css:10"
       ],
-      "license": "SIL OFL 1.1"
+      "license": "SIL OFL 1.1",
+      "generationUse": "blocked-for-generation"
+    },
+    "placeholder--brand-mark": {
+      "role": "brand-logomark",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "logo--mark",
+      "note": "Neutral rounded square supplied by the owning property."
+    },
+    "placeholder--logo-trace": {
+      "role": "brand-logo-trace",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "logo-trace--loop",
+      "note": "Neutral static outline; no animation required."
+    },
+    "placeholder--integration-more": {
+      "role": "integration-logo",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "integration--more",
+      "note": "Generic plus glyph."
+    },
+    "placeholder--integration-a": {
+      "role": "integration-logo",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "integration--granola",
+      "note": "Generic gray circle glyph; carries no third-party mark."
+    },
+    "placeholder--integration-b": {
+      "role": "integration-logo",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "integration--gong",
+      "note": "Generic gray circle glyph; carries no third-party mark."
+    },
+    "placeholder--integration-c": {
+      "role": "integration-logo",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "integration--slack",
+      "note": "Generic gray circle glyph; carries no third-party mark."
+    },
+    "placeholder--integration-d": {
+      "role": "integration-logo",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "integration--gmail",
+      "note": "Generic gray circle glyph; carries no third-party mark."
+    },
+    "placeholder--integration-e": {
+      "role": "integration-logo",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "integration--hubspot",
+      "note": "Generic gray circle glyph; carries no third-party mark."
+    },
+    "placeholder--avatar-1": {
+      "role": "demo-avatar-image",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "avatar--demo-1",
+      "note": "Fictional person A: initial-letter avatar on a flat color."
+    },
+    "placeholder--avatar-2": {
+      "role": "demo-avatar-image",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "avatar--demo-2",
+      "note": "Fictional person B: initial-letter avatar on a flat color."
+    },
+    "placeholder--avatar-3": {
+      "role": "demo-avatar-image",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "avatar--demo-3",
+      "note": "Fictional person C: initial-letter avatar on a flat color."
+    },
+    "placeholder--avatar-4": {
+      "role": "demo-avatar-image",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "avatar--demo-4",
+      "note": "Fictional person D: initial-letter avatar on a flat color."
+    },
+    "placeholder--avatar-5": {
+      "role": "demo-avatar-image",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "avatar--demo-5",
+      "note": "Fictional person E: initial-letter avatar on a flat color."
+    },
+    "placeholder--scene": {
+      "role": "demo-scene-image",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "scene--demo-slack",
+      "note": "Flat neutral panel."
+    },
+    "placeholder--texture": {
+      "role": "background-texture",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "generated",
+      "generationUse": "generation-safe",
+      "placeholderFor": "texture--home-background",
+      "note": "Any original, brand-neutral subtle noise texture generated by the owning property."
+    },
+    "placeholder--footer-still-desktop": {
+      "role": "footer-video-asset",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "footer--still-desktop",
+      "note": "Flat 16:9 placeholder frame."
+    },
+    "placeholder--footer-still-mobile": {
+      "role": "footer-video-asset",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "footer--still-mobile",
+      "note": "Flat portrait placeholder frame."
+    },
+    "placeholder--footer-loop": {
+      "role": "footer-video-asset",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "omitted",
+      "generationUse": "generation-safe",
+      "placeholderFor": "footer--loop",
+      "note": "No hover video; the still alone is shown."
+    },
+    "placeholder--poster": {
+      "role": "video-poster",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "poster--lightbox",
+      "note": "Flat 16:9 placeholder."
+    },
+    "placeholder--stream": {
+      "role": "lightbox-video-stream",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "placeholder-endpoint",
+      "generationUse": "generation-safe",
+      "placeholderFor": "stream--lightbox-demo",
+      "note": "Reserved-domain placeholder stream; never a real playback id.",
+      "placeholderUrl": "https://example.invalid/stream/placeholder.m3u8"
+    },
+    "placeholder--endpoint": {
+      "role": "signup-submit-stub",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "placeholder-endpoint",
+      "generationUse": "generation-safe",
+      "placeholderFor": "endpoint--signup-stub",
+      "note": "Reserved-domain placeholder submit endpoint behind the same contract.",
+      "placeholderUrl": "https://example.invalid/api/placeholder-submit"
+    },
+    "placeholder--social-a": {
+      "role": "external-social-link",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "placeholder-endpoint",
+      "generationUse": "generation-safe",
+      "placeholderFor": "social--linkedin",
+      "note": "Reserved-domain placeholder profile link.",
+      "placeholderUrl": "https://example.invalid/profile-a"
+    },
+    "placeholder--social-b": {
+      "role": "external-social-link",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "placeholder-endpoint",
+      "generationUse": "generation-safe",
+      "placeholderFor": "social--x",
+      "note": "Reserved-domain placeholder profile link.",
+      "placeholderUrl": "https://example.invalid/profile-b"
+    },
+    "placeholder--logo-trace-still": {
+      "role": "brand-logo-trace",
+      "source": "(no file; supplied by the owning property at render time)",
+      "kind": "svg-placeholder",
+      "generationUse": "generation-safe",
+      "placeholderFor": "logo-trace--still",
+      "note": "Neutral static outline for reduced motion."
     }
+  },
+  "generationUseEnum": {
+    "clone-only": "Operate-owned brand, product or media asset. Valid only in mode 'clone' (a reference reconstruction of the Operate site). Rejected in mode 'generation'.",
+    "generation-safe": "Placeholder or original asset with no Operate, third-party or real-person content. The only class allowed in mode 'generation'.",
+    "blocked-for-generation": "Third-party trademark, real/fictional-person artwork tied to the source, live endpoint/profile or licensed font. Registered only so the clone can reference it by id; rejected in mode 'generation'."
   }
 }

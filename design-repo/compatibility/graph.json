@@ -108,6 +108,15 @@
         "form": "form.sign-up-form",
         "dialog": "overlay.leave-confirm"
       }
+    },
+    {
+      "id": "GENERATION_MODE_CLONE_ISOLATION",
+      "severity": "error",
+      "description": "A PageSpec with mode 'generation' may reference only generation-safe assets (assets/asset-roles.json generationUse) and must contain no Operate branding, third-party marks, real-person names, source copy of 5+ words, or real/live URLs (assets/generation-policy.json). Mode 'clone' is unaffected.",
+      "params": {
+        "mode": "generation",
+        "policy": "assets/generation-policy.json"
+      }
     }
   ]
 }

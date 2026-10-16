@@ -1,8 +1,8 @@
 {
   "repositoryId": "operate-design-repo",
-  "repositoryVersion": "1.0.0",
-  "pageSpecVersion": "1.0.0",
-  "allowlistVersion": "1.0.0",
+  "repositoryVersion": "1.1.0",
+  "pageSpecVersion": "1.1.0",
+  "allowlistVersion": "1.1.0",
   "versionFieldNote": "allowlistVersion is MACHINE-CHECKED: extraction/verify_all.py fails if it differs from tokens/llm/component-allowlist.json. repositoryVersion and pageSpecVersion are documentation-only, hand-maintained markers; nothing verifies them automatically (pageSpecVersion is additionally const-locked inside schema/pagespec.schema.json).",
   "status": "design-review-pending",
   "productionApproved": false,
@@ -24,8 +24,8 @@
     "templates": 4,
     "routes": 5,
     "assetRoles": 12,
-    "registeredAssets": 30,
-    "graphRules": 11
+    "registeredAssets": 54,
+    "graphRules": 12
   },
   "sourceProject": {
     "name": "Operate clone (local replica of operate.so, a real live company site)",
@@ -38,13 +38,14 @@
     },
     "snapshotNote": "A design-repo is a snapshot; re-diff its claims against the source when the source changes."
   },
-  "complianceNote": "Reference-only. The source is a real company's live site: Operate's logos, copy, media, avatar art and commercial fonts, plus third-party integration logos, must not be reproduced by generated output. See assets/asset-roles.json (assetRole enum + per-role generationPolicy/licensing/placeholderSubstitute). Do not publish this repository.",
+  "complianceNote": "Reference-only. The source is a real company's live site: Operate's logos, copy, media, avatar art and commercial fonts, plus third-party integration logos, must not be reproduced by generated output. See assets/asset-roles.json (assetRole enum + per-role generationPolicy/licensing/placeholderSubstitute). Do not publish this repository. PageSpec mode 'generation' (assets/generation-policy.json, rule GENERATION_MODE_CLONE_ISOLATION) rejects every clone-only/blocked asset and any Operate branding, third-party mark, real person, source copy or live URL; schema/example.generated.pagespec.json is the generation-safe reference.",
   "structurallyUnusual": [
     "Real company with licensed assets/fonts (see complianceNote).",
     "/privacy and /terms body text is original placeholder copy with the original's structure.",
     "Sign-up submits to a local stub only (src/lib/signupStub.js); booking-link redirect not implemented.",
     "404 is the stock Next.js page, outside the design system.",
-    "The sign-up modal is an overlay state of template.home, not a route."
+    "The sign-up modal is an overlay state of template.home, not a route.",
+    "Two PageSpec modes: 'clone' (reference reconstruction, may use Operate assets/copy) and 'generation' (original page; only generation-safe placeholders)."
   ],
   "entryPoints": {
     "readme": "README.md",
@@ -63,6 +64,8 @@
     "adversarialTests": "schema/tests/adversarial_test.py",
     "verify": "extraction/verify_all.py",
     "driftProof": "extraction/prove_drift.sh",
-    "measuredValues": "extraction/measured-values.json"
+    "measuredValues": "extraction/measured-values.json",
+    "generationPolicy": "assets/generation-policy.json",
+    "exampleGenerated": "schema/example.generated.pagespec.json"
   }
 }

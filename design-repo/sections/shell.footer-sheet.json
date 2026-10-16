@@ -123,7 +123,10 @@
             ]
           },
           "assetRef": {
-            "const": "logo--mark"
+            "enum": [
+              "logo--mark",
+              "placeholder--brand-mark"
+            ]
           }
         },
         "required": [
@@ -163,7 +166,10 @@
                 ]
               },
               "assetRef": {
-                "const": "footer--still-desktop"
+                "enum": [
+                  "footer--still-desktop",
+                  "placeholder--footer-still-desktop"
+                ]
               }
             },
             "required": [
@@ -188,7 +194,10 @@
                 ]
               },
               "assetRef": {
-                "const": "footer--still-mobile"
+                "enum": [
+                  "footer--still-mobile",
+                  "placeholder--footer-still-mobile"
+                ]
               }
             },
             "required": [
@@ -213,7 +222,10 @@
                 ]
               },
               "assetRef": {
-                "const": "footer--loop"
+                "enum": [
+                  "footer--loop",
+                  "placeholder--footer-loop"
+                ]
               }
             },
             "required": [

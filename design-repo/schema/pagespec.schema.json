@@ -1,11 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "operate-pagespec-1.0.0",
+  "$id": "operate-pagespec-1.1.0",
   "title": "Operate PageSpec",
-  "description": "Machine contract for a page composed from templates/sections. Closed everywhere (additionalProperties:false). Per-section content/motion branches are generated from sections/*.json (verify_all.py checks they are in sync). Structural rules (template cross-reference, order, graph, budgets, asset registry) live in schema/semantic_validate.py.",
+  "description": "Machine contract for a page composed from templates/sections. Closed everywhere (additionalProperties:false). Per-section content/motion branches are generated from sections/*.json (verify_all.py checks they are in sync). Structural rules (template cross-reference, order, graph, budgets, asset registry) live in schema/semantic_validate.py. Required `mode` (clone | generation) selects the generation-safety context.",
   "type": "object",
   "required": [
     "pageSpecVersion",
+    "mode",
     "template",
     "route",
     "head",
@@ -14,7 +15,14 @@
   "additionalProperties": false,
   "properties": {
     "pageSpecVersion": {
-      "const": "1.0.0"
+      "const": "1.1.0"
+    },
+    "mode": {
+      "enum": [
+        "clone",
+        "generation"
+      ],
+      "description": "clone = reference reconstruction of the Operate site (may reference clone-only assets/copy). generation = original page for any other property: clone-only/blocked assets, Operate branding, third-party marks, real people, source copy and live URLs are rejected by rule GENERATION_MODE_CLONE_ISOLATION."
     },
     "template": {
       "enum": [
@@ -138,7 +146,10 @@
                           ]
                         },
                         "assetRef": {
-                          "const": "texture--home-background"
+                          "enum": [
+                            "texture--home-background",
+                            "placeholder--texture"
+                          ]
                         }
                       },
                       "required": [
@@ -404,7 +415,10 @@
                           ]
                         },
                         "assetRef": {
-                          "const": "endpoint--signup-stub"
+                          "enum": [
+                            "endpoint--signup-stub",
+                            "placeholder--endpoint"
+                          ]
                         }
                       },
                       "required": [
@@ -1052,7 +1066,10 @@
                           ]
                         },
                         "assetRef": {
-                          "const": "stream--lightbox-demo"
+                          "enum": [
+                            "stream--lightbox-demo",
+                            "placeholder--stream"
+                          ]
                         }
                       },
                       "required": [
@@ -1077,7 +1094,10 @@
                           ]
                         },
                         "assetRef": {
-                          "const": "poster--lightbox"
+                          "enum": [
+                            "poster--lightbox",
+                            "placeholder--poster"
+                          ]
                         }
                       },
                       "required": [
@@ -1168,19 +1188,34 @@
                       "type": "array",
                       "items": [
                         {
-                          "const": "Quota"
+                          "enum": [
+                            "Quota",
+                            "Target"
+                          ]
                         },
                         {
-                          "const": "Meeting"
+                          "enum": [
+                            "Meeting",
+                            "Call"
+                          ]
                         },
                         {
-                          "const": "Draft"
+                          "enum": [
+                            "Draft",
+                            "Edit"
+                          ]
                         },
                         {
-                          "const": "Slack"
+                          "enum": [
+                            "Slack",
+                            "Chat"
+                          ]
                         },
                         {
-                          "const": "Next step"
+                          "enum": [
+                            "Next step",
+                            "Follow-up"
+                          ]
                         }
                       ],
                       "minItems": 5,
@@ -1246,7 +1281,10 @@
                           ]
                         },
                         "assetRef": {
-                          "const": "scene--demo-slack"
+                          "enum": [
+                            "scene--demo-slack",
+                            "placeholder--scene"
+                          ]
                         }
                       },
                       "required": [
@@ -1637,7 +1675,10 @@
                           ]
                         },
                         "assetRef": {
-                          "const": "logo--mark"
+                          "enum": [
+                            "logo--mark",
+                            "placeholder--brand-mark"
+                          ]
                         }
                       },
                       "required": [
@@ -1677,7 +1718,10 @@
                               ]
                             },
                             "assetRef": {
-                              "const": "footer--still-desktop"
+                              "enum": [
+                                "footer--still-desktop",
+                                "placeholder--footer-still-desktop"
+                              ]
                             }
                           },
                           "required": [
@@ -1702,7 +1746,10 @@
                               ]
                             },
                             "assetRef": {
-                              "const": "footer--still-mobile"
+                              "enum": [
+                                "footer--still-mobile",
+                                "placeholder--footer-still-mobile"
+                              ]
                             }
                           },
                           "required": [
@@ -1727,7 +1774,10 @@
                               ]
                             },
                             "assetRef": {
-                              "const": "footer--loop"
+                              "enum": [
+                                "footer--loop",
+                                "placeholder--footer-loop"
+                              ]
                             }
                           },
                           "required": [
@@ -1895,7 +1945,10 @@
                           ]
                         },
                         "assetRef": {
-                          "const": "logo--mark"
+                          "enum": [
+                            "logo--mark",
+                            "placeholder--brand-mark"
+                          ]
                         }
                       },
                       "required": [
@@ -2089,7 +2142,10 @@
                           ]
                         },
                         "assetRef": {
-                          "const": "logo-trace--loop"
+                          "enum": [
+                            "logo-trace--loop",
+                            "placeholder--logo-trace"
+                          ]
                         }
                       },
                       "required": [

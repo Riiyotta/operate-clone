@@ -1,0 +1,505 @@
+{
+  "pageSpecVersion": "1.1.0",
+  "mode": "generation",
+  "template": "template.home",
+  "route": "/",
+  "head": {
+    "title": "Fieldwork – Scheduling for field service teams",
+    "description": "Fieldwork is a fictional example product. It keeps crews, parts and job windows in one calendar so dispatchers can plan the day without phone calls."
+  },
+  "nodes": [
+    {
+      "section": "backdrop.animated-background",
+      "variant": "default",
+      "content": {
+        "texture": {
+          "assetRole": "background-texture",
+          "assetRef": "placeholder--texture"
+        }
+      },
+      "motion": {
+        "pattern": "scroll-band-canvas-beads",
+        "trigger": "scroll-progress",
+        "reducedMotionFallback": "static-frames-on-scroll",
+        "scrollTopBandBelow": 0.35,
+        "scrollBottomBandAbove": 0.65
+      }
+    },
+    {
+      "section": "shell.binder-rails",
+      "variant": "default",
+      "content": {},
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "shell.nav-sheet",
+      "variant": "default",
+      "content": {
+        "wordmarkText": "Fieldwork",
+        "ctaLabel": "Request access",
+        "ctaHref": "/sign-up",
+        "logoMark": {
+          "assetRole": "brand-logomark",
+          "assetRef": "placeholder--brand-mark"
+        }
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "shell.main-sheet",
+      "variant": "default",
+      "content": {},
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "hero.headline-integrations",
+      "variant": "default",
+      "content": {
+        "headline": "Plan every job window with confidence",
+        "introBefore": "Fieldwork reads your crew calendars",
+        "introAfter": "and shows which visits are at risk before the morning starts. Dispatchers and technicians adjust the plan together, so fewer trips are wasted.",
+        "integrationLogos": [
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "placeholder--integration-more"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "placeholder--integration-a"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "placeholder--integration-b"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "placeholder--integration-c"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "placeholder--integration-d"
+          },
+          {
+            "assetRole": "integration-logo",
+            "assetRef": "placeholder--integration-e"
+          }
+        ],
+        "integrationSrText": "Five example calendar, chat and inventory tools and more",
+        "primaryCta": {
+          "label": "Request access",
+          "href": "/sign-up"
+        },
+        "secondaryCta": {
+          "label": "See how it works",
+          "opens": "overlay.video-lightbox"
+        }
+      },
+      "motion": {
+        "pattern": "hover-color-transition",
+        "trigger": "hover",
+        "reducedMotionFallback": "instant-state-change",
+        "durationMs": 150,
+        "easing": "cubic-bezier(0,0,.2,1)"
+      }
+    },
+    {
+      "section": "product.demo",
+      "variant": "default",
+      "content": {
+        "chapterLabels": [
+          "Target",
+          "Call",
+          "Draft",
+          "Chat",
+          "Follow-up"
+        ],
+        "workspaceName": "Sample Crew",
+        "composerPlaceholder": "Ask about today’s jobs...",
+        "people": [
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "placeholder--avatar-1"
+          },
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "placeholder--avatar-2"
+          },
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "placeholder--avatar-3"
+          },
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "placeholder--avatar-4"
+          },
+          {
+            "assetRole": "demo-avatar-image",
+            "assetRef": "placeholder--avatar-5"
+          }
+        ],
+        "conversationBackground": {
+          "assetRole": "demo-scene-image",
+          "assetRef": "placeholder--scene"
+        }
+      },
+      "motion": {
+        "pattern": "scripted-timeline-in-view",
+        "trigger": "in-view-once",
+        "reducedMotionFallback": "motion-config-reduced-user",
+        "inViewMargin": "-30% 0px -48px 0px",
+        "typeMsPerChar": 32,
+        "revealMsPerWord": 25,
+        "durationMs": 400,
+        "easing": "cubic-bezier(.19,1,.22,1)"
+      }
+    },
+    {
+      "section": "product.ops-steps",
+      "variant": "default",
+      "content": {
+        "heading": "From first call to steady routine",
+        "intro": "Dispatchers know the neighborhoods and the customers. The software handles the arithmetic around travel and parts.",
+        "ctaLabel": "Plan a pilot",
+        "ctaHref": "/sign-up",
+        "steps": [
+          {
+            "title": "Survey",
+            "headline": "See the whole week at once.",
+            "description": "We sit with your dispatchers for two days and note where schedules slip. Then we agree which recurring problems are worth fixing first.",
+            "label": "overview",
+            "items": [
+              "Where visits slip",
+              "Which jobs overrun",
+              "Where travel is wasted"
+            ]
+          },
+          {
+            "title": "Outline",
+            "headline": "Decide who handles what.",
+            "description": "Routine rescheduling can run automatically, tricky swaps go to a suggestion list, and sensitive accounts stay with your own coordinators.",
+            "label": "balance",
+            "items": [
+              "Fewer manual swaps",
+              "Clear ownership",
+              "Calmer mornings"
+            ]
+          },
+          {
+            "title": "Connect",
+            "headline": "Keep every crew on schedule.",
+            "description": "Fieldwork joins the calendars, parts counts and customer notes you already keep. Each crew then sees the changes that matter before leaving the yard.",
+            "label": "flow",
+            "items": [
+              "Parts ready on arrival",
+              "Early delay warnings",
+              "Shorter drive times"
+            ]
+          },
+          {
+            "title": "Settle",
+            "headline": "Let the routine take hold.",
+            "description": "We check in weekly while the new plan meets real jobs, tune the rules that misfire, and share a simple scorecard as coverage improves.",
+            "label": "results",
+            "items": [
+              "More jobs per day",
+              "Happier crews",
+              "Fewer callbacks"
+            ]
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "scroll-active-step",
+        "trigger": "scroll",
+        "reducedMotionFallback": "instant-state-change",
+        "durationMs": 200,
+        "easing": "cubic-bezier(.23,1,.32,1)",
+        "activeThresholdViewportFraction": 0.5
+      }
+    },
+    {
+      "section": "story.manifesto",
+      "variant": "default",
+      "content": {
+        "headingLines": [
+          "Calendars",
+          "should not",
+          "run your day.",
+          "You should."
+        ],
+        "paragraphs": [
+          "Most scheduling tools were built to record what already happened. They log visits well, yet they rarely help a dispatcher decide what to move next, and that gap fills every morning with phone calls.",
+          "We would rather give dispatch a proper control room. Maps, crews, parts and customer notes sit side by side, arranged the way a coordinator reads them, so each decision takes seconds instead of minutes.",
+          "A room like that remembers every promise, flags the visit that will run late, and keeps the whole team moving at one pace.",
+          "Local knowledge, tough judgment calls and the handshake at the door still belong to your people. This is only a better desk to work from."
+        ],
+        "emphasisPhrase": "a proper control room.",
+        "signature": {
+          "team": "The Fieldwork team",
+          "date": "01.15.27"
+        },
+        "ticket": {
+          "brand": "FIELDWORK",
+          "version": "1.0",
+          "subjectLabel": "Subject",
+          "subject": "A BETTER DESK FOR DISPATCH",
+          "fields": [
+            {
+              "term": "Date",
+              "value": "2027"
+            },
+            {
+              "term": "Vol.",
+              "value": "1"
+            },
+            {
+              "term": "Ref.",
+              "value": "F001"
+            }
+          ]
+        },
+        "logoTrace": {
+          "assetRole": "brand-logo-trace",
+          "assetRef": "placeholder--logo-trace"
+        }
+      },
+      "motion": {
+        "pattern": "svg-internal-css-loop",
+        "trigger": "load",
+        "reducedMotionFallback": "static-still-svg",
+        "loopMs": 7875
+      }
+    },
+    {
+      "section": "shell.footer-sheet",
+      "variant": "default",
+      "content": {
+        "internalLinks": [
+          {
+            "label": "Privacy",
+            "route": "/privacy"
+          },
+          {
+            "label": "Terms",
+            "route": "/terms"
+          }
+        ],
+        "socialLinks": [
+          {
+            "label": "Profile A",
+            "link": {
+              "assetRole": "external-social-link",
+              "assetRef": "placeholder--social-a"
+            }
+          },
+          {
+            "label": "Profile B",
+            "link": {
+              "assetRole": "external-social-link",
+              "assetRef": "placeholder--social-b"
+            }
+          }
+        ],
+        "ctaLabel": "Request access",
+        "ctaHref": "/sign-up",
+        "logoMark": {
+          "assetRole": "brand-logomark",
+          "assetRef": "placeholder--brand-mark"
+        },
+        "copyright": "© 2027 Example Co. All rights reserved.",
+        "videoCard": {
+          "label": "See how it works",
+          "stillDesktop": {
+            "assetRole": "footer-video-asset",
+            "assetRef": "placeholder--footer-still-desktop"
+          },
+          "stillMobile": {
+            "assetRole": "footer-video-asset",
+            "assetRef": "placeholder--footer-still-mobile"
+          },
+          "loop": {
+            "assetRole": "footer-video-asset",
+            "assetRef": "placeholder--footer-loop"
+          }
+        }
+      },
+      "motion": {
+        "pattern": "hover-play-video-and-link-highlight",
+        "trigger": "hover",
+        "reducedMotionFallback": "video-hidden-still-only",
+        "durationMs": 150,
+        "easing": "cubic-bezier(0,0,.2,1)"
+      }
+    },
+    {
+      "section": "overlay.video-lightbox",
+      "variant": "default",
+      "content": {
+        "dialogLabel": "See how it works",
+        "stream": {
+          "assetRole": "lightbox-video-stream",
+          "assetRef": "placeholder--stream"
+        },
+        "poster": {
+          "assetRole": "video-poster",
+          "assetRef": "placeholder--poster"
+        }
+      },
+      "motion": {
+        "pattern": "view-transition-morph",
+        "trigger": "click",
+        "reducedMotionFallback": "no-animation",
+        "durationMs": 300,
+        "easing": "cubic-bezier(.77,0,.175,1)",
+        "newSnapshotFadeMs": 144,
+        "outlineRevealMs": 250
+      }
+    },
+    {
+      "section": "overlay.sign-up-modal",
+      "variant": "default",
+      "content": {},
+      "motion": {
+        "pattern": "instant-open",
+        "trigger": "route-intercept",
+        "reducedMotionFallback": "not-applicable",
+        "durationMs": 0
+      }
+    },
+    {
+      "section": "form.sign-up-form",
+      "variant": "modal",
+      "content": {
+        "title": "Tell us about your crews",
+        "backLabel": "Back",
+        "textFields": [
+          {
+            "name": "name",
+            "label": "Name",
+            "required": true,
+            "placeholder": "Your name"
+          },
+          {
+            "name": "email",
+            "label": "Work email",
+            "required": true,
+            "placeholder": "Your work email"
+          },
+          {
+            "name": "socialHandle",
+            "label": "Profile link",
+            "required": false,
+            "placeholder": "A page about you"
+          }
+        ],
+        "choiceGroups": [
+          {
+            "name": "role",
+            "label": "Your role",
+            "kind": "radio",
+            "options": [
+              "Owner",
+              "Operations manager",
+              "Dispatcher",
+              "Field technician",
+              "Office coordinator",
+              "Other"
+            ]
+          },
+          {
+            "name": "salesTeamSize",
+            "label": "How many crews do you run?",
+            "kind": "radio",
+            "options": [
+              "1",
+              "2–3",
+              "4–10",
+              "11–40",
+              "41+"
+            ]
+          },
+          {
+            "name": "aiUsage",
+            "label": "How do you plan visits today?",
+            "kind": "checkbox",
+            "options": [
+              "Paper or whiteboard",
+              "Shared spreadsheet",
+              "A scheduling app",
+              "Something else",
+              "No fixed process"
+            ]
+          },
+          {
+            "name": "dealChallenge",
+            "label": "What slows your day down most right now?",
+            "kind": "radio",
+            "options": [
+              "Late arrivals",
+              "Missing parts",
+              "Unclear priorities",
+              "Double bookings",
+              "Phone tag with crews",
+              "Short notice changes",
+              "Something else"
+            ]
+          }
+        ],
+        "otherPlaceholder": "Your answer (optional)",
+        "selectAllHint": "Select all that apply",
+        "validationMessages": {
+          "required": "required",
+          "invalidEmail": "check the email",
+          "chooseAtLeastOne": "choose at least one"
+        },
+        "submitLabel": "Submit",
+        "sendingLabel": "Submitting…",
+        "receivedMessage": "Thanks! We will reply soon.",
+        "receivedCloseLabel": "Close",
+        "errorMessage": "Something went wrong.",
+        "retryLabel": "Try again",
+        "submitEndpoint": {
+          "assetRole": "signup-submit-stub",
+          "assetRef": "placeholder--endpoint"
+        }
+      },
+      "motion": {
+        "pattern": "sending-ring-loop",
+        "trigger": "submit",
+        "reducedMotionFallback": "static-rings-shown",
+        "visibleMs": 1500,
+        "exitMs": 750,
+        "pauseMs": 400,
+        "enterOpacityMs": 400,
+        "easing": "cubic-bezier(.23,1,.32,1)"
+      }
+    },
+    {
+      "section": "overlay.leave-confirm",
+      "variant": "default",
+      "content": {
+        "title": "Close this form?",
+        "description": "Your answers will not be kept.",
+        "keepLabel": "Stay here",
+        "leaveLabel": "Close"
+      },
+      "motion": {
+        "pattern": "none-instant",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    }
+  ]
+}

@@ -2,6 +2,15 @@
 
 <!-- counts: tokens=195 primitives=9 components=11 sections=17 templates=4 routes=5 -->
 
+## 1.1.0 (generation-safety revision)
+
+- PageSpec 1.1.0: required `mode` (`clone` | `generation`); allowlist `pagePropertiesSettable` + `generationModes`; allowlist and repository versions bumped to 1.1.0.
+- `assets/asset-roles.json`: every asset classed `clone-only` | `generation-safe` | `blocked-for-generation` (`generationUseEnum`); 24 generation-safe placeholders (brand mark/trace, integration glyphs, fictional avatars, scene, texture, footer/poster frames, reserved-domain stream/endpoint/profile links) each linked by `placeholderFor`.
+- New `assets/generation-policy.json` (blocked Operate/third-party/real-person terms, reserved URL hosts, copy-reuse corpus rules) and graph rule `GENERATION_MODE_CLONE_ISOLATION` (12 rules), implemented in `schema/semantic_validate.py`.
+- Section schemas: pinned clone asset refs and demo chapter labels now admit a generation-safe alternative (`enum` instead of `const`).
+- New `schema/example.generated.pagespec.json` (fictional brand and copy, placeholder assets, no live links).
+- Adversarial suite: 42 generation-mode mutations (Operate logo, integration logo, real-person/avatar, product screenshot/media, source URL/endpoint, source copy, obfuscation) plus generation-mode controls. verify_all.py: class/placeholder closure, policy coverage, independent scan of the generated example, README table counts; prove_drift.sh: matching drift cases.
+
 ## 1.0.0 (initial build)
 
 Built from scratch in the documented order: tokens, primitives, components, sections, templates, compatibility graph, schema, example instance, semantic validator, adversarial tests, manifest/allowlist/docs.
