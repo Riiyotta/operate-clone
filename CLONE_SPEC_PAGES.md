@@ -8,7 +8,7 @@ All values were measured live with headless Playwright (Chromium, DPR 1) on 2026
 
 ## Reference files added by this pass
 
-| Path (under `/Users/riyaghosh/V3/operate/reference/`) | What it is |
+| Path (under `reference/` (repo-relative)) | What it is |
 |---|---|
 | `screens/pages/{privacy,terms,sign-up,404}-{1440,1280,390}-full.png` | Full-page screenshots. On sign-up the fixed background only paints the first viewport in a full-page capture, which is a screenshot artifact. |
 | `screens/pages/states/signup-*.png`, `modal-*.png` | Sign-up states: focus, invalid, filled, sending (2 frames), error, leave-confirm dialog, and the modal opened from the homepage |

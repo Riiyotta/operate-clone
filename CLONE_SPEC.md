@@ -6,7 +6,7 @@ Measured live with Playwright (Chromium) on 2026-10-14 at 1440x900, 1280x800 and
 
 The original is a Next.js (Turbopack) app built with Tailwind **v4**. Its class names use v4 spacing, where 1 unit = 0.25rem = 4px, so `px-4.25` = 17px, `max-w-368.5` = 1474px and `h-14.5` = 58px. The clone runs Tailwind **v3**. In v3, write these values as arbitrary values (`px-[17px]`) or extend the theme. When a class string below comes from the original, the px value is always given next to it.
 
-## Reference files (all in `/Users/riyaghosh/V3/operate/reference/`)
+## Reference files (all in `reference/` (repo-relative))
 
 | File | What it is |
 |---|---|
