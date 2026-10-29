@@ -1,0 +1,26 @@
+{
+  "pageSpecVersion": "1.2.0",
+  "mode": "generation",
+  "template": "template.not-found",
+  "route": "*",
+  "head": {
+    "title": "Not found",
+    "description": "The requested page is missing from this fictional example site.",
+    "robots": "noindex"
+  },
+  "nodes": [
+    {
+      "section": "system.not-found",
+      "variant": "default",
+      "content": {
+        "code": "404",
+        "message": "This page could not be found."
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    }
+  ]
+}

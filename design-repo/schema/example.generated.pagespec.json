@@ -1,5 +1,5 @@
 {
-  "pageSpecVersion": "1.1.0",
+  "pageSpecVersion": "1.2.0",
   "mode": "generation",
   "template": "template.home",
   "route": "/",
@@ -13,7 +13,7 @@
       "variant": "default",
       "content": {
         "texture": {
-          "assetRole": "background-texture",
+          "assetRole": "generated-background-texture",
           "assetRef": "placeholder--texture"
         }
       },
@@ -43,7 +43,7 @@
         "ctaLabel": "Request access",
         "ctaHref": "/sign-up",
         "logoMark": {
-          "assetRole": "brand-logomark",
+          "assetRole": "placeholder-brand-mark",
           "assetRef": "placeholder--brand-mark"
         }
       },
@@ -72,27 +72,27 @@
         "introAfter": "and shows which visits are at risk before the morning starts. Dispatchers and technicians adjust the plan together, so fewer trips are wasted.",
         "integrationLogos": [
           {
-            "assetRole": "integration-logo",
+            "assetRole": "placeholder-integration-glyph",
             "assetRef": "placeholder--integration-more"
           },
           {
-            "assetRole": "integration-logo",
+            "assetRole": "placeholder-integration-glyph",
             "assetRef": "placeholder--integration-a"
           },
           {
-            "assetRole": "integration-logo",
+            "assetRole": "placeholder-integration-glyph",
             "assetRef": "placeholder--integration-b"
           },
           {
-            "assetRole": "integration-logo",
+            "assetRole": "placeholder-integration-glyph",
             "assetRef": "placeholder--integration-c"
           },
           {
-            "assetRole": "integration-logo",
+            "assetRole": "placeholder-integration-glyph",
             "assetRef": "placeholder--integration-d"
           },
           {
-            "assetRole": "integration-logo",
+            "assetRole": "placeholder-integration-glyph",
             "assetRef": "placeholder--integration-e"
           }
         ],
@@ -129,28 +129,28 @@
         "composerPlaceholder": "Ask about today’s jobs...",
         "people": [
           {
-            "assetRole": "demo-avatar-image",
+            "assetRole": "fictional-avatar",
             "assetRef": "placeholder--avatar-1"
           },
           {
-            "assetRole": "demo-avatar-image",
+            "assetRole": "fictional-avatar",
             "assetRef": "placeholder--avatar-2"
           },
           {
-            "assetRole": "demo-avatar-image",
+            "assetRole": "fictional-avatar",
             "assetRef": "placeholder--avatar-3"
           },
           {
-            "assetRole": "demo-avatar-image",
+            "assetRole": "fictional-avatar",
             "assetRef": "placeholder--avatar-4"
           },
           {
-            "assetRole": "demo-avatar-image",
+            "assetRole": "fictional-avatar",
             "assetRef": "placeholder--avatar-5"
           }
         ],
         "conversationBackground": {
-          "assetRole": "demo-scene-image",
+          "assetRole": "placeholder-product-visual",
           "assetRef": "placeholder--scene"
         }
       },
@@ -271,7 +271,7 @@
           ]
         },
         "logoTrace": {
-          "assetRole": "brand-logo-trace",
+          "assetRole": "placeholder-brand-mark",
           "assetRef": "placeholder--logo-trace"
         }
       },
@@ -300,14 +300,14 @@
           {
             "label": "Profile A",
             "link": {
-              "assetRole": "external-social-link",
+              "assetRole": "placeholder-url",
               "assetRef": "placeholder--social-a"
             }
           },
           {
             "label": "Profile B",
             "link": {
-              "assetRole": "external-social-link",
+              "assetRole": "placeholder-url",
               "assetRef": "placeholder--social-b"
             }
           }
@@ -315,22 +315,22 @@
         "ctaLabel": "Request access",
         "ctaHref": "/sign-up",
         "logoMark": {
-          "assetRole": "brand-logomark",
+          "assetRole": "placeholder-brand-mark",
           "assetRef": "placeholder--brand-mark"
         },
         "copyright": "© 2027 Example Co. All rights reserved.",
         "videoCard": {
           "label": "See how it works",
           "stillDesktop": {
-            "assetRole": "footer-video-asset",
+            "assetRole": "placeholder-product-visual",
             "assetRef": "placeholder--footer-still-desktop"
           },
           "stillMobile": {
-            "assetRole": "footer-video-asset",
+            "assetRole": "placeholder-product-visual",
             "assetRef": "placeholder--footer-still-mobile"
           },
           "loop": {
-            "assetRole": "footer-video-asset",
+            "assetRole": "placeholder-product-visual",
             "assetRef": "placeholder--footer-loop"
           }
         }
@@ -349,11 +349,11 @@
       "content": {
         "dialogLabel": "See how it works",
         "stream": {
-          "assetRole": "lightbox-video-stream",
+          "assetRole": "placeholder-url",
           "assetRef": "placeholder--stream"
         },
         "poster": {
-          "assetRole": "video-poster",
+          "assetRole": "placeholder-product-visual",
           "assetRef": "placeholder--poster"
         }
       },
@@ -471,7 +471,7 @@
         "errorMessage": "Something went wrong.",
         "retryLabel": "Try again",
         "submitEndpoint": {
-          "assetRole": "signup-submit-stub",
+          "assetRole": "placeholder-url",
           "assetRef": "placeholder--endpoint"
         }
       },

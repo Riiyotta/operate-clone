@@ -1,14 +1,21 @@
 {
-  "version": "1.1.0",
-  "$description": "Closed assetRole registry. Every PageSpec media field is {assetRole, assetRef}; raw URLs never appear in a PageSpec. assetRef values must be registered below and carry the matching role (checked by semantic_validate.py). compliancePinned roles are pinned to exact generationPolicy values in extraction/verify_all.py (PINNED_POLICIES). pageSpecFacing:false roles are documented for licensing only and are not in the schema's assetRole enum. Every registered asset carries generationUse (clone-only | generation-safe | blocked-for-generation, see generationUseEnum). PageSpec `mode` 'generation' accepts only generation-safe refs (rule GENERATION_MODE_CLONE_ISOLATION); every non-generation-safe asset that is pageSpecFacing has a generation-safe placeholderFor counterpart (checked by verify_all.py). Placeholder URLs use reserved domains (.invalid) only.",
+  "version": "1.2.0",
+  "$description": "Closed assetRole registry. Every PageSpec media field is {assetRole, assetRef}; raw URLs never appear in a PageSpec. Every role carries a closed `availability` (availabilityEnum): clone-only (this repo's name for reference-only: Operate-owned, mode 'clone' only), generation-safe (placeholder/original stand-ins, the only class allowed in mode 'generation') or blocked-for-generation (third-party marks, source person artwork, live endpoints/profiles, licensed fonts). Every clone-only/blocked PageSpec-facing role names its generation-safe stand-in roles in `generationSafeSubstitutes`; a section field that accepts a role also accepts its substitutes. Availability is pinned in code twice (PINNED_AVAILABILITY in extraction/verify_all.py and schema/semantic_validate.py), so editing this file alone cannot loosen it. compliancePinned roles are pinned to exact generationPolicy values in extraction/verify_all.py (PINNED_POLICIES). pageSpecFacing:false roles are documented for licensing only and are not in the schema's assetRole enum. Every registered asset repeats its role's availability as generationUse (cross-checked); generation-safe assets are named placeholder--*, point at no file and, for URLs, only at reserved domains; each names the real asset it replaces in placeholderFor.",
+  "availabilityEnum": {
+    "clone-only": "Operate-owned brand, product or media asset (this repository's name for reference-only). Valid only in mode 'clone' (a reference reconstruction of the Operate site). Rejected in mode 'generation'.",
+    "generation-safe": "Placeholder or original generated asset with no Operate, third-party or real-person content. The only class allowed in mode 'generation'.",
+    "blocked-for-generation": "Third-party trademark, person artwork tied to the source, live endpoint/profile or licensed font. Registered only so the clone can reference it by id; rejected in mode 'generation'."
+  },
   "policyEnum": {
     "may-generate-new": "Generic decorative texture/geometry with no brand or third-party content. A generator may draw a new, original, brand-neutral equivalent.",
-    "must-reuse-exact": "Operate's own proprietary brand asset. Only the exact registered file may be referenced, only on a property Operate owns. On any other property the renderer must substitute that property's own asset; never redraw, restyle, imitate or regenerate it.",
+    "must-reuse-exact": "Operate's own proprietary brand asset. Mode 'clone' only (availability clone-only): only the exact registered file may be referenced, and only to reconstruct a property Operate owns. Never usable in mode 'generation'; there the generationSafeSubstitutes roles apply. Never redraw, restyle, imitate or regenerate it.",
     "must-not-fabricate": "Real third-party marks, real-company media or fictional-person artwork owned by Operate or others. Only registered ids may be referenced verbatim; never generate, approximate, re-attribute or invent new instances. For other properties substitute a placeholder.",
-    "must-not-reuse-live-endpoint": "A real, live endpoint or profile (video stream, social profile) or an endpoint contract that must not point at the original's live backend. PageSpecs reference it only by registered id, never as a raw URL; a renderer for any other property must replace it with that property's own endpoint."
+    "must-not-reuse-live-endpoint": "A real, live endpoint or profile (video stream, social profile) or an endpoint contract that must not point at the original's live backend. PageSpecs reference it only by registered id, never as a raw URL; a renderer for any other property must replace it with that property's own endpoint.",
+    "generation-safe-placeholder": "Brand-neutral placeholder or original generated stand-in with no Operate, third-party or real-person content and no file in this repository; URLs only on reserved domains. The only policy of the generation-safe roles."
   },
   "roles": {
     "brand-logomark": {
+      "availability": "clone-only",
       "generationPolicy": "must-reuse-exact",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -17,10 +24,13 @@
         "shell.nav-sheet",
         "shell.footer-sheet"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "A neutral square/circle mark supplied by the owning property."
+      "generationSafeSubstitutes": [
+        "placeholder-brand-mark"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "brand-logo-trace": {
+      "availability": "clone-only",
       "generationPolicy": "must-reuse-exact",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -28,10 +38,13 @@
       "usedBy": [
         "story.manifesto"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "A neutral static SVG or no graphic."
+      "generationSafeSubstitutes": [
+        "placeholder-brand-mark"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "integration-logo": {
+      "availability": "blocked-for-generation",
       "generationPolicy": "must-not-fabricate",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -39,10 +52,13 @@
       "usedBy": [
         "hero.headline-integrations"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "Generic gray circle glyphs; never another company's trademark unless licensed."
+      "generationSafeSubstitutes": [
+        "placeholder-integration-glyph"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "demo-avatar-image": {
+      "availability": "blocked-for-generation",
       "generationPolicy": "must-not-fabricate",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -50,10 +66,13 @@
       "usedBy": [
         "product.demo"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "Initial-letter or silhouette avatars."
+      "generationSafeSubstitutes": [
+        "fictional-avatar"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "demo-scene-image": {
+      "availability": "clone-only",
       "generationPolicy": "must-not-fabricate",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -61,10 +80,13 @@
       "usedBy": [
         "product.demo"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "A flat neutral panel."
+      "generationSafeSubstitutes": [
+        "placeholder-product-visual"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "background-texture": {
+      "availability": "clone-only",
       "generationPolicy": "may-generate-new",
       "compliancePinned": false,
       "pageSpecFacing": true,
@@ -72,10 +94,13 @@
       "usedBy": [
         "backdrop.animated-background"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "Any original subtle noise texture."
+      "generationSafeSubstitutes": [
+        "generated-background-texture"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "footer-video-asset": {
+      "availability": "clone-only",
       "generationPolicy": "must-not-fabricate",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -83,10 +108,13 @@
       "usedBy": [
         "shell.footer-sheet"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "A flat placeholder frame; omit the hover video."
+      "generationSafeSubstitutes": [
+        "placeholder-product-visual"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "video-poster": {
+      "availability": "clone-only",
       "generationPolicy": "must-not-fabricate",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -94,10 +122,13 @@
       "usedBy": [
         "overlay.video-lightbox"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "A flat 16:9 placeholder."
+      "generationSafeSubstitutes": [
+        "placeholder-product-visual"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "lightbox-video-stream": {
+      "availability": "blocked-for-generation",
       "generationPolicy": "must-not-reuse-live-endpoint",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -105,10 +136,13 @@
       "usedBy": [
         "overlay.video-lightbox"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "The owning property's own stream, or a placeholder."
+      "generationSafeSubstitutes": [
+        "placeholder-url"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "signup-submit-stub": {
+      "availability": "blocked-for-generation",
       "generationPolicy": "must-not-reuse-live-endpoint",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -116,10 +150,13 @@
       "usedBy": [
         "form.sign-up-form"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "The owning property's own endpoint behind the same contract."
+      "generationSafeSubstitutes": [
+        "placeholder-url"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "external-social-link": {
+      "availability": "blocked-for-generation",
       "generationPolicy": "must-not-reuse-live-endpoint",
       "compliancePinned": true,
       "pageSpecFacing": true,
@@ -127,17 +164,99 @@
       "usedBy": [
         "shell.footer-sheet"
       ],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "The owning property's own profiles, or omit."
+      "generationSafeSubstitutes": [
+        "placeholder-url"
+      ],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     },
     "font-file": {
+      "availability": "blocked-for-generation",
       "generationPolicy": "must-not-fabricate",
       "compliancePinned": true,
       "pageSpecFacing": false,
       "description": "Self-hosted woff2 fonts. Denim, GT Cinetype and 205TF Muoto are commercially licensed; Geist Mono is SIL OFL 1.1. Not a PageSpec field; documented for compliance.",
       "usedBy": [],
-      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property.",
-      "placeholderSubstitute": "Use the property's own licensed fonts; never ship Operate's commercial font files."
+      "generationSafeSubstitutes": [],
+      "generationSafeSubstitutesNote": "Not a PageSpec field: a generated page uses the owning property's own licensed fonts; there is no font role to substitute.",
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
+    },
+    "placeholder-brand-mark": {
+      "availability": "generation-safe",
+      "generationPolicy": "generation-safe-placeholder",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "A brand-neutral placeholder mark (rounded square, circle, or the owning property's own mark supplied at render time). Stands in for Operate's logo mark and logo-trace in mode 'generation'. No file in this repository.",
+      "usedBy": [
+        "shell.nav-sheet",
+        "shell.footer-sheet",
+        "story.manifesto"
+      ],
+      "generationSafeSubstitutes": [],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
+    },
+    "placeholder-integration-glyph": {
+      "availability": "generation-safe",
+      "generationPolicy": "generation-safe-placeholder",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "A generic gray glyph inside an integration bubble (no third-party trademark). Stands in for the integration logos in mode 'generation'.",
+      "usedBy": [
+        "hero.headline-integrations"
+      ],
+      "generationSafeSubstitutes": [],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
+    },
+    "fictional-avatar": {
+      "availability": "generation-safe",
+      "generationPolicy": "generation-safe-placeholder",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "An initial-letter or silhouette avatar of a fictional person, or an avatar the owning property generated or licensed. Never a real person's or the source's avatar art.",
+      "usedBy": [
+        "product.demo"
+      ],
+      "generationSafeSubstitutes": [],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
+    },
+    "placeholder-product-visual": {
+      "availability": "generation-safe",
+      "generationPolicy": "generation-safe-placeholder",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "A flat placeholder frame or an original generated product visual (scene background, video still, poster, muted loop). Never a screenshot or frame of the source product.",
+      "usedBy": [
+        "product.demo",
+        "shell.footer-sheet",
+        "overlay.video-lightbox"
+      ],
+      "generationSafeSubstitutes": [],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
+    },
+    "generated-background-texture": {
+      "availability": "generation-safe",
+      "generationPolicy": "generation-safe-placeholder",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "An original, brand-neutral noise texture generated for the owning property (or none).",
+      "usedBy": [
+        "backdrop.animated-background"
+      ],
+      "generationSafeSubstitutes": [],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
+    },
+    "placeholder-url": {
+      "availability": "generation-safe",
+      "generationPolicy": "generation-safe-placeholder",
+      "compliancePinned": true,
+      "pageSpecFacing": true,
+      "description": "A placeholder URL or endpoint on a reserved domain only (*.example.invalid / example.com|org|net / .test / .example), standing in for the video stream, the sign-up submit endpoint and social profile links until the owning property supplies its own.",
+      "usedBy": [
+        "overlay.video-lightbox",
+        "form.sign-up-form",
+        "shell.footer-sheet"
+      ],
+      "generationSafeSubstitutes": [],
+      "licensing": "Real, live company (Operate, operate.so). This repository is reference-only, design-review-pending and productionApproved:false. Generated output must never reproduce Operate's real logos, real people's photos or names, third-party trademarks/logos, Operate's proprietary copy or media, or its commercial fonts. A generated page for any property Operate does not own must use placeholder / brand-neutral substitutes supplied by that property."
     }
   },
   "registeredAssets": {
@@ -418,7 +537,7 @@
       "generationUse": "blocked-for-generation"
     },
     "placeholder--brand-mark": {
-      "role": "brand-logomark",
+      "role": "placeholder-brand-mark",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -426,7 +545,7 @@
       "note": "Neutral rounded square supplied by the owning property."
     },
     "placeholder--logo-trace": {
-      "role": "brand-logo-trace",
+      "role": "placeholder-brand-mark",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -434,7 +553,7 @@
       "note": "Neutral static outline; no animation required."
     },
     "placeholder--integration-more": {
-      "role": "integration-logo",
+      "role": "placeholder-integration-glyph",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -442,7 +561,7 @@
       "note": "Generic plus glyph."
     },
     "placeholder--integration-a": {
-      "role": "integration-logo",
+      "role": "placeholder-integration-glyph",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -450,7 +569,7 @@
       "note": "Generic gray circle glyph; carries no third-party mark."
     },
     "placeholder--integration-b": {
-      "role": "integration-logo",
+      "role": "placeholder-integration-glyph",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -458,7 +577,7 @@
       "note": "Generic gray circle glyph; carries no third-party mark."
     },
     "placeholder--integration-c": {
-      "role": "integration-logo",
+      "role": "placeholder-integration-glyph",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -466,7 +585,7 @@
       "note": "Generic gray circle glyph; carries no third-party mark."
     },
     "placeholder--integration-d": {
-      "role": "integration-logo",
+      "role": "placeholder-integration-glyph",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -474,7 +593,7 @@
       "note": "Generic gray circle glyph; carries no third-party mark."
     },
     "placeholder--integration-e": {
-      "role": "integration-logo",
+      "role": "placeholder-integration-glyph",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -482,7 +601,7 @@
       "note": "Generic gray circle glyph; carries no third-party mark."
     },
     "placeholder--avatar-1": {
-      "role": "demo-avatar-image",
+      "role": "fictional-avatar",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -490,7 +609,7 @@
       "note": "Fictional person A: initial-letter avatar on a flat color."
     },
     "placeholder--avatar-2": {
-      "role": "demo-avatar-image",
+      "role": "fictional-avatar",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -498,7 +617,7 @@
       "note": "Fictional person B: initial-letter avatar on a flat color."
     },
     "placeholder--avatar-3": {
-      "role": "demo-avatar-image",
+      "role": "fictional-avatar",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -506,7 +625,7 @@
       "note": "Fictional person C: initial-letter avatar on a flat color."
     },
     "placeholder--avatar-4": {
-      "role": "demo-avatar-image",
+      "role": "fictional-avatar",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -514,7 +633,7 @@
       "note": "Fictional person D: initial-letter avatar on a flat color."
     },
     "placeholder--avatar-5": {
-      "role": "demo-avatar-image",
+      "role": "fictional-avatar",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -522,7 +641,7 @@
       "note": "Fictional person E: initial-letter avatar on a flat color."
     },
     "placeholder--scene": {
-      "role": "demo-scene-image",
+      "role": "placeholder-product-visual",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -530,7 +649,7 @@
       "note": "Flat neutral panel."
     },
     "placeholder--texture": {
-      "role": "background-texture",
+      "role": "generated-background-texture",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "generated",
       "generationUse": "generation-safe",
@@ -538,7 +657,7 @@
       "note": "Any original, brand-neutral subtle noise texture generated by the owning property."
     },
     "placeholder--footer-still-desktop": {
-      "role": "footer-video-asset",
+      "role": "placeholder-product-visual",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -546,7 +665,7 @@
       "note": "Flat 16:9 placeholder frame."
     },
     "placeholder--footer-still-mobile": {
-      "role": "footer-video-asset",
+      "role": "placeholder-product-visual",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -554,7 +673,7 @@
       "note": "Flat portrait placeholder frame."
     },
     "placeholder--footer-loop": {
-      "role": "footer-video-asset",
+      "role": "placeholder-product-visual",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "omitted",
       "generationUse": "generation-safe",
@@ -562,7 +681,7 @@
       "note": "No hover video; the still alone is shown."
     },
     "placeholder--poster": {
-      "role": "video-poster",
+      "role": "placeholder-product-visual",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
@@ -570,53 +689,48 @@
       "note": "Flat 16:9 placeholder."
     },
     "placeholder--stream": {
-      "role": "lightbox-video-stream",
+      "role": "placeholder-url",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "placeholder-endpoint",
       "generationUse": "generation-safe",
       "placeholderFor": "stream--lightbox-demo",
       "note": "Reserved-domain placeholder stream; never a real playback id.",
-      "placeholderUrl": "https://example.invalid/stream/placeholder.m3u8"
+      "placeholderUrl": "https://media.example.invalid/stream/placeholder.m3u8"
     },
     "placeholder--endpoint": {
-      "role": "signup-submit-stub",
+      "role": "placeholder-url",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "placeholder-endpoint",
       "generationUse": "generation-safe",
       "placeholderFor": "endpoint--signup-stub",
       "note": "Reserved-domain placeholder submit endpoint behind the same contract.",
-      "placeholderUrl": "https://example.invalid/api/placeholder-submit"
+      "placeholderUrl": "https://forms.example.invalid/api/placeholder-submit"
     },
     "placeholder--social-a": {
-      "role": "external-social-link",
+      "role": "placeholder-url",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "placeholder-endpoint",
       "generationUse": "generation-safe",
       "placeholderFor": "social--linkedin",
       "note": "Reserved-domain placeholder profile link.",
-      "placeholderUrl": "https://example.invalid/profile-a"
+      "placeholderUrl": "https://social.example.invalid/profile-a"
     },
     "placeholder--social-b": {
-      "role": "external-social-link",
+      "role": "placeholder-url",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "placeholder-endpoint",
       "generationUse": "generation-safe",
       "placeholderFor": "social--x",
       "note": "Reserved-domain placeholder profile link.",
-      "placeholderUrl": "https://example.invalid/profile-b"
+      "placeholderUrl": "https://social.example.invalid/profile-b"
     },
     "placeholder--logo-trace-still": {
-      "role": "brand-logo-trace",
+      "role": "placeholder-brand-mark",
       "source": "(no file; supplied by the owning property at render time)",
       "kind": "svg-placeholder",
       "generationUse": "generation-safe",
       "placeholderFor": "logo-trace--still",
       "note": "Neutral static outline for reduced motion."
     }
-  },
-  "generationUseEnum": {
-    "clone-only": "Operate-owned brand, product or media asset. Valid only in mode 'clone' (a reference reconstruction of the Operate site). Rejected in mode 'generation'.",
-    "generation-safe": "Placeholder or original asset with no Operate, third-party or real-person content. The only class allowed in mode 'generation'.",
-    "blocked-for-generation": "Third-party trademark, real/fictional-person artwork tied to the source, live endpoint/profile or licensed font. Registered only so the clone can reference it by id; rejected in mode 'generation'."
   }
 }

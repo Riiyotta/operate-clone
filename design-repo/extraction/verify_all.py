@@ -1,31 +1,77 @@
 #!/usr/bin/env python3
 """One-shot verification of the Operate design-repo.
 
-Checks: generation-mode safety (asset classes, placeholders, policy, generated example), self-containment (no absolute paths, entryPoints inside the repo), JSON well-formedness, Draft-07
-schema validity + example validation (0 errors), schema/section sync, closed motion/objects, allowlist parity
-(both directions), template <-> route <-> section coverage (+ ia.json when a source tree is present),
-graph-rule implementation parity, token reference integrity + catalog/policy/theme drift, asset-role closure
-with PINNED_POLICIES, manifest counts/versions recomputed from disk, README/CHANGELOG count markers,
-citation validity + quote spot-checks against the source tree (WARN and skip when no source tree).
+Checks: self-containment (no absolute paths, entryPoints inside the repo), JSON well-formedness, Draft-07 schema
+validity + examples (0 errors), schema/section sync, closed motion/objects, allowlist parity (both directions),
+template <-> route <-> section coverage (+ ia.json when a source tree is present), graph-rule implementation parity,
+token reference integrity + catalog/policy/theme drift, asset roles (PINNED_POLICIES, PINNED_AVAILABILITY cross-checked
+with the registry and with schema/semantic_validate.py, generationSafeSubstitutes wired into every section field),
+generation mode (six per-category rules, one generation-safe example per template family, an independent text scan,
+a behavioural probe per category), section contracts (closed schema, source/semantic split, retrievalEligible pin),
+the whole-page-wrapper gate (extraction/wrapper_gate.py, measured heights), manifest counts/versions recomputed from
+disk, README/CHANGELOG count markers, and - when the source tree is present - citation validity, quote spot-checks,
+section source ranges (tag + anchor re-read) and generation-policy evidence lines.
 
 Usage:  python3 extraction/verify_all.py [--source-root DIR]
         (source root also from env DESIGN_REPO_SOURCE_ROOT; default: the folder containing design-repo/, if it
          looks like the source project). Exit code 0 == all hard checks passed.
-Drift proofs (scratch-copy mutation tests): extraction/prove_drift.sh
+Drift proofs (scratch-copy mutation tests): python3 extraction/prove_drift.py --scratch DIR
 """
-import glob, json, os, re, sys
+import copy, glob, json, os, re, sys
 from urllib.parse import urlparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)  # extraction/ -> repo root (never hardcoded)
 sys.path.insert(0, os.path.join(REPO, "schema"))
+sys.path.insert(0, HERE)
+sys.dont_write_bytecode = True
 
 PINNED_POLICIES = {  # compliance-critical roles pinned to ONE exact generationPolicy (not just enum membership)
     "brand-logomark": "must-reuse-exact", "brand-logo-trace": "must-reuse-exact",
     "integration-logo": "must-not-fabricate", "demo-avatar-image": "must-not-fabricate", "demo-scene-image": "must-not-fabricate",
     "footer-video-asset": "must-not-fabricate", "video-poster": "must-not-fabricate", "font-file": "must-not-fabricate",
     "lightbox-video-stream": "must-not-reuse-live-endpoint", "signup-submit-stub": "must-not-reuse-live-endpoint", "external-social-link": "must-not-reuse-live-endpoint",
+    "placeholder-brand-mark": "generation-safe-placeholder", "placeholder-integration-glyph": "generation-safe-placeholder", "fictional-avatar": "generation-safe-placeholder",
+    "placeholder-product-visual": "generation-safe-placeholder", "generated-background-texture": "generation-safe-placeholder", "placeholder-url": "generation-safe-placeholder",
 }
+# Asset-role availability, pinned here independently of assets/asset-roles.json AND of schema/semantic_validate.py
+# (both are compared against this table). A real logo/wordmark is never generation-safe.
+AVAILABILITY_ENUM = ["clone-only", "generation-safe", "blocked-for-generation"]
+PINNED_AVAILABILITY = {
+    "brand-logomark": "clone-only", "brand-logo-trace": "clone-only", "demo-scene-image": "clone-only",
+    "footer-video-asset": "clone-only", "video-poster": "clone-only", "background-texture": "clone-only",
+    "integration-logo": "blocked-for-generation", "demo-avatar-image": "blocked-for-generation",
+    "lightbox-video-stream": "blocked-for-generation", "signup-submit-stub": "blocked-for-generation",
+    "external-social-link": "blocked-for-generation", "font-file": "blocked-for-generation",
+    "placeholder-brand-mark": "generation-safe", "placeholder-integration-glyph": "generation-safe",
+    "fictional-avatar": "generation-safe", "placeholder-product-visual": "generation-safe",
+    "generated-background-texture": "generation-safe", "placeholder-url": "generation-safe",
+}
+GENERATION_CATEGORIES = ["BRAND", "INTEGRATION_LOGO", "PERSON", "SCREENSHOT", "COPY", "URL"]
+# Section contracts that must be retrievalEligible false (runtime UI, layout-only chrome, framework fallback).
+RETRIEVAL_PINNED = ["backdrop.animated-background", "overlay.leave-confirm", "overlay.sign-up-modal", "overlay.video-lightbox",
+                    "shell.binder-rails", "shell.main-sheet", "system.not-found"]
+RUNTIME_UI_RE = re.compile(r"overlay|modal|dialog|drawer|cookie|consent|popup|toast|lightbox|preloader|cursor|confirm")
+SEMANTIC_CATEGORIES = ["BACKDROP", "CONTENT", "CONVERSION", "FEATURE", "HERO", "NAVIGATION", "OVERLAY", "SHELL", "SYSTEM"]
+
+
+def _gnode(s, sec):
+    return next(n for n in s["nodes"] if n["section"] == sec)["content"]
+
+
+def _p_brand(s): _gnode(s, "shell.nav-sheet")["logoMark"] = {"assetRole": "brand-logomark", "assetRef": "logo--mark"}
+def _p_logo(s): _gnode(s, "hero.headline-integrations")["integrationLogos"][1] = {"assetRole": "integration-logo", "assetRef": "integration--slack"}
+def _p_person(s): _gnode(s, "product.demo")["people"][0] = {"assetRole": "demo-avatar-image", "assetRef": "avatar--demo-1"}
+def _p_shot(s): _gnode(s, "overlay.video-lightbox")["poster"] = {"assetRole": "video-poster", "assetRef": "poster--lightbox"}
+def _p_copy(s): _gnode(s, "hero.headline-integrations")["headline"] = "Collaborative AI for frontier sales organizations"
+def _p_url(s): s["head"]["description"] = "A fictional page. Original at https://operate.so/sign-up for reference."
+GENERATION_PROBES = [("BRAND", _p_brand), ("INTEGRATION_LOGO", _p_logo), ("PERSON", _p_person), ("SCREENSHOT", _p_shot), ("COPY", _p_copy), ("URL", _p_url)]
+
+
+def _reserved(url, pol):
+    h = (urlparse(url).hostname or "").lower()
+    u = pol["urls"]
+    return any(h == x or h.endswith("." + x) for x in u["allowedHosts"]) or h.endswith(tuple(u["allowedHostSuffixes"]))
 CIT = re.compile(r"([A-Za-z0-9_./\-]+\.(?:md|jsx|js|cjs|css|json|mjs|html)):(\d+)(?:-(\d+))?")
 
 ABS1, ABS2 = "/Us" + "ers/", "/priv" + "ate/tmp"  # built at run time so this file itself holds no absolute path
@@ -99,7 +145,7 @@ def main(argv):
     ep = man.get("entryPoints", {})
     badep = [v for v in ep.values() if ".." in v.split("/") or os.path.isabs(v) or not os.path.exists(os.path.join(REPO, v))]
     check(ep and not badep, "manifest entryPoints are all inside the repo and exist (%d)" % len(ep), ", ".join(badep))
-    for need in ["extraction/prove_drift.sh", "schema/tests/adversarial_test.py", "schema/semantic_validate.py"]:
+    for need in ["extraction/prove_drift.py", "extraction/wrapper_gate.py", "extraction/measure_sections.mjs", "extraction/measure-recipes.json", "extraction/wrapper-whitelist.json", "schema/section-contract.schema.json", "schema/tests/adversarial_test.py", "schema/semantic_validate.py"]:
         check(os.path.exists(os.path.join(REPO, need)), "referenced script exists: " + need)
 
     # ---- load
@@ -135,13 +181,10 @@ def main(argv):
     ctx = sv.load_context(REPO)
     e, w = sv.validate(ex, REPO, ctx)
     check(not e and not w, "semantic validation of example.pagespec.json: %d errors, %d warnings" % (len(e), len(w)), "; ".join(e + w)[:300])
-    gx = J("schema/example.generated.pagespec.json")
-    n_err = len(list(Draft7Validator(sch).iter_errors(gx)))
-    check(n_err == 0, "Draft-07 validation of example.generated.pagespec.json: %d errors" % n_err)
-    e, w = sv.validate(gx, REPO, ctx)
-    check(not e and not w, "semantic validation of example.generated.pagespec.json (mode generation): %d errors, %d warnings" % (len(e), len(w)), "; ".join(e + w)[:300])
-    check(ex["mode"] == "clone" and gx["mode"] == "generation" and sch["properties"]["mode"]["enum"] == ["clone", "generation"] == allow["generationModes"], "schema/allowlist modes == [clone, generation]; clone example is mode clone, generated example is mode generation")
-    check(ex["pageSpecVersion"] == gx["pageSpecVersion"] == sch["properties"]["pageSpecVersion"]["const"] == man["pageSpecVersion"], "pageSpecVersion agrees across schema, both examples and manifest (schema const is the enforcement)")
+    gxs = [J(os.path.relpath(p, REPO)) for p in sorted(glob.glob(os.path.join(REPO, "schema", "example.generated*.pagespec.json")))]
+    check(ex["mode"] == "clone" and gxs and all(g["mode"] == "generation" for g in gxs) and sch["properties"]["mode"]["enum"] == ["clone", "generation"] == allow["generationModes"] and "mode" in sch["required"],
+          "mode is required and closed: schema/allowlist modes == [clone, generation]; clone example is mode clone, every generated example is mode generation")
+    check(all(g["pageSpecVersion"] == ex["pageSpecVersion"] for g in gxs) and ex["pageSpecVersion"] == sch["properties"]["pageSpecVersion"]["const"] == man["pageSpecVersion"], "pageSpecVersion agrees across schema, all examples and manifest (schema const is the enforcement)")
     for tid, t in tpl["templates"].items():
         for r in t["routes"]:
             nodes = [{"section": n["section"], "variant": n["variants"][0], "content": secs[n["section"]]["exemplar"]["content"], "motion": secs[n["section"]]["exemplar"]["motion"]} for n in t["nodes"]]
@@ -224,7 +267,7 @@ def main(argv):
     check(not badtok, "primitive/component token references resolve and carry citations", ", ".join(badtok))
     nocs = [sid for sid, s in secs.items() if not s.get("measuredFrom") or not s["motion"]["exemplar"]]
     check(not nocs, "every section carries citations and a motion exemplar", ", ".join(nocs))
-    # ---- asset roles
+    # ---- asset roles: policy pins, availability pins (independent of the registry), substitutes
     pe = set(ad["policyEnum"]); bad_roles = []
     for r, v in ad["roles"].items():
         if v["generationPolicy"] not in pe: bad_roles.append(r + ":policy-not-in-enum")
@@ -237,49 +280,169 @@ def main(argv):
         if a["role"] not in ad["roles"]: bad_roles.append(ref + ":unknown-role")
     check(not bad_roles, "asset-role closure + PINNED_POLICIES (exact policy values, not just enum membership)", ", ".join(bad_roles))
     check(set(PINNED_POLICIES) == {r for r, v in ad["roles"].items() if v["compliancePinned"]}, "every compliancePinned role is in PINNED_POLICIES")
-    # ---- generation safety: asset classes, placeholders, policy, generated example
-    GU = set(ad["generationUseEnum"]); pol = J("assets/generation-policy.json"); reg = ad["registeredAssets"]; bad_g = []
+    AV = list(ad["availabilityEnum"])
+    check(AV == AVAILABILITY_ENUM, "availabilityEnum is exactly %s" % AVAILABILITY_ENUM, str(AV))
+    bad_av = ["%s:%r" % (r, v.get("availability")) for r, v in ad["roles"].items() if v.get("availability") not in AVAILABILITY_ENUM]
+    bad_av += ["%s:not-pinned-in-verify_all" % r for r in ad["roles"] if r not in PINNED_AVAILABILITY]
+    bad_av += ["%s:pinned-%s-registry-%s" % (r, PINNED_AVAILABILITY[r], ad["roles"][r].get("availability")) for r in PINNED_AVAILABILITY if r in ad["roles"] and ad["roles"][r].get("availability") != PINNED_AVAILABILITY[r]]
+    bad_av += ["%s:pinned-role-missing-from-registry" % r for r in PINNED_AVAILABILITY if r not in ad["roles"]]
+    check(not bad_av, "every role has a closed availability equal to PINNED_AVAILABILITY in verify_all.py (%d roles)" % len(ad["roles"]), ", ".join(bad_av[:6]))
+    check(sorted(allow.get("generationSafeAssetRoles", [])) == sorted(r for r, v in PINNED_AVAILABILITY.items() if v == "generation-safe"),
+          "allowlist generationSafeAssetRoles == the roles pinned generation-safe", str(allow.get("generationSafeAssetRoles")))
+    check(dict(sv.PINNED_AVAILABILITY) == PINNED_AVAILABILITY, "PINNED_AVAILABILITY in schema/semantic_validate.py == the copy in verify_all.py",
+          "differs: %s" % sorted(k for k in set(PINNED_AVAILABILITY) | set(sv.PINNED_AVAILABILITY) if PINNED_AVAILABILITY.get(k) != sv.PINNED_AVAILABILITY.get(k)))
+    check(all(PINNED_AVAILABILITY.get(r) == "clone-only" and PINNED_POLICIES.get(r) == "must-reuse-exact" for r in ("brand-logomark", "brand-logo-trace")),
+          "brand-logomark / brand-logo-trace: must-reuse-exact applies in mode clone only (availability pinned clone-only)")
+    facing_roles = {r: v for r, v in ad["roles"].items() if v["pageSpecFacing"]}
+    nocat = sorted(r for r in facing_roles if r not in sv.ROLE_LEAK_CATEGORY or sv.ROLE_LEAK_CATEGORY[r] not in sv.GENERATION_CATEGORIES)
+    check(not nocat, "every PageSpec-facing role maps to a generation-mode rule category (ROLE_LEAK_CATEGORY)", ", ".join(nocat))
+    bad_sub = []
+    for r, v in ad["roles"].items():
+        subs = v.get("generationSafeSubstitutes")
+        if not isinstance(subs, list): bad_sub.append(r + ":no-generationSafeSubstitutes"); continue
+        if PINNED_AVAILABILITY.get(r) == "generation-safe":
+            if subs: bad_sub.append(r + ":generation-safe-role-has-substitutes")
+            if not any(r in (ad["roles"][o].get("generationSafeSubstitutes") or []) for o in ad["roles"]): bad_sub.append(r + ":substitutes-nothing")
+            continue
+        if v["pageSpecFacing"] and not subs: bad_sub.append(r + ":clone-only/blocked-role-without-substitute")
+        if not v["pageSpecFacing"] and not subs and not v.get("generationSafeSubstitutesNote"): bad_sub.append(r + ":empty-substitutes-without-note")
+        for s_ in subs:
+            if PINNED_AVAILABILITY.get(s_) != "generation-safe": bad_sub.append("%s:substitute-%s-not-generation-safe" % (r, s_))
+            elif not set(v["usedBy"]) <= set(ad["roles"][s_]["usedBy"]): bad_sub.append("%s:substitute-%s-not-usable-in-%s" % (r, s_, sorted(set(v["usedBy"]) - set(ad["roles"][s_]["usedBy"]))))
+            if sv.ROLE_LEAK_CATEGORY.get(s_) != sv.ROLE_LEAK_CATEGORY.get(r): bad_sub.append("%s:substitute-%s-other-category" % (r, s_))
+    check(not bad_sub, "generationSafeSubstitutes: every clone-only/blocked PageSpec-facing role names generation-safe stand-in roles usable in all its sections", ", ".join(bad_sub[:6]))
+    reg = ad["registeredAssets"]; pol = J("assets/generation-policy.json"); bad_g = []
     for ref, a in reg.items():
-        if a.get("generationUse") not in GU: bad_g.append(ref + ":generationUse")
-        r = ad["roles"][a["role"]]
-        if a.get("generationUse") == "generation-safe":
-            if not a.get("placeholderFor") or a["placeholderFor"] not in reg or reg[a["placeholderFor"]].get("generationUse") == "generation-safe": bad_g.append(ref + ":placeholderFor")
-            if a.get("measuredFrom") or a.get("license") or ".png" in a["source"] or "public/" in a["source"] or "src/" in a["source"]: bad_g.append(ref + ":placeholder-points-at-real-source")
-            if "placeholderUrl" in a and not (urlparse(a["placeholderUrl"]).hostname or "").endswith(tuple(pol["urls"]["allowedHostSuffixes"])): bad_g.append(ref + ":placeholderUrl-not-reserved")
+        role_av = PINNED_AVAILABILITY.get(a["role"])
+        if a.get("generationUse") != role_av: bad_g.append("%s:generationUse-%s-but-role-%s" % (ref, a.get("generationUse"), role_av))
+        if role_av == "generation-safe":
+            if not ref.startswith(sv.GENERATION_SAFE_REF_PREFIX): bad_g.append(ref + ":generation-safe-ref-not-placeholder--")
+            pf = reg.get(a.get("placeholderFor") or "")
+            if pf is None or PINNED_AVAILABILITY.get(pf["role"]) == "generation-safe": bad_g.append(ref + ":placeholderFor")
+            elif a["role"] not in ad["roles"][pf["role"]]["generationSafeSubstitutes"]: bad_g.append(ref + ":role-is-not-a-substitute-of-the-replaced-asset")
+            if a.get("measuredFrom") or a.get("license") or not a["source"].startswith("(no file"): bad_g.append(ref + ":placeholder-points-at-real-source")
+            if "placeholderUrl" in a and not _reserved(a["placeholderUrl"], pol): bad_g.append(ref + ":placeholderUrl-not-reserved")
+            if a["role"] == "placeholder-url" and "placeholderUrl" not in a: bad_g.append(ref + ":placeholder-url-without-placeholderUrl")
         else:
-            if "placeholderFor" in a: bad_g.append(ref + ":real-asset-has-placeholderFor")
-            if r["generationPolicy"] == "must-not-reuse-live-endpoint" and a["generationUse"] != "blocked-for-generation": bad_g.append(ref + ":live-endpoint-must-be-blocked")
-            if a["role"] in ("integration-logo", "demo-avatar-image", "font-file") and a["generationUse"] != "blocked-for-generation": bad_g.append(ref + ":third-party/person/font-must-be-blocked")
-            if a["role"] in ("brand-logomark", "brand-logo-trace", "demo-scene-image", "footer-video-asset", "video-poster", "background-texture") and a["generationUse"] != "clone-only": bad_g.append(ref + ":operate-asset-must-be-clone-only")
-            if r["pageSpecFacing"] and not any(b.get("placeholderFor") == ref for b in reg.values()): bad_g.append(ref + ":no-generation-safe-placeholder")
-    for role, r in ad["roles"].items():
-        if r["pageSpecFacing"] and not any(a["role"] == role and a["generationUse"] == "generation-safe" for a in reg.values()): bad_g.append(role + ":role-has-no-generation-safe-asset")
-    check(not bad_g, "asset classes: every asset is clone-only | generation-safe | blocked-for-generation; every pageSpecFacing real asset has a generation-safe placeholder; placeholders point at no real file/URL", ", ".join(bad_g[:6]))
+            if ref.startswith(sv.GENERATION_SAFE_REF_PREFIX): bad_g.append(ref + ":real-asset-named-placeholder--")
+            if "placeholderFor" in a or "placeholderUrl" in a: bad_g.append(ref + ":real-asset-has-placeholder-fields")
+            if ad["roles"][a["role"]]["pageSpecFacing"] and not any(b.get("placeholderFor") == ref for b in reg.values()): bad_g.append(ref + ":no-generation-safe-placeholder")
+    for role, r in facing_roles.items():
+        if not any(a["role"] == role for a in reg.values()): bad_g.append(role + ":role-has-no-registered-asset")
+    check(not bad_g, "registered assets: generationUse == pinned role availability; generation-safe assets are placeholder--* stand-ins (substitute role, no file, reserved URLs); every real PageSpec asset has one", ", ".join(bad_g[:6]))
     unw = []
     def asset_fields(o, sid, path=""):
         if isinstance(o, dict):
-            if "assetRef" in o.get("properties", {}) and "enum" in o["properties"]["assetRef"]:
-                refs = o["properties"]["assetRef"]["enum"]
-                if any(x not in reg for x in refs) or not any(reg[x]["generationUse"] == "generation-safe" for x in refs if x in reg): unw.append("%s%s" % (sid, path))
+            props = o.get("properties", {})
+            if "assetRole" in props and "allOf" in props["assetRole"]:
+                en = props["assetRole"]["allOf"][1]["enum"]
+                for r_ in en:
+                    for s_ in ad["roles"].get(r_, {}).get("generationSafeSubstitutes", []):
+                        if s_ not in en: unw.append("%s%s:%s-misses-substitute-%s" % (sid, path, r_, s_))
+                if not any(PINNED_AVAILABILITY.get(r_) == "generation-safe" for r_ in en): unw.append("%s%s:no-generation-safe-role" % (sid, path))
+                refs = props.get("assetRef", {}).get("enum")
+                if refs is not None:
+                    if any(x not in reg for x in refs): unw.append("%s%s:unregistered-ref" % (sid, path))
+                    if not any(reg[x]["role"] == r_ for x in refs if x in reg for r_ in en if PINNED_AVAILABILITY.get(r_) == "generation-safe"): unw.append("%s%s:no-generation-safe-ref" % (sid, path))
             for k, v in o.items(): asset_fields(v, sid, path + "/" + k)
         elif isinstance(o, list):
             for i, v in enumerate(o): asset_fields(v, sid, "%s/%d" % (path, i))
     for sid, s in secs.items(): asset_fields(s["content"], sid)
-    check(not unw, "every single-ref asset field in the section schemas admits a registered generation-safe ref (a generation PageSpec can validate)", ", ".join(unw[:4]))
+    check(not unw, "every asset field in the section schemas accepts the generation-safe substitute roles (and a registered placeholder ref) of every role it accepts", ", ".join(unw[:4]))
+    # ---- generation policy: categories, coverage
+    cats = {g["category"] for g in pol["blockedTerms"].values()} | {pol["blockedHosts"]["category"]}
+    check(cats <= set(sv.GENERATION_CATEGORIES) and set(pol["allowedAvailability"]) == {"clone", "generation"} and pol["allowedAvailability"]["generation"] == ["generation-safe"],
+          "generation-policy: categories are generation rule categories; mode 'generation' allows only generation-safe availability")
+    gids = {r["id"]: r for r in graph["rules"]}
+    miss_rules = [c for c in sv.GENERATION_CATEGORIES if ("GENERATION_MODE_" + c) not in gids or gids["GENERATION_MODE_" + c]["severity"] != "error" or gids["GENERATION_MODE_" + c]["params"] != {"mode": "generation", "category": c}]
+    check(not miss_rules and list(sv.GENERATION_CATEGORIES) == GENERATION_CATEGORIES, "graph has the six per-category GENERATION_MODE_* rules (error, mode generation) pinned in code: %s" % ", ".join(GENERATION_CATEGORIES), ", ".join(miss_rules))
     names = lambda src: re.sub(r"[-_]", " ", os.path.splitext(os.path.basename(src))[0]).lower()
-    people = {x.lower() for x in pol["blockedTerms"]["realPeople"]["caseInsensitive"]}
-    marks = {x.lower() for x in pol["blockedTerms"]["thirdPartyMarks"]["caseInsensitive"]}
-    miss = [r for r, a in reg.items() if a["role"] == "demo-avatar-image" and a["generationUse"] != "generation-safe" and names(a["source"]) not in people]
-    miss += [r for r, a in reg.items() if a["role"] == "integration-logo" and a["generationUse"] != "generation-safe" and r.split("--")[1] != "more" and r.split("--")[1] not in marks]
-    obr = pol["blockedTerms"]["operateBrand"]
-    check(not miss and "Operate" in obr["caseSensitive"] and "operate.so" in obr["caseInsensitive"], "generation-policy blocks every demo-avatar person (from asset file names), every integration brand and Operate's name/domain", ", ".join(miss))
-    check(set(pol["allowedAssetGenerationUse"]) == {"clone", "generation"} and pol["allowedAssetGenerationUse"]["generation"] == ["generation-safe"] and set(pol["allowedAssetGenerationUse"]["clone"]) <= GU, "generation-policy: mode 'generation' allows only generation-safe assets")
-    gtxt = open(os.path.join(REPO, "schema", "example.generated.pagespec.json"), encoding="utf-8").read()
-    leak = [x for x in ["Operate", "OPERATE", "operate.so", "granola", "gong", "slack", "gmail", "hubspot", "linkedin", "http://", "https://"] if x in (gtxt if x[0].isupper() or x.endswith("//") else gtxt.lower())]
-    leak = [x for x in leak if not (x == "https://" and set(re.findall(r"https?://([^/\"\s]+)", gtxt)) <= {"example.invalid"})]
-    gref_ = {a["assetRef"] for n in gx["nodes"] for _, a in sv.find_assets(n["content"])}
-    notsafe = sorted(r for r in gref_ if reg.get(r, {}).get("generationUse") != "generation-safe")
-    check(not leak and not notsafe, "generated example (independent text scan): no Operate/third-party names, no live URLs, only generation-safe assetRefs (%d)" % len(gref_), "leak=%s notsafe=%s" % (leak, notsafe))
+    terms = {t["term"].lower() for g in pol["blockedTerms"].values() for t in g["terms"]}
+    miss = [r for r, a in reg.items() if a["role"] == "demo-avatar-image" and names(a["source"]) not in terms]
+    miss += [r for r, a in reg.items() if a["role"] == "integration-logo" and r.split("--")[1] != "more" and r.split("--")[1] not in terms]
+    miss += [t for t in ("operate", "operate.so") if t not in terms]
+    check(not miss, "generation-policy blocks every demo-avatar person (from asset file names), every integration brand and Operate's name/domain", ", ".join(miss))
+    # ---- generation-safe examples: one per template family, schema + semantic + independent text scan
+    gx_files = sorted(os.path.relpath(p, REPO) for p in glob.glob(os.path.join(REPO, "schema", "example.generated*.pagespec.json")))
+    fam = {}
+    for gf in gx_files:
+        gx_ = J(gf)
+        fam.setdefault(gx_.get("template"), []).append(gf)
+        n_err = len(list(Draft7Validator(sch).iter_errors(gx_)))
+        e, w = sv.validate(gx_, REPO, ctx)
+        check(n_err == 0 and not e and not w and gx_.get("mode") == "generation", "%s: mode generation, Draft-07 %d errors, semantic %d errors / %d warnings" % (gf, n_err, len(e), len(w)), "; ".join(e + w)[:300])
+        gtxt = open(os.path.join(REPO, gf), encoding="utf-8").read()
+        low = gtxt.lower()
+        leak = [x for x in ["Operate", "OPERATE"] if x in gtxt] + [t for t in sorted(terms) if t != "operate" and re.search(r"(?<![a-z0-9])%s(?![a-z0-9])" % re.escape(t), low)]
+        hosts = set(re.findall(r"https?://([^/\"\s]+)", gtxt)) | set(re.findall(r"[\w.+-]+@([\w.-]+)", gtxt))
+        leak += sorted(h for h in hosts if not _reserved("https://" + h, pol))
+        refs_ = {a["assetRef"] for n in gx_["nodes"] for _, a in sv.find_assets(n["content"])}
+        notsafe = sorted(r for r in refs_ if PINNED_AVAILABILITY.get(reg.get(r, {}).get("role")) != "generation-safe")
+        check(not leak and not notsafe, "%s (independent text scan): no Operate/third-party/person terms, no real hosts, only generation-safe assets (%d refs)" % (gf, len(refs_)), "leak=%s notsafe=%s" % (leak, notsafe))
+    check(sorted(fam) == sorted(tpl["templates"]), "a generation-safe example PageSpec exists for every template family (%d)" % len(fam), "missing: %s" % sorted(set(tpl["templates"]) - set(fam)))
+    # ---- behavioural probe: the validator still enforces mode generation, per category (and leaves clone alone)
+    gbase = J("schema/example.generated.pagespec.json")
+    probe_fail = []
+    for cat_, mut in GENERATION_PROBES:
+        sp = copy.deepcopy(gbase); mut(sp)
+        e, _ = sv.validate(sp, REPO, ctx)
+        if not any(("GENERATION_MODE_" + cat_ + ":") in x for x in e): probe_fail.append(cat_)
+    lctx = copy.deepcopy(ctx); lctx["_gen"] = {}  # registry loosened in memory: the validator must still follow its pin
+    lctx["assets"]["roles"]["brand-logomark"]["availability"] = "generation-safe"
+    lctx["assets"]["registeredAssets"]["logo--mark"]["generationUse"] = "generation-safe"
+    sp = copy.deepcopy(gbase); _p_brand(sp)
+    e, _ = sv.validate(sp, REPO, lctx)
+    if not any("GENERATION_MODE_BRAND:" in x for x in e): probe_fail.append("registry-loosened-logo-accepted")
+    e, _ = sv.validate(copy.deepcopy(ex), REPO, ctx)
+    if e: probe_fail.append("clone-example-rejected")
+    check(not probe_fail, "generation-mode enforcement probe: one injected leak per category is rejected by its own rule (%s); a logo is still rejected when only the registry is loosened; the clone example still passes" % ", ".join(c for c, _ in GENERATION_PROBES), ", ".join(probe_fail))
+    # ---- section contracts: closed schema, source/semantic split, honest classing, retrieval pin
+    csch = J("schema/section-contract.schema.json")
+    Draft7Validator.check_schema(csch)
+    probs = []
+    if csch.get("additionalProperties") is not False or any(csch["properties"][k].get("additionalProperties") is not False for k in ("semantic", "source")):
+        probs.append("section-contract.schema.json must stay closed at the top level and on semantic/source")
+    if csch["properties"]["semantic"]["properties"]["category"].get("enum") != SEMANTIC_CATEGORIES:
+        probs.append("section-contract.schema.json category enum differs from SEMANTIC_CATEGORIES pinned in verify_all.py")
+    if csch["properties"]["retrievalEligible"].get("type") != "boolean" or csch["properties"]["retrievalIneligibleReason"].get("minLength") != 30:
+        probs.append("section-contract.schema.json must keep retrievalEligible a boolean and the reason at 30+ characters")
+    cv = Draft7Validator(csch)
+    for sid, c in sorted(secs.items()):
+        for e_ in cv.iter_errors(c):
+            probs.append("sections/%s.json: /%s: %s" % (sid, "/".join(map(str, e_.absolute_path)), e_.message[:120]))
+        sem_, src_ = c.get("semantic") or {}, c.get("source") or {}
+        if sem_.get("id") != sid: probs.append("%s: semantic.id %r must equal the contract id" % (sid, sem_.get("id")))
+        if src_.get("id") == sem_.get("id"): probs.append("%s: source.id and semantic.id must differ" % sid)
+        if "category" in c: probs.append("%s: the old free-form category field must be gone (semantic.category is the single taxonomy)" % sid)
+        cat_ = sem_.get("category"); prefix = sid.split(".")[0]
+        if prefix == "hero" and cat_ != "HERO": probs.append("%s: a page-opening block must be HERO" % sid)
+        if cat_ == "HERO" and prefix != "hero": probs.append("%s: classed HERO but not a hero.* section" % sid)
+        if prefix == "form" and cat_ != "CONVERSION": probs.append("%s: a sign-up/waitlist form must be CONVERSION, found %s" % (sid, cat_))
+        if cat_ == "FEATURE" and re.search(r"story|manifesto|legal|article|blog|news|changelog", sid): probs.append("%s: editorial/legal content must not be FEATURE" % sid)
+        elig, reason = c.get("retrievalEligible"), c.get("retrievalIneligibleReason")
+        pinned, runtime_ui = sid in RETRIEVAL_PINNED, bool(RUNTIME_UI_RE.search(sid))
+        if not isinstance(elig, bool): probs.append("%s: retrievalEligible must be a closed boolean" % sid); continue
+        if (pinned or runtime_ui) and elig is not False: probs.append("%s is pinned/runtime UI but retrievalEligible is %r" % (sid, elig))
+        if runtime_ui and not pinned: probs.append("%s looks like runtime UI and must be in RETRIEVAL_PINNED of verify_all.py" % sid)
+        if elig is False and not pinned: probs.append("%s is retrievalEligible false but not pinned (false is reserved for runtime UI / layout-only)" % sid)
+        if elig is False and (not isinstance(reason, str) or len(reason.strip()) < 30): probs.append("%s: retrievalEligible false needs a 30+ character reason" % sid)
+        if elig is True and reason is not None: probs.append("%s: a reason is only allowed when retrievalEligible is false" % sid)
+    for sid in RETRIEVAL_PINNED:
+        if sid not in secs: probs.append("pinned retrieval-ineligible section %s has no contract" % sid)
+    if sorted(allow.get("retrievalIneligibleSections", [])) != sorted(RETRIEVAL_PINNED): probs.append("allowlist retrievalIneligibleSections differs from RETRIEVAL_PINNED")
+    if allow.get("sectionSemanticCategories") != {s: c["semantic"]["category"] for s, c in sorted(secs.items()) if isinstance(c.get("semantic"), dict)}: probs.append("allowlist sectionSemanticCategories differs from the contracts")
+    if sorted(sv.RETRIEVAL_INELIGIBLE_PINNED) != sorted(RETRIEVAL_PINNED) or list(sv.SEMANTIC_CATEGORIES) != SEMANTIC_CATEGORIES: probs.append("schema/semantic_validate.py pins (RETRIEVAL_INELIGIBLE_PINNED / SEMANTIC_CATEGORIES) differ from verify_all.py")
+    if sv.RUNTIME_UI_RE.pattern != RUNTIME_UI_RE.pattern: probs.append("RUNTIME_UI_RE differs between semantic_validate.py and verify_all.py")
+    check(not probs, "section contracts: closed schema/section-contract.schema.json, source/semantic split, honest classing, retrievalEligible pinned (%d contracts, %d ineligible)" % (len(secs), len(RETRIEVAL_PINNED)), "; ".join(probs[:5]))
+    # ---- wrapper gate (thresholds pinned here and in wrapper_gate.py)
+    import wrapper_gate as wg
+    pins = {"HERO_WARN_PX": 1800, "HERO_FAIL_PX": 3000, "SHARE_WARN_PCT": 50.0, "SHARE_FAIL_PCT": 60.0, "MIN_SECTIONS": 3, "VIEWPORT_WIDTH": 1440, "MIN_JUSTIFICATION": 30}
+    drift = ["%s=%r" % (k, getattr(wg, k, None)) for k, v in pins.items() if getattr(wg, k, None) != v]
+    check(not drift, "wrapper gate thresholds pinned in code (HERO 1800 warn / 3000 fail, share 50% warn / 60% fail, >= 3 sections, 1440px)", ", ".join(drift))
+    wf, ww, wi = wg.check_wrapper_gate(REPO)
+    for x in ww: warn("wrapper gate: " + x)
+    sh_ = J("extraction/measured-values.json").get("sectionHeights") or {}
+    check(not wf, "wrapper gate: measured at %spx, %d routes, %d sections, 0 failures (%d warnings; %s)" % ((sh_.get("viewport") or {}).get("width"), len(sh_.get("routes") or []), len(sh_.get("sections") or {}), len(ww), "; ".join(wi) or "no skips"), "; ".join(wf[:4]))
     # ---- manifest counts / versions
     counts = {"tokens": {"foundation": foundation_n, "semantic": len(list(leaves(sem))), "component": len(list(leaves(comp))), "layout": len(list(leaves(lay)))},
               "primitives": len(prims), "components": len(comps), "sections": len(secs), "templates": len(tpl["templates"]), "routes": len(tpl["routes"]),
@@ -300,7 +463,7 @@ def main(argv):
     # ---- ia.json + citations (need a source tree)
     root = source_root(argv)
     if not root:
-        warn("no source tree found (sibling of design-repo or --source-root): ia.json cross-check, citation-range and quote spot-checks SKIPPED")
+        warn("no source tree found (sibling of design-repo or --source-root): ia.json cross-check, citation-range, quote spot-check, section source-range and generation-policy evidence checks SKIPPED")
     else:
         ia = json.load(open(os.path.join(root, "ia.json"), encoding="utf-8"))
         bad_ia = []
@@ -333,6 +496,28 @@ def main(argv):
             ls = nlines(path)
             if ls is None or not any(sc["quote"] in l for l in ls[a - 1:b]): wrong.append("%s !~ %r" % (sc["citation"], sc["quote"][:50]))
         check(not wrong, "citation spot-checks: %d quoted texts still present at their cited lines" % len(J("extraction/measured-values.json")["spotChecks"]), "; ".join(wrong[:4]) + (" (+%d more)" % (len(wrong) - 4) if len(wrong) > 4 else ""))
+        # source ranges of the section contracts, re-read from the real files
+        bad_src = []
+        for sid, c in sorted(secs.items()):
+            s_ = c.get("source") or {}
+            ls = nlines(s_.get("file", ""))
+            m = re.fullmatch(r"(\d+)-(\d+)", str(s_.get("lines", "")))
+            if ls is None: bad_src.append("%s: source.file %r missing" % (sid, s_.get("file"))); continue
+            if not m or int(m.group(1)) < 1 or int(m.group(2)) < int(m.group(1)) or int(m.group(2)) > len(ls): bad_src.append("%s: source.lines %r out of range (%d lines)" % (sid, s_.get("lines"), len(ls))); continue
+            body = "\n".join(ls[int(m.group(1)) - 1:int(m.group(2))])
+            if not re.search(r"<%s[\s>/]" % re.escape(s_.get("tag", "")), body): bad_src.append("%s: <%s> not rendered in %s:%s" % (sid, s_.get("tag"), s_["file"], s_["lines"]))
+            if s_.get("anchor", "\0") not in body: bad_src.append("%s: anchor %r not in %s:%s" % (sid, s_.get("anchor"), s_["file"], s_["lines"]))
+            if s_["file"] not in c.get("implementedBy", []): bad_src.append("%s: source.file is not one of implementedBy" % sid)
+        check(not bad_src, "section source ranges re-read from the real files: range valid, root tag and anchor present (%d contracts)" % len(secs), "; ".join(bad_src[:4]))
+        # generation-policy evidence: every blocked term / host is on its cited source line
+        bad_ev = []
+        items = [(t["term"], ev) for g in J("assets/generation-policy.json")["blockedTerms"].values() for t in g["terms"] for ev in t["evidence"]]
+        items += [(h["host"], ev) for h in J("assets/generation-policy.json")["blockedHosts"]["hosts"] for ev in h["evidence"]]
+        for term, ev in items:
+            m = CIT.fullmatch(ev)
+            ls = nlines(m.group(1)) if m else None
+            if not m or ls is None or int(m.group(2)) > len(ls) or not any(term.lower() in l.lower() for l in ls[int(m.group(2)) - 1:int(m.group(3) or m.group(2))]): bad_ev.append("%s @ %s" % (term, ev))
+        check(not bad_ev, "generation-policy evidence: %d blocked terms/hosts re-read on their cited source lines (patterns derived from the real source)" % len(items), "; ".join(bad_ev[:4]))
     return finish(argv)
 
 

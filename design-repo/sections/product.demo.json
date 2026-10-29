@@ -1,8 +1,19 @@
 {
   "id": "product.demo",
   "kind": "section",
-  "category": "PRODUCT",
   "purpose": "Demonstrate the product as a framed fake app: a scripted, non-looping timeline (Quota, Meeting, Draft, Slack, Next step chapters) with fake cursor, typed text, text morphs, a floating panel stack and a chapter control.",
+  "semantic": {
+    "id": "product.demo",
+    "category": "FEATURE"
+  },
+  "source": {
+    "id": "DemoFrame",
+    "tag": "section",
+    "file": "src/components/shell/DemoFrame.jsx",
+    "lines": "52-79",
+    "anchor": "export default function DemoFrame"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/shell/DemoFrame.jsx",
     "src/components/HomeUi.jsx",
@@ -88,7 +99,8 @@
                 },
                 {
                   "enum": [
-                    "demo-avatar-image"
+                    "demo-avatar-image",
+                    "fictional-avatar"
                   ]
                 }
               ]
@@ -117,7 +129,8 @@
               },
               {
                 "enum": [
-                  "demo-scene-image"
+                  "demo-scene-image",
+                  "placeholder-product-visual"
                 ]
               }
             ]

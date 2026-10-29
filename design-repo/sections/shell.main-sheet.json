@@ -1,8 +1,20 @@
 {
   "id": "shell.main-sheet",
   "kind": "section",
-  "category": "SHELL",
   "purpose": "Large hole-punched paper sheet (CSS mask with --hole-period computed by a ResizeObserver) that contains the hero, demo, ops steps and manifesto.",
+  "semantic": {
+    "id": "shell.main-sheet",
+    "category": "SHELL"
+  },
+  "source": {
+    "id": "App",
+    "tag": "div",
+    "file": "src/App.jsx",
+    "lines": "44-53",
+    "anchor": "main sheet"
+  },
+  "retrievalEligible": false,
+  "retrievalIneligibleReason": "Layout-only container: the hole-punched paper sheet that frames the homepage sections; its content is the other sections, not its own copy.",
   "implementedBy": [
     "src/App.jsx",
     "src/components/shell/PanelHoles.jsx"

@@ -1,8 +1,19 @@
 {
   "id": "form.sign-up-form",
   "kind": "section",
-  "category": "FORM",
   "purpose": "Collect waitlist answers in a green form card of seven questions with 'Other' reveals, copper validation rows and sending/error/thank-you states. Submits to a local stub only.",
+  "semantic": {
+    "id": "form.sign-up-form",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "SignUpForm",
+    "tag": "form",
+    "file": "src/components/signup/SignUpForm.jsx",
+    "lines": "420-654",
+    "anchor": "export default function SignUpForm"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/signup/SignUpForm.jsx",
     "src/components/signup/SendingAnimation.jsx",
@@ -217,7 +228,8 @@
               },
               {
                 "enum": [
-                  "signup-submit-stub"
+                  "signup-submit-stub",
+                  "placeholder-url"
                 ]
               }
             ]

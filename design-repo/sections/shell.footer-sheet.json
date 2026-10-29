@@ -1,8 +1,19 @@
 {
   "id": "shell.footer-sheet",
   "kind": "section",
-  "category": "SHELL",
   "purpose": "Close the page with a folded-corner paper footer: hover-to-play video card that morphs into the lightbox, dotted-underline links, Get started and the copyright line.",
+  "semantic": {
+    "id": "shell.footer-sheet",
+    "category": "SHELL"
+  },
+  "source": {
+    "id": "FooterSheet",
+    "tag": "div",
+    "file": "src/components/FooterSheet.jsx",
+    "lines": "124-182",
+    "anchor": "export default function FooterSheet"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/FooterSheet.jsx"
   ],
@@ -72,7 +83,8 @@
                     },
                     {
                       "enum": [
-                        "external-social-link"
+                        "external-social-link",
+                        "placeholder-url"
                       ]
                     }
                   ]
@@ -117,7 +129,8 @@
               },
               {
                 "enum": [
-                  "brand-logomark"
+                  "brand-logomark",
+                  "placeholder-brand-mark"
                 ]
               }
             ]
@@ -160,7 +173,8 @@
                   },
                   {
                     "enum": [
-                      "footer-video-asset"
+                      "footer-video-asset",
+                      "placeholder-product-visual"
                     ]
                   }
                 ]
@@ -188,7 +202,8 @@
                   },
                   {
                     "enum": [
-                      "footer-video-asset"
+                      "footer-video-asset",
+                      "placeholder-product-visual"
                     ]
                   }
                 ]
@@ -216,7 +231,8 @@
                   },
                   {
                     "enum": [
-                      "footer-video-asset"
+                      "footer-video-asset",
+                      "placeholder-product-visual"
                     ]
                   }
                 ]

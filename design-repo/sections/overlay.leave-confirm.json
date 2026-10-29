@@ -1,8 +1,20 @@
 {
   "id": "overlay.leave-confirm",
   "kind": "section",
-  "category": "OVERLAY",
   "purpose": "Confirm leaving the sign-up form with unsaved input ('Leave this form?'); raised by Back, Escape, outside click or browser back; centered dialog at md+, bottom sheet on mobile.",
+  "semantic": {
+    "id": "overlay.leave-confirm",
+    "category": "OVERLAY"
+  },
+  "source": {
+    "id": "ConfirmDialog",
+    "tag": "div",
+    "file": "src/components/signup/useSignUpCloseConfirm.jsx",
+    "lines": "26-90",
+    "anchor": "function ConfirmDialog"
+  },
+  "retrievalEligible": false,
+  "retrievalIneligibleReason": "Runtime UI: a confirm dialog raised only when the sign-up form is closed with unsaved input; not page content.",
   "implementedBy": [
     "src/components/signup/useSignUpCloseConfirm.jsx"
   ],

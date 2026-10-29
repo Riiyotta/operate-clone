@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
-"""Adversarial suite: every mutation must be REJECTED (and by the expected layer); every control must PASS.
+"""Adversarial suite: every mutation must be REJECTED (and by the expected layer / rule); every control must PASS.
+Covers PageSpec mutations (schema, structure, assets, budgets), the six per-category generation-mode rules
+(GENERATION_MODE_BRAND / _INTEGRATION_LOGO / _PERSON / _SCREENSHOT / _COPY / _URL, incl. normalisation evasions),
+repository-level mutations of the validator context (registry availability loosened, retrievalEligible flips), and
+the whole-page-wrapper gate (extraction/wrapper_gate.py) on mutated measurements.
 Usage: python3 schema/tests/adversarial_test.py   (exit 0 only if all mutations rejected and all controls pass)"""
-import copy, json, os, sys
+import copy, glob, json, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
+sys.dont_write_bytecode = True
 sys.path.insert(0, os.path.join(REPO, "schema"))
+sys.path.insert(0, os.path.join(REPO, "extraction"))
 import semantic_validate as sv  # noqa: E402
+import wrapper_gate as wg  # noqa: E402
 
 CTX = sv.load_context(REPO)
 EX = json.load(open(os.path.join(REPO, "schema", "example.pagespec.json"), encoding="utf-8"))
 GEN = json.load(open(os.path.join(REPO, "schema", "example.generated.pagespec.json"), encoding="utf-8"))
-RULE = "GENERATION_MODE_CLONE_ISOLATION"
+GENS = sorted(glob.glob(os.path.join(REPO, "schema", "example.generated*.pagespec.json")))
+VERSION = EX["pageSpecVersion"]
 
 
 def node(spec, sec):
@@ -28,7 +36,7 @@ def synth(tid, route):
     for n in t["nodes"]:
         s = CTX["sections"][n["section"]]
         nodes.append({"section": n["section"], "variant": n["variants"][0], "content": copy.deepcopy(s["exemplar"]["content"]), "motion": copy.deepcopy(s["exemplar"]["motion"])})
-    return {"pageSpecVersion": "1.1.0", "mode": "clone", "template": tid, "route": route, "head": copy.deepcopy(t["head"]), "nodes": nodes}
+    return {"pageSpecVersion": VERSION, "mode": "clone", "template": tid, "route": route, "head": copy.deepcopy(t["head"]), "nodes": nodes}
 
 
 MUT = []  # (name, expected layer, mutator, required marker in some error or None)
@@ -111,8 +119,12 @@ def _(s): drop(s, "form.sign-up-form")
 def _(s): s["nodes"].append(copy.deepcopy(EX["nodes"][2]))
 @m("structural: hero on the hero-less legal template", "semantic")
 def _(s): s["nodes"].insert(0, copy.deepcopy(node(EX, "hero.headline-integrations")))
-@m("structural: non-repeatable legal body duplicated", "semantic")
-def _(s): s["nodes"].append(copy.deepcopy(s["nodes"][-1]))
+@m("structural: non-repeatable legal header duplicated", "semantic")
+def _(s): s["nodes"].insert(2, copy.deepcopy(node(s, "legal.document-header")))
+@m("structural: legal section repeated beyond its maxPerPage (15 > 14)", "semantic")
+def _(s): s["nodes"] += [copy.deepcopy(node(s, "legal.document-section")) for _ in range(14)]
+@m("structural: required legal section removed (header only)", "semantic")
+def _(s): drop(s, "legal.document-section")
 @m("structural: required legal header removed", "semantic")
 def _(s): drop(s, "legal.document-header")
 # ---------------- asset registry
@@ -132,13 +144,19 @@ def _(s): node(s, "story.manifesto")["content"]["paragraphs"][0] = "lorem " * 80
 @m("runtime: head title over maxWords", "semantic")
 def _(s): s["head"]["title"] = "title " * 20
 @m("runtime: legal paragraph over maxChars", "semantic")
-def _(s): node(s, "legal.document-body")["content"]["blocks"][1]["text"] = "x" * 1867
-@m("runtime: legal h2 over its char limit", "semantic")
-def _(s): node(s, "legal.document-body")["content"]["blocks"][0]["text"] = "h" * 36
+def _(s): node(s, "legal.document-section")["content"]["blocks"][0]["text"] = "x" * 1867
+@m("runtime: legal section heading over its char limit", "semantic")
+def _(s): node(s, "legal.document-section")["content"]["heading"] = "h" * 36
 @m("runtime: legal hr carrying text", "semantic")
-def _(s): node(s, "legal.document-body")["content"]["blocks"][4]["text"] = "nope"
+def _(s): node(s, "legal.document-section")["content"]["blocks"][3]["text"] = "nope"
 @m("runtime: legal ul missing items", "semantic")
-def _(s): del node(s, "legal.document-body")["content"]["blocks"][3]["items"]; node(s, "legal.document-body")["content"]["blocks"][3]["text"] = "t"
+def _(s): del node(s, "legal.document-section")["content"]["blocks"][2]["items"]; node(s, "legal.document-section")["content"]["blocks"][2]["text"] = "t"
+@m("schema: h2 block inside a legal section (the H2 is the heading field)", "schema")
+def _(s): node(s, "legal.document-section")["content"]["blocks"].insert(0, {"type": "h2", "text": "Another heading"})
+@m("schema: legal preamble with a heading block", "schema")
+def _(s): node(s, "legal.document-preamble")["content"]["blocks"].insert(0, {"type": "h3", "text": "Heading"})
+@m("schema: node-level retrievalEligible flip (not a PageSpec field)", "schema")
+def _(s): node(s, "overlay.video-lightbox")["retrievalEligible"] = True
 
 # ---------------- generation mode (base: schema/example.generated.pagespec.json unless named "generation(clone):")
 def gset(s, sec, path, val):
@@ -147,99 +165,136 @@ def gset(s, sec, path, val):
     o[path[-1]] = val
 def gref(s, sec, path, role, ref):
     gset(s, sec, path, {"assetRole": role, "assetRef": ref})
-G = lambda name, marker=RULE: m("generation: " + name, "semantic", marker)
+G = lambda name, cat: m("generation: " + name, "semantic", "GENERATION_MODE_%s:" % cat if cat else None)
 
-@G("Operate logo mark in the nav")
+# --- Operate logo / brand leakage -> GENERATION_MODE_BRAND
+@G("Operate logo mark in the nav", "BRAND")
 def _(s): gref(s, "shell.nav-sheet", ["logoMark"], "brand-logomark", "logo--mark")
-@G("Operate logo mark in the footer")
+@G("Operate logo mark in the footer", "BRAND")
 def _(s): gref(s, "shell.footer-sheet", ["logoMark"], "brand-logomark", "logo--mark")
-@G("Operate logo-trace loop")
+@G("Operate logo-trace loop", "BRAND")
 def _(s): gref(s, "story.manifesto", ["logoTrace"], "brand-logo-trace", "logo-trace--loop")
-@G("Operate wordmark text")
+@G("Operate wordmark text", "BRAND")
 def _(s): gset(s, "shell.nav-sheet", ["wordmarkText"], "Operate")
-@G("Operate wordmark in upper case (ticket brand)")
+@G("Operate wordmark in upper case (ticket brand)", "BRAND")
 def _(s): gset(s, "story.manifesto", ["ticket", "brand"], "OPERATE")
-@G("Operate company name in the copyright line")
+@G("Operate wordmark in mixed case", "BRAND")
+def _(s): gset(s, "shell.nav-sheet", ["wordmarkText"], "oPeRaTe")
+@G("Operate wordmark in full-width letters (NFKC)", "BRAND")
+def _(s): gset(s, "shell.nav-sheet", ["wordmarkText"], "Ｏｐｅｒａｔｅ")
+@G("Operate company name in the copyright line", "BRAND")
 def _(s): gset(s, "shell.footer-sheet", ["copyright"], "© 2027 Operate Machine Co. All rights reserved.")
-@G("Operate name hidden with a zero-width character")
+@G("Operate name hidden with a zero-width character", "BRAND")
 def _(s): gset(s, "shell.nav-sheet", ["wordmarkText"], "Oper​ate")
-@G("Operate name in the page title")
+@G("Operate name hidden with a soft hyphen", "BRAND")
+def _(s): gset(s, "shell.nav-sheet", ["wordmarkText"], "Oper­ate")
+@G("Operate possessive with a curly apostrophe", "BRAND")
+def _(s): gset(s, "hero.headline-integrations", ["introBefore"], "Built on Operate’s planner")
+@G("Operate name in the page title", "BRAND")
 def _(s): s["head"]["title"] = "Operate – Scheduling"
-@G("integration logo (Slack) in the hero bubbles")
+# --- integration-logo / third-party mark leakage -> GENERATION_MODE_INTEGRATION_LOGO
+@G("integration logo (Slack) in the hero bubbles", "INTEGRATION_LOGO")
 def _(s): gref(s, "hero.headline-integrations", ["integrationLogos", 3], "integration-logo", "integration--slack")
-@G("integration logo (HubSpot) replacing the plus glyph")
+@G("integration logo (HubSpot) replacing the plus glyph", "INTEGRATION_LOGO")
 def _(s): gref(s, "hero.headline-integrations", ["integrationLogos", 0], "integration-logo", "integration--hubspot")
-@G("integration logo (Gong) well-formed but clone-only registry entry")
+@G("integration logo (Gong) well-formed blocked registry entry", "INTEGRATION_LOGO")
 def _(s): gref(s, "hero.headline-integrations", ["integrationLogos", 2], "integration-logo", "integration--gong")
-@G("third-party names in the integration screen-reader text")
+@G("integration logo (Granola)", "INTEGRATION_LOGO")
+def _(s): gref(s, "hero.headline-integrations", ["integrationLogos", 1], "integration-logo", "integration--granola")
+@G("third-party names in the integration screen-reader text", "INTEGRATION_LOGO")
 def _(s): gset(s, "hero.headline-integrations", ["integrationSrText"], "Granola, Gong, Slack, Gmail, HubSpot and more")
-@G("real demo avatar image")
-def _(s): gref(s, "product.demo", ["people", 0], "demo-avatar-image", "avatar--demo-1")
-@G("real-person avatar (celebrity name in the file) ")
-def _(s): gref(s, "product.demo", ["people", 4], "demo-avatar-image", "avatar--demo-5")
-@G("real person's name in copy")
-def _(s): gset(s, "product.demo", ["workspaceName"], "Kierra Torres")
-@G("real person's name in the composer placeholder, odd casing")
-def _(s): gset(s, "product.demo", ["composerPlaceholder"], "Ask EMINEM about jobs...")
-@G("proprietary Slack-conversation scene image")
-def _(s): gref(s, "product.demo", ["conversationBackground"], "demo-scene-image", "scene--demo-slack")
-@G("proprietary video poster (product screenshot)")
-def _(s): gref(s, "overlay.video-lightbox", ["poster"], "video-poster", "poster--lightbox")
-@G("proprietary footer still (desktop)")
-def _(s): gref(s, "shell.footer-sheet", ["videoCard", "stillDesktop"], "footer-video-asset", "footer--still-desktop")
-@G("proprietary footer still (mobile)")
-def _(s): gref(s, "shell.footer-sheet", ["videoCard", "stillMobile"], "footer-video-asset", "footer--still-mobile")
-@G("proprietary footer product footage loop")
-def _(s): gref(s, "shell.footer-sheet", ["videoCard", "loop"], "footer-video-asset", "footer--loop")
-@G("Operate background texture file")
-def _(s): gref(s, "backdrop.animated-background", ["texture"], "background-texture", "texture--home-background")
-@G("live video stream endpoint")
-def _(s): gref(s, "overlay.video-lightbox", ["stream"], "lightbox-video-stream", "stream--lightbox-demo")
-@G("sign-up submit endpoint of the source")
-def _(s): gref(s, "form.sign-up-form", ["submitEndpoint"], "signup-submit-stub", "endpoint--signup-stub")
-@G("real LinkedIn profile link")
-def _(s): gref(s, "shell.footer-sheet", ["socialLinks", 0, "link"], "external-social-link", "social--linkedin")
-@G("real X profile link")
-def _(s): gref(s, "shell.footer-sheet", ["socialLinks", 1, "link"], "external-social-link", "social--x")
-@G("LinkedIn label in the footer")
+@G("third-party mark as a demo chapter label", "INTEGRATION_LOGO")
+def _(s): gset(s, "product.demo", ["chapterLabels", 3], "Slack")
+@G("LinkedIn label in the footer", "INTEGRATION_LOGO")
 def _(s): gset(s, "shell.footer-sheet", ["socialLinks", 0, "label"], "LinkedIn")
-@G("raw Operate URL in copy")
+@G("third-party mark with a zero-width joiner", "INTEGRATION_LOGO")
+def _(s): gset(s, "hero.headline-integrations", ["introBefore"], "Works with Hub‍Spot")
+# --- real / source-demo people -> GENERATION_MODE_PERSON
+@G("real demo avatar image", "PERSON")
+def _(s): gref(s, "product.demo", ["people", 0], "demo-avatar-image", "avatar--demo-1")
+@G("real-person avatar (celebrity name in the file)", "PERSON")
+def _(s): gref(s, "product.demo", ["people", 4], "demo-avatar-image", "avatar--demo-5")
+@G("source person's name in copy", "PERSON")
+def _(s): gset(s, "product.demo", ["workspaceName"], "Kierra Torres")
+@G("real person's name in the composer placeholder, odd casing", "PERSON")
+def _(s): gset(s, "product.demo", ["composerPlaceholder"], "Ask EMINEM about jobs...")
+@G("owner avatar's real-person alt text", "PERSON")
+def _(s): gset(s, "product.demo", ["composerPlaceholder"], "Ask Marshall Mathers...")
+@G("source demo contact name", "PERSON")
+def _(s): gset(s, "hero.headline-integrations", ["introBefore"], "Chase Holloway signs today")
+# --- proprietary product screenshots / media -> GENERATION_MODE_SCREENSHOT
+@G("proprietary Slack-conversation scene image", "SCREENSHOT")
+def _(s): gref(s, "product.demo", ["conversationBackground"], "demo-scene-image", "scene--demo-slack")
+@G("proprietary video poster (product screenshot)", "SCREENSHOT")
+def _(s): gref(s, "overlay.video-lightbox", ["poster"], "video-poster", "poster--lightbox")
+@G("proprietary footer still (desktop)", "SCREENSHOT")
+def _(s): gref(s, "shell.footer-sheet", ["videoCard", "stillDesktop"], "footer-video-asset", "footer--still-desktop")
+@G("proprietary footer still (mobile)", "SCREENSHOT")
+def _(s): gref(s, "shell.footer-sheet", ["videoCard", "stillMobile"], "footer-video-asset", "footer--still-mobile")
+@G("proprietary footer product footage loop", "SCREENSHOT")
+def _(s): gref(s, "shell.footer-sheet", ["videoCard", "loop"], "footer-video-asset", "footer--loop")
+@G("Operate background texture file", "SCREENSHOT")
+def _(s): gref(s, "backdrop.animated-background", ["texture"], "background-texture", "texture--home-background")
+# --- real / live URLs and endpoints -> GENERATION_MODE_URL
+@G("live video stream endpoint", "URL")
+def _(s): gref(s, "overlay.video-lightbox", ["stream"], "lightbox-video-stream", "stream--lightbox-demo")
+@G("sign-up submit endpoint of the source", "URL")
+def _(s): gref(s, "form.sign-up-form", ["submitEndpoint"], "signup-submit-stub", "endpoint--signup-stub")
+@G("real LinkedIn profile link", "URL")
+def _(s): gref(s, "shell.footer-sheet", ["socialLinks", 0, "link"], "external-social-link", "social--linkedin")
+@G("real X profile link", "URL")
+def _(s): gref(s, "shell.footer-sheet", ["socialLinks", 1, "link"], "external-social-link", "social--x")
+@G("raw Operate URL in copy", "URL")
 def _(s): gset(s, "hero.headline-integrations", ["introAfter"], "Read more at https://operate.so/sign-up today.")
-@G("raw non-reserved URL that merely starts with example.com")
+@G("source LinkedIn company URL in copy", "URL")
+def _(s): gset(s, "hero.headline-integrations", ["introAfter"], "Follow www.linkedin.com/company/acme for news.")
+@G("source X handle in copy", "URL")
+def _(s): gset(s, "hero.headline-integrations", ["introAfter"], "Say hi to operate_gtm on social media.")
+@G("source Google API host in copy", "URL")
+def _(s): gset(s, "hero.headline-integrations", ["introAfter"], "Scopes like https://www.googleapis.com/auth/x are requested.")
+@G("raw non-reserved URL that merely starts with example.com", "URL")
 def _(s): gset(s, "hero.headline-integrations", ["introAfter"], "Read more at https://example.com.evil.io/x today.")
-@G("bare domain in copy")
+@G("bare domain in copy", "URL")
 def _(s): gset(s, "hero.headline-integrations", ["introAfter"], "Visit fieldwork.io for the details.")
-@G("protocol-relative CDN host in copy")
+@G("protocol-relative CDN host in copy", "URL")
 def _(s): gset(s, "hero.headline-integrations", ["introAfter"], "Loaded from //stream.mux.com/abc123.m3u8 for speed.")
-@G("e-mail address at a live domain")
+@G("e-mail address at a live domain", "URL")
 def _(s): gset(s, "form.sign-up-form", ["receivedMessage"], "Thanks! Write to sales@operate.so any time.")
-@G("source URL in the page description")
+@G("source URL in the page description", "URL")
 def _(s): s["head"]["description"] = "A scheduling tool. See https://www.operate.so for the original."
-@G("source headline reused verbatim")
+# --- source-specific copy -> GENERATION_MODE_COPY
+@G("source headline reused verbatim", "COPY")
 def _(s): gset(s, "hero.headline-integrations", ["headline"], "Collaborative AI for frontier sales organizations")
-@G("source intro sentence reused with different punctuation and case")
+@G("source intro sentence reused with different punctuation and case", "COPY")
 def _(s): gset(s, "hero.headline-integrations", ["introAfter"], "TO SURFACE WHERE EVERY DEAL STANDS AND WHAT’S NEXT - your team and your agents act on it together!")
-@G("source manifesto paragraph embedded in a longer paragraph")
+@G("source manifesto paragraph embedded in a longer paragraph", "COPY")
 def _(s): gset(s, "story.manifesto", ["paragraphs", 3], "Intro. The relationships, the judgment calls, the close — that part has always been yours. We just built a better place to do it. Outro.")
-@G("source page description reused")
+@G("source page description reused", "COPY")
 def _(s): s["head"]["description"] = "Operate connects your sales data to surface where every deal stands and what's next. Your team and agents act together, and you run like a team twice your size."
-@G("source ops-steps copy reused")
+@G("source ops-steps copy reused", "COPY")
 def _(s): gset(s, "product.ops-steps", ["intro"], "Your team brings the relationships and the judgment. We bring everything they need to act on it.")
-@G("source form copy reused")
-def _(s): gset(s, "form.sign-up-form", ["choiceGroups", 3, "label"], "What's the hardest part of keeping your deals moving right now?")
+@G("source form copy reused (curly apostrophe)", "COPY")
+def _(s): gset(s, "form.sign-up-form", ["choiceGroups", 3, "label"], "What’s the hardest part of keeping your deals moving right now?")
+@G("source demo workspace name", "COPY")
+def _(s): gset(s, "product.demo", ["workspaceName"], "Quietwork")
+# --- registry integrity in generation mode
 @G("unregistered assetRef in generation mode", None)
-def _(s): gref(s, "product.demo", ["people", 1], "demo-avatar-image", "avatar--made-up-1")
-@G("placeholder ref registered under a different role", None)
-def _(s): gref(s, "product.demo", ["people", 1], "demo-avatar-image", "placeholder--brand-mark")
-@m("generation(clone): the whole clone example relabelled mode=generation", "semantic", RULE)
+def _(s): gref(s, "product.demo", ["people", 1], "fictional-avatar", "placeholder--made-up-1")
+@G("placeholder ref registered under a different substitute role", None)
+def _(s): gref(s, "product.demo", ["people", 1], "fictional-avatar", "placeholder--brand-mark")
+@G("generation-safe role paired with a real asset ref", None)
+def _(s): gref(s, "shell.nav-sheet", ["logoMark"], "placeholder-brand-mark", "logo--mark")
+@m("generation(clone): the whole clone example relabelled mode=generation", "semantic", "GENERATION_MODE_")
 def _(s): s["mode"] = "generation"
+
 
 BASE = {  # which base spec each mutation starts from
     "structural: declared template.sign-up but home node list": "home", "structural: extra section on the 404 template": "nf",
-    "structural: hero on the hero-less legal template": "legal", "structural: non-repeatable legal body duplicated": "legal", "structural: required legal header removed": "legal",
+    "structural: hero on the hero-less legal template": "legal", "structural: required legal header removed": "legal",
     "structural: leave-confirm without the form": "home",
 }
-LEGAL_ONLY = {n for n, b in BASE.items() if b == "legal"} | {"runtime: legal paragraph over maxChars", "runtime: legal h2 over its char limit", "runtime: legal hr carrying text", "runtime: legal ul missing items"}
+LEGAL_ONLY = {n for n, b in BASE.items() if b == "legal"} | {n for n, *_ in MUT if "legal" in n and n.startswith(("runtime:", "schema:"))} | {
+    "structural: non-repeatable legal header duplicated", "structural: legal section repeated beyond its maxPerPage (15 > 14)", "structural: required legal section removed (header only)"}
 
 
 def base_for(name):
@@ -282,7 +337,6 @@ def main():
         errs, _ = sv.validate(s, REPO, CTX)
         total += 1; ok = not errs; fails += 0 if ok else 1
         print("%s  control: %s%s" % ("PASS" if ok else "FAIL", label, "" if ok else "  -> " + errs[0][:140]))
-    gen_control("generation example (original copy, placeholder assets, no live links)", lambda s: None)
     gen_control("English verb 'operate' stays usable in generation mode", lambda s: gset(s, "hero.headline-integrations", ["introBefore"], "We help crews operate smoothly"))
     gen_control("reserved-domain URLs (example.invalid / example.com) allowed in copy", lambda s: gset(s, "hero.headline-integrations", ["introAfter"], "Docs live at https://example.invalid/docs and https://www.example.com/help for now."))
     gen_control("relative internal paths allowed", lambda s: gset(s, "hero.headline-integrations", ["primaryCta", "href"], "/sign-up"))
@@ -306,6 +360,99 @@ def main():
     ok = not errs and not any(n["section"].startswith("hero.") for n in s["nodes"])
     fails += 0 if ok else 1
     print("%s  control: hero-less template accepted by ONE_HERO exemption (read from compatibility/graph.json)" % ("PASS" if ok else "FAIL"))
+    # every generation-safe example (one per template family) passes
+    for gp in GENS:
+        g = json.load(open(gp, encoding="utf-8"))
+        errs, warns = sv.validate(g, REPO, CTX); total += 1; ok = not errs and not warns and g["mode"] == "generation"; fails += 0 if ok else 1
+        print("%s  control: %s (%s, mode generation) passes" % ("PASS" if ok else "FAIL", os.path.basename(gp), g["template"]) + ("" if ok else "  -> " + (errs + warns)[0][:140]))
+
+    # ---------------- repository-level mutations (validator context): each must be rejected by the named rule
+    def ctx_case(label, mutate_ctx, spec, marker):
+        nonlocal total, fails
+        c = copy.deepcopy(CTX); c["_gen"] = {}; mutate_ctx(c)
+        errs, _ = sv.validate(copy.deepcopy(spec), REPO, c)
+        total += 1; ok = any(marker in e for e in errs); fails += 0 if ok else 1
+        print("%s  repo: %s  -> %s" % ("PASS" if ok else "FAIL", label, next((e[:120] for e in errs if marker in e), "ACCEPTED (bad)")))
+
+    def loosen_logo(c):
+        c["assets"]["roles"]["brand-logomark"]["availability"] = "generation-safe"
+        c["assets"]["registeredAssets"]["logo--mark"]["generationUse"] = "generation-safe"
+    leak = copy.deepcopy(GEN); gref(leak, "shell.nav-sheet", ["logoMark"], "brand-logomark", "logo--mark")
+    ctx_case("registry edited: brand-logomark + logo--mark marked generation-safe; the pin still rejects it", loosen_logo, leak, "GENERATION_MODE_BRAND:")
+    def tighten_ph(c):
+        c["assets"]["roles"]["placeholder-brand-mark"]["availability"] = "clone-only"
+    ctx_case("registry and pin disagree on a substitute role (registry says clone-only)", tighten_ph, GEN, "GENERATION_MODE_BRAND:")
+    def rename_ph(c):
+        a = c["assets"]["registeredAssets"].pop("placeholder--avatar-1"); c["assets"]["registeredAssets"]["avatar--fake-1"] = a
+    s2 = copy.deepcopy(GEN); gref(s2, "product.demo", ["people", 0], "fictional-avatar", "avatar--fake-1")
+    ctx_case("generation-safe asset not named placeholder--*", rename_ph, s2, "GENERATION_MODE_PERSON:")
+    def flip_contract(c): c["sections"]["overlay.video-lightbox"]["retrievalEligible"] = True; c["sections"]["overlay.video-lightbox"].pop("retrievalIneligibleReason")
+    ctx_case("contract: runtime-UI lightbox flipped to retrievalEligible true", flip_contract, EX, "RETRIEVAL_ELIGIBILITY_PINNED:")
+    def flip_allow(c): c["allowlist"]["retrievalIneligibleSections"].remove("overlay.sign-up-modal")
+    ctx_case("allowlist: modal dropped from retrievalIneligibleSections", flip_allow, EX, "RETRIEVAL_ELIGIBILITY_PINNED:")
+    def content_false(c): c["sections"]["story.manifesto"]["retrievalEligible"] = False; c["sections"]["story.manifesto"]["retrievalIneligibleReason"] = "Marked ineligible although it is real page content."
+    ctx_case("contract: content section (manifesto) marked ineligible", content_false, EX, "RETRIEVAL_ELIGIBILITY_PINNED:")
+    def short_reason(c): c["sections"]["shell.binder-rails"]["retrievalIneligibleReason"] = "layout"
+    ctx_case("contract: ineligible section with a reason under 30 characters", short_reason, EX, "RETRIEVAL_ELIGIBILITY_PINNED:")
+    def new_dialog(c):
+        d = copy.deepcopy(c["sections"]["system.not-found"]); d["id"] = "overlay.cookie-consent"; d["retrievalEligible"] = True; d.pop("retrievalIneligibleReason", None)
+        c["sections"]["overlay.cookie-consent"] = d
+    ctx_case("contract: new runtime-UI section (cookie consent) not pinned and eligible", new_dialog, EX, "RETRIEVAL_ELIGIBILITY_PINNED:")
+
+    # ---------------- wrapper gate (extraction/wrapper_gate.py) on mutated measurements
+    contracts, templates, sh0, wl0 = wg.load_inputs(REPO)
+    def gate_case(label, mut, expect_fail, warn_marker=None):
+        nonlocal total, fails
+        sh, wl, cs = copy.deepcopy(sh0), copy.deepcopy(wl0), copy.deepcopy(contracts)
+        mut(sh, wl, cs)
+        F, W, _ = wg.evaluate(cs, templates, sh, wl)
+        ok = bool(F) if expect_fail else (not F and (warn_marker is None or any(warn_marker in w for w in W)))
+        total += 1; fails += 0 if ok else 1
+        print("%s  gate: %s  -> %s" % ("PASS" if ok else "FAIL", label, (F[0][:120] if F else (W[0][:120] if W else "no findings"))))
+    def route(sh, r): return next(x for x in sh["routes"] if x["route"] == r)
+    def set_h(sh, r, sec, h, i=0):
+        rt = route(sh, r); inst = [x for x in rt["sections"] if x["section"] == sec][i]
+        rt["pageHeightPx"] += h - inst["heightPx"]; inst["heightPx"] = h
+        sh["sections"][sec]["maxHeightPx"] = max(x["heightPx"] for t in sh["routes"] for x in t["sections"] if x["section"] == sec)
+    gate_case("control: the recorded measurements pass", lambda sh, wl, cs: None, False)
+    gate_case("HERO 1900px warns but does not fail", lambda sh, wl, cs: set_h(sh, "/", "hero.headline-integrations", 1900), False, "HERO hero.headline-integrations is 1900px")
+    gate_case("HERO 3100px fails (no whitelist)", lambda sh, wl, cs: set_h(sh, "/", "hero.headline-integrations", 3100), True)
+    def hero_wl(sh, wl, cs):
+        set_h(sh, "/", "hero.headline-integrations", 3100)
+        wl["entries"].append({"kind": "hero-height", "route": "/", "section": "hero.headline-integrations", "maxHeightPx": 3200, "reviewedBy": "adversarial-test (automated reviewer; not a human sign-off)", "attestation": "agent", "reviewedOn": "2026-10-29", "justification": "Synthetic entry used only by the adversarial suite to prove the whitelist path."})
+    gate_case("control: HERO 3100px with a valid reviewed whitelist entry only warns", hero_wl, False, "whitelisted")
+    def hero_wl_nojust(sh, wl, cs):
+        hero_wl(sh, wl, cs); wl["entries"][-1]["justification"] = "too short"
+    gate_case("whitelist entry with a justification under 30 characters fails", hero_wl_nojust, True)
+    def hero_wl_human(sh, wl, cs):
+        hero_wl(sh, wl, cs); wl["entries"][-1]["reviewedBy"] = "claude-agent"
+    gate_case("agent attestation that does not say 'not a human sign-off' fails", hero_wl_human, True)
+    def hero_wl_cap(sh, wl, cs):
+        hero_wl(sh, wl, cs); wl["entries"][-1]["maxHeightPx"] = 3050
+    gate_case("whitelist cap below the measured height fails", hero_wl_cap, True)
+    def stale(sh, wl, cs):
+        wl["entries"].append({"kind": "page-share", "route": "/privacy", "section": "legal.document-section", "maxHeightPx": 9000, "maxSharePct": 99, "reviewedBy": "adversarial-test (automated reviewer; not a human sign-off)", "attestation": "agent", "reviewedOn": "2026-10-29", "justification": "Stale entry that exempts nothing at the recorded heights."})
+    gate_case("stale whitelist entry fails", stale, True)
+    gate_case("majority share: one legal section at 70% of /terms fails", lambda sh, wl, cs: set_h(sh, "/terms", "legal.document-section", 26000, 9), True)
+    gate_case("share 55% of /privacy warns but does not fail", lambda sh, wl, cs: set_h(sh, "/privacy", "legal.document-section", 6800, 3), False, "legal.document-section is 6800px")
+    def whole_body(sh, wl, cs):
+        rt = route(sh, "/privacy"); keep = [x for x in rt["sections"] if x["section"] != "legal.document-section"]
+        body = sum(x["heightPx"] for x in rt["sections"] if x["section"] == "legal.document-section")
+        rt["sections"] = keep + [{"section": "legal.document-section", "heightPx": body, "tag": "h2", "inFlow": True}]
+        sh["sections"]["legal.document-section"]["maxHeightPx"] = max(body, sh["sections"]["legal.document-section"]["maxHeightPx"])
+    gate_case("the pre-1.2.0 whole legal body as one section (96% of /privacy) fails", whole_body, True)
+    def missing(sh, wl, cs):
+        del sh["sections"]["story.manifesto"]
+    gate_case("missing measurement for a section contract fails", missing, True)
+    def missing_route(sh, wl, cs):
+        sh["routes"] = [x for x in sh["routes"] if x["route"] != "/terms"]
+    gate_case("missing measurement for a route fails", missing_route, True)
+    def missing_node(sh, wl, cs):
+        rt = route(sh, "/"); rt["sections"] = [x for x in rt["sections"] if x["section"] != "product.demo"]
+    gate_case("required template node missing from its route's measurement fails", missing_node, True)
+    gate_case("measured at a 1280px viewport fails", lambda sh, wl, cs: sh["viewport"].update(width=1280), True)
+    gate_case("in-flow heights that do not add up to the page fails", lambda sh, wl, cs: route(sh, "/").update(pageHeightPx=route(sh, "/")["pageHeightPx"] + 400), True)
+    gate_case("no sectionHeights at all fails", lambda sh, wl, cs: sh.clear(), True)
     print("\n%d checks, %d failed" % (total, fails))
     return 1 if fails else 0
 

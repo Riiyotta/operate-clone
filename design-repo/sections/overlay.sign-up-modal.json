@@ -1,8 +1,20 @@
 {
   "id": "overlay.sign-up-modal",
   "kind": "section",
-  "category": "OVERLAY",
   "purpose": "Intercepted-route modal: a /sign-up link on the homepage pins and hides the page column over the still-visible backdrop and hosts the sign-up form; closing restores / and its scroll.",
+  "semantic": {
+    "id": "overlay.sign-up-modal",
+    "category": "OVERLAY"
+  },
+  "source": {
+    "id": "SignUpModal",
+    "tag": "div",
+    "file": "src/components/signup/SignUpModal.jsx",
+    "lines": "14-95",
+    "anchor": "export default function SignUpModal"
+  },
+  "retrievalEligible": false,
+  "retrievalIneligibleReason": "Runtime UI: the modal shell (backdrop, close control, focus trap) that hosts the sign-up form over the homepage; the form itself is the retrievable block.",
   "implementedBy": [
     "src/components/signup/SignUpModal.jsx"
   ],

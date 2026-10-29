@@ -1,8 +1,19 @@
 {
   "id": "legal.back-link",
   "kind": "section",
-  "category": "LEGAL",
   "purpose": "Offer a way back to the homepage above the document.",
+  "semantic": {
+    "id": "legal.back-link",
+    "category": "NAVIGATION"
+  },
+  "source": {
+    "id": "LegalPage",
+    "tag": "div",
+    "file": "src/components/pages/LegalPage.jsx",
+    "lines": "163-167",
+    "anchor": "Back to Operate"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/pages/LegalPage.jsx"
   ],

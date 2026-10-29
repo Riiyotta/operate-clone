@@ -1,28 +1,86 @@
 {
-  "version": "1.0.0",
-  "$description": "Machine-read policy behind PageSpec mode 'generation' (rule GENERATION_MODE_CLONE_ISOLATION in compatibility/graph.json, implemented in schema/semantic_validate.py). In mode 'generation' a PageSpec must be original: no clone-only or blocked assets (assets/asset-roles.json generationUse), no Operate branding, no third-party marks, no real/demo people, no source-specific copy, and no real or live URLs. Matching is on text normalised with NFKC, zero-width characters removed, case folded and whitespace collapsed.",
+  "version": "1.2.0",
+  "$description": "Machine-read policy behind PageSpec mode 'generation'. Enforced by the six GENERATION_MODE_* rules in compatibility/graph.json (implemented in schema/semantic_validate.py): BRAND, INTEGRATION_LOGO, PERSON, SCREENSHOT, COPY, URL. In mode 'generation' a PageSpec must be original: only assets whose role is availability generation-safe (pinned in code), no Operate branding, no third-party marks, no real or source-demo people, no source-specific copy, and no real or live URLs/endpoints. Every blocked term and host below was taken from the real clone source and carries an evidence citation (path:line, relative to the source project) that extraction/verify_all.py re-reads to confirm the term is on that line. Detection is string-based: text is normalised (NFKC, zero-width and soft-hyphen characters removed, curly quotes/primes and Unicode dashes mapped to ASCII, case folded, punctuation collapsed) before matching. It does not detect homoglyph substitution from other scripts, images, paraphrase or translation. No human has reviewed these patterns.",
   "modes": {
-    "clone": "Reference reconstruction of the Operate site. May use clone-only assets and the source copy. Never publish.",
-    "generation": "Original page for any other property. Only generation-safe assets, fictional/original copy, relative paths or reserved-domain URLs."
+    "clone": "Reference reconstruction of the Operate site. May use clone-only and blocked-for-generation assets and the source copy. Never publish.",
+    "generation": "Original page for any other property. Only generation-safe asset roles, fictional/original copy, relative paths or reserved-domain URLs."
   },
-  "allowedAssetGenerationUse": {
+  "allowedAvailability": {
     "clone": ["clone-only", "generation-safe", "blocked-for-generation"],
     "generation": ["generation-safe"]
   },
+  "matchModes": {
+    "case-insensitive": "Matched on word boundaries after case folding.",
+    "not-lowercase": "Matched case-insensitively on word boundaries, but only reported when the matched text is not all lower case, so the English verb 'operate' stays usable while 'Operate', 'OPERATE' or 'oPerate' are rejected."
+  },
   "blockedTerms": {
     "operateBrand": {
-      "$description": "Operate's name and domains. Name terms are case-sensitive on word boundaries so the English verb 'operate' stays usable; domains are matched case-insensitively.",
-      "caseSensitive": ["Operate", "OPERATE", "Operate Machine"],
-      "caseInsensitive": ["operate.so", "operate machine co", "quietwork"]
+      "category": "BRAND",
+      "$description": "Operate's name, legal entity and domain.",
+      "terms": [
+        {"term": "Operate", "match": "not-lowercase", "evidence": ["src/components/NavSheet.jsx:17", "src/components/Manifesto.jsx:36"]},
+        {"term": "Operate Machine", "match": "case-insensitive", "evidence": ["src/components/FooterSheet.jsx:151"]},
+        {"term": "operate.so", "match": "case-insensitive", "evidence": ["src/pages/Privacy.jsx:17"]}
+      ]
     },
     "thirdPartyMarks": {
-      "$description": "Third-party trademarks that appear in the source (integration logos, copy, social labels).",
-      "caseInsensitive": ["granola", "gong", "slack", "gmail", "hubspot", "linkedin", "mux"]
+      "category": "INTEGRATION_LOGO",
+      "$description": "Third-party trademarks the source shows as integration logos, product names or social labels.",
+      "terms": [
+        {"term": "Granola", "match": "case-insensitive", "evidence": ["src/components/Hero.jsx:28"]},
+        {"term": "Gong", "match": "case-insensitive", "evidence": ["src/components/Hero.jsx:28"]},
+        {"term": "Slack", "match": "case-insensitive", "evidence": ["src/components/Hero.jsx:28"]},
+        {"term": "Gmail", "match": "case-insensitive", "evidence": ["src/components/Hero.jsx:28"]},
+        {"term": "HubSpot", "match": "case-insensitive", "evidence": ["src/components/Hero.jsx:28"]},
+        {"term": "LinkedIn", "match": "case-insensitive", "evidence": ["src/components/FooterSheet.jsx:10"]},
+        {"term": "Google", "match": "case-insensitive", "evidence": ["src/pages/Privacy.jsx:43"]},
+        {"term": "Mux", "match": "case-insensitive", "evidence": ["src/components/VideoLightbox.jsx:11"]}
+      ]
     },
-    "realPeople": {
-      "$description": "People named by the source's demo avatar art (derived from the asset file names; checked by verify_all.py).",
-      "caseInsensitive": ["kierra torres", "cooper franci", "emery botosh", "alfredo bergson", "eminem"]
+    "people": {
+      "category": "PERSON",
+      "$description": "People named by the source: the demo avatar art (file names), the demo's named contacts and the owner avatar's alt text (a real person's name).",
+      "terms": [
+        {"term": "Kierra Torres", "match": "case-insensitive", "evidence": ["src/components/demo/Panels.jsx:204"]},
+        {"term": "Kierra", "match": "case-insensitive", "evidence": ["src/components/demo/Desktop.jsx:179"]},
+        {"term": "Cooper Franci", "match": "case-insensitive", "evidence": ["src/components/demo/Panels.jsx:205"]},
+        {"term": "Emery Botosh", "match": "case-insensitive", "evidence": ["src/components/demo/Panels.jsx:206"]},
+        {"term": "Alfredo Bergson", "match": "case-insensitive", "evidence": ["src/components/demo/Panels.jsx:207"]},
+        {"term": "Eminem", "match": "case-insensitive", "evidence": ["src/components/demo/scripts.js:136"]},
+        {"term": "Marshall Mathers", "match": "case-insensitive", "evidence": ["src/components/demo/Panels.jsx:268"]},
+        {"term": "Chase Holloway", "match": "case-insensitive", "evidence": ["src/components/demo/Desktop.jsx:127"]},
+        {"term": "Holloway", "match": "case-insensitive", "evidence": ["src/components/demo/Desktop.jsx:127"]}
+      ]
+    },
+    "sourceDemoEntities": {
+      "category": "COPY",
+      "$description": "Fictional companies that are specific to the source's product demo copy.",
+      "terms": [
+        {"term": "Quietwork", "match": "case-insensitive", "evidence": ["src/components/demo/Desktop.jsx:80"]},
+        {"term": "Fielded", "match": "case-insensitive", "evidence": ["src/components/demo/Desktop.jsx:127"]}
+      ]
+    },
+    "sourceHandles": {
+      "category": "URL",
+      "$description": "Operate's social profile handles (the path part of its live profile URLs).",
+      "terms": [
+        {"term": "operatehq", "match": "case-insensitive", "evidence": ["src/components/FooterSheet.jsx:10"]},
+        {"term": "operate_gtm", "match": "case-insensitive", "evidence": ["src/components/FooterSheet.jsx:11"]}
+      ]
     }
+  },
+  "blockedHosts": {
+    "category": "URL",
+    "$description": "Real hosts the source links to or streams from. Any other non-reserved host is rejected too (urls below); these are listed so the error names the source.",
+    "hosts": [
+      {"host": "operate.so", "evidence": ["src/pages/Privacy.jsx:17", "src/pages/Terms.jsx:117"]},
+      {"host": "linkedin.com", "evidence": ["src/components/FooterSheet.jsx:10"]},
+      {"host": "x.com", "evidence": ["src/components/FooterSheet.jsx:11"]},
+      {"host": "stream.mux.com", "evidence": ["src/components/VideoLightbox.jsx:11"]},
+      {"host": "googleapis.com", "evidence": ["src/pages/Privacy.jsx:14"]},
+      {"host": "developers.google.com", "evidence": ["src/pages/Privacy.jsx:46"]},
+      {"host": "myaccount.google.com", "evidence": ["src/pages/Privacy.jsx:63"]}
+    ]
   },
   "urls": {
     "$description": "Any absolute URL, protocol-relative URL, www. host, bare domain or e-mail address in generated text must use one of these reserved hosts. Relative paths such as /sign-up are fine.",

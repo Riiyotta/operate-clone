@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "$description": "Closed list of what a generator may instantiate or set. Ids must equal the contract files on disk (verify_all.py checks both directions).",
   "primitives": [
     "back-link",
@@ -30,8 +30,9 @@
     "form.sign-up-form",
     "hero.headline-integrations",
     "legal.back-link",
-    "legal.document-body",
     "legal.document-header",
+    "legal.document-preamble",
+    "legal.document-section",
     "overlay.leave-confirm",
     "overlay.sign-up-modal",
     "overlay.video-lightbox",
@@ -64,9 +65,15 @@
     "demo-avatar-image",
     "demo-scene-image",
     "external-social-link",
+    "fictional-avatar",
     "footer-video-asset",
+    "generated-background-texture",
     "integration-logo",
     "lightbox-video-stream",
+    "placeholder-brand-mark",
+    "placeholder-integration-glyph",
+    "placeholder-product-visual",
+    "placeholder-url",
     "signup-submit-stub",
     "video-poster"
   ],
@@ -107,5 +114,42 @@
   "generationModes": [
     "clone",
     "generation"
-  ]
+  ],
+  "generationSafeAssetRoles": [
+    "fictional-avatar",
+    "generated-background-texture",
+    "placeholder-brand-mark",
+    "placeholder-integration-glyph",
+    "placeholder-product-visual",
+    "placeholder-url"
+  ],
+  "retrievalIneligibleSections": [
+    "backdrop.animated-background",
+    "overlay.leave-confirm",
+    "overlay.sign-up-modal",
+    "overlay.video-lightbox",
+    "shell.binder-rails",
+    "shell.main-sheet",
+    "system.not-found"
+  ],
+  "sectionSemanticCategories": {
+    "backdrop.animated-background": "BACKDROP",
+    "form.sign-up-form": "CONVERSION",
+    "hero.headline-integrations": "HERO",
+    "legal.back-link": "NAVIGATION",
+    "legal.document-header": "CONTENT",
+    "legal.document-preamble": "CONTENT",
+    "legal.document-section": "CONTENT",
+    "overlay.leave-confirm": "OVERLAY",
+    "overlay.sign-up-modal": "OVERLAY",
+    "overlay.video-lightbox": "OVERLAY",
+    "product.demo": "FEATURE",
+    "product.ops-steps": "FEATURE",
+    "shell.binder-rails": "SHELL",
+    "shell.footer-sheet": "SHELL",
+    "shell.main-sheet": "SHELL",
+    "shell.nav-sheet": "SHELL",
+    "story.manifesto": "CONTENT",
+    "system.not-found": "SYSTEM"
+  }
 }

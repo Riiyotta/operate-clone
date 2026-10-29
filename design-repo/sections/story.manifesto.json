@@ -1,8 +1,19 @@
 {
   "id": "story.manifesto",
   "kind": "section",
-  "category": "STORY",
   "purpose": "Deliver the brand narrative: 'Software doesn't close deals. You do.' on a green punched panel with CSS multi-column text, a ticket card and the self-animating logo-trace SVG.",
+  "semantic": {
+    "id": "story.manifesto",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Manifesto",
+    "tag": "section",
+    "file": "src/components/Manifesto.jsx",
+    "lines": "60-143",
+    "anchor": "export default function Manifesto"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/Manifesto.jsx"
   ],
@@ -148,7 +159,8 @@
               },
               {
                 "enum": [
-                  "brand-logo-trace"
+                  "brand-logo-trace",
+                  "placeholder-brand-mark"
                 ]
               }
             ]

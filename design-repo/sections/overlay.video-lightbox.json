@@ -1,8 +1,20 @@
 {
   "id": "overlay.video-lightbox",
   "kind": "section",
-  "category": "OVERLAY",
   "purpose": "Full-screen dialog streaming the product video (Mux HLS through hls.js); opens instantly from the hero button, or via a View Transitions morph from the footer card.",
+  "semantic": {
+    "id": "overlay.video-lightbox",
+    "category": "OVERLAY"
+  },
+  "source": {
+    "id": "VideoLightbox",
+    "tag": "div",
+    "file": "src/components/VideoLightbox.jsx",
+    "lines": "70-333",
+    "anchor": "export default function VideoLightbox"
+  },
+  "retrievalEligible": false,
+  "retrievalIneligibleReason": "Runtime UI: a modal video lightbox that only exists after the footer video card is clicked; it is not page content.",
   "implementedBy": [
     "src/components/VideoLightbox.jsx",
     "src/lib/videoLightbox.js"
@@ -41,7 +53,8 @@
               },
               {
                 "enum": [
-                  "lightbox-video-stream"
+                  "lightbox-video-stream",
+                  "placeholder-url"
                 ]
               }
             ]
@@ -69,7 +82,8 @@
               },
               {
                 "enum": [
-                  "video-poster"
+                  "video-poster",
+                  "placeholder-product-visual"
                 ]
               }
             ]

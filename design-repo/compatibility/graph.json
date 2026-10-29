@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.2.0",
   "$description": "Rhythm/position rules JSON Schema cannot express. Each rule has severity error|warn. schema/semantic_validate.py reads these rules (including params and exemptions) at run time, so the graph and the validator cannot silently diverge; verify_all.py checks every rule id is implemented. No NO_ADJACENT_SAME_CATEGORY rule: the real homepage legitimately places three SHELL sections adjacently.",
   "rules": [
     {
@@ -110,13 +110,64 @@
       }
     },
     {
-      "id": "GENERATION_MODE_CLONE_ISOLATION",
+      "id": "GENERATION_MODE_BRAND",
       "severity": "error",
-      "description": "A PageSpec with mode 'generation' may reference only generation-safe assets (assets/asset-roles.json generationUse) and must contain no Operate branding, third-party marks, real-person names, source copy of 5+ words, or real/live URLs (assets/generation-policy.json). Mode 'clone' is unaffected.",
+      "description": "Mode 'generation' only: rejects Operate's logo mark / logo-trace (roles brand-logomark, brand-logo-trace) or its name, legal entity or domain (blockedTerms.operateBrand). Assets are judged by the role availability pinned in code (PINNED_AVAILABILITY), not only by the registry. Mode 'clone' is unaffected.",
       "params": {
         "mode": "generation",
-        "policy": "assets/generation-policy.json"
+        "category": "BRAND"
       }
+    },
+    {
+      "id": "GENERATION_MODE_INTEGRATION_LOGO",
+      "severity": "error",
+      "description": "Mode 'generation' only: rejects Third-party integration logos (role integration-logo) or third-party trademarks in text (blockedTerms.thirdPartyMarks). Assets are judged by the role availability pinned in code (PINNED_AVAILABILITY), not only by the registry. Mode 'clone' is unaffected.",
+      "params": {
+        "mode": "generation",
+        "category": "INTEGRATION_LOGO"
+      }
+    },
+    {
+      "id": "GENERATION_MODE_PERSON",
+      "severity": "error",
+      "description": "Mode 'generation' only: rejects Source avatar art (role demo-avatar-image) or the names of people the source shows (blockedTerms.people). Assets are judged by the role availability pinned in code (PINNED_AVAILABILITY), not only by the registry. Mode 'clone' is unaffected.",
+      "params": {
+        "mode": "generation",
+        "category": "PERSON"
+      }
+    },
+    {
+      "id": "GENERATION_MODE_SCREENSHOT",
+      "severity": "error",
+      "description": "Mode 'generation' only: rejects Proprietary product screenshots and media: demo scene, video poster, footer stills and loop, Operate's background texture (roles demo-scene-image, video-poster, footer-video-asset, background-texture). Assets are judged by the role availability pinned in code (PINNED_AVAILABILITY), not only by the registry. Mode 'clone' is unaffected.",
+      "params": {
+        "mode": "generation",
+        "category": "SCREENSHOT"
+      }
+    },
+    {
+      "id": "GENERATION_MODE_COPY",
+      "severity": "error",
+      "description": "Mode 'generation' only: rejects Source-specific copy: any string of 5+ words contained in (or containing) the clone copy corpus, or the source's demo entities (blockedTerms.sourceDemoEntities). Assets are judged by the role availability pinned in code (PINNED_AVAILABILITY), not only by the registry. Mode 'clone' is unaffected.",
+      "params": {
+        "mode": "generation",
+        "category": "COPY"
+      }
+    },
+    {
+      "id": "GENERATION_MODE_URL",
+      "severity": "error",
+      "description": "Mode 'generation' only: rejects Real or live URLs and endpoints: roles lightbox-video-stream, signup-submit-stub, external-social-link; Operate's profile handles; any absolute URL, bare domain, www host or e-mail whose host is not reserved (blockedHosts names the source hosts). Assets are judged by the role availability pinned in code (PINNED_AVAILABILITY), not only by the registry. Mode 'clone' is unaffected.",
+      "params": {
+        "mode": "generation",
+        "category": "URL"
+      }
+    },
+    {
+      "id": "RETRIEVAL_ELIGIBILITY_PINNED",
+      "severity": "error",
+      "description": "Repository-level check run with every PageSpec: every section contract carries a closed boolean retrievalEligible; runtime UI (overlay/modal/dialog/drawer/cookie/consent/toast/lightbox) and the layout-only sections pinned in code (RETRIEVAL_INELIGIBLE_PINNED in schema/semantic_validate.py and extraction/verify_all.py) are false with a 30+ character reason; nothing else is false; the allowlist mirror agrees.",
+      "params": {}
     }
   ]
 }

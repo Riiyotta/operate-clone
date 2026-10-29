@@ -1,0 +1,4 @@
+{
+  "description": "Reviewed exceptions to extraction/wrapper_gate.py. Each entry names the route and section, a ceiling above the measured value, who reviewed it and why the measured size is legitimate. attestation \"agent\" is an automated reviewer working from the render measurements; it is NOT a human sign-off. A stale entry fails the gate. Empty on purpose: at 1440px no HERO exceeds 1800px and no in-flow non-SHELL section exceeds 50% of a page that has at least 3 of them, after legal.document-body was decomposed (see extraction/measured-values.json wrapperGateDecomposition). The single-section pages (/sign-up form, the 404) are skipped by the share rule and reported as skipped.",
+  "entries": []
+}

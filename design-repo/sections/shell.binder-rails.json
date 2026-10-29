@@ -1,8 +1,20 @@
 {
   "id": "shell.binder-rails",
   "kind": "section",
-  "category": "SHELL",
   "purpose": "Two thin vertical paper rails at the page edges that frame the sheets at lg+.",
+  "semantic": {
+    "id": "shell.binder-rails",
+    "category": "SHELL"
+  },
+  "source": {
+    "id": "App",
+    "tag": "div",
+    "file": "src/App.jsx",
+    "lines": "35-37",
+    "anchor": "binder rails"
+  },
+  "retrievalEligible": false,
+  "retrievalIneligibleReason": "Layout-only chrome: two empty 12px paper rails drawn at the page edges; no copy, no media, nothing for retrieval to reuse.",
   "implementedBy": [
     "src/App.jsx"
   ],

@@ -2,7 +2,7 @@
 
 Source: https://operate.so/ (local clone at /, /privacy, /terms, /sign-up, catch-all 404)
 Status: **measured-from-codebase** · production approved: **false**
-5 routes · 4 templates · 17 unique sections
+5 routes · 4 templates · 18 unique sections
 
 > Generated from `ia.json` by `build.mjs`. Edit the JSON, not this file.
 
@@ -39,7 +39,8 @@ component library or stays local to its page.
 | `overlay.leave-confirm` | OVERLAY | 2 | 2 | `src/components/signup/useSignUpCloseConfirm.jsx` | Wherever the sign-up form is shown (2 routes). |
 | `legal.back-link` | LEGAL | 1 | 2 | `src/components/pages/LegalPage.jsx` | Both legal pages (2 routes). |
 | `legal.document-header` | LEGAL | 1 | 2 | `src/components/pages/LegalPage.jsx` | Both legal pages (2 routes). |
-| `legal.document-body` | LEGAL | 1 | 2 | `src/components/pages/LegalPage.jsx (blocks in src/pages/Privacy.jsx, src/pages/Terms.jsx)` | Both legal pages (2 routes). |
+| `legal.document-preamble` | LEGAL | 1 | 2 | `src/components/pages/LegalPage.jsx (blocks in src/pages/Privacy.jsx, src/pages/Terms.jsx)` | Both legal pages (2 routes). |
+| `legal.document-section` | LEGAL | 1 | 2 | `src/components/pages/LegalPage.jsx (blocks in src/pages/Privacy.jsx, src/pages/Terms.jsx)` | Both legal pages (2 routes), repeated per H2. |
 | `shell.binder-rails` | SHELL | 1 | 1 | `src/App.jsx (inline)` | Homepage only (1 route). |
 | `shell.nav-sheet` | SHELL | 1 | 1 | `src/components/NavSheet.jsx` | Homepage only (1 route). |
 | `shell.main-sheet` | SHELL | 1 | 1 | `src/App.jsx + src/components/shell/PanelHoles.jsx` | Homepage only (1 route). |
@@ -54,7 +55,7 @@ component library or stays local to its page.
 
 **3 shared sections** appear in more than one template and belong in a component library.
 
-**14 single-use sections** appear in exactly one template. Building these
+**15 single-use sections** appear in exactly one template. Building these
 as "reusable" components up front would be speculative — keep them page-local
 until a second caller actually appears.
 
@@ -98,7 +99,8 @@ until a second caller actually appears.
 |---:|---|---|---|
 | 1 | LEGAL | `legal.back-link` | page-local |
 | 2 | LEGAL | `legal.document-header` | page-local |
-| 3 | LEGAL | `legal.document-body` | page-local |
+| 3 | LEGAL | `legal.document-preamble` | page-local |
+| 4 | LEGAL | `legal.document-section` | page-local |
 
 ### 404 — `template.not-found`
 
@@ -202,9 +204,13 @@ _Long-form legal document reading layout._
 
 · Both legal pages (2 routes). · appears on 2 routes · implemented by `src/components/pages/LegalPage.jsx`
 
-**`legal.document-body`** — Numbered H2/H3 sections with paragraphs, lists, inline code and (terms only) horizontal rules in a 768px column on #E0E0E0. Body prose is placeholder copy with the original's structure — replace before launch.
+**`legal.document-preamble`** — The paragraphs (and, on /terms, the plain ordered table of contents) between the effective-date line and the first H2, in the 768px column on #E0E0E0. Placeholder copy with the original's structure — replace before launch.
 
 · Both legal pages (2 routes). · appears on 2 routes · implemented by `src/components/pages/LegalPage.jsx (blocks in src/pages/Privacy.jsx, src/pages/Terms.jsx)`
+
+**`legal.document-section`** — One heading-bounded part of the legal document: its H2 plus the H3s, paragraphs, lists, inline code and (terms only) closing horizontal rule up to the next H2. Repeats once per H2 (14 on /privacy, 12 on /terms). Placeholder copy with the original's structure — replace before launch.
+
+· Both legal pages (2 routes), repeated per H2. · appears on 2 routes · implemented by `src/components/pages/LegalPage.jsx (blocks in src/pages/Privacy.jsx, src/pages/Terms.jsx)`
 
 ### SYSTEM
 

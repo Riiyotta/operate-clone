@@ -1,8 +1,19 @@
 {
   "id": "shell.nav-sheet",
   "kind": "section",
-  "category": "SHELL",
   "purpose": "Header strip on a hole-punched sheet: wordmark text, centered logo mark and a desktop-only link to /sign-up. Not sticky, no menu.",
+  "semantic": {
+    "id": "shell.nav-sheet",
+    "category": "SHELL"
+  },
+  "source": {
+    "id": "NavSheet",
+    "tag": "div",
+    "file": "src/components/NavSheet.jsx",
+    "lines": "5-25",
+    "anchor": "export default function NavSheet"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/NavSheet.jsx"
   ],
@@ -49,7 +60,8 @@
               },
               {
                 "enum": [
-                  "brand-logomark"
+                  "brand-logomark",
+                  "placeholder-brand-mark"
                 ]
               }
             ]

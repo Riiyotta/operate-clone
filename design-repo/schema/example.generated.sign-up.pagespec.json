@@ -1,0 +1,153 @@
+{
+  "pageSpecVersion": "1.2.0",
+  "mode": "generation",
+  "template": "template.sign-up",
+  "route": "/sign-up",
+  "head": {
+    "title": "Request access – Fieldwork",
+    "description": "Join the Fieldwork pilot list. Tell us how your crews are scheduled today.",
+    "robots": "index, follow"
+  },
+  "nodes": [
+    {
+      "section": "backdrop.animated-background",
+      "variant": "default",
+      "content": {
+        "texture": {
+          "assetRole": "generated-background-texture",
+          "assetRef": "placeholder--texture"
+        }
+      },
+      "motion": {
+        "pattern": "scroll-band-canvas-beads",
+        "trigger": "scroll-progress",
+        "reducedMotionFallback": "static-frames-on-scroll",
+        "scrollTopBandBelow": 0.35,
+        "scrollBottomBandAbove": 0.65
+      }
+    },
+    {
+      "section": "form.sign-up-form",
+      "variant": "standalone",
+      "content": {
+        "title": "Tell us about your crews",
+        "backLabel": "Back",
+        "textFields": [
+          {
+            "name": "name",
+            "label": "Name",
+            "required": true,
+            "placeholder": "Your name"
+          },
+          {
+            "name": "email",
+            "label": "Work email",
+            "required": true,
+            "placeholder": "Your work email"
+          },
+          {
+            "name": "socialHandle",
+            "label": "Profile link",
+            "required": false,
+            "placeholder": "A page about you"
+          }
+        ],
+        "choiceGroups": [
+          {
+            "name": "role",
+            "label": "Your role",
+            "kind": "radio",
+            "options": [
+              "Owner",
+              "Operations manager",
+              "Dispatcher",
+              "Field technician",
+              "Office coordinator",
+              "Other"
+            ]
+          },
+          {
+            "name": "salesTeamSize",
+            "label": "How many crews do you run?",
+            "kind": "radio",
+            "options": [
+              "1",
+              "2–3",
+              "4–10",
+              "11–40",
+              "41+"
+            ]
+          },
+          {
+            "name": "aiUsage",
+            "label": "How do you plan visits today?",
+            "kind": "checkbox",
+            "options": [
+              "Paper or whiteboard",
+              "Shared spreadsheet",
+              "A scheduling app",
+              "Something else",
+              "No fixed process"
+            ]
+          },
+          {
+            "name": "dealChallenge",
+            "label": "What slows your day down most right now?",
+            "kind": "radio",
+            "options": [
+              "Late arrivals",
+              "Missing parts",
+              "Unclear priorities",
+              "Double bookings",
+              "Phone tag with crews",
+              "Short notice changes",
+              "Something else"
+            ]
+          }
+        ],
+        "otherPlaceholder": "Your answer (optional)",
+        "selectAllHint": "Select all that apply",
+        "validationMessages": {
+          "required": "required",
+          "invalidEmail": "check the email",
+          "chooseAtLeastOne": "choose at least one"
+        },
+        "submitLabel": "Submit",
+        "sendingLabel": "Submitting…",
+        "receivedMessage": "Thanks! We will reply soon.",
+        "receivedCloseLabel": "Close",
+        "errorMessage": "Something went wrong.",
+        "retryLabel": "Try again",
+        "submitEndpoint": {
+          "assetRole": "placeholder-url",
+          "assetRef": "placeholder--endpoint"
+        }
+      },
+      "motion": {
+        "pattern": "sending-ring-loop",
+        "trigger": "submit",
+        "reducedMotionFallback": "static-rings-shown",
+        "visibleMs": 1500,
+        "exitMs": 750,
+        "pauseMs": 400,
+        "enterOpacityMs": 400,
+        "easing": "cubic-bezier(.23,1,.32,1)"
+      }
+    },
+    {
+      "section": "overlay.leave-confirm",
+      "variant": "default",
+      "content": {
+        "title": "Close this form?",
+        "description": "Your answers will not be kept.",
+        "keepLabel": "Stay here",
+        "leaveLabel": "Close"
+      },
+      "motion": {
+        "pattern": "none-instant",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    }
+  ]
+}

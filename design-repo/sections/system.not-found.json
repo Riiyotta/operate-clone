@@ -1,13 +1,25 @@
 {
   "id": "system.not-found",
   "kind": "section",
-  "category": "SYSTEM",
   "purpose": "Stock Next.js 404 (framework-default chrome, outside the site's design system): '404' and 'This page could not be found.' on a white (or black in dark scheme) page.",
+  "semantic": {
+    "id": "system.not-found",
+    "category": "SYSTEM"
+  },
+  "source": {
+    "id": "NotFound",
+    "tag": "div",
+    "file": "src/pages/NotFound.jsx",
+    "lines": "6-41",
+    "anchor": "export default function NotFound"
+  },
+  "retrievalEligible": false,
+  "retrievalIneligibleReason": "Framework fallback: the stock Next.js 404 page, outside the site's design system; it is a stand-in, not an exemplar to retrieve.",
   "implementedBy": [
     "src/pages/NotFound.jsx"
   ],
   "evidenceLevel": "measured",
-  "iaSection": "ia.json:118",
+  "iaSection": "ia.json:124",
   "variants": [
     {
       "id": "default",

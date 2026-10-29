@@ -41,7 +41,7 @@
   ],
   "specClaimsChecked": [
     {
-      "claim": "ia.json: 5 routes, 4 templates, 17 sections with implementedBy",
+      "claim": "ia.json: 5 routes, 4 templates, 18 sections with implementedBy (legal.document-body split into legal.document-preamble + legal.document-section in 1.2.0)",
       "result": "confirmed against src/router.jsx and the components; ids reused verbatim"
     }
   ],
@@ -1328,7 +1328,11 @@
     },
     {
       "citation": "ia.json:112",
-      "quote": "\"legal.document-body\": {"
+      "quote": "\"legal.document-preamble\": {"
+    },
+    {
+      "citation": "ia.json:118",
+      "quote": "\"legal.document-section\": {"
     },
     {
       "citation": "src/components/pages/LegalPage.jsx:159",
@@ -1343,7 +1347,7 @@
       "quote": "PLACEHOLDER COPY"
     },
     {
-      "citation": "ia.json:118",
+      "citation": "ia.json:124",
       "quote": "\"system.not-found\": {"
     },
     {
@@ -1459,7 +1463,7 @@
       "quote": "/assets/fonts/geist-mono-variable.woff2"
     },
     {
-      "citation": "ia.json:127",
+      "citation": "ia.json:133",
       "quote": "\"id\": \"template.home\""
     },
     {
@@ -1471,55 +1475,55 @@
       "quote": "<meta name=\"description\""
     },
     {
-      "citation": "ia.json:134",
+      "citation": "ia.json:140",
       "quote": "\"backdrop.animated-background\""
     },
     {
-      "citation": "ia.json:135",
+      "citation": "ia.json:141",
       "quote": "\"shell.binder-rails\""
     },
     {
-      "citation": "ia.json:136",
+      "citation": "ia.json:142",
       "quote": "\"shell.nav-sheet\""
     },
     {
-      "citation": "ia.json:137",
+      "citation": "ia.json:143",
       "quote": "\"shell.main-sheet\""
     },
     {
-      "citation": "ia.json:138",
+      "citation": "ia.json:144",
       "quote": "\"hero.headline-integrations\""
     },
     {
-      "citation": "ia.json:139",
+      "citation": "ia.json:145",
       "quote": "\"product.demo\""
     },
     {
-      "citation": "ia.json:140",
+      "citation": "ia.json:146",
       "quote": "\"product.ops-steps\""
     },
     {
-      "citation": "ia.json:141",
+      "citation": "ia.json:147",
       "quote": "\"story.manifesto\""
     },
     {
-      "citation": "ia.json:142",
+      "citation": "ia.json:148",
       "quote": "\"shell.footer-sheet\""
     },
     {
-      "citation": "ia.json:143",
+      "citation": "ia.json:149",
       "quote": "\"overlay.video-lightbox\""
     },
     {
-      "citation": "ia.json:144",
+      "citation": "ia.json:150",
       "quote": "\"overlay.sign-up-modal\""
     },
     {
-      "citation": "ia.json:145",
+      "citation": "ia.json:151",
       "quote": "\"form.sign-up-form\""
     },
     {
-      "citation": "ia.json:146",
+      "citation": "ia.json:152",
       "quote": "\"overlay.leave-confirm\""
     },
     {
@@ -1531,7 +1535,7 @@
       "quote": "case '/':"
     },
     {
-      "citation": "ia.json:150",
+      "citation": "ia.json:156",
       "quote": "\"id\": \"template.sign-up\""
     },
     {
@@ -1539,15 +1543,15 @@
       "quote": "title: 'Sign up — Operate'"
     },
     {
-      "citation": "ia.json:156",
+      "citation": "ia.json:162",
       "quote": "\"backdrop.animated-background\""
     },
     {
-      "citation": "ia.json:156",
+      "citation": "ia.json:162",
       "quote": "\"form.sign-up-form\""
     },
     {
-      "citation": "ia.json:156",
+      "citation": "ia.json:162",
       "quote": "\"overlay.leave-confirm\""
     },
     {
@@ -1559,7 +1563,7 @@
       "quote": "case '/sign-up':"
     },
     {
-      "citation": "ia.json:159",
+      "citation": "ia.json:165",
       "quote": "\"id\": \"template.legal\""
     },
     {
@@ -1567,23 +1571,27 @@
       "quote": "title: 'Privacy Policy — Operate'"
     },
     {
-      "citation": "ia.json:165",
+      "citation": "ia.json:171",
       "quote": "\"legal.back-link\""
     },
     {
-      "citation": "ia.json:165",
+      "citation": "ia.json:171",
       "quote": "\"legal.document-header\""
     },
     {
-      "citation": "ia.json:165",
-      "quote": "\"legal.document-body\""
+      "citation": "ia.json:171",
+      "quote": "\"legal.document-preamble\""
+    },
+    {
+      "citation": "ia.json:171",
+      "quote": "\"legal.document-section\""
     },
     {
       "citation": "src/router.jsx:143",
       "quote": "case '/privacy':"
     },
     {
-      "citation": "ia.json:168",
+      "citation": "ia.json:174",
       "quote": "\"id\": \"template.not-found\""
     },
     {
@@ -1591,7 +1599,7 @@
       "quote": "notfound: { title:"
     },
     {
-      "citation": "ia.json:174",
+      "citation": "ia.json:180",
       "quote": "\"system.not-found\""
     },
     {
@@ -1602,5 +1610,486 @@
       "citation": "src/router.jsx:176",
       "quote": "return <NotFound />"
     }
-  ]
+  ],
+  "sectionHeights": {
+    "description": "Rendered heights at 1440px of the built clone (vite build + vite preview), written by extraction/measure_sections.mjs from extraction/measure-recipes.json. routes: per route the page height and every measured section instance; in-flow instances tile the document (each runs from its start to the next start, margins included, so they sum to pageHeightPx); out-of-flow instances (fixed/absolute chrome and runtime overlays opened by recipe steps) take no page height. sections: per section the tallest instance. Read by extraction/wrapper_gate.py.",
+    "tool": "extraction/measure_sections.mjs (playwright chromium 153.0.8010.12)",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "measuredAt": "2026-10-29",
+    "routesMeasured": 5,
+    "routes": [
+      {
+        "route": "/",
+        "template": "template.home",
+        "pageHeightPx": 3605,
+        "sections": [
+          {
+            "section": "shell.nav-sheet",
+            "heightPx": 210,
+            "tag": "div",
+            "inFlow": true
+          },
+          {
+            "section": "shell.main-sheet",
+            "heightPx": 98,
+            "tag": "div",
+            "inFlow": true
+          },
+          {
+            "section": "hero.headline-integrations",
+            "heightPx": 314,
+            "tag": "section",
+            "inFlow": true
+          },
+          {
+            "section": "product.demo",
+            "heightPx": 864,
+            "tag": "section",
+            "inFlow": true
+          },
+          {
+            "section": "product.ops-steps",
+            "heightPx": 864,
+            "tag": "div",
+            "inFlow": true
+          },
+          {
+            "section": "story.manifesto",
+            "heightPx": 748,
+            "tag": "section",
+            "inFlow": true
+          },
+          {
+            "section": "shell.footer-sheet",
+            "heightPx": 507,
+            "tag": "div",
+            "inFlow": true
+          },
+          {
+            "section": "backdrop.animated-background",
+            "heightPx": 900,
+            "tag": "div",
+            "inFlow": false,
+            "position": "fixed"
+          },
+          {
+            "section": "shell.binder-rails",
+            "heightPx": 3605,
+            "tag": "div",
+            "inFlow": false,
+            "position": "absolute"
+          },
+          {
+            "section": "overlay.video-lightbox",
+            "heightPx": 900,
+            "tag": "div",
+            "inFlow": false,
+            "position": "fixed",
+            "openedBy": "steps"
+          },
+          {
+            "section": "overlay.sign-up-modal",
+            "heightPx": 1056,
+            "tag": "div",
+            "inFlow": false,
+            "position": "static",
+            "openedBy": "steps"
+          },
+          {
+            "section": "form.sign-up-form",
+            "heightPx": 1056,
+            "tag": "form",
+            "inFlow": false,
+            "position": "relative",
+            "openedBy": "already open"
+          },
+          {
+            "section": "overlay.leave-confirm",
+            "heightPx": 160,
+            "tag": "div",
+            "inFlow": false,
+            "position": "fixed",
+            "openedBy": "steps"
+          }
+        ]
+      },
+      {
+        "route": "/sign-up",
+        "template": "template.sign-up",
+        "pageHeightPx": 1410,
+        "sections": [
+          {
+            "section": "form.sign-up-form",
+            "heightPx": 1410,
+            "tag": "form",
+            "inFlow": true
+          },
+          {
+            "section": "backdrop.animated-background",
+            "heightPx": 900,
+            "tag": "div",
+            "inFlow": false,
+            "position": "fixed"
+          },
+          {
+            "section": "overlay.leave-confirm",
+            "heightPx": 160,
+            "tag": "div",
+            "inFlow": false,
+            "position": "fixed",
+            "openedBy": "steps"
+          }
+        ]
+      },
+      {
+        "route": "/privacy",
+        "template": "template.legal",
+        "pageHeightPx": 7407,
+        "sections": [
+          {
+            "section": "legal.back-link",
+            "heightPx": 151,
+            "tag": "div",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-header",
+            "heightPx": 110,
+            "tag": "h1",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-preamble",
+            "heightPx": 304,
+            "tag": "p",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 244,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 1164,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 472,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 1848,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 552,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 244,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 286,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 456,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 388,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 192,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 192,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 192,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 192,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 420,
+            "tag": "h2",
+            "inFlow": true
+          }
+        ]
+      },
+      {
+        "route": "/terms",
+        "template": "template.legal",
+        "pageHeightPx": 12737,
+        "sections": [
+          {
+            "section": "legal.back-link",
+            "heightPx": 151,
+            "tag": "div",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-header",
+            "heightPx": 110,
+            "tag": "h1",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-preamble",
+            "heightPx": 662,
+            "tag": "p",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 1255,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 1093,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 535,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 1281,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 1203,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 619,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 441,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 1307,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 1417,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 2285,
+            "tag": "h2",
+            "inFlow": true
+          },
+          {
+            "section": "legal.document-section",
+            "heightPx": 378,
+            "tag": "h2",
+            "inFlow": true
+          }
+        ]
+      },
+      {
+        "route": "*",
+        "template": "template.not-found",
+        "pageHeightPx": 900,
+        "sections": [
+          {
+            "section": "system.not-found",
+            "heightPx": 900,
+            "tag": "div",
+            "inFlow": true
+          }
+        ]
+      }
+    ],
+    "sections": {
+      "backdrop.animated-background": {
+        "maxHeightPx": 900,
+        "route": "/",
+        "instances": 2,
+        "inFlowSomewhere": false
+      },
+      "form.sign-up-form": {
+        "maxHeightPx": 1410,
+        "route": "/sign-up",
+        "instances": 2,
+        "inFlowSomewhere": true
+      },
+      "hero.headline-integrations": {
+        "maxHeightPx": 314,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": true
+      },
+      "legal.back-link": {
+        "maxHeightPx": 151,
+        "route": "/privacy",
+        "instances": 2,
+        "inFlowSomewhere": true
+      },
+      "legal.document-header": {
+        "maxHeightPx": 110,
+        "route": "/privacy",
+        "instances": 2,
+        "inFlowSomewhere": true
+      },
+      "legal.document-preamble": {
+        "maxHeightPx": 662,
+        "route": "/terms",
+        "instances": 2,
+        "inFlowSomewhere": true
+      },
+      "legal.document-section": {
+        "maxHeightPx": 2285,
+        "route": "/terms",
+        "instances": 25,
+        "inFlowSomewhere": true
+      },
+      "overlay.leave-confirm": {
+        "maxHeightPx": 160,
+        "route": "/",
+        "instances": 2,
+        "inFlowSomewhere": false
+      },
+      "overlay.sign-up-modal": {
+        "maxHeightPx": 1056,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": false
+      },
+      "overlay.video-lightbox": {
+        "maxHeightPx": 900,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": false
+      },
+      "product.demo": {
+        "maxHeightPx": 864,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": true
+      },
+      "product.ops-steps": {
+        "maxHeightPx": 864,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": true
+      },
+      "shell.binder-rails": {
+        "maxHeightPx": 3605,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": false
+      },
+      "shell.footer-sheet": {
+        "maxHeightPx": 507,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": true
+      },
+      "shell.main-sheet": {
+        "maxHeightPx": 98,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": true
+      },
+      "shell.nav-sheet": {
+        "maxHeightPx": 210,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": true
+      },
+      "story.manifesto": {
+        "maxHeightPx": 748,
+        "route": "/",
+        "instances": 1,
+        "inFlowSomewhere": true
+      },
+      "system.not-found": {
+        "maxHeightPx": 900,
+        "route": "*",
+        "instances": 1,
+        "inFlowSomewhere": true
+      }
+    }
+  },
+  "wrapperGateDecomposition": {
+    "description": "Why legal.document-body was split in 1.2.0. Computed from the same 1440px measurement in sectionHeights: the former body section is the sum of today's preamble + section instances. It exceeded the 60% page-share failure threshold of extraction/wrapper_gate.py on both legal routes, so it was decomposed along the real H2 boundaries of src/pages/Privacy.jsx and src/pages/Terms.jsx instead of being whitelisted.",
+    "routes": [
+      {
+        "route": "/privacy",
+        "pageHeightPx": 7407,
+        "formerSection": "legal.document-body",
+        "formerHeightPx": 7146,
+        "formerSharePct": 96.5,
+        "largestPartNowPx": 1848,
+        "largestPartNowSharePct": 24.9
+      },
+      {
+        "route": "/terms",
+        "pageHeightPx": 12737,
+        "formerSection": "legal.document-body",
+        "formerHeightPx": 12476,
+        "formerSharePct": 98.0,
+        "largestPartNowPx": 2285,
+        "largestPartNowSharePct": 17.9
+      }
+    ]
+  }
 }

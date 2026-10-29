@@ -1,0 +1,75 @@
+{
+  "description": "How extraction/measure_sections.mjs maps the rendered DOM of the built clone to section ids at 1440px (data, not code). For every route: `inFlow` entries name the START element of each in-flow section instance as a path of 1-based child indexes below the `root` selector (#root), or as a css selector whose every match is one instance (`each`). The script tiles the page: an in-flow section runs from its start to the next in-flow start (the first starts at 0, the last runs to the end of the document), so the in-flow heights always sum to the document height and include the margins between sections. `outOfFlow` entries are fixed/absolute elements measured by their own box; they take no page height. `overlays` are runtime UI opened by the listed steps (click / fill / press) and then measured by their own box; they take no page height either. The route \"*\" is requested as /page-that-does-not-exist.",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "root": "#root",
+  "settleMs": 2500,
+  "routes": {
+    "/": {
+      "template": "template.home",
+      "outOfFlow": [
+        {"section": "backdrop.animated-background", "path": [1, 1]},
+        {"section": "shell.binder-rails", "path": [1, 3, 1]}
+      ],
+      "inFlow": [
+        {"section": "shell.nav-sheet", "path": [1, 3, 3, 2]},
+        {"section": "shell.main-sheet", "path": [1, 3, 3, 3]},
+        {"section": "hero.headline-integrations", "path": [1, 3, 3, 3, 2]},
+        {"section": "product.demo", "path": [1, 3, 3, 3, 3]},
+        {"section": "product.ops-steps", "path": [1, 3, 3, 3, 4]},
+        {"section": "story.manifesto", "path": [1, 3, 3, 3, 5]},
+        {"section": "shell.footer-sheet", "path": [1, 3, 3, 4]}
+      ],
+      "overlays": [
+        {"section": "overlay.video-lightbox", "steps": [{"click": "footer button[aria-haspopup=\"dialog\"]"}], "css": "[role=\"dialog\"][aria-label=\"Watch the video\"]", "closeWith": "Escape"},
+        {"section": "overlay.sign-up-modal", "steps": [{"click": "a[href=\"/sign-up\"]"}], "css": "[role=\"dialog\"][aria-labelledby=\"sign-up-title\"]"},
+        {"section": "form.sign-up-form", "steps": [], "css": "[role=\"dialog\"][aria-labelledby=\"sign-up-title\"] form"},
+        {"section": "overlay.leave-confirm", "steps": [{"fill": "[role=\"dialog\"][aria-labelledby=\"sign-up-title\"] form input", "text": "a"}, {"press": "Escape"}], "css": "[role=\"alertdialog\"]"}
+      ]
+    },
+    "/sign-up": {
+      "template": "template.sign-up",
+      "outOfFlow": [
+        {"section": "backdrop.animated-background", "path": [1, 1]}
+      ],
+      "inFlow": [
+        {"section": "form.sign-up-form", "path": [1, 3, 1]}
+      ],
+      "overlays": [
+        {"section": "overlay.leave-confirm", "steps": [{"fill": "form input", "text": "a"}, {"press": "Escape"}], "css": "[role=\"alertdialog\"]"}
+      ]
+    },
+    "/privacy": {
+      "template": "template.legal",
+      "outOfFlow": [],
+      "inFlow": [
+        {"section": "legal.back-link", "path": [1, 1, 1]},
+        {"section": "legal.document-header", "path": [1, 1, 2, 1]},
+        {"section": "legal.document-preamble", "path": [1, 1, 2, 3]},
+        {"section": "legal.document-section", "css": "article > h2", "each": true}
+      ],
+      "overlays": []
+    },
+    "/terms": {
+      "template": "template.legal",
+      "outOfFlow": [],
+      "inFlow": [
+        {"section": "legal.back-link", "path": [1, 1, 1]},
+        {"section": "legal.document-header", "path": [1, 1, 2, 1]},
+        {"section": "legal.document-preamble", "path": [1, 1, 2, 3]},
+        {"section": "legal.document-section", "css": "article > h2", "each": true}
+      ],
+      "overlays": []
+    },
+    "*": {
+      "template": "template.not-found",
+      "outOfFlow": [],
+      "inFlow": [
+        {"section": "system.not-found", "path": [1]}
+      ],
+      "overlays": []
+    }
+  }
+}

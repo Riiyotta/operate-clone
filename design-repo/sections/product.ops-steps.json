@@ -1,8 +1,19 @@
 {
   "id": "product.ops-steps",
   "kind": "section",
-  "category": "PRODUCT",
   "purpose": "Explain the engagement as four numbered steps; the active dot follows the scroll (last step whose top is at or above 50% of the viewport).",
+  "semantic": {
+    "id": "product.ops-steps",
+    "category": "FEATURE"
+  },
+  "source": {
+    "id": "OpsSteps",
+    "tag": "div",
+    "file": "src/components/OpsSteps.jsx",
+    "lines": "113-155",
+    "anchor": "export default function OpsSteps"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/OpsSteps.jsx"
   ],

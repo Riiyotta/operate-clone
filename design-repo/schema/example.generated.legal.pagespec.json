@@ -1,0 +1,134 @@
+{
+  "pageSpecVersion": "1.2.0",
+  "mode": "generation",
+  "template": "template.legal",
+  "route": "/privacy",
+  "head": {
+    "title": "Privacy notice – Fieldwork",
+    "description": "How the fictional Fieldwork example product handles account, scheduling and usage data. Sample text for a generated page.",
+    "robots": "index, follow"
+  },
+  "nodes": [
+    {
+      "section": "legal.back-link",
+      "variant": "default",
+      "content": {
+        "label": "← Back to Fieldwork",
+        "href": "/"
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "legal.document-header",
+      "variant": "default",
+      "content": {
+        "title": "Privacy notice",
+        "effectiveDateLabel": "Effective date:",
+        "effectiveDate": "March 3, 2027"
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "legal.document-preamble",
+      "variant": "default",
+      "content": {
+        "blocks": [
+          {
+            "type": "p",
+            "text": "This sample notice belongs to Fieldwork, a fictional scheduling product used to demonstrate a generated legal page. It is not legal advice and should be replaced by text your own counsel approves."
+          },
+          {
+            "type": "p",
+            "text": "Questions about this notice can be sent to privacy@example.com at any time."
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "legal.document-section",
+      "variant": "default",
+      "content": {
+        "heading": "1. Information you give us",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "When you request access we keep your name, work e-mail address and the answers you choose to share about your crews."
+          },
+          {
+            "type": "h3",
+            "text": "Scheduling data"
+          },
+          {
+            "type": "p",
+            "text": "Job windows, crew rosters and visit notes that you enter stay in your workspace and are used only to run the planner."
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "legal.document-section",
+      "variant": "default",
+      "content": {
+        "heading": "2. How the data is used",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "We use the information to:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "run and improve the planner for your team",
+              "send service notices you cannot opt out of",
+              "answer support requests"
+            ]
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "legal.document-section",
+      "variant": "default",
+      "content": {
+        "heading": "3. Retention and deletion",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Workspace data is deleted within thirty days after an account is closed, unless a longer period is required by law."
+          },
+          {
+            "type": "hr"
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "static",
+        "trigger": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "id": "legal.document-preamble",
+  "kind": "section",
+  "purpose": "The opening paragraphs of a legal document between the effective-date line and the first H2 (on /terms also a plain ordered table of contents). Placeholder copy with the original's structure, not Operate's real legal text.",
+  "semantic": {
+    "id": "legal.document-preamble",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Block",
+    "tag": "p",
+    "file": "src/components/pages/LegalPage.jsx",
+    "lines": "129-157",
+    "anchor": "function Block"
+  },
+  "retrievalEligible": true,
+  "implementedBy": [
+    "src/components/pages/LegalPage.jsx",
+    "src/pages/Privacy.jsx",
+    "src/pages/Terms.jsx"
+  ],
+  "evidenceLevel": "measured",
+  "iaSection": "ia.json:112",
+  "variants": [
+    {
+      "id": "default",
+      "description": "Paragraphs (and an optional ordered list) in the 768px reading column on #E0E0E0."
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "maxPerPage": 1,
+    "allowedTemplates": [
+      "template.legal"
+    ]
+  },
+  "content": {
+    "type": "object",
+    "properties": {
+      "blocks": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 3,
+        "x-observedMaxItems": 3,
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": [
+                "p",
+                "ul",
+                "ol"
+              ]
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "x-maxChars": 1866,
+              "x-observedMaxChars": 1866
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "x-maxChars": 1248,
+                "x-observedMaxChars": 1248
+              },
+              "minItems": 1,
+              "maxItems": 12
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "blocks"
+    ],
+    "additionalProperties": false
+  },
+  "contentBudgetNote": "x-maxWords = ceil(1.25 x observed max words in the real copy), rounded up to an even number (min 2); x-observedMaxWords is the measured maximum. x-maxChars (legal) = observed maximum characters. Enforced per instance by schema/semantic_validate.py.",
+  "motion": {
+    "schema": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "const": "static"
+        },
+        "trigger": {
+          "enum": [
+            "none"
+          ]
+        },
+        "reducedMotionFallback": {
+          "const": "not-applicable"
+        }
+      },
+      "required": [
+        "pattern",
+        "trigger",
+        "reducedMotionFallback"
+      ],
+      "additionalProperties": false
+    },
+    "exemplar": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    },
+    "measuredFrom": [],
+    "reducedMotionEvidence": "Generation requirement: reducedMotionFallback is const-locked per section. Where the clone source shows a real prefers-reduced-motion branch it is cited in measuredFrom; otherwise it is a required fallback, not a measured behaviour."
+  },
+  "fixedInternalContent": [],
+  "exemplar": {
+    "variant": "default",
+    "content": {
+      "blocks": [
+        {
+          "type": "p",
+          "text": "This placeholder document explains, in general terms, how the service handles information. It is not legal advice."
+        },
+        {
+          "type": "ol",
+          "items": [
+            "Scope",
+            "Information we collect",
+            "Contact"
+          ]
+        }
+      ]
+    },
+    "motion": {
+      "pattern": "static",
+      "trigger": "none",
+      "reducedMotionFallback": "not-applicable"
+    }
+  },
+  "notes": [
+    "Observed: /privacy 3 paragraphs, /terms 2 paragraphs + 1 ordered list (the table of contents) before the first H2; maxItems is that observed count.",
+    "Split out of the former legal.document-body (1.2.0): the wrapper gate measured that one body section held 96-98% of each legal page."
+  ],
+  "measuredFrom": [
+    "src/pages/Privacy.jsx:16-19",
+    "src/pages/Terms.jsx:13-27",
+    "CLONE_SPEC_PAGES.md:112",
+    "src/components/pages/LegalPage.jsx:173-175"
+  ],
+  "responsive": {
+    "mode": "mobile-first-min-width",
+    "breakpointKeys": [
+      "base",
+      "md"
+    ],
+    "rules": [
+      {
+        "at": "base",
+        "layout": "Container padding 48/24; h2 24/30 mt 48; body 15/24.",
+        "properties": {
+          "paddingYPx": 48,
+          "bodyPx": 15
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC_PAGES.md:73"
+        ]
+      },
+      {
+        "at": "md",
+        "layout": "Padding 80/32; h2 28/34 mt 64; body 16/26.",
+        "properties": {
+          "paddingYPx": 80,
+          "bodyPx": 16
+        },
+        "evidence": "measured",
+        "measuredFrom": [
+          "CLONE_SPEC_PAGES.md:80"
+        ]
+      }
+    ]
+  },
+  "blockCharLimits": {
+    "p": 1866,
+    "li": 1248,
+    "_evidence": [
+      "CLONE_SPEC_PAGES.md:127",
+      "CLONE_SPEC_PAGES.md:112"
+    ]
+  }
+}

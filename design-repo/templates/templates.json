@@ -4,7 +4,7 @@
   "templates": {
     "template.home": {
       "description": "The homepage (route /): binder-paper chrome with 9 required sections in fixed order, then four optional overlay-state sections (video lightbox, sign-up modal with its form and leave-confirm). The sign-up modal is an overlay state of this template, not its own route.",
-      "iaTemplate": "ia.json:127",
+      "iaTemplate": "ia.json:133",
       "routes": [
         "/"
       ],
@@ -27,7 +27,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:134"
+            "ia.json:140"
           ]
         },
         {
@@ -39,7 +39,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:135"
+            "ia.json:141"
           ]
         },
         {
@@ -51,7 +51,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:136"
+            "ia.json:142"
           ]
         },
         {
@@ -63,7 +63,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:137"
+            "ia.json:143"
           ]
         },
         {
@@ -75,7 +75,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:138"
+            "ia.json:144"
           ]
         },
         {
@@ -87,7 +87,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:139"
+            "ia.json:145"
           ]
         },
         {
@@ -99,7 +99,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:140"
+            "ia.json:146"
           ]
         },
         {
@@ -111,7 +111,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:141"
+            "ia.json:147"
           ]
         },
         {
@@ -123,7 +123,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:142"
+            "ia.json:148"
           ]
         },
         {
@@ -135,7 +135,7 @@
           "required": false,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:143"
+            "ia.json:149"
           ]
         },
         {
@@ -147,7 +147,7 @@
           "required": false,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:144"
+            "ia.json:150"
           ]
         },
         {
@@ -159,7 +159,7 @@
           "required": false,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:145"
+            "ia.json:151"
           ]
         },
         {
@@ -171,7 +171,7 @@
           "required": false,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:146"
+            "ia.json:152"
           ]
         }
       ],
@@ -182,7 +182,7 @@
     },
     "template.sign-up": {
       "description": "Standalone /sign-up page: the shared backdrop plus the sign-up form; leave-confirm appears on demand.",
-      "iaTemplate": "ia.json:150",
+      "iaTemplate": "ia.json:156",
       "routes": [
         "/sign-up"
       ],
@@ -205,7 +205,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:156"
+            "ia.json:162"
           ]
         },
         {
@@ -217,7 +217,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:156"
+            "ia.json:162"
           ]
         },
         {
@@ -229,7 +229,7 @@
           "required": false,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:156"
+            "ia.json:162"
           ]
         }
       ],
@@ -240,7 +240,7 @@
     },
     "template.legal": {
       "description": "Legal document (/privacy, /terms): flat reading page; none of the homepage furniture.",
-      "iaTemplate": "ia.json:159",
+      "iaTemplate": "ia.json:165",
       "routes": [
         "/privacy",
         "/terms"
@@ -264,7 +264,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:165"
+            "ia.json:171"
           ]
         },
         {
@@ -276,19 +276,33 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:165"
+            "ia.json:171"
           ]
         },
         {
-          "slot": "document-body",
-          "section": "legal.document-body",
+          "slot": "document-preamble",
+          "section": "legal.document-preamble",
+          "variants": [
+            "default"
+          ],
+          "required": false,
+          "repeatable": false,
+          "measuredFrom": [
+            "ia.json:171",
+            "src/pages/Privacy.jsx:16-19"
+          ]
+        },
+        {
+          "slot": "document-section",
+          "section": "legal.document-section",
           "variants": [
             "default"
           ],
           "required": true,
-          "repeatable": false,
+          "repeatable": true,
           "measuredFrom": [
-            "ia.json:165"
+            "ia.json:171",
+            "src/pages/Terms.jsx:29"
           ]
         }
       ],
@@ -299,7 +313,7 @@
     },
     "template.not-found": {
       "description": "Stock Next.js 404 (framework-default chrome, outside the design system). Matches every unmatched path; route token '*'.",
-      "iaTemplate": "ia.json:168",
+      "iaTemplate": "ia.json:174",
       "routes": [
         "*"
       ],
@@ -322,7 +336,7 @@
           "required": true,
           "repeatable": false,
           "measuredFrom": [
-            "ia.json:174"
+            "ia.json:180"
           ]
         }
       ],

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "operate-pagespec-1.1.0",
+  "$id": "operate-pagespec-1.2.0",
   "title": "Operate PageSpec",
   "description": "Machine contract for a page composed from templates/sections. Closed everywhere (additionalProperties:false). Per-section content/motion branches are generated from sections/*.json (verify_all.py checks they are in sync). Structural rules (template cross-reference, order, graph, budgets, asset registry) live in schema/semantic_validate.py. Required `mode` (clone | generation) selects the generation-safety context.",
   "type": "object",
@@ -15,14 +15,14 @@
   "additionalProperties": false,
   "properties": {
     "pageSpecVersion": {
-      "const": "1.1.0"
+      "const": "1.2.0"
     },
     "mode": {
       "enum": [
         "clone",
         "generation"
       ],
-      "description": "clone = reference reconstruction of the Operate site (may reference clone-only assets/copy). generation = original page for any other property: clone-only/blocked assets, Operate branding, third-party marks, real people, source copy and live URLs are rejected by rule GENERATION_MODE_CLONE_ISOLATION."
+      "description": "clone = reference reconstruction of the Operate site (may reference clone-only and blocked-for-generation assets and the source copy). generation = original page for any other property: only generation-safe asset roles; Operate branding, integration logos/third-party marks, real or source-demo people, product screenshots/media, source copy and real/live URLs are rejected by the GENERATION_MODE_BRAND / _INTEGRATION_LOGO / _PERSON / _SCREENSHOT / _COPY / _URL rules."
     },
     "template": {
       "enum": [
@@ -76,8 +76,9 @@
               "form.sign-up-form",
               "hero.headline-integrations",
               "legal.back-link",
-              "legal.document-body",
               "legal.document-header",
+              "legal.document-preamble",
+              "legal.document-section",
               "overlay.leave-confirm",
               "overlay.sign-up-modal",
               "overlay.video-lightbox",
@@ -140,7 +141,8 @@
                             },
                             {
                               "enum": [
-                                "background-texture"
+                                "background-texture",
+                                "generated-background-texture"
                               ]
                             }
                           ]
@@ -409,7 +411,8 @@
                             },
                             {
                               "enum": [
-                                "signup-submit-stub"
+                                "signup-submit-stub",
+                                "placeholder-url"
                               ]
                             }
                           ]
@@ -552,7 +555,8 @@
                               },
                               {
                                 "enum": [
-                                  "integration-logo"
+                                  "integration-logo",
+                                  "placeholder-integration-glyph"
                                 ]
                               }
                             ]
@@ -730,7 +734,76 @@
             "if": {
               "properties": {
                 "section": {
-                  "const": "legal.document-body"
+                  "const": "legal.document-header"
+                }
+              },
+              "required": [
+                "section"
+              ]
+            },
+            "then": {
+              "properties": {
+                "variant": {
+                  "enum": [
+                    "default"
+                  ]
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    },
+                    "effectiveDateLabel": {
+                      "const": "Effective date:"
+                    },
+                    "effectiveDate": {
+                      "type": "string",
+                      "minLength": 1,
+                      "x-maxWords": 4,
+                      "x-observedMaxWords": 3
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "effectiveDateLabel",
+                    "effectiveDate"
+                  ],
+                  "additionalProperties": false
+                },
+                "motion": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "const": "static"
+                    },
+                    "trigger": {
+                      "enum": [
+                        "none"
+                      ]
+                    },
+                    "reducedMotionFallback": {
+                      "const": "not-applicable"
+                    }
+                  },
+                  "required": [
+                    "pattern",
+                    "trigger",
+                    "reducedMotionFallback"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "legal.document-preamble"
                 }
               },
               "required": [
@@ -750,19 +823,16 @@
                     "blocks": {
                       "type": "array",
                       "minItems": 1,
-                      "maxItems": 106,
-                      "x-observedMaxItems": 106,
+                      "maxItems": 3,
+                      "x-observedMaxItems": 3,
                       "items": {
                         "type": "object",
                         "properties": {
                           "type": {
                             "enum": [
-                              "h2",
-                              "h3",
                               "p",
                               "ul",
-                              "ol",
-                              "hr"
+                              "ol"
                             ]
                           },
                           "text": {
@@ -824,7 +894,7 @@
             "if": {
               "properties": {
                 "section": {
-                  "const": "legal.document-header"
+                  "const": "legal.document-section"
                 }
               },
               "required": [
@@ -841,26 +911,57 @@
                 "content": {
                   "type": "object",
                   "properties": {
-                    "title": {
+                    "heading": {
                       "type": "string",
                       "minLength": 1,
-                      "x-maxWords": 4,
-                      "x-observedMaxWords": 3
+                      "x-maxChars": 35,
+                      "x-observedMaxChars": 35
                     },
-                    "effectiveDateLabel": {
-                      "const": "Effective date:"
-                    },
-                    "effectiveDate": {
-                      "type": "string",
-                      "minLength": 1,
-                      "x-maxWords": 4,
-                      "x-observedMaxWords": 3
+                    "blocks": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 23,
+                      "x-observedMaxItems": 23,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "h3",
+                              "p",
+                              "ul",
+                              "ol",
+                              "hr"
+                            ]
+                          },
+                          "text": {
+                            "type": "string",
+                            "minLength": 1,
+                            "x-maxChars": 1866,
+                            "x-observedMaxChars": 1866
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "x-maxChars": 1248,
+                              "x-observedMaxChars": 1248
+                            },
+                            "minItems": 1,
+                            "maxItems": 12
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "additionalProperties": false
+                      }
                     }
                   },
                   "required": [
-                    "title",
-                    "effectiveDateLabel",
-                    "effectiveDate"
+                    "heading",
+                    "blocks"
                   ],
                   "additionalProperties": false
                 },
@@ -1060,7 +1161,8 @@
                             },
                             {
                               "enum": [
-                                "lightbox-video-stream"
+                                "lightbox-video-stream",
+                                "placeholder-url"
                               ]
                             }
                           ]
@@ -1088,7 +1190,8 @@
                             },
                             {
                               "enum": [
-                                "video-poster"
+                                "video-poster",
+                                "placeholder-product-visual"
                               ]
                             }
                           ]
@@ -1246,7 +1349,8 @@
                               },
                               {
                                 "enum": [
-                                  "demo-avatar-image"
+                                  "demo-avatar-image",
+                                  "fictional-avatar"
                                 ]
                               }
                             ]
@@ -1275,7 +1379,8 @@
                             },
                             {
                               "enum": [
-                                "demo-scene-image"
+                                "demo-scene-image",
+                                "placeholder-product-visual"
                               ]
                             }
                           ]
@@ -1624,7 +1729,8 @@
                                   },
                                   {
                                     "enum": [
-                                      "external-social-link"
+                                      "external-social-link",
+                                      "placeholder-url"
                                     ]
                                   }
                                 ]
@@ -1669,7 +1775,8 @@
                             },
                             {
                               "enum": [
-                                "brand-logomark"
+                                "brand-logomark",
+                                "placeholder-brand-mark"
                               ]
                             }
                           ]
@@ -1712,7 +1819,8 @@
                                 },
                                 {
                                   "enum": [
-                                    "footer-video-asset"
+                                    "footer-video-asset",
+                                    "placeholder-product-visual"
                                   ]
                                 }
                               ]
@@ -1740,7 +1848,8 @@
                                 },
                                 {
                                   "enum": [
-                                    "footer-video-asset"
+                                    "footer-video-asset",
+                                    "placeholder-product-visual"
                                   ]
                                 }
                               ]
@@ -1768,7 +1877,8 @@
                                 },
                                 {
                                   "enum": [
-                                    "footer-video-asset"
+                                    "footer-video-asset",
+                                    "placeholder-product-visual"
                                   ]
                                 }
                               ]
@@ -1939,7 +2049,8 @@
                             },
                             {
                               "enum": [
-                                "brand-logomark"
+                                "brand-logomark",
+                                "placeholder-brand-mark"
                               ]
                             }
                           ]
@@ -2136,7 +2247,8 @@
                             },
                             {
                               "enum": [
-                                "brand-logo-trace"
+                                "brand-logo-trace",
+                                "placeholder-brand-mark"
                               ]
                             }
                           ]
@@ -2268,9 +2380,15 @@
         "demo-avatar-image",
         "demo-scene-image",
         "external-social-link",
+        "fictional-avatar",
         "footer-video-asset",
+        "generated-background-texture",
         "integration-logo",
         "lightbox-video-stream",
+        "placeholder-brand-mark",
+        "placeholder-integration-glyph",
+        "placeholder-product-visual",
+        "placeholder-url",
         "signup-submit-stub",
         "video-poster"
       ]

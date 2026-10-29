@@ -1,8 +1,19 @@
 {
   "id": "hero.headline-integrations",
   "kind": "section",
-  "category": "HERO",
   "purpose": "Open with the H1, a paragraph with six inline integration-logo bubbles and two CTAs: Get started (sign-up) and Watch the video (lightbox).",
+  "semantic": {
+    "id": "hero.headline-integrations",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "Hero",
+    "tag": "section",
+    "file": "src/components/Hero.jsx",
+    "lines": "34-94",
+    "anchor": "export default function Hero"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/Hero.jsx",
     "src/lib/integrationLogos.js"
@@ -55,7 +66,8 @@
                 },
                 {
                   "enum": [
-                    "integration-logo"
+                    "integration-logo",
+                    "placeholder-integration-glyph"
                   ]
                 }
               ]

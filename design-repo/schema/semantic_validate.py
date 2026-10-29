@@ -5,13 +5,16 @@ Layer 1 (schema): Draft-07 validation against schema/pagespec.schema.json.
 Layer 2 (semantic): everything JSON Schema cannot express -
   * the PageSpec's declared `template` is cross-referenced against that template's real node list
     (templates/templates.json): required nodes present, no sections outside the template, variants
-    allowed per node, route belongs to the template;
+    allowed per node, repeat caps (constraints.maxPerPage), route belongs to the template;
   * rhythm/position rules from compatibility/graph.json (read at run time, severity respected);
   * per-instance word/character budgets (x-maxWords / x-maxChars) from each section contract;
   * assetRole/assetRef registry checks against assets/asset-roles.json;
   * required reducedMotionFallback on every node; legal block shape;
-  * mode 'generation' isolation (graph rule GENERATION_MODE_CLONE_ISOLATION): only generation-safe assets,
-    no Operate branding / third-party marks / real people / source copy / real URLs (assets/generation-policy.json).
+  * mode 'generation': six per-category rules GENERATION_MODE_BRAND / _INTEGRATION_LOGO / _PERSON / _SCREENSHOT /
+    _COPY / _URL. Assets are judged by PINNED_AVAILABILITY below (pinned in code, cross-checked with the registry);
+    text is matched against assets/generation-policy.json after normalisation (NFKC, zero-width removal, curly
+    quotes/dashes to ASCII, case folding). Detection is string-based; see the policy's $description for its limits;
+  * RETRIEVAL_ELIGIBILITY_PINNED: repository-level pin on the section contracts' retrievalEligible flag.
 
 Usage: python3 schema/semantic_validate.py [pagespec.json ...]   (default: schema/example.pagespec.json)
 """
@@ -19,6 +22,37 @@ import json, os, re, sys, glob, unicodedata
 
 # repo root = parent of schema/ (never hardcoded)
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# ---------------------------------------------------------------- pins (independent of the registry files)
+# Asset-role availability, pinned here AND in extraction/verify_all.py; verify_all checks the two tables and
+# assets/asset-roles.json agree. A role is usable in mode 'generation' only when this table says generation-safe.
+PINNED_AVAILABILITY = {
+    "brand-logomark": "clone-only", "brand-logo-trace": "clone-only", "demo-scene-image": "clone-only",
+    "footer-video-asset": "clone-only", "video-poster": "clone-only", "background-texture": "clone-only",
+    "integration-logo": "blocked-for-generation", "demo-avatar-image": "blocked-for-generation",
+    "lightbox-video-stream": "blocked-for-generation", "signup-submit-stub": "blocked-for-generation",
+    "external-social-link": "blocked-for-generation", "font-file": "blocked-for-generation",
+    "placeholder-brand-mark": "generation-safe", "placeholder-integration-glyph": "generation-safe",
+    "fictional-avatar": "generation-safe", "placeholder-product-visual": "generation-safe",
+    "generated-background-texture": "generation-safe", "placeholder-url": "generation-safe",
+}
+# Which generation-mode rule reports a role (real roles and the substitutes that stand in for them).
+ROLE_LEAK_CATEGORY = {
+    "brand-logomark": "BRAND", "brand-logo-trace": "BRAND", "placeholder-brand-mark": "BRAND",
+    "integration-logo": "INTEGRATION_LOGO", "placeholder-integration-glyph": "INTEGRATION_LOGO",
+    "demo-avatar-image": "PERSON", "fictional-avatar": "PERSON",
+    "demo-scene-image": "SCREENSHOT", "video-poster": "SCREENSHOT", "footer-video-asset": "SCREENSHOT",
+    "background-texture": "SCREENSHOT", "placeholder-product-visual": "SCREENSHOT", "generated-background-texture": "SCREENSHOT",
+    "lightbox-video-stream": "URL", "signup-submit-stub": "URL", "external-social-link": "URL", "placeholder-url": "URL",
+    "font-file": "BRAND",
+}
+GENERATION_CATEGORIES = ("BRAND", "INTEGRATION_LOGO", "PERSON", "SCREENSHOT", "COPY", "URL")
+GENERATION_SAFE_REF_PREFIX = "placeholder--"
+# Sections that are layout-only, runtime UI or a framework fallback: retrievalEligible must be false.
+RETRIEVAL_INELIGIBLE_PINNED = ("backdrop.animated-background", "overlay.leave-confirm", "overlay.sign-up-modal",
+                               "overlay.video-lightbox", "shell.binder-rails", "shell.main-sheet", "system.not-found")
+RUNTIME_UI_RE = re.compile(r"overlay|modal|dialog|drawer|cookie|consent|popup|toast|lightbox|preloader|cursor|confirm")
+SEMANTIC_CATEGORIES = ("BACKDROP", "CONTENT", "CONVERSION", "FEATURE", "HERO", "NAVIGATION", "OVERLAY", "SHELL", "SYSTEM")
 
 
 def _load(repo, rel):
@@ -31,23 +65,27 @@ def load_context(repo=REPO):
     for p in sorted(glob.glob(os.path.join(repo, "sections", "*.json"))):
         d = json.load(open(p, encoding="utf-8"))
         sections[d["id"]] = d
+    policy = _load(repo, "assets/generation-policy.json")
     return {"templates": _load(repo, "templates/templates.json"), "graph": _load(repo, "compatibility/graph.json"),
             "assets": _load(repo, "assets/asset-roles.json"), "schema": _load(repo, "schema/pagespec.schema.json"), "sections": sections,
-            "policy": _load(repo, "assets/generation-policy.json"), "cloneCorpus": _clone_corpus(repo, sections, _load(repo, "assets/generation-policy.json"))}
+            "allowlist": _load(repo, "tokens/llm/component-allowlist.json"),
+            "policy": policy, "cloneCorpus": _clone_corpus(repo, sections, policy), "_gen": {}}
 
 
 # ---------------------------------------------------------------- generation-mode helpers
-_ZW = dict.fromkeys(map(ord, "​‌‍⁠﻿­"), None)
-
-
-def _norm(s):
-    """NFKC, zero-width/soft-hyphen removed, case folded, punctuation->space, whitespace collapsed."""
-    s = unicodedata.normalize("NFKC", s).translate(_ZW).casefold()
-    return " ".join(re.sub(r"[^\w]+", " ", s).split())
+_ZW = dict.fromkeys(map(ord, "​‌‍⁠﻿­᠎"), None)
+_ASCII = str.maketrans({"‘": "'", "’": "'", "‚": "'", "‛": "'", "′": "'", "´": "'", "`": "'",
+                        "“": '"', "”": '"', "„": '"', "‟": '"', "″": '"', "«": '"', "»": '"',
+                        "‐": "-", "‑": "-", "‒": "-", "–": "-", "—": "-", "―": "-", "−": "-"})
 
 
 def _clean(s):  # keeps case and punctuation (for case-sensitive and URL matching)
-    return unicodedata.normalize("NFKC", s).translate(_ZW)
+    return unicodedata.normalize("NFKC", s).translate(_ZW).translate(_ASCII)
+
+
+def _norm(s):
+    """_clean + case folded, punctuation->space, whitespace collapsed."""
+    return " ".join(re.sub(r"[^\w]+", " ", _clean(s).casefold()).split())
 
 
 def _text_leaves(o, path=""):
@@ -106,16 +144,27 @@ def _bad_hosts(s, pol):
 
 
 def _term_hits(raw, pol):
-    hits, bt = [], pol["blockedTerms"]
+    """[(category, term)] for every blocked term found in raw (after normalisation)."""
+    hits = []
     clean, folded = _clean(raw), _norm(raw)
-    for grp in bt.values():
-        for term in grp.get("caseSensitive", []):
-            if re.search(r"(?<!\w)%s(?!\w)" % re.escape(term), clean):
-                hits.append(term)
-        for term in grp.get("caseInsensitive", []):
-            if re.search(r"(?<!\w)%s(?!\w)" % re.escape(_norm(term)), folded):
-                hits.append(term)
+    for grp in pol["blockedTerms"].values():
+        for t in grp["terms"]:
+            term, mode = t["term"], t["match"]
+            if mode == "not-lowercase":
+                for m in re.finditer(r"(?<!\w)%s(?!\w)" % re.escape(term), clean, re.I):
+                    if m.group(0) != m.group(0).lower():
+                        hits.append((grp["category"], term)); break
+            elif re.search(r"(?<!\w)%s(?!\w)" % re.escape(_norm(term)), folded):
+                hits.append((grp["category"], term))
     return hits
+
+
+def _source_host(host, pol):
+    h = host.split("@")[-1].split(":")[0].strip(".").lower()
+    for x in pol["blockedHosts"]["hosts"]:
+        if h == x["host"] or h.endswith("." + x["host"]):
+            return x["host"]
+    return None
 
 
 # ---------------------------------------------------------------- layer 1
@@ -304,30 +353,93 @@ def r_pair(ctx, spec, nodes, p):
     return []
 
 
-@rule("GENERATION_MODE_CLONE_ISOLATION")
-def r_generation(ctx, spec, nodes, p):
-    if spec.get("mode") != p["mode"]:
-        return []
-    pol, reg, out = ctx["policy"], ctx["assets"]["registeredAssets"], []
-    allowed = pol["allowedAssetGenerationUse"][p["mode"]]
+def _asset_generation_problem(ctx, a):
+    """None if the asset may be used in mode 'generation', else (category, reason). The pin decides first."""
+    roles, reg = ctx["assets"]["roles"], ctx["assets"]["registeredAssets"]
+    role, ref = a.get("assetRole"), a.get("assetRef")
+    cat = ROLE_LEAK_CATEGORY.get(role, "BRAND")
+    pinned = PINNED_AVAILABILITY.get(role)
+    if pinned is None:
+        return cat, "role %r has no pinned availability in schema/semantic_validate.py" % role
+    if pinned != "generation-safe":
+        return cat, "role %r is pinned %s" % (role, pinned)
+    r, x = roles.get(role, {}), reg.get(ref)
+    if r.get("availability") != pinned:
+        return cat, "role %r is pinned generation-safe but the registry says %r (registry and pin disagree)" % (role, r.get("availability"))
+    if x is None:
+        return None  # unregistered refs are reported by the registry check
+    if x.get("generationUse") != "generation-safe" or not ref.startswith(GENERATION_SAFE_REF_PREFIX):
+        return cat, "asset %r is not a generation-safe placeholder (generationUse %r)" % (ref, x.get("generationUse"))
+    if x.get("role") in PINNED_AVAILABILITY and PINNED_AVAILABILITY[x["role"]] != "generation-safe":
+        return ROLE_LEAK_CATEGORY.get(x["role"], cat), "asset %r is registered under %s role %r" % (ref, PINNED_AVAILABILITY[x["role"]], x["role"])
+    return None
+
+
+def generation_findings(ctx, spec):
+    """{category: [message]} for a mode 'generation' PageSpec (memoised per spec object)."""
+    key = id(spec)
+    if key in ctx["_gen"] and ctx["_gen"][key][0] is spec:
+        return ctx["_gen"][key][1]
+    pol, out = ctx["policy"], {c: [] for c in GENERATION_CATEGORIES}
+    nodes = [n for n in spec.get("nodes", []) if isinstance(n, dict)]
     for i, n in enumerate(nodes):
         base = "/nodes/%d(%s)" % (i, n.get("section"))
         for ap, a in find_assets(n.get("content", {}), base + "/content"):
-            r = reg.get(a["assetRef"])
-            if r is not None and r.get("generationUse") not in allowed:
-                out.append("%s: asset %r is %s and may not be used in mode '%s' (use a generation-safe placeholder, see assets/asset-roles.json placeholderFor)" % (ap, a["assetRef"], r.get("generationUse"), p["mode"]))
+            prob = _asset_generation_problem(ctx, a)
+            if prob:
+                out[prob[0]].append("%s: asset %r (role %s) may not be used in mode 'generation': %s; use a generation-safe substitute role (assets/asset-roles.json generationSafeSubstitutes)" % (ap, a.get("assetRef"), a.get("assetRole"), prob[1]))
     leaves = list(_text_leaves(spec.get("head", {}), "/head")) + [lf for i, n in enumerate(nodes) for lf in _text_leaves(n.get("content", {}), "/nodes/%d(%s)/content" % (i, n.get("section")))]
     for path, s in leaves:
-        for term in _term_hits(s, pol):
-            out.append("%s: blocked term %r (Operate branding, third-party mark or real person) in mode '%s'" % (path, term, p["mode"]))
+        for cat, term in _term_hits(s, pol):
+            out[cat].append("%s: blocked source term %r in mode 'generation'" % (path, term))
         for host in _bad_hosts(_clean(s), pol):
-            out.append("%s: real or non-placeholder URL/host %r (use a relative path or a reserved .invalid/.test/example.* host)" % (path, host))
+            src = _source_host(host, pol)
+            out["URL"].append("%s: %s %r (use a relative path or a reserved .invalid/.test/example.* host)" % (path, "source host" if src else "real or non-placeholder URL/host", host))
         ns = _norm(s)
         if len(ns.split()) >= pol["copyReuse"]["minWords"]:
             for c in ctx["cloneCorpus"]:
                 if c in ns or ns in c:
-                    out.append("%s: reuses source-specific Operate copy (%r...) in mode '%s'" % (path, c[:48], p["mode"]))
+                    out["COPY"].append("%s: reuses source-specific Operate copy (%r...) in mode 'generation'" % (path, c[:48]))
                     break
+    ctx["_gen"][key] = (spec, out)
+    return out
+
+
+def _generation_rule(category):
+    def fn(ctx, spec, nodes, p):
+        if spec.get("mode") != p["mode"] or p.get("category") != category:
+            return [] if spec.get("mode") != p["mode"] else ["graph params category %r does not match rule category %s" % (p.get("category"), category)]
+        return generation_findings(ctx, spec)[category]
+    return fn
+
+
+for _c in GENERATION_CATEGORIES:
+    RULES["GENERATION_MODE_" + _c] = _generation_rule(_c)
+
+
+@rule("RETRIEVAL_ELIGIBILITY_PINNED")
+def r_retrieval(ctx, spec, nodes, p):
+    out, allow = [], ctx.get("allowlist", {})
+    for sid, c in sorted(ctx["sections"].items()):
+        elig, reason = c.get("retrievalEligible"), c.get("retrievalIneligibleReason")
+        pinned, runtime_ui = sid in RETRIEVAL_INELIGIBLE_PINNED, bool(RUNTIME_UI_RE.search(sid))
+        if not isinstance(elig, bool):
+            out.append("%s: retrievalEligible must be a closed boolean, got %r" % (sid, elig)); continue
+        if (pinned or runtime_ui) and elig is not False:
+            out.append("%s is runtime UI or layout-only and must be retrievalEligible false" % sid)
+        if runtime_ui and not pinned:
+            out.append("%s looks like runtime UI but is not in RETRIEVAL_INELIGIBLE_PINNED of schema/semantic_validate.py" % sid)
+        if elig is False and not pinned:
+            out.append("%s is retrievalEligible false but not pinned; false is reserved for runtime UI and layout-only sections" % sid)
+        if elig is False and (not isinstance(reason, str) or len(reason.strip()) < 30):
+            out.append("%s: retrievalEligible false needs a reason of at least 30 characters" % sid)
+        if elig is True and reason is not None:
+            out.append("%s: retrievalIneligibleReason is only allowed when retrievalEligible is false" % sid)
+    for sid in RETRIEVAL_INELIGIBLE_PINNED:
+        if sid not in ctx["sections"]:
+            out.append("pinned retrieval-ineligible section %s has no contract" % sid)
+    if sorted(allow.get("retrievalIneligibleSections", [])) != sorted(RETRIEVAL_INELIGIBLE_PINNED):
+        out.append("allowlist retrievalIneligibleSections %s != pinned %s" % (allow.get("retrievalIneligibleSections"), sorted(RETRIEVAL_INELIGIBLE_PINNED)))
     return out
 
 
@@ -354,6 +466,10 @@ def semantic(spec, ctx):
             errs.append("[semantic] %s variant %r not allowed by %s (allowed: %s)" % (sec, n.get("variant"), tid, ", ".join(tn[sec]["variants"])))
         if present.count(sec) > 1 and not tn[sec]["repeatable"]:
             errs.append("[semantic] %s is not repeatable in %s but appears %d times" % (sec, tid, present.count(sec)))
+    for sec in sorted(set(s for s in present if s in tn)):
+        cap = ctx["sections"].get(sec, {}).get("constraints", {}).get("maxPerPage")
+        if isinstance(cap, int) and present.count(sec) > cap:
+            errs.append("[semantic] %s appears %d times, more than its maxPerPage %d" % (sec, present.count(sec), cap))
     for tnode in t["nodes"]:
         if tnode["required"] and tnode["section"] not in present:
             errs.append("[semantic] required section %s (slot %s) missing for %s" % (tnode["section"], tnode["slot"], tid))
@@ -384,11 +500,11 @@ def semantic(spec, ctx):
                 errs.append("[semantic] %s: assetRef %r is registered as role %r, not %r" % (ap, a["assetRef"], r["role"], a["assetRole"]))
             elif sec not in roles[a["assetRole"]]["usedBy"]:
                 errs.append("[semantic] %s: role %s is not used by section %s" % (ap, a["assetRole"], sec))
-        if sec == "legal.document-body":
+        if sec in ("legal.document-preamble", "legal.document-section"):
             lim = contract["blockCharLimits"]
             for j, b in enumerate(n.get("content", {}).get("blocks", [])):
                 typ = b.get("type"); bp = "%s/content/blocks/%d" % (base, j)
-                if typ in ("h2", "h3", "p"):
+                if typ in ("h3", "p"):
                     if "text" not in b or "items" in b:
                         errs.append("[semantic] %s: %s needs text and no items" % (bp, typ))
                     elif len(b["text"]) > lim[typ]:

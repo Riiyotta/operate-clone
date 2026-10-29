@@ -1,0 +1,411 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "operate-design-repo/section-contract.schema.json",
+  "title": "Section contract",
+  "description": "Closed Draft-07 schema for every file in sections/ (extraction/verify_all.py validates each contract against it). Closed at every level that carries contract metadata (additionalProperties false): an invented key is a schema error. `source` (provenance: the implementing component, its rendered root tag and the cited line range, re-read from the real file by verify_all.py) and `semantic` (the AI-facing taxonomy) are distinct objects; semantic.id equals the contract id and source.id never does. `retrievalEligible` is a closed boolean, false only for runtime UI and layout-only sections (pinned in code in schema/semantic_validate.py and extraction/verify_all.py) and then a 30+ character reason is required. The nested `content` and `motion.schema` objects are JSON Schemas themselves; their closure is checked by verify_all.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "purpose",
+    "semantic",
+    "source",
+    "retrievalEligible",
+    "implementedBy",
+    "evidenceLevel",
+    "iaSection",
+    "variants",
+    "constraints",
+    "content",
+    "contentBudgetNote",
+    "motion",
+    "fixedInternalContent",
+    "exemplar",
+    "notes",
+    "measuredFrom"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]+\\.[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "kind": {
+      "const": "section"
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 20
+    },
+    "semantic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "category"
+      ],
+      "description": "Taxonomy the AI sees. id equals the contract id. category is the single closed class: HERO = page-opening composition only; CONVERSION = signup/waitlist/demo/download blocks; FEATURE = capabilities, workflows, product demos; CONTENT = editorial, story and legal prose (never FEATURE); NAVIGATION = in-page/back links; SHELL = page chrome; BACKDROP = fixed decoration; OVERLAY = runtime dialogs/modals; SYSTEM = framework fallback pages.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z]+\\.[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "category": {
+          "enum": [
+            "BACKDROP",
+            "CONTENT",
+            "CONVERSION",
+            "FEATURE",
+            "HERO",
+            "NAVIGATION",
+            "OVERLAY",
+            "SHELL",
+            "SYSTEM"
+          ]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "tag",
+        "file",
+        "lines",
+        "anchor"
+      ],
+      "description": "Provenance. id: the implementing component (never equal to semantic.id); tag: the root element it renders, which must occur inside the cited range; file + lines: the range in the clone source (relative to the source project); anchor: text that must occur inside that range.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]*$"
+        },
+        "tag": {
+          "enum": [
+            "div",
+            "section",
+            "form",
+            "h1",
+            "h2",
+            "p",
+            "article",
+            "main",
+            "header",
+            "footer",
+            "nav",
+            "aside"
+          ]
+        },
+        "file": {
+          "type": "string",
+          "pattern": "^src/[\\w./\\-]+\\.jsx?$"
+        },
+        "lines": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*-[1-9][0-9]*$"
+        },
+        "anchor": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    },
+    "retrievalEligible": {
+      "type": "boolean",
+      "description": "Closed boolean. false only for runtime UI (overlay, modal, dialog, drawer, cookie/consent banner, toast, lightbox) and layout-only or fallback sections; requires retrievalIneligibleReason."
+    },
+    "retrievalIneligibleReason": {
+      "type": "string",
+      "minLength": 30
+    },
+    "implementedBy": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidenceLevel": {
+      "enum": [
+        "measured",
+        "inferred"
+      ]
+    },
+    "iaSection": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_./\\-]+\\.(md|jsx|js|cjs|css|json|mjs|html):[1-9][0-9]*(-[1-9][0-9]*)?$"
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "onePerPage",
+        "maxPerPage",
+        "allowedTemplates"
+      ],
+      "properties": {
+        "onePerPage": {
+          "type": "boolean"
+        },
+        "maxPerPage": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mustBeFirst": {
+          "type": "boolean"
+        },
+        "allowedTemplates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^template\\.[a-z-]+$"
+          }
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "required": [
+        "type",
+        "properties",
+        "additionalProperties"
+      ],
+      "properties": {
+        "type": {
+          "const": "object"
+        },
+        "additionalProperties": {
+          "const": false
+        }
+      }
+    },
+    "contentBudgetNote": {
+      "type": "string",
+      "minLength": 1
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "exemplar",
+        "measuredFrom",
+        "reducedMotionEvidence"
+      ],
+      "properties": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "type",
+            "properties",
+            "required",
+            "additionalProperties"
+          ],
+          "properties": {
+            "additionalProperties": {
+              "const": false
+            }
+          }
+        },
+        "exemplar": {
+          "type": "object"
+        },
+        "measuredFrom": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_./\\-]+\\.(md|jsx|js|cjs|css|json|mjs|html):[1-9][0-9]*(-[1-9][0-9]*)?$"
+          }
+        },
+        "reducedMotionEvidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "fixedInternalContent": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "exemplar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "variant",
+        "content",
+        "motion"
+      ],
+      "properties": {
+        "variant": {
+          "type": "string"
+        },
+        "content": {
+          "type": "object"
+        },
+        "motion": {
+          "type": "object"
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "measuredFrom": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_./\\-]+\\.(md|jsx|js|cjs|css|json|mjs|html):[1-9][0-9]*(-[1-9][0-9]*)?$"
+      }
+    },
+    "responsive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "breakpointKeys",
+        "rules"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "mobile-first-min-width"
+          ]
+        },
+        "breakpointKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "at",
+              "layout",
+              "properties",
+              "evidence",
+              "measuredFrom"
+            ],
+            "properties": {
+              "at": {
+                "type": "string"
+              },
+              "layout": {
+                "type": "string",
+                "minLength": 1
+              },
+              "properties": {
+                "type": "object"
+              },
+              "evidence": {
+                "enum": [
+                  "measured",
+                  "inferred"
+                ]
+              },
+              "measuredFrom": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_./\\-]+\\.(md|jsx|js|cjs|css|json|mjs|html):[1-9][0-9]*(-[1-9][0-9]*)?$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "blockCharLimits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "_evidence"
+      ],
+      "properties": {
+        "h3": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "p": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "li": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_./\\-]+\\.(md|jsx|js|cjs|css|json|mjs|html):[1-9][0-9]*(-[1-9][0-9]*)?$"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "retrievalEligible": {
+            "const": false
+          }
+        },
+        "required": [
+          "retrievalEligible"
+        ]
+      },
+      "then": {
+        "required": [
+          "retrievalIneligibleReason"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "retrievalIneligibleReason"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -109,10 +109,16 @@
       "scope": "Both legal pages (2 routes).",
       "implementedBy": "src/components/pages/LegalPage.jsx"
     },
-    "legal.document-body": {
+    "legal.document-preamble": {
       "category": "LEGAL",
-      "description": "Numbered H2/H3 sections with paragraphs, lists, inline code and (terms only) horizontal rules in a 768px column on #E0E0E0. Body prose is placeholder copy with the original's structure — replace before launch.",
+      "description": "The paragraphs (and, on /terms, the plain ordered table of contents) between the effective-date line and the first H2, in the 768px column on #E0E0E0. Placeholder copy with the original's structure — replace before launch.",
       "scope": "Both legal pages (2 routes).",
+      "implementedBy": "src/components/pages/LegalPage.jsx (blocks in src/pages/Privacy.jsx, src/pages/Terms.jsx)"
+    },
+    "legal.document-section": {
+      "category": "LEGAL",
+      "description": "One heading-bounded part of the legal document: its H2 plus the H3s, paragraphs, lists, inline code and (terms only) closing horizontal rule up to the next H2. Repeats once per H2 (14 on /privacy, 12 on /terms). Placeholder copy with the original's structure — replace before launch.",
+      "scope": "Both legal pages (2 routes), repeated per H2.",
       "implementedBy": "src/components/pages/LegalPage.jsx (blocks in src/pages/Privacy.jsx, src/pages/Terms.jsx)"
     },
     "system.not-found": {
@@ -162,7 +168,7 @@
       "routes": ["/privacy", "/terms"],
       "routePattern": null,
       "chrome": "none",
-      "sections": ["legal.back-link", "legal.document-header", "legal.document-body"]
+      "sections": ["legal.back-link", "legal.document-header", "legal.document-preamble", "legal.document-section"]
     },
     {
       "id": "template.not-found",

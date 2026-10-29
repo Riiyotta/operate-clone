@@ -1,8 +1,19 @@
 {
   "id": "legal.document-header",
   "kind": "section",
-  "category": "LEGAL",
   "purpose": "State the document title and effective date.",
+  "semantic": {
+    "id": "legal.document-header",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "LegalPage",
+    "tag": "h1",
+    "file": "src/components/pages/LegalPage.jsx",
+    "lines": "168-172",
+    "anchor": "Effective date:"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/pages/LegalPage.jsx"
   ],

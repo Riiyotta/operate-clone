@@ -1,24 +1,35 @@
 {
-  "id": "legal.document-body",
+  "id": "legal.document-section",
   "kind": "section",
-  "category": "LEGAL",
-  "purpose": "Render the numbered legal reading column (h2/h3, paragraphs, lists, rules) in a 768px column. Body prose is ORIGINAL PLACEHOLDER copy with the original's structure, not Operate's real legal text.",
+  "purpose": "One heading-bounded part of a legal document: its H2 heading plus the H3 sub-headings, paragraphs, lists and (on /terms) the closing rule up to the next H2. Repeats once per H2. Placeholder copy with the original's structure, not Operate's real legal text.",
+  "semantic": {
+    "id": "legal.document-section",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Block",
+    "tag": "h2",
+    "file": "src/components/pages/LegalPage.jsx",
+    "lines": "129-157",
+    "anchor": "case 'h2'"
+  },
+  "retrievalEligible": true,
   "implementedBy": [
     "src/components/pages/LegalPage.jsx",
     "src/pages/Privacy.jsx",
     "src/pages/Terms.jsx"
   ],
   "evidenceLevel": "measured",
-  "iaSection": "ia.json:112",
+  "iaSection": "ia.json:118",
   "variants": [
     {
       "id": "default",
-      "description": "Flat reading column on #E0E0E0."
+      "description": "H2 + body blocks in the 768px reading column on #E0E0E0."
     }
   ],
   "constraints": {
-    "onePerPage": true,
-    "maxPerPage": 1,
+    "onePerPage": false,
+    "maxPerPage": 14,
     "allowedTemplates": [
       "template.legal"
     ]
@@ -26,17 +37,22 @@
   "content": {
     "type": "object",
     "properties": {
+      "heading": {
+        "type": "string",
+        "minLength": 1,
+        "x-maxChars": 35,
+        "x-observedMaxChars": 35
+      },
       "blocks": {
         "type": "array",
         "minItems": 1,
-        "maxItems": 106,
-        "x-observedMaxItems": 106,
+        "maxItems": 23,
+        "x-observedMaxItems": 23,
         "items": {
           "type": "object",
           "properties": {
             "type": {
               "enum": [
-                "h2",
                 "h3",
                 "p",
                 "ul",
@@ -70,6 +86,7 @@
       }
     },
     "required": [
+      "heading",
       "blocks"
     ],
     "additionalProperties": false
@@ -110,11 +127,8 @@
   "exemplar": {
     "variant": "default",
     "content": {
+      "heading": "1. Placeholder section",
       "blocks": [
-        {
-          "type": "h2",
-          "text": "1. Placeholder section"
-        },
         {
           "type": "p",
           "text": "This section is placeholder text and will be replaced with the final wording before publication."
@@ -142,14 +156,17 @@
     }
   },
   "notes": [
-    "Placeholder text only; never reproduce Operate's real legal text. Terms: 106 blocks (11 h2 + 37 h3 + 47 p + 1 ol + 10 hr), the largest document; maxItems is that observed count.",
-    "Block type determines required fields: h2/h3/p need text, ul/ol need items, hr takes neither (enforced in schema/semantic_validate.py).",
-    "Per-type character limits are in blockCharLimits."
+    "Observed: 14 parts on /privacy, 12 on /terms (maxPerPage 14); the longest part is /terms '10. General Terms' with 23 blocks (maxItems 23).",
+    "Block type determines required fields: h3/p need text, ul/ol need items, hr takes neither (enforced in schema/semantic_validate.py). The H2 is the `heading` field.",
+    "Split out of the former legal.document-body (1.2.0): the wrapper gate measured that one body section held 96-98% of each legal page; each part is now at most 25% of its page."
   ],
   "measuredFrom": [
-    "src/components/pages/LegalPage.jsx:159",
+    "src/pages/Privacy.jsx:21",
+    "src/pages/Privacy.jsx:113",
+    "src/pages/Terms.jsx:111",
+    "src/pages/Terms.jsx:136",
     "CLONE_SPEC_PAGES.md:102",
-    "src/pages/Privacy.jsx:2"
+    "src/components/pages/LegalPage.jsx:173-175"
   ],
   "responsive": {
     "mode": "mobile-first-min-width",
@@ -185,7 +202,6 @@
     ]
   },
   "blockCharLimits": {
-    "h2": 35,
     "h3": 50,
     "p": 1866,
     "li": 1248,
